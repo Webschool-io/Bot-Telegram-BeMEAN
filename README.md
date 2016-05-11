@@ -10,6 +10,7 @@ Bot para o Telegram do grupo do Be MEAN
 - Cálculos // Adicionar Exponenciação, Raiz, ETC
 - O que é ...? // Busca no Google
 - [Code]... ? // Busca no Stackoverflow
+- [Github]... ? // Busca no Github
 - [Be MEAN] ...? // Busca nos vídeos
 - [Error] // Busca no Stackoverflow
 - [JS]{COMANDO} // Busca em mdn.io/{COMANDO}
