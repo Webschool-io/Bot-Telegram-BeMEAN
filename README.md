@@ -9,6 +9,8 @@ Bot para o Telegram do grupo do Be MEAN
 - Quem é ...? // Busca na WIkipedia
 - Cálculos // Adicionar Exponenciação, Raiz, ETC
 - O que é ...? // Busca no Google
+- #twitter hashtag // busca a hashtag no Twitter
+- #insta hashtag // busca a hashtag no Instagram
 - [Code]... ? // Busca no Stackoverflow
 - [Github]... ? // Busca no Github
 - [Be MEAN] ...? // Adiciona a pergunta na FAQ para q eu, Suissa, responda
