@@ -1,0 +1,20 @@
+{
+  "name": "events-bot",
+  "version": "1.0.0",
+  "description": "A simple bot that helps you to organize events in groups",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bot",
+    "event",
+    "telegram"
+  ],
+  "author": "Rogério Munhoz",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "node-telegram-bot-api": "^0.21.1"
+  }
+}
