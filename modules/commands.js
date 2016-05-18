@@ -1,7 +1,9 @@
-var echo = require('./commands/echo');
-var ping = require('./commands/ping');
-var id = require('./commands/id');
-var start = require('./commands/start');
+'use strict';
+
+const echo = require('./commands/echo');
+const ping = require('./commands/ping');
+const id = require('./commands/id');
+const start = require('./commands/start');
 
 module.exports = {
     'echo': echo,

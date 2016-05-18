@@ -1,4 +1,6 @@
-var execute = function (msg, match, bot) {
+'use strict';
+
+const execute = (msg, match, bot) => {
     if (match[2]) {
         if (match[2] == 'user') {
             bot.sendMessage(msg.chat.id, "O id do usuário é: " + msg.from.id);

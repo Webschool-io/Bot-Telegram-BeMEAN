@@ -1,14 +1,16 @@
-var TelegramBot = require('node-telegram-bot-api');
+'use strict';
+
+const TelegramBot = require('node-telegram-bot-api');
 require('dotenv').config();
 
-var token = process.env.API_TOKEN || 'INSERT API_TOKEN';
+const token = process.env.API_TOKEN || 'INSERT API_TOKEN';
 // Setup polling way
-var bot = new TelegramBot(token, { polling: true });
+const bot = new TelegramBot(token, { polling: true });
 
-var commands = require('./modules/commands');
+const commands = require('./modules/commands');
 
 // Matches commands
-bot.onText(/\/([a-zA-Z]+) ?(.+)?/, function (msg, match) {
+bot.onText(/\/([a-zA-Z]+) ?(.+)?/, (msg, match) => {
     command = match[1];
     args = match[2];
     if (command) {
