@@ -31,7 +31,7 @@ bot.onText(/\/([a-zA-Z]+) ?(.+)?/, (msg, match) => {
     }
 });
 
-bot.onText(/Quem é (.*)/, (msg, match) => {
+bot.onText(/Quem é (.*)?/, (msg, match) => {
     console.log('Received query: ' + match);
     var term = match[1];
     if(term && term != ""){
