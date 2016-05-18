@@ -11,8 +11,8 @@ const commands = require('./modules/commands');
 
 // Matches commands
 bot.onText(/\/([a-zA-Z]+) ?(.+)?/, (msg, match) => {
-    command = match[1];
-    args = match[2];
+    var command = match[1];
+    var args = match[2];
     if (command) {
         if (command in commands) {
             command = commands[command];
