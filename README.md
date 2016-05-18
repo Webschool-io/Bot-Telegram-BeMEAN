@@ -18,3 +18,4 @@ Bot para o Telegram do grupo do Be MEAN
 - [Error] // Busca no Stackoverflow
 - [JS]{COMANDO} // Busca em mdn.io/{COMANDO}
 - [eval]{CODE} // Enviar para um https://eval.in da vida
+- Integração com a API Luis.ai com tradução automática
