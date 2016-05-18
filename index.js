@@ -8,6 +8,7 @@ const token = process.env.API_TOKEN || 'INSERT API_TOKEN';
 const bot = new TelegramBot(token, { polling: true });
 
 const commands = require('./modules/commands');
+const services = require('./modules/services');
 
 // Matches commands
 bot.onText(/\/([a-zA-Z]+) ?(.+)?/, (msg, match) => {
@@ -27,5 +28,15 @@ bot.onText(/\/([a-zA-Z]+) ?(.+)?/, (msg, match) => {
         } else {
             bot.sendMessage(msg.chat.id, "Eita, esse comando não existe :/");
         }
+    }
+});
+
+bot.onText(/Quem é (.*)/, (msg, match) => {
+    console.log('Received query: ' + match);
+    var term = match[1];
+    if(term && term != ""){
+        services.wikipedia.execute(bot, msg, term);
+    } else {
+        bot.sendMessage(msg.chat.id, "Quem é... tem que me dizer por quem procurar, jovem...");
     }
 });
