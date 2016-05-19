@@ -29,3 +29,9 @@ bot.onText(/\/([a-zA-Z]+) ?(.+)?/, (msg, match) => {
         }
     }
 });
+
+// Quem é
+// /^quem é/i
+bot.onText(/^quem é/i, (msg, match) => {
+  bot.sendMessage(msg.chat.id, "QUEM EH O QUE???");
+});
