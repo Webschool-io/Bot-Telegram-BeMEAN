@@ -56,6 +56,7 @@
 	}
 
 	$info = json_decode(`/usr/bin/pm2 jlist`, true);
+	var_dump($info);
 	$count = count($info);
 	$process = "";
 	foreach ($info as $p) {
