@@ -58,6 +58,7 @@
 	exec("/usr/bin/pm2 jlist", $info);
 	$info = json_decode($info[0], true);
 	$count = count($info);
+	$process = "";
 	foreach ($info as $p) {
 		if($p['name'] == "BeMEAN-bot"){
 			$process = $p;
