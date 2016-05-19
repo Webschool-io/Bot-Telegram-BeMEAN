@@ -55,7 +55,7 @@
 		}
 	}
 
-	exec("pm2 jlist", $info);
+	exec("/usr/bin/pm2 jlist", $info);
 	$info = json_decode($info[0], true);
 	$count = count($info);
 	foreach ($info as $p) {
