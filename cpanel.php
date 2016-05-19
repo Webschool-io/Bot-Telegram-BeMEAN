@@ -55,7 +55,7 @@
 		}
 	}
 
-	exec("/usr/bin/pm2 jlist", $info);
+	var_dump(exec("/usr/bin/pm2 jlist"));
 	$info = json_decode($info[0], true);
 	$count = count($info);
 	$process = "";
@@ -64,7 +64,6 @@
 			$process = $p;
 		}
 	}
-	var_dump($info);
 	?>
 
 	<div class="panel">
