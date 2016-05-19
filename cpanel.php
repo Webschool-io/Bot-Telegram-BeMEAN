@@ -42,15 +42,15 @@
 	if(isset($_POST['action'])){
 		switch ($_POST['action']) {
 			case 'start':
-			exec("/usr/bin/pm2 start BeMean-bot");
+			exec("/usr/bin/pm2 start BeMEAN-bot");
 			break;
 
 			case 'stop':
-			exec('/usr/bin/pm2 stop BeMean-bot');
+			exec('/usr/bin/pm2 stop BeMEAN-bot');
 			break;
 
 			case 'restart':
-			exec('/usr/bin/pm2 restart BeMean-bot');
+			exec('/usr/bin/pm2 restart BeMEAN-bot');
 			break;
 		}
 	}
@@ -59,7 +59,7 @@
 	$info = json_decode($info[0], true);
 	$count = count($info);
 	foreach ($info as $p) {
-		if($p['name'] == "BeMean-bot"){
+		if($p['name'] == "BeMEAN-bot"){
 			$process = $p;
 		}
 	}
