@@ -64,7 +64,7 @@
 			$process = $p;
 		}
 	}
-	var_dump($process);
+	var_dump($info);
 	?>
 
 	<div class="panel">
