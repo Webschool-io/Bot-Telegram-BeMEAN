@@ -37,6 +37,8 @@
 </head>
 <body>
 	<?php
+	ini_set('display_errors', 'On');
+	error_reporting(E_ALL);
 	if(isset($_POST['action'])){
 		switch ($_POST['action']) {
 			case 'start':
