@@ -1,17 +1,17 @@
 {
-  "name": "events-bot",
+  "name": "Bot-Telegram-BeMEAN",
   "version": "1.0.0",
-  "description": "A simple bot that helps you to organize events in groups",
+  "description": "Bot para o Teegram do grupo do Be MEAN",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "bot",
-    "event",
+    "bemean",
     "telegram"
   ],
-  "author": "Rogério Munhoz",
+  "author": "WebSchool / BeMEAN",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^2.0.0",
