@@ -21,6 +21,6 @@ sendMessage("Pull+result%3A%0D%0A`$url_result`", true);
 echo $result;
 
 sendMessage("Git pull completed; restarting bot");
-exec("pm2 restart BeMEAN-bot");
+exec("/usr/bin/pm2 restart BeMEAN-bot");
 
 ?>
