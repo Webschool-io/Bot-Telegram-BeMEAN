@@ -38,7 +38,7 @@ bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
 });
 
 // Wikipedia
-bot.onText(/(Quem|O que|O q|oq|Cadê|Cade) (é|eh|eah|e) ([^?]*)\??/i, (msg, match) => {
+bot.onText(/(Quem|O que|O q|oq|Cadê|Cade) (é|eh|eah|e|significa) ([^?]*)\??/i, (msg, match) => {
   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
 });
 
