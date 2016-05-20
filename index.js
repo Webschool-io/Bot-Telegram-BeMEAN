@@ -34,7 +34,7 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
 // Date
 bot.onText(/Date\.|new Date/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
-  bot.sendMessage(msg.chat.id, eval(msg.text));
+  bot.sendMessage(msg.chat.id, 'Resposta do Date: '+eval(msg.text));
 });
 
 // reduce
