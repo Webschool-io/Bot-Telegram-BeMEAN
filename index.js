@@ -40,7 +40,7 @@ bot.onText(/Date\./, (msg, match) => {
 // reduce
 bot.onText(/\.reduce/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
-  bot.sendMessage(msg.chat.id, 'Tentando reduce: '+msg.text);
+  bot.sendMessage(msg.chat.id, 'Resposta do reduce: '+eval(msg.text));
 });
 
 // GMaps
