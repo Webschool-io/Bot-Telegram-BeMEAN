@@ -6,6 +6,7 @@ const maconha = require('./services/maconha');
 const risada = require('./services/risada');
 const gmaps = require('./services/gmaps');
 const mdn = require('./services/mdn');
+const md5 = require('./services/md5');
 
 module.exports = {
   wikipedia: wikipedia,
@@ -13,5 +14,6 @@ module.exports = {
   maconha: maconha,
   risada: risada,
   gmaps: gmaps,
-  mdn: mdn
+  mdn: mdn,
+  md5: md5
 }

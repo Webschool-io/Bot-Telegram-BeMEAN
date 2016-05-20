@@ -17,6 +17,7 @@
     "cheerio": "^0.20.0",
     "cheerio-advanced-selectors": "^1.1.0",
     "dotenv": "^2.0.0",
+    "md5": "^2.1.0",
     "node-telegram-bot-api": "^0.21.1",
     "request": "^2.72.0"
   }

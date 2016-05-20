@@ -37,6 +37,11 @@ bot.onText(/Date\.|new Date/, (msg, match) => {
   bot.sendMessage(msg.chat.id, 'Resposta do Date: '+eval(msg.text));
 });
 
+// md5
+bot.onText(/^md5\s+([a-zA-Z])+/, (msg, match) => {
+  services.md5.execute(bot, msg, match);
+});
+
 // reduce
 bot.onText(/\.reduce/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
