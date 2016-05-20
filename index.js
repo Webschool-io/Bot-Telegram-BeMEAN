@@ -32,7 +32,7 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
 });
 
 // Date
-bot.onText(/Date\./, (msg, match) => {
+bot.onText(/Date\.|new Date/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
   bot.sendMessage(msg.chat.id, eval(msg.text));
 });
