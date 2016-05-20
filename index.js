@@ -11,7 +11,7 @@ const commands = require('./modules/commands');
 const services = require('./modules/services');
 
 // Matches commands
-bot.onText(/\/([a-zA-Z]+) ?(.+)?/, (msg, match) => {
+bot.onText(/^\/([a-zA-Z]+) ?(.+)?/, (msg, match) => {
     var command = match[1];
     var args = match[2];
     if (command) {
@@ -30,20 +30,10 @@ bot.onText(/\/([a-zA-Z]+) ?(.+)?/, (msg, match) => {
         }
     }
 });
-bot.onText(/.*/, (msg, match) => {
-    console.log('RECEBI MSG: ' + msg);
-    const msg = "Recebi a mensagem : ...";
-    bot.sendMessage(msg.chat.id, msg);
-});
-bot.onText(/Quem é (.*)?/, (msg, match) => {
-    bot.sendMessage(msg.chat.id, "Quem é... ");
-    console.log('Received query: ' + match);
-    var term = match[1];
-    if(term && term != ""){
-        services.wikipedia.execute(bot, msg, term);
-    } else {
-        bot.sendMessage(msg.chat.id, "Quem é... tem que me dizer por quem procurar, jovem...");
-    }
+
+bot.onText(/Quem é ([^?]*)\??/i, (msg, match) => {
+    console.log("Recebi: " + msg.text);
+    services.wikipedia.execute(bot, msg, match[1]);
 });
 
 // 'use strict';
