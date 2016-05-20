@@ -14,8 +14,9 @@
   "author": "WebSchool / BeMEAN",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^0.20.0",
     "dotenv": "^2.0.0",
     "node-telegram-bot-api": "^0.21.1",
-    "striptags": "^2.1.1"
+    "request": "^2.72.0"
   }
 }

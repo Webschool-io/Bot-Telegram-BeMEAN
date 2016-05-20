@@ -1,7 +1,6 @@
 'use strict';
 
 const api = require('wikipedia-js');
-const striptags = require('striptags');
 
 var execute = (bot, msg, arg) => {
 
