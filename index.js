@@ -55,5 +55,6 @@ bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, m
 });
 
 bot.on('sticker', (msg) => {
-  bot.sendSticker(msg.chat.id, 'BQADBAADzQADXoD0BfaPN-SRlpBYAg');
+  bot.sendMessage(msg.chat.id, "Id do sticker: " + msg.sticker.file_id);
+  //bot.sendSticker(msg.chat.id, 'BQADBAADzQADXoD0BfaPN-SRlpBYAg');
 });
