@@ -10,7 +10,10 @@ var execute = (bot, msg, arg) => {
         request('https://pt.wikipedia.org/w/index.php?title=' + arg.replace(" ", "_"), function (error, response, html) {
             if (!error && response.statusCode == 200) {
                 const $ = cheerio.load(html);
-                const answer = $('#bodyContent #mw-content-text p:first').not('.coordinates').text();
+                var answer = $('#bodyContent #mw-content-text p:first').not('.coordinates').text();
+                if (answer == "") {
+                    const text = $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 500);
+                }
                 bot.sendMessage(msg.chat.id, answer);
             } else if (error) {
                 const mili = new Date().getTime();
