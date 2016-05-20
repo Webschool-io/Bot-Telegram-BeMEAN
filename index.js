@@ -13,7 +13,7 @@ const services = require('./modules/services');
 // Matches commands
 bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
     var command = match[1];
-    var args = match[2];
+    var args = match[3];
     if (command) {
         if (command in commands) {
             command = commands[command];
