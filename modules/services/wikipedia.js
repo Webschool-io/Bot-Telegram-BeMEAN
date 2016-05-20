@@ -13,7 +13,7 @@ var execute = (bot, msg, arg) => {
                 const $ = cheerio.load(html);
                 const teste = $('#bodyContent #mw-content-text p').text();
                 console.log('teste', teste)
-                bots.sendMessage(msg.chat.id, teste);
+                bot.sendMessage(msg.chat.id, teste);
             }
         });
     } catch (e) {
