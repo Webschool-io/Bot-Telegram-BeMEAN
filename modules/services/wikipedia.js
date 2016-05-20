@@ -12,7 +12,7 @@ var execute = (bot, msg, arg) => {
                 return;
             }
             var parsedResponse = response.replace(/<[^>]+>/, "");
-            bot.sendMessage(msg.chat.id, parsedResponse, { 'parse_mode': 'HTML' });
+            bot.sendMessage(msg.chat.id, "Achei isso na wikipedia: " + parsedResponse, { 'parse_mode': 'HTML' });
             console.log('Responta da wikipedia: ' + parsedResponse);
         });
     } catch (e) {
