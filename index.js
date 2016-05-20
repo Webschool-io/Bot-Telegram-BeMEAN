@@ -38,7 +38,7 @@ bot.onText(/Date\./, (msg, match) => {
 });
 
 // reduce
-bot.onText(/reduce\./, (msg, match) => {
+bot.onText(/\.reduce/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
   bot.sendMessage(msg.chat.id, 'Tentando reduce: '+msg.text);
 });
