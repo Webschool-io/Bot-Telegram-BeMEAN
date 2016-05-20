@@ -35,7 +35,7 @@ var parseResponse = (err, res, html, args) => {
                 var answer = answers.quickDef;
 
                 if (wh.match(regexOnde)) {
-                    answer = (coordinates != "") ? answers.coordinates : messages.coordsNotFound + answers.longDef;
+                    answer = (answers.coordinates != "") ? answers.coordinates : messages.coordsNotFound + answers.longDef;
                 }
 
                 answer = (answer == "") ? answers.longDef : answer;
