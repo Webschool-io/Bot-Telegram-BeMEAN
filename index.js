@@ -57,11 +57,11 @@ bot.onText(/(.*bot\s+)?(fale|diga)[.,: ]+(que\s+)?(.+)/i, (msg, match) => {
 });
 
 // calcular
-bot.onText(/(.*bot\s+)?(fale|diga)[.,: ]+(que\s+)?(.+)/i, (msg, match) => {
-  const = mathRE = /(^|\s)\(?-?[.0-9()]+(\s*[-+\/*]\s*-?[.0-9()]+)+(\)|\b)/i;
+bot.onText(/(^|\s)\(?-?[.0-9()]+(\s*[-+\/*]\s*-?[.0-9()]+)+(\)|\b)/i, (msg, match) => {=
   const = matchDate = /([0-9]{2}\/[0-9]{2}\/[0-9]{4}|[0-9]{2}\/20[0-9]{2})/;
-  const teste = msg.text.match(mathRE)
-  bot.sendMessage(msg.chat.id, 'Vou calcular pra vc: ' + teste);
+  // const teste = msg.text.match(mathRE)
+  bot.sendMessage(msg.chat.id, 'Vou calcular pra vc: ' + msg.text);
+  bot.sendMessage(msg.chat.id, eval(msg.text));
   // if match? and not matchDate.test match[0]
   //   try
   //     result = eval match[0]
