@@ -32,7 +32,7 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
 });
 
 bot.onText(/(Quem|O que|Onde) (é|eh|eah|e) ([^?]*)\??/i, (msg, match) => {
-    console.log("Recebi: " + msg.text);
+    console.log(match);
     services.wikipedia.execute(bot, msg, match[4]);
 });
 
