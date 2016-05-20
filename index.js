@@ -19,7 +19,7 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
       command = commands[command];
       if (match.length > command.numParams) {
         if (args) {
-            args = args.split(' ');
+          args = args.split(' ');
         }
         command.execute(msg, match, bot);
       } else {
@@ -46,6 +46,9 @@ bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
   services.risada.execute(bot, msg);
 });
 
+bot.on('sticker', (msg) => {
+  bot.sendSticker(msg.chat.id, 'BQADBAADzQADXoD0BfaPN-SRlpBYAg');
+});
 // /bot fale
 // bot.onText(/(.*bot\s+)?(fale|diga)[.,: ]+(que\s+)?(.+)/i, (msg, match) => {
 //   // a fazer
