@@ -38,7 +38,7 @@ bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
 });
 
 // MDN
-bot.onText(/^mdn\s+([a-zA-Z])+/i, (msg, match) => {
+bot.onText(/^js\s+([a-zA-Z])+/i, (msg, match) => {
   services.mdn.execute(bot, msg, match);
 });
 
