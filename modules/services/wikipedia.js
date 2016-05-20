@@ -41,7 +41,7 @@ const escapeHTML = (code) =>
 /**
  * Realiza o parse de uma response vinda do request
  */
- var parseResponse = (err, res, html, args, bot, msg) => {
+ var parseResponse = (err, res, html, args, bot, msg, _url) => {
     const query = args.query;
     const wh = args.wh;
     if (!err) {
@@ -61,7 +61,7 @@ const escapeHTML = (code) =>
             }
 
             answer = (answer == "") ? answers.longDef : answer;
-            const _return = 'A Wikipédia diz que "_' +simpleHTML(answer) + '_".';
+            const _return = 'A Wikipédia diz que "' +simpleHTML(answer) + '". \nSaiba mais sobre <a href=\"#{_url}\">'+args.query.replace(" ", "_")+'</a>."';
 
             bot.sendMessage(msg.chat.id, _return.replace(/\[[^]]*\]/, ""), pm);
             break;
@@ -85,11 +85,12 @@ const escapeHTML = (code) =>
  */
  var execute = (bot, msg, args) => {
     try {
-        request('https://pt.wikipedia.org/w/index.php?title=' + args.query.replace(" ", "_"), (err, res, html) => {
-            parseResponse(err, res, html, args, bot, msg);
-        });
+      const _url = 'https://pt.wikipedia.org/w/index.php?title=' + args.query.replace(" ", "_");
+      request(_url, (err, res, html) => {
+        parseResponse(err, res, html, args, bot, msg, _url);
+      });
     } catch (e) {
-        bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
+      bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
     }
 }
 
