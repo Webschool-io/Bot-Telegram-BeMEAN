@@ -4,6 +4,7 @@ var execute = (bot, msg, args) => {
     const query = args.query;
     const wh = args.wh;
     const options = { query: query, format: 'html', summaryOnly: true, lang: 'pt' };
+    console.log(args);
     try {
         const request = require('request');
         const cheerioAdv = require('cheerio-advanced-selectors');
