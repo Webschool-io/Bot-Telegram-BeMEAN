@@ -16,11 +16,11 @@ var execute = (bot, msg, arg) => {
                 bot.sendMessage(msg.chat.id, "Achei isso na wikipedia: " + parsedResponse, { 'parse_mode': 'HTML' });
                 console.log('Responta da wikipedia: ' + parsedResponse);
             } else {
-                bot.sendMessage("Droga, não achei nada sobre " + arg + " na wikipedia! :/");
+                bot.sendMessage(msg.chat.id, "Droga, não achei nada sobre " + arg + " na wikipedia! :/");
             }
         });
     } catch (e) {
-        bot.sendMessage("Putz, não tô conseguindo conversar com a Wikipedia :/ Tenta depois :1:");
+        bot.sendMessage(msg.chat.id, "Putz, não tô conseguindo conversar com a Wikipedia :/ Tenta depois :1:");
     }
 }
 
