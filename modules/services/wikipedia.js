@@ -8,7 +8,7 @@ var execute = (bot, msg, arg) => {
         const cheerioAdv = require('cheerio-advanced-selectors');
         const cheerio = cheerioAdv.wrap(require('cheerio'));
         console.log('iniciando');
-        request('https://pt.wikipedia.org/wiki/' + arg.replace(" ", "_"), function (error, response, html) {
+        request('https://pt.wikipedia.org/w/index.php?title=' + arg.replace(" ", "_"), function (error, response, html) {
             if (!error && response.statusCode == 200) {
                 const $ = cheerio.load(html);
                 const teste = $('#bodyContent #mw-content-text p:first').text();
