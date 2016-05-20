@@ -4,7 +4,6 @@ var execute = (bot, msg, args) => {
     const query = args.query;
     const wh = args.wh;
     const options = { query: query, format: 'html', summaryOnly: true, lang: 'pt' };
-    console.log(args);
     try {
         const request = require('request');
         const cheerioAdv = require('cheerio-advanced-selectors');
@@ -12,11 +11,10 @@ var execute = (bot, msg, args) => {
         request('https://pt.wikipedia.org/w/index.php?title=' + query.replace(" ", "_"), function (error, response, html) {
             if (!error && response.statusCode == 200) {
                 const $ = cheerio.load(html);
-                console.log(wh.match(/Onde|ond|cadê|cade/i));
                 if (!wh.match(/Onde|ond|cadê|cade/i)) {
                     var answer = $('#bodyContent #mw-content-text p:first').not('.coordinates').text();
                 } else {
-                    if ($('#bodyContent #mw-content-text p:first').not('.coordinates').text() != "") {
+                    if ($('#bodyContent #mw-content-text p.coordinates').text() != "") {
                         var answer = $('#bodyContent #mw-content-text p.coordinates').text();
                     } else {
                         var answer = "Vish, não achei as coordenadas, mas aí vai a definição: " + $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 1000);

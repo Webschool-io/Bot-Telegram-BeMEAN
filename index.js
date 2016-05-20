@@ -32,7 +32,6 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
 });
 
 bot.onText(/(Quem|O que|O q|oq|Onde|Cadê|Cade) (é|eh|eah|e) ([^?]*)\??/i, (msg, match) => {
-    console.log(match);
     services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
 });
 
