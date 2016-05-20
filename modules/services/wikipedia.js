@@ -61,7 +61,7 @@ const escapeHTML = (code) =>
             }
 
             answer = (answer == "") ? answers.longDef : answer;
-            const _return = 'A Wikipédia diz: "_' + answer + '_". Saiba mais sobre ' +_url;
+            const _return = 'A Wikipédia diz: "_' + answer + '_". fonte: ' +_url;
 
             bot.sendMessage(msg.chat.id, _return, pm);
             break;
