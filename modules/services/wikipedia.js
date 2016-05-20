@@ -57,13 +57,13 @@ const escapeHTML = (code) =>
             var answer = answers.quickDef;
 
             if (wh.match(regexOnde)) {
-                answer = (answers.coordinates != "") ? answers.coordinates : messages.coordsNotFound + answers.longDef;
+              answer = (answers.coordinates != "") ? answers.coordinates : messages.coordsNotFound + answers.longDef;
             }
 
             answer = (answer == "") ? answers.longDef : answer;
             const _return = 'A Wikipédia diz que "' +simpleHTML(answer) + '". Saiba mais sobre <a href=\""'+_url+'\"">'+args.query.replace(" ", "_")+'</a>."';
 
-            bot.sendMessage(msg.chat.id, _return, { 'parse_mode': 'HTML' });
+            bot.sendMessage(msg.chat.id, _return);
             break;
             case 404:
             bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
