@@ -27,7 +27,7 @@ const execute = (bot, msg) => {
         coords = data.results[0].geometry.location;
         console.log("coords: " + JSON.stringify(coords));
         bot.sendMessage(msg.chat.id, "Entrei certo: " + JSON.stringify(coords));
-        bot.senLocation(msg.chat.id, coords.lat, coords.lng);
+        bot.sendLocation(msg.chat.id, coords.lat, coords.lng);
       }
       catch(err){
         console.log("Erro end: " + err)
