@@ -13,6 +13,7 @@ var execute = (bot, msg, args) => {
             if (!error && response.statusCode == 200) {
                 const $ = cheerio.load(html);
                 if (!wh.match(/onde|ond|cadê|cade/i)) {
+                    console.log($('#bodyContent #mw-content-text p:first').not('.coordinates'));
                     if ($('#bodyContent #mw-content-text p:first').not('.coordinates').text() != "") {
                         var answer = $('#bodyContent #mw-content-text p:first').not('.coordinates').text();
                     } else {
