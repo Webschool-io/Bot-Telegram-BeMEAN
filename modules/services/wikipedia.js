@@ -63,7 +63,7 @@ const escapeHTML = (code) =>
             answer = (answer == "") ? answers.longDef : answer;
             const _return = 'A Wikipédia diz que "' + answer + '". Saiba mais sobre <a href=\""'+_url+'\"">'+args.query.replace(" ", "_")+'</a>."';
 
-            bot.sendMessage(msg.chat.id, _return, { 'parse_mode': 'HTML' });
+            bot.sendMessage(msg.chat.id, _return);
             break;
             case 404:
             bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
