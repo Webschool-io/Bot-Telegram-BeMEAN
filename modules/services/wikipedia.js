@@ -23,7 +23,7 @@ var execute = (bot, msg, args) => {
                 if (answer == "") {
                     answer = $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 1000);
                 }
-                bot.sendMessage(msg.chat.id, answer);
+                bot.sendMessage(msg.chat.id, answer, { 'parse_mode': 'Markdown' });
             } else if (error) {
                 const mili = new Date().getTime();
                 bot.sendMessage(msg.chat.id, "Droga, deu um erro aqui em :/ ID do erro: `" + mili + "`", { 'parse_mode': 'Markdown' });
