@@ -78,7 +78,7 @@ bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, m
   services.math.execute(bot, msg);
 });
 
-bot.onText(/machonha|weeb|marijuana|erva/, (mgs, match) => {
+bot.onText(/maconha|weed|marijuana|erva|bagulho/i, (msg, match) => {
   services.maconha.execute(bot, msg);
 });
 
