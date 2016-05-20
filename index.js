@@ -31,10 +31,15 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
   }
 });
 
-
+// GMaps
 bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
   let url = require('url');
   services.gmaps.execute(bot, msg, match);
+});
+
+// MDN
+bot.onText(/^mdn\s+([a-zA-Z])+/i, (msg, match) => {
+  services.mdn.execute(bot, msg, match);
 });
 
 // Wikipedia
