@@ -32,7 +32,7 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
 });
 
 bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
-
+   bot.sendMessage(msg.chat.id, "Entrei certo")
   // Acessa a API do Google Maps que converte endereços em latitude e longitude.
   const findPlace = (query, callback=(->)) => {
     query = query.replace(/["'!?]/g, '');
