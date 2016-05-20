@@ -16,13 +16,13 @@ var execute = (bot, msg, args) => {
                     if ($('#bodyContent #mw-content-text p:first').not('.coordinates').text() != "") {
                         var answer = $('#bodyContent #mw-content-text p:first').not('.coordinates').text();
                     } else {
-                        var answer = "Vish, não achei as coordenadas, mas aí vai a definição: " + $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 500);
+                        var answer = "Vish, não achei as coordenadas, mas aí vai a definição: " + $('#bodyContent #mw-content-text p').not('.coordinates').first().text();
                     }
                 } else {
                     var answer = $('#bodyContent #mw-content-text p.coordinates').text();
                 }
                 if (answer == "") {
-                    answer = $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 500);
+                    answer = $('#bodyContent #mw-content-text p').not('.coordinates').first().text();
                 }
                 bot.sendMessage(msg.chat.id, answer);
             } else if (error) {
