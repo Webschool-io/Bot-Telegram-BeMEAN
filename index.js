@@ -54,7 +54,6 @@ bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, m
   services.math.execute(bot, msg);
 });
 
-bot.on('sticker', (msg) => {
-  bot.sendMessage(msg.chat.id, "Id do sticker: " + msg.sticker.file_id);
-  //bot.sendSticker(msg.chat.id, 'BQADBAADzQADXoD0BfaPN-SRlpBYAg');
+bot.onText(/machonha|weeb|marijuana|erva/, (mgs, match) => {
+  services.maconha.execute(bot, msg);
 });
