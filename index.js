@@ -38,30 +38,19 @@ bot.onText(/(Quem|O que|O q|oq|Onde|Cadê|Cade) (é|eh|eah|e) ([^?]*)\??/i, (msg
 bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
   let laughCounter = 0;
   bot.sendMessage(msg.chat.id, 'hehehehehe');
-  // chatCtx.laughCounter++
-  // if chatCtx.laughCounter > 1
-  //   if chatCtx.laughCounter is 3
-  //     sendMsg chatID, rand ['Tá tá...', ':-)', 'nem teve tanta graça']
-  //   if chatCtx.laughCounter is 5
-  //     sendMsg chatID, rand ['como riem!', 'já deu...', 'nem teve tanta graça']
-  // else
-  //   sendMsg chatID, rand ['hehe...', 'hehehehe!', 'hihihi...', 'Rá!']
-  //   timeout 60*30, -> chatCtx.laughCounter = 0
-  //   # esse timeout não funciona se reactCtx for persistido entre execuções.
-
 });
 
 // /bot fale
-bot.onText(/(.*bot\s+)?(fale|diga)[.,: ]+(que\s+)?(.+)/i, (msg, match) => {
-  // a fazer
-});
+// bot.onText(/(.*bot\s+)?(fale|diga)[.,: ]+(que\s+)?(.+)/i, (msg, match) => {
+//   // a fazer
+// });
 
 // calcular
-bot.onText(/(^|\s)\(?-?[.0-9()]+(\s*[-+\/*]\s*-?[.0-9()]+)+(\)|\b)/i, (msg, match) => {=
-  const = matchDate = /([0-9]{2}\/[0-9]{2}\/[0-9]{4}|[0-9]{2}\/20[0-9]{2})/;
-  // const teste = msg.text.match(mathRE)
-  bot.sendMessage(msg.chat.id, 'Vou calcular pra vc: ' + msg.text);
-  bot.sendMessage(msg.chat.id, eval(msg.text));
+// bot.onText(/(^|\s)\(?-?[.0-9()]+(\s*[-+\/*]\s*-?[.0-9()]+)+(\)|\b)/i, (msg, match) => {=
+//   const = matchDate = /([0-9]{2}\/[0-9]{2}\/[0-9]{4}|[0-9]{2}\/20[0-9]{2})/;
+//   // const teste = msg.text.match(mathRE)
+//   bot.sendMessage(msg.chat.id, 'Vou calcular pra vc: ' + msg.text);
+//   bot.sendMessage(msg.chat.id, eval(msg.text));
   // if match? and not matchDate.test match[0]
   //   try
   //     result = eval match[0]
@@ -75,4 +64,4 @@ bot.onText(/(^|\s)\(?-?[.0-9()]+(\s*[-+\/*]\s*-?[.0-9()]+)+(\)|\b)/i, (msg, matc
   //       admDebug "Math Message ERR: #{err.message}\nData: #{JSON.stringify data}"
 
 
-});
+// });
