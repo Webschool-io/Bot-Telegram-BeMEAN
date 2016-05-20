@@ -23,10 +23,10 @@ const simpleHTML = (code) =>
       .replace(/<\/?(br|div|ol|ul)[^>]*>/gi, '\n')
       .replace(/<li[^>]*>/gi, '  • ')
       .replace(/<\/li[^>]*>/gi, '\n')
-      .replace(/(<(?!\/?(b|i|a|pre|code))[^>]+>)/g, '') # remove unknown tags
-      .replace(/(<[^\/]>[^<]*)<[^\/]>/g, '$1')      # remove opening nested tags
-      .replace(/<\/[^>]+>([^<]*<\/[^>]+>)/g, '$1')  # remove closeing nested tags
-      .replace(/<[^>]*$/g, '')                      # remove last croped tag
+      .replace(/(<(?!\/?(b|i|a|pre|code))[^>]+>)/g, '')
+      .replace(/(<[^\/]>[^<]*)<[^\/]>/g, '$1')
+      .replace(/<\/[^>]+>([^<]*<\/[^>]+>)/g, '$1')
+      .replace(/<[^>]*$/g, '')
       .replace(/&#([0-9]+);/, (match,g1) => String.fromCharCode(g1))
       .replace(/(\n\s*){3,}/g, '\n\n')
       .replace(/^\s*|\s*$/g, '')
