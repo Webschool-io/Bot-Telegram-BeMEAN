@@ -3,9 +3,10 @@
 const url = require('url');
 const https = require('https');
 
-const execute = (bot, msg) => {
+const execute = (bot, msg, match) => {
   // const query = msg.text.replace(/["'!?]/g, '');
-  const query = msg.text;
+  const query = match[3].replace(/["'!?]/g, '');
+  bot.sendLocation(msg.chat.id, 'query: '+query);
   const _base = 'https://maps.googleapis.com/maps/api/geocode/json';
   var _url = url.parse(_base + '?sensor=false&address=' + encodeURIComponent(query))
   _url.headers = {

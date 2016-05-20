@@ -34,7 +34,7 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
 
 bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
   let url = require('url');
-  services.gmaps.execute(bot, msg);
+  services.gmaps.execute(bot, msg, match);
 });
 
 // Wikipedia
