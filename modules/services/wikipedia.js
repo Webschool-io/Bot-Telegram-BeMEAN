@@ -7,17 +7,14 @@ var execute = (bot, msg, arg) => {
 
     const options = { query: arg, format: 'html', summaryOnly: true, lang: 'pt' };
     try {
-        api.searchArticle(options, (err, response) => {
-            if (err) {
-                bot.sendMessage(msg.chat.id, "Eita! Não consegui me comunicar com o servidor da Wikipedia, não, foi mal ae :/");
-                return;
-            }
-            if (response) {
-                var parsedResponse = striptags(response, '<a><b><i><code><pre>');
-                bot.sendMessage(msg.chat.id, "Achei isso na wikipedia: " + parsedResponse, { 'parse_mode': 'HTML' });
-                console.log('Responta da wikipedia: ' + parsedResponse);
-            } else {
-                bot.sendMessage(msg.chat.id, "Droga, não achei nada sobre " + arg + " na wikipedia! :/");
+        const cheerio = require('cheerio');
+        const request = require('request');
+        request('https://pt.wikipedia.org/wiki/Hakim_Bey', function (error, response, html) {
+            if (!error && response.statusCode == 200) {
+                const $ = cheerio.load(html);
+                const teste = $('#bodyContent #mw-content-text p').text();
+                console.log('teste', teste)
+                bots.sendMessage(msg.chat.id, teste);
             }
         });
     } catch (e) {
