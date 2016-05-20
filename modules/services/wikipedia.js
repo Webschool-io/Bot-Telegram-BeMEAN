@@ -7,13 +7,11 @@ var execute = (bot, msg, arg) => {
         const request = require('request');
         const cheerioAdv = require('cheerio-advanced-selectors');
         const cheerio = cheerioAdv.wrap(require('cheerio'));
-        console.log('iniciando');
         request('https://pt.wikipedia.org/w/index.php?title=' + arg.replace(" ", "_"), function (error, response, html) {
             if (!error && response.statusCode == 200) {
                 const $ = cheerio.load(html);
-                const teste = $('#bodyContent #mw-content-text p:first').text();
-                console.log('teste', teste);
-                bot.sendMessage(msg.chat.id, teste);
+                const answer = $('#bodyContent #mw-content-text p:first').not('.coordinates').text();
+                bot.sendMessage(msg.chat.id, answer);
             } else if (error) {
                 const mili = new Date().getTime();
                 bot.sendMessage(msg.chat.id, "Droga, deu um erro aqui em :/ ID do erro: `" + mili + "`", { 'parse_mode': 'Markdown' });

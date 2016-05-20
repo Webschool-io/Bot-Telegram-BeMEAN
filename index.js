@@ -11,7 +11,7 @@ const commands = require('./modules/commands');
 const services = require('./modules/services');
 
 // Matches commands
-bot.onText(/^\/([a-zA-Z]+) ?(.+)?/, (msg, match) => {
+bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
     var command = match[1];
     var args = match[2];
     if (command) {
