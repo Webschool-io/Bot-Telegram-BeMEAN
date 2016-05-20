@@ -5,7 +5,7 @@ const https = require('https');
 
 const execute = (bot, msg, match) => {
   const arr = msg.text.split('mdn ');
-  const _arr = arr.splice(1);
+  const _arr = arr.splice(1)[0];
   const _url = 'http://mdn.io/'+match[1];
   bot.sendMessage(msg.chat.id, JSON.stringify(_arr));
   // const query = msg.text.replace(/["'!?]/g, '');
