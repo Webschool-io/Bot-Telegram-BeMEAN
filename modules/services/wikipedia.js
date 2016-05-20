@@ -19,7 +19,7 @@ const messages = {
 /**
  * Realiza o parse de uma response vinda do request
  */
-var parseResponse = (err, res, html, args) => {
+var parseResponse = (err, res, html, args, bot, msg) => {
     const query = args.query;
     const wh = args.wh;
     if (!err) {
@@ -63,7 +63,7 @@ var parseResponse = (err, res, html, args) => {
 var execute = (bot, msg, args) => {
     try {
         request('https://pt.wikipedia.org/w/index.php?title=' + args.query.replace(" ", "_"), (err, res, html) => {
-            parseResponse(err, res, html, args);
+            parseResponse(err, res, html, args, bot, msg);
         });
     } catch (e) {
         bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
