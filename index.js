@@ -11,6 +11,13 @@ const commands = require('./modules/commands');
 const services = require('./modules/services');
 
 // Matches commands
+
+bot.onText(/.*/, (msg, match) => {
+    console.log('RECEBI MSG: ' + msg);
+    const _MSG = "Recebi a mensagem : ...";
+    bot.sendMessage(msg.chat.id, _MSG);
+});
+
 bot.onText(/\/([a-zA-Z]+) ?(.+)?/, (msg, match) => {
     var command = match[1];
     var args = match[2];
@@ -29,11 +36,6 @@ bot.onText(/\/([a-zA-Z]+) ?(.+)?/, (msg, match) => {
             bot.sendMessage(msg.chat.id, "Eita, esse comando não existe :/");
         }
     }
-});
-bot.onText(/.*/, (msg, match) => {
-    console.log('RECEBI MSG: ' + msg);
-    const msg = "Recebi a mensagem : ...";
-    bot.sendMessage(msg.chat.id, msg);
 });
 bot.onText(/Quem é (.*)?/, (msg, match) => {
     bot.sendMessage(msg.chat.id, "Quem é... ");
