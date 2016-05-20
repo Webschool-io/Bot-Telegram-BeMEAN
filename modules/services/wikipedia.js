@@ -18,7 +18,7 @@ var execute = (bot, msg, arg) => {
             }
         });
     } catch (e) {
-        bot.sendMessage(msg.chat.id, "Putz, não tô conseguindo conversar com a Wikipedia :/ Tenta depois :1:");
+        bot.sendMessage(msg.chat.id, "Putz, não tô conseguindo conversar com a Wikipedia :/ Tenta depois `" + e + "`", { 'parse_mode': 'Markdown' });
     }
 }
 
