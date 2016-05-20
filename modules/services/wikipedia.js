@@ -61,7 +61,7 @@ const escapeHTML = (code) =>
             }
 
             answer = (answer == "") ? answers.longDef : answer;
-            const _return = 'A Wikipédia diz que "' + answer + '". Saiba mais sobre <a href=\""'+_url+'\"">'+args.query.replace(" ", "_")+'</a>."';
+            const _return = 'A Wikipédia diz que "' + answer + '". Saiba mais sobre ' +args.query.replace(" ", "_")+' "';
 
             bot.sendMessage(msg.chat.id, _return);
             break;
