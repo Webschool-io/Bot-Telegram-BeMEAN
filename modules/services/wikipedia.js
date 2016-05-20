@@ -2,6 +2,7 @@
 
 //Requires
 const request = require('request');
+const url = require('url');
 const cheerioAdv = require('cheerio-advanced-selectors');
 const cheerio = cheerioAdv.wrap(require('cheerio'));
 
@@ -47,23 +48,34 @@ const escapeHTML = (code) =>
     if (!err) {
         switch (res.statusCode) {
             case 200:
-            const $ = cheerio.load(html);
-            const answers = {
-                quickDef: $('#bodyContent #mw-content-text p:first').not('.coordinates').html(),
-                coordinates: $('#bodyContent #mw-content-text p.coordinates').text(),
-                longDef: $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 300)
-            };
+            // const $ = cheerio.load(html);
+            // const answers = {
+            //     quickDef: $('#bodyContent #mw-content-text p:first').not('.coordinates').html(),
+            //     coordinates: $('#bodyContent #mw-content-text p.coordinates').text(),
+            //     longDef: $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 300)
+            // };
 
-            var answer = answers.quickDef;
+            // var answer = answers.quickDef;
 
-            if (wh.match(regexOnde)) {
-              answer = (answers.coordinates != "") ? answers.coordinates : messages.coordsNotFound + answers.longDef;
-            }
+            // if (wh.match(regexOnde)) {
+            //   answer = (answers.coordinates != "") ? answers.coordinates : messages.coordsNotFound + answers.longDef;
+            // }
 
-            answer = (answer == "") ? answers.longDef : answer;
+            // answer = (answer == "") ? answers.longDef : answer;
             // const _return = 'A Wikipédia diz que "' +simpleHTML(answer) + '". Saiba mais sobre <a href=\""'+_url+'\"">'+args.query.replace(" ", "_")+'</a>."';
 
-            bot.sendMessage(msg.chat.id, answer, { 'parse_mode': 'HTML' });
+            let data = '';
+            res.on('data', (chunk) => data += chunk);
+            res.on('end', () => {
+              try{
+                data = JSON.parse(data);
+                bot.sendMessage(msg.chat.id, data, { 'parse_mode': 'HTML' });
+              }
+              catch(err){
+                console.log("Erro end: " + err)
+              }
+            });
+            // bot.sendMessage(msg.chat.id, answer, { 'parse_mode': 'HTML' });
             break;
             case 404:
             bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
@@ -85,7 +97,11 @@ const escapeHTML = (code) =>
  */
  var execute = (bot, msg, args) => {
     try {
-      const _url = 'https://pt.wikipedia.org/w/index.php?title=' + args.query.replace(" ", "_");
+      // const _url = 'https://pt.wikipedia.org/w/index.php?title=' + args.query.replace(" ", "_");
+      const encQuery = encodeURIComponent(args.query)
+      const _url = url.parse('https://pt.wikipedia.org/w/api.php?action=query' +
+                             '&converttitles=1&format=json&redirects=true' +
+                             '&prop=pageimages|extracts&titles=' + encQuery)
       request(_url, (err, res, html) => {
         parseResponse(err, res, html, args, bot, msg, _url);
       });
