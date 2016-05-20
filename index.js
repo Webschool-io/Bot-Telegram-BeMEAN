@@ -46,8 +46,7 @@ bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
 // });
 
 // calcular
-bot.onText(/(^|\s)\(?-?[.0-9()]+(\s*[-+\/*]\s*-?[.0-9()]+)+(\)|\b)/i, (msg, match) => {=
-  const = matchDate = /([0-9]{2}\/[0-9]{2}\/[0-9]{4}|[0-9]{2}\/20[0-9]{2})/;
+bot.onText(/(^|\s)\(?-?[.0-9()]+(\s*[-+\/*]\s*-?[.0-9()]+)+(\)|\b)/i, (msg, match) => {
   // const teste = msg.text.match(mathRE)
   bot.sendMessage(msg.chat.id, 'Vou calcular pra vc: ' + msg.text);
   // bot.sendMessage(msg.chat.id, eval(msg.text));
