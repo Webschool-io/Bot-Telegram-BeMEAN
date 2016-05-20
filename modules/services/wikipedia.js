@@ -16,6 +16,28 @@ const messages = {
     communicationError: "Putz, não tô conseguindo conversar com a Wikipedia :/ Tenta depois `%e%`",
 }
 
+// Makes HTML more compatible to https://core.telegram.org/bots/api#html-style
+const simpleHTML = (code) =>
+  code.split(/\s+/m).join(' ')
+      .replace(/<\/?(p|h[1-6])[^>]*>/gi, '\n\n')
+      .replace(/<\/?(br|div|ol|ul)[^>]*>/gi, '\n')
+      .replace(/<li[^>]*>/gi, '  • ')
+      .replace(/<\/li[^>]*>/gi, '\n')
+      .replace(/(<(?!\/?(b|i|a|pre|code))[^>]+>)/g, '') # remove unknown tags
+      .replace(/(<[^\/]>[^<]*)<[^\/]>/g, '$1')      # remove opening nested tags
+      .replace(/<\/[^>]+>([^<]*<\/[^>]+>)/g, '$1')  # remove closeing nested tags
+      .replace(/<[^>]*$/g, '')                      # remove last croped tag
+      .replace(/&#([0-9]+);/, (match,g1) => String.fromCharCode(g1))
+      .replace(/(\n\s*){3,}/g, '\n\n')
+      .replace(/^\s*|\s*$/g, '')
+
+const escapeHTML = (code) =>
+  code.replace(/&/gi, '&amp;')
+      .replace(/>/gi, '&gt;')
+      .replace(/</gi, '&lt;')
+      .replace(/"/gi, '&quot;')
+
+
 /**
  * Realiza o parse de uma response vinda do request
  */
@@ -39,7 +61,7 @@ const messages = {
             }
 
             answer = (answer == "") ? answers.longDef : answer;
-            const _return = 'A Wikipédia diz que "_' + answer + '_".';
+            const _return = 'A Wikipédia diz que "_' +simpleHTML(answer) + '_".';
 
             bot.sendMessage(msg.chat.id, _return.replace(/\[[^]]*\]/, ""), pm);
             break;
