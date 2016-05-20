@@ -32,5 +32,23 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
 });
 
 bot.onText(/(Quem|O que|O q|oq|Onde|Cadê|Cade) (é|eh|eah|e) ([^?]*)\??/i, (msg, match) => {
-    services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
+  services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
 });
+
+bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
+  let laughCounter = 0;
+  bot.sendMessage(msg.chat.id, 'hehehehehe');
+
+  // chatCtx.laughCounter++
+  // if chatCtx.laughCounter > 1
+  //   if chatCtx.laughCounter is 3
+  //     sendMsg chatID, rand ['Tá tá...', ':-)', 'nem teve tanta graça']
+  //   if chatCtx.laughCounter is 5
+  //     sendMsg chatID, rand ['como riem!', 'já deu...', 'nem teve tanta graça']
+  // else
+  //   sendMsg chatID, rand ['hehe...', 'hehehehe!', 'hihihi...', 'Rá!']
+  //   timeout 60*30, -> chatCtx.laughCounter = 0
+  //   # esse timeout não funciona se reactCtx for persistido entre execuções.
+
+});
+
