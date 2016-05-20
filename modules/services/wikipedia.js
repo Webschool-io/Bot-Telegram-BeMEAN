@@ -41,7 +41,7 @@ const messages = {
             answer = (answer == "") ? answers.longDef : answer;
             const _return = 'A Wikipédia diz que "' + answer + '".';
 
-            bot.sendMessage(msg.chat.id, answer.replace(/\[[^]]*\]/, ""), pm);
+            bot.sendMessage(msg.chat.id, _return.replace(/\[[^]]*\]/, ""), pm);
             break;
             case 404:
             bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
