@@ -39,6 +39,7 @@ const messages = {
             }
 
             answer = (answer == "") ? answers.longDef : answer;
+            const _return = 'A Wikipédia diz que "' + answer + '".';
 
             bot.sendMessage(msg.chat.id, answer.replace(/\[[^]]*\]/, ""), pm);
             break;
