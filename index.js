@@ -35,7 +35,7 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
 bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
   let url = require('url');
   bot.sendMessage(msg.chat.id, "Entrei certo");
-  services.gmaps.execute(bot, msg);
+  // services.gmaps.execute(bot, msg);
 });
 
 // Wikipedia
