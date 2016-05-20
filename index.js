@@ -31,13 +31,19 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
   }
 });
 
+// Wikipedia
 bot.onText(/(Quem|O que|O q|oq|Onde|Cadê|Cade) (é|eh|eah|e) ([^?]*)\??/i, (msg, match) => {
   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
 });
 
+// calcular
+bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, match) => {
+  services.math.execute(bot, msg);
+});
+
+// risada
 bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
-  let laughCounter = 0;
-  bot.sendMessage(msg.chat.id, 'hehehehehe');
+  services.risada.execute(bot, msg);
 });
 
 // /bot fale
@@ -45,7 +51,3 @@ bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
 //   // a fazer
 // });
 
-// calcular
-bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, match) => {
-  services.math.execute(bot, msg);
-});
