@@ -19,7 +19,9 @@ const messages = {
 /**
  * Realiza o parse de uma response vinda do request
  */
-var parseResponse = (err, res, html) => {
+var parseResponse = (err, res, html, args) => {
+    const query = args.query;
+    const wh = args.wh;
     if (!err) {
         switch (res.statusCode) {
             case 200:
@@ -59,10 +61,10 @@ var parseResponse = (err, res, html) => {
  * @param args Objeto contento o tipo de pesquisa a realizar(wh) e o termo pesquisado (query)
  */
 var execute = (bot, msg, args) => {
-    const query = args.query;
-    const wh = args.wh;
     try {
-        request('https://pt.wikipedia.org/w/index.php?title=' + query.replace(" ", "_"), parseResponse);
+        request('https://pt.wikipedia.org/w/index.php?title=' + query.replace(" ", "_"), (err, res, html) => {
+            parseResponse(err, res, html, args);
+        });
     } catch (e) {
         bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
     }
