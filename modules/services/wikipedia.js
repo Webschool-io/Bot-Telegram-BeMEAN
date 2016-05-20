@@ -42,7 +42,7 @@ const messages = {
 
             bot.sendMessage(msg.chat.id, answer.replace(/\[[^]]*\]/, ""), pm);
             break;
-            case 400:
+            case 404:
             bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
             break;
         }
