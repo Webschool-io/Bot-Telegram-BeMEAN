@@ -12,8 +12,8 @@ var execute = (bot, msg, args) => {
         request('https://pt.wikipedia.org/w/index.php?title=' + query.replace(" ", "_"), function (error, response, html) {
             if (!error && response.statusCode == 200) {
                 const $ = cheerio.load(html);
-                if (!wh.match(/onde|ond|cadê|cade/i)) {
-                    console.log($('#bodyContent #mw-content-text p:first').not('.coordinates'));
+                if (!wh.match(/Onde|ond|cadê|cade/i)) {
+                    console.log('onde: ' + $('#bodyContent #mw-content-text p:first').not('.coordinates'));
                     if ($('#bodyContent #mw-content-text p:first').not('.coordinates').text() != "") {
                         var answer = $('#bodyContent #mw-content-text p:first').not('.coordinates').text();
                     } else {
