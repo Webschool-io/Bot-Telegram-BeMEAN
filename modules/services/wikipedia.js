@@ -62,7 +62,7 @@ var parseResponse = (err, res, html, args) => {
  */
 var execute = (bot, msg, args) => {
     try {
-        request('https://pt.wikipedia.org/w/index.php?title=' + query.replace(" ", "_"), (err, res, html) => {
+        request('https://pt.wikipedia.org/w/index.php?title=' + args.query.replace(" ", "_"), (err, res, html) => {
             parseResponse(err, res, html, args);
         });
     } catch (e) {
