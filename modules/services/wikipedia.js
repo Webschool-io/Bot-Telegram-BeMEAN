@@ -49,7 +49,7 @@ const escapeHTML = (code) =>
             case 200:
             const $ = cheerio.load(html);
             const answers = {
-                quickDef: $('#bodyContent #mw-content-text p:first').not('.coordinates').text(),
+                quickDef: $('#bodyContent #mw-content-text p:first').not('.coordinates').html(),
                 coordinates: $('#bodyContent #mw-content-text p.coordinates').text(),
                 longDef: $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 300)
             };
@@ -63,7 +63,7 @@ const escapeHTML = (code) =>
             answer = (answer == "") ? answers.longDef : answer;
             // const _return = 'A Wikipédia diz que "' +simpleHTML(answer) + '". Saiba mais sobre <a href=\""'+_url+'\"">'+args.query.replace(" ", "_")+'</a>."';
 
-            bot.sendMessage(msg.chat.id, '<b>'+answer+'</b>', { 'parse_mode': 'HTML' });
+            bot.sendMessage(msg.chat.id, answer, { 'parse_mode': 'HTML' });
             break;
             case 404:
             bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
