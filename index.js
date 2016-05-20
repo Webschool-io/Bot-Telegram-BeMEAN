@@ -47,10 +47,10 @@ bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
 });
 
 bot.on('sticker', (msg) => {
-  bot.sendSticker(msg.chat.id, 'BQADBAADzQADXoD0BfaPN-SRlpBYAg');
+  bot.sendMessage(msg.chat.id, "Id do sticker: " + msg.sticker.file_id);
+  //bot.sendSticker(msg.chat.id, 'BQADBAADzQADXoD0BfaPN-SRlpBYAg');
 });
 // /bot fale
 // bot.onText(/(.*bot\s+)?(fale|diga)[.,: ]+(que\s+)?(.+)/i, (msg, match) => {
 //   // a fazer
 // });
-
