@@ -31,6 +31,12 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
   }
 });
 
+// Date
+bot.onText(/Date\./, (msg, match) => {
+  // services.mdn.execute(bot, msg, match);
+  bot.sendMessage(msg.chat.id, eval(msg.text));
+});
+
 // GMaps
 bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
   let url = require('url');
