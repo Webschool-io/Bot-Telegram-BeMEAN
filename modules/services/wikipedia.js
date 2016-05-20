@@ -19,32 +19,32 @@ const messages = {
 /**
  * Realiza o parse de uma response vinda do request
  */
-var parseResponse = (err, res, html, args, bot, msg) => {
+ var parseResponse = (err, res, html, args, bot, msg) => {
     const query = args.query;
     const wh = args.wh;
     if (!err) {
         switch (res.statusCode) {
             case 200:
-                const $ = cheerio.load(html);
-                const answers = {
-                    quickDef: $('#bodyContent #mw-content-text p:first').not('.coordinates').text(),
-                    coordinates: $('#bodyContent #mw-content-text p.coordinates').text(),
-                    longDef: $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 300)
-                };
+            const $ = cheerio.load(html);
+            const answers = {
+                quickDef: $('#bodyContent #mw-content-text p:first').not('.coordinates').text(),
+                coordinates: $('#bodyContent #mw-content-text p.coordinates').text(),
+                longDef: $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 300)
+            };
 
-                var answer = answers.quickDef;
+            var answer = answers.quickDef;
 
-                if (wh.match(regexOnde)) {
-                    answer = (answers.coordinates != "") ? answers.coordinates : messages.coordsNotFound + answers.longDef;
-                }
+            if (wh.match(regexOnde)) {
+                answer = (answers.coordinates != "") ? answers.coordinates : messages.coordsNotFound + answers.longDef;
+            }
 
-                answer = (answer == "") ? answers.longDef : answer;
+            answer = (answer == "") ? answers.longDef : answer;
 
-                bot.sendMessage(msg.chat.id, answer, pm);
-                break;
+            bot.sendMessage(msg.chat.id, answer.replace(/\[[^]]*\]/, ""), pm);
+            break;
             case 400:
-                bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
-                break;
+            bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
+            break;
         }
     } else {
         const mili = new Date().getTime();
@@ -60,7 +60,7 @@ var parseResponse = (err, res, html, args, bot, msg) => {
  * @param msg Objeto mensagem a ser utilizado para se obter  o id
  * @param args Objeto contento o tipo de pesquisa a realizar(wh) e o termo pesquisado (query)
  */
-var execute = (bot, msg, args) => {
+ var execute = (bot, msg, args) => {
     try {
         request('https://pt.wikipedia.org/w/index.php?title=' + args.query.replace(" ", "_"), (err, res, html) => {
             parseResponse(err, res, html, args, bot, msg);
