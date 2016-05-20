@@ -1,6 +1,7 @@
 'use strict';
 
 const api = require('wikipedia-js');
+const striptags = require('striptags');
 
 var execute = (bot, msg, arg) => {
 
@@ -12,7 +13,7 @@ var execute = (bot, msg, arg) => {
                 return;
             }
             if (response) {
-                var parsedResponse = response.replace(/<[^>]+>/, "");
+                var parsedResponse = striptags(response, '<a><b><i><code><pre>');
                 bot.sendMessage(msg.chat.id, "Achei isso na wikipedia: " + parsedResponse, { 'parse_mode': 'HTML' });
                 console.log('Responta da wikipedia: ' + parsedResponse);
             } else {
