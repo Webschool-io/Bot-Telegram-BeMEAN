@@ -12,7 +12,7 @@ var execute = (bot, msg, arg) => {
                 const $ = cheerio.load(html);
                 var answer = $('#bodyContent #mw-content-text p:first').not('.coordinates').text();
                 if (answer == "") {
-                    const text = $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 500);
+                    answer = $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 500);
                 }
                 bot.sendMessage(msg.chat.id, answer);
             } else if (error) {
