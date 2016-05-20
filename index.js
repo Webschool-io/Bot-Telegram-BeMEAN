@@ -13,7 +13,7 @@ const services = require('./modules/services');
 // Matches commands
 bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
     var command = match[1];
-    var args = match[3];
+    var args = match[2];
     if (command) {
         if (command in commands) {
             command = commands[command];
@@ -31,9 +31,9 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
     }
 });
 
-bot.onText(/Quem|O que|Onde é|eh|eah|e ([^?]*)\??/i, (msg, match) => {
+bot.onText(/(Quem|O que|Onde) (é|eh|eah|e) ([^?]*)\??/i, (msg, match) => {
     console.log("Recebi: " + msg.text);
-    services.wikipedia.execute(bot, msg, match[1]);
+    services.wikipedia.execute(bot, msg, match[4]);
 });
 
 // 'use strict';
