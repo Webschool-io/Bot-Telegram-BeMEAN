@@ -1,7 +1,8 @@
 'use strict';
 
-var execute = (bot, msg, wh, query) => {
-
+var execute = (bot, msg, args) => {
+    const query = args.query;
+    const wh = args.wh;
     const options = { query: query, format: 'html', summaryOnly: true, lang: 'pt' };
     try {
         const request = require('request');
