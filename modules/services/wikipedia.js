@@ -1,16 +1,20 @@
 'use strict';
 
-var execute = (bot, msg, arg) => {
+var execute = (bot, msg, wh, query) => {
 
-    const options = { query: arg, format: 'html', summaryOnly: true, lang: 'pt' };
+    const options = { query: query, format: 'html', summaryOnly: true, lang: 'pt' };
     try {
         const request = require('request');
         const cheerioAdv = require('cheerio-advanced-selectors');
         const cheerio = cheerioAdv.wrap(require('cheerio'));
-        request('https://pt.wikipedia.org/w/index.php?title=' + arg.replace(" ", "_"), function (error, response, html) {
+        request('https://pt.wikipedia.org/w/index.php?title=' + query.replace(" ", "_"), function (error, response, html) {
             if (!error && response.statusCode == 200) {
                 const $ = cheerio.load(html);
-                var answer = $('#bodyContent #mw-content-text p:first').not('.coordinates').text();
+                if (!wh.matches(/onde|ond|cadê|cade/i)) {
+                    var answer = $('#bodyContent #mw-content-text p:first').not('.coordinates').text();
+                } else {
+                    var answer = $('#bodyContent #mw-content-text p.coordinates').text();
+                }
                 if (answer == "") {
                     answer = $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 500);
                 }
@@ -21,7 +25,7 @@ var execute = (bot, msg, arg) => {
                 console.log("Erro " + mili + ": " + error);
             } else {
                 if (response.statusCode == 404) {
-                    bot.sendMessage(msg.chat.id, "Vish, a Wikipedia não tem nada sobre " + arg);
+                    bot.sendMessage(msg.chat.id, "Vish, a Wikipedia não tem nada sobre " + query);
                 }
             }
         });
