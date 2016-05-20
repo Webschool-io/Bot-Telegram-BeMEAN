@@ -8,7 +8,7 @@ const execute = (bot, msg, match) => {
   const arr = msg.text.split(commmand + ' ');
   const cmd = arr.splice(1)[0];
   const _url = 'http://mdn.io/'+cmd;
-  bot.sendMessage(msg.chat.id, JSON.stringify(_url));
+  bot.sendMessage(msg.chat.id, _url);
   // const query = msg.text.replace(/["'!?]/g, '');
   // const query = match[3].replace(/["'!?]/g, '');
   // bot.sendLocation(msg.chat.id, 'query: '+query);
