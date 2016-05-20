@@ -31,36 +31,38 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
   }
 });
 
+
 bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
+  const url = require('url');
    bot.sendMessage(msg.chat.id, "Entrei certo")
   // Acessa a API do Google Maps que converte endereços em latitude e longitude.
   // const findPlace = (query, callback=(->)) => {
-  //   query = query.replace(/["'!?]/g, '');
-  //   var url = parseURL('https://maps.googleapis.com/maps/api/geocode/json?' +
-  //                  'sensor=false&address=' + encodeURIComponent(query))
-  //   url.headers = {
-  //     'User-Agent': 'Mozilla like'
-  //     'Accept-Language': 'pt-BR;q=1, pt;q=0.8, en;q=0.5'
-  //   }
-  //   req = https.request(url, (res) =>
-  //     let data = '';
-  //     res.on('data', (chunk) => data += chunk);
-  //     res.on('end', =>
-  //       try{
-  //         data = JSON.parse(data);
-  //         bot.sendMessage(msg.chat.id, "data: " + data)
-  //       }
-  //       catch(err){
-  //         bot.sendMessage(msg.chat.id, "Erro end: " + err)
-  //       }
-  //       // if(data.results ? [0] ?.geometry?.location?.lat?
-  //       //   callback null, data.results[0].geometry.location
-  //       // else
-  //         // err = new Error "Cant find location for #{query}. Status: #{data.status}"
-  //         // err.status = data.status
-  //         // callback err
-  //   )
-  //   req.on('error', (err) => bot.sendMessage(msg.chat.id, "Erro errorrrr: " + err));
+    const query = msg.text.replace(/["'!?]/g, '');
+    var url = url.parse('https://maps.googleapis.com/maps/api/geocode/json?' +
+                   'sensor=false&address=' + encodeURIComponent(query))
+    url.headers = {
+      'User-Agent': 'Mozilla like'
+      'Accept-Language': 'pt-BR;q=1, pt;q=0.8, en;q=0.5'
+    }
+    req = https.request(url, (res) =>
+      let data = '';
+      res.on('data', (chunk) => data += chunk);
+      res.on('end', =>
+        try{
+          data = JSON.parse(data);
+          bot.sendMessage(msg.chat.id, "data: " + data)
+        }
+        catch(err){
+          bot.sendMessage(msg.chat.id, "Erro end: " + err)
+        }
+        // if(data.results ? [0] ?.geometry?.location?.lat?
+        //   callback null, data.results[0].geometry.location
+        // else
+          // err = new Error "Cant find location for #{query}. Status: #{data.status}"
+          // err.status = data.status
+          // callback err
+    )
+    req.on('error', (err) => bot.sendMessage(msg.chat.id, "Erro errorrrr: " + err));
   //   // do req.end
   // }
 
