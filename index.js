@@ -38,7 +38,6 @@ bot.onText(/(Quem|O que|O q|oq|Onde|Cadê|Cade) (é|eh|eah|e) ([^?]*)\??/i, (msg
 bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
   let laughCounter = 0;
   bot.sendMessage(msg.chat.id, 'hehehehehe');
-
   // chatCtx.laughCounter++
   // if chatCtx.laughCounter > 1
   //   if chatCtx.laughCounter is 3
@@ -52,3 +51,28 @@ bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
 
 });
 
+// /bot fale
+bot.onText(/(.*bot\s+)?(fale|diga)[.,: ]+(que\s+)?(.+)/i, (msg, match) => {
+  // a fazer
+});
+
+// calcular
+bot.onText(/(.*bot\s+)?(fale|diga)[.,: ]+(que\s+)?(.+)/i, (msg, match) => {
+  const = mathRE = /(^|\s)\(?-?[.0-9()]+(\s*[-+\/*]\s*-?[.0-9()]+)+(\)|\b)/i;
+  const = matchDate = /([0-9]{2}\/[0-9]{2}\/[0-9]{4}|[0-9]{2}\/20[0-9]{2})/;
+  const teste = msg.text.match(mathRE)
+  bot.sendMessage(msg.chat.id, 'Vou calcular pra vc: ' + teste);
+  // if match? and not matchDate.test match[0]
+  //   try
+  //     result = eval match[0]
+  //   catch err
+  //     result = rand ['Argh!', 'Ugh!', 'Ouch...', 'Hum?', 'Que?', 'WTF?']
+  //     admDebug "Math ERR: #{err.message}\nExp: #{match[0]}"
+  //   textLine = textLine.replace mathRE, " #{result} "
+  //   mathMsg = "<code>#{match[0].replace /\s/g,''}</code> = <code>#{result}</code>"
+  //   sendHTML chatID, mathMsg, (err,data)->
+  //     if err
+  //       admDebug "Math Message ERR: #{err.message}\nData: #{JSON.stringify data}"
+
+
+});
