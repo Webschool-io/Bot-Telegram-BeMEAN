@@ -43,6 +43,12 @@ bot.onText(/\.reduce/, (msg, match) => {
   bot.sendMessage(msg.chat.id, 'Resposta do reduce: '+eval(msg.text));
 });
 
+// map
+bot.onText(/\.map/, (msg, match) => {
+  // services.mdn.execute(bot, msg, match);
+  bot.sendMessage(msg.chat.id, 'Resposta do map: '+eval(msg.text));
+});
+
 // GMaps
 bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
   let url = require('url');
