@@ -12,7 +12,7 @@ var execute = (bot, msg, args) => {
         request('https://pt.wikipedia.org/w/index.php?title=' + query.replace(" ", "_"), function (error, response, html) {
             if (!error && response.statusCode == 200) {
                 const $ = cheerio.load(html);
-                if (!wh.matches(/onde|ond|cadê|cade/i)) {
+                if (!wh.match(/onde|ond|cadê|cade/i)) {
                     var answer = $('#bodyContent #mw-content-text p:first').not('.coordinates').text();
                 } else {
                     var answer = $('#bodyContent #mw-content-text p.coordinates').text();
