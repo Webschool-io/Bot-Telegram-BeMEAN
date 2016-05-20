@@ -4,10 +4,9 @@ var execute = (bot, msg, arg) => {
 
     const options = { query: arg, format: 'html', summaryOnly: true, lang: 'pt' };
     try {
-        const cheerio = require('cheerio');
         const request = require('request');
         const cheerioAdv = require('cheerio-advanced-selectors');
-        cheerio = cheerioAdv.wrap(cheerio);
+        const cheerio = cheerioAdv.wrap(require('cheerio'));
         console.log('iniciando');
         request('https://pt.wikipedia.org/wiki/Hakim_Bey', function (error, response, html) {
             if (!error && response.statusCode == 200) {
