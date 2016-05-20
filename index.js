@@ -46,20 +46,20 @@ bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
 // });
 
 // calcular
-// bot.onText(/(^|\s)\(?-?[.0-9()]+(\s*[-+\/*]\s*-?[.0-9()]+)+(\)|\b)/i, (msg, match) => {=
-//   const = matchDate = /([0-9]{2}\/[0-9]{2}\/[0-9]{4}|[0-9]{2}\/20[0-9]{2})/;
-//   // const teste = msg.text.match(mathRE)
-//   bot.sendMessage(msg.chat.id, 'Vou calcular pra vc: ' + msg.text);
-//   bot.sendMessage(msg.chat.id, eval(msg.text));
-//   // if match? and not matchDate.test match[0]
-//   //   try
-//   //     result = eval match[0]
-//   //   catch err
-//   //     result = rand ['Argh!', 'Ugh!', 'Ouch...', 'Hum?', 'Que?', 'WTF?']
-//   //     admDebug "Math ERR: #{err.message}\nExp: #{match[0]}"
-//   //   textLine = textLine.replace mathRE, " #{result} "
-//   //   mathMsg = "<code>#{match[0].replace /\s/g,''}</code> = <code>#{result}</code>"
-//   //   sendHTML chatID, mathMsg, (err,data)->
-//   //     if err
-//   //       admDebug "Math Message ERR: #{err.message}\nData: #{JSON.stringify data}"
-// });
+bot.onText(/(^|\s)\(?-?[.0-9()]+(\s*[-+\/*]\s*-?[.0-9()]+)+(\)|\b)/i, (msg, match) => {=
+  const = matchDate = /([0-9]{2}\/[0-9]{2}\/[0-9]{4}|[0-9]{2}\/20[0-9]{2})/;
+  // const teste = msg.text.match(mathRE)
+  bot.sendMessage(msg.chat.id, 'Vou calcular pra vc: ' + msg.text);
+  // bot.sendMessage(msg.chat.id, eval(msg.text));
+  // if match? and not matchDate.test match[0]
+  //   try
+  //     result = eval match[0]
+  //   catch err
+  //     result = rand ['Argh!', 'Ugh!', 'Ouch...', 'Hum?', 'Que?', 'WTF?']
+  //     admDebug "Math ERR: #{err.message}\nExp: #{match[0]}"
+  //   textLine = textLine.replace mathRE, " #{result} "
+  //   mathMsg = "<code>#{match[0].replace /\s/g,''}</code> = <code>#{result}</code>"
+  //   sendHTML chatID, mathMsg, (err,data)->
+  //     if err
+  //       admDebug "Math Message ERR: #{err.message}\nData: #{JSON.stringify data}"
+});
