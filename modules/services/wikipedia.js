@@ -37,11 +37,11 @@ const escapeHTML = (code) =>
       .replace(/</gi, '&lt;')
       .replace(/"/gi, '&quot;')
 
-
 /**
  * Realiza o parse de uma response vinda do request
  */
- var parseResponse = (err, res, html, args, bot, msg, _url) => {
+ const parseResponse = (err, res, html, args, bot, msg, _url) => {
+
     const query = args.query;
     const wh = args.wh;
     if (!err) {
@@ -63,7 +63,7 @@ const escapeHTML = (code) =>
             answer = (answer == "") ? answers.longDef : answer;
             const _return = 'A Wikipédia diz que "' +simpleHTML(answer) + '". Saiba mais sobre <a href=\""'+_url+'\"">'+args.query.replace(" ", "_")+'</a>."';
 
-            bot.sendMessage(msg.chat.id, _return, pm);
+            bot.sendMessage(msg.chat.id, _return, { 'parse_mode': 'HTML' });
             break;
             case 404:
             bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
