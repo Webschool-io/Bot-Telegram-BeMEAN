@@ -6,6 +6,8 @@ var execute = (bot, msg, arg) => {
     try {
         const cheerio = require('cheerio');
         const request = require('request');
+        const cheerioAdv = require('cheerio-advanced-selectors');
+        cheerio = cheerioAdv.wrap(cheerio);
         console.log('iniciando');
         request('https://pt.wikipedia.org/wiki/Hakim_Bey', function (error, response, html) {
             if (!error && response.statusCode == 200) {
