@@ -1,41 +1,70 @@
 'use strict';
 
+//Requires
+const request = require('request');
+const cheerioAdv = require('cheerio-advanced-selectors');
+const cheerio = cheerioAdv.wrap(require('cheerio'));
+
+//Strings
+const regexOnde = /Onde|ond|cadê|cade/i;
+const pm = { 'parse_mode': 'Markdown' };
+const messages = {
+    coordsNotFound: "*Vish, não achei as coordenadas, mas aí vai a definição: *\n",
+    requestError: "Droga, deu um erro aqui em :/ ID do erro: `%mili%`",
+    consoleRequestError: "Erro %mili%: %err%",
+    noResultsFound: "Vish, a Wikipedia não tem nada sobre ",
+    communicationError: "Putz, não tô conseguindo conversar com a Wikipedia :/ Tenta depois `%e%`",
+}
+
+/**
+ * Realiza o parse de uma response vinda do request
+ */
+var parseResponse = (err, res, html) => {
+    if (!err) {
+        switch (res.statusCode) {
+            case 200:
+                const $ = cheerio.load(html);
+                const answers = {
+                    quickDef: $('#bodyContent #mw-content-text p:first').not('.coordinates').text(),
+                    coordinates: $('#bodyContent #mw-content-text p.coordinates').text(),
+                    longDef: $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 300)
+                };
+
+                var answer = answers.quickDef;
+
+                if (wh.match(regexOnde)) {
+                    answer = (coordinates != "") ? answers.coordinates : messages.coordsNotFound + answers.longDef;
+                }
+
+                answer = (answer == "") ? answers.longDef : answer;
+
+                bot.sendMessage(msg.chat.id, answer, pm);
+                break;
+            case 400:
+                bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
+                break;
+        }
+    } else {
+        const mili = new Date().getTime();
+        bot.sendMessage(msg.chat.id, messages.requestError.replace("%mili%", mili), pm);
+        console.log(messages.consoleRequestError.replace("%mili%", mili).replace("%err%", err));
+    }
+}
+
+/**
+ * Função principal do módulo
+ * 
+ * @param bot Objeto bot a ser utilizado para enviar as mensagens
+ * @param msg Objeto mensagem a ser utilizado para se obter  o id
+ * @param args Objeto contento o tipo de pesquisa a realizar(wh) e o termo pesquisado (query)
+ */
 var execute = (bot, msg, args) => {
     const query = args.query;
     const wh = args.wh;
-    const options = { query: query, format: 'html', summaryOnly: true, lang: 'pt' };
     try {
-        const request = require('request');
-        const cheerioAdv = require('cheerio-advanced-selectors');
-        const cheerio = cheerioAdv.wrap(require('cheerio'));
-        request('https://pt.wikipedia.org/w/index.php?title=' + query.replace(" ", "_"), function (error, response, html) {
-            if (!error && response.statusCode == 200) {
-                const $ = cheerio.load(html);
-                if (!wh.match(/Onde|ond|cadê|cade/i)) {
-                    var answer = $('#bodyContent #mw-content-text p:first').not('.coordinates').text();
-                } else {
-                    if ($('#bodyContent #mw-content-text p.coordinates').text() != "") {
-                        var answer = $('#bodyContent #mw-content-text p.coordinates').text();
-                    } else {
-                        var answer = "*Vish, não achei as coordenadas, mas aí vai a definição: *" + $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 1000);
-                    }
-                }
-                if (answer == "") {
-                    answer = $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 1000);
-                }
-                bot.sendMessage(msg.chat.id, answer, { 'parse_mode': 'Markdown' });
-            } else if (error) {
-                const mili = new Date().getTime();
-                bot.sendMessage(msg.chat.id, "Droga, deu um erro aqui em :/ ID do erro: `" + mili + "`", { 'parse_mode': 'Markdown' });
-                console.log("Erro " + mili + ": " + error);
-            } else {
-                if (response.statusCode == 404) {
-                    bot.sendMessage(msg.chat.id, "Vish, a Wikipedia não tem nada sobre " + query);
-                }
-            }
-        });
+        request('https://pt.wikipedia.org/w/index.php?title=' + query.replace(" ", "_"), parseResponse);
     } catch (e) {
-        bot.sendMessage(msg.chat.id, "Putz, não tô conseguindo conversar com a Wikipedia :/ Tenta depois `" + e + "`", { 'parse_mode': 'Markdown' });
+        bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
     }
 }
 
