@@ -51,6 +51,7 @@ bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, m
   if (!matchDate.test(msg.text)) {
     bot.sendMessage(msg.chat.id, 'Vou calcular pra vc: ' + msg.text + ' = ' + eval(msg.text));
   }
+  services.math.execute(bot, msg);
 });
 
 bot.on('sticker', (msg) => {
