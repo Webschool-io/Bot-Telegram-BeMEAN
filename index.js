@@ -30,8 +30,7 @@ bot.onText(/\/([a-zA-Z]+) ?(.+)?/, (msg, match) => {
         }
     }
 });
-bot.onText('.*', (msg, match) => {
-    bot.sendMessage(msg.chat.id, "Quem é... ");
+bot.onText(/.*/, (msg, match) => {
     console.log('RECEBI MSG: ' + msg);
     bot.sendMessage(msg.chat.id, "Recebi a mensagem : ...");
 });
