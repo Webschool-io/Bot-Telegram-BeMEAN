@@ -19,7 +19,7 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
       command = commands[command];
       if (match.length > command.numParams) {
         if (args) {
-            args = args.split(' ');
+          args = args.split(' ');
         }
         command.execute(msg, match, bot);
       } else {
@@ -48,7 +48,11 @@ bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
 // calcular
 bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, match) => {
   const matchDate = /([0-9]{2}\/[0-9]{2}\/[0-9]{4}|[0-9]{2}\/20[0-9]{2})/;
-  if(!matchDate.test(msg.text)) {
+  if (!matchDate.test(msg.text)) {
     bot.sendMessage(msg.chat.id, 'Vou calcular pra vc: ' + msg.text + ' = ' + eval(msg.text));
   }
+});
+
+bot.on('sticker', (msg) => {
+  console.log(msg.sticker);
 });
