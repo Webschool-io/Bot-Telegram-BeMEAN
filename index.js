@@ -33,18 +33,18 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
 
 
 bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
-  const url = require('url');
+  let url = require('url');
    bot.sendMessage(msg.chat.id, "Entrei certo")
   // Acessa a API do Google Maps que converte endereços em latitude e longitude.
   // const findPlace = (query, callback=(->)) => {
     const query = msg.text.replace(/["'!?]/g, '');
-    var url = url.parse('https://maps.googleapis.com/maps/api/geocode/json?' +
+    var _url = url.parse('https://maps.googleapis.com/maps/api/geocode/json?' +
                    'sensor=false&address=' + encodeURIComponent(query))
-    url.headers = {
+    _url.headers = {
       'User-Agent': 'Mozilla like'
       'Accept-Language': 'pt-BR;q=1, pt;q=0.8, en;q=0.5'
     }
-    req = https.request(url, (res) =>
+    req = https.request(_url, (res) =>
       let data = '';
       res.on('data', (chunk) => data += chunk);
       res.on('end', =>
