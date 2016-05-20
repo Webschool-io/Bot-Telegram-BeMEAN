@@ -31,29 +31,21 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
   }
 });
 
+// Wikipedia
 bot.onText(/(Quem|O que|O q|oq|Onde|Cadê|Cade) (é|eh|eah|e) ([^?]*)\??/i, (msg, match) => {
   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
 });
 
-bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
-  let laughCounter = 0;
-  bot.sendMessage(msg.chat.id, 'hehehehehe');
-});
-
-// /bot fale
-// bot.onText(/(.*bot\s+)?(fale|diga)[.,: ]+(que\s+)?(.+)/i, (msg, match) => {
-//   // a fazer
-// });
-
 // calcular
 bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, match) => {
-  const matchDate = /([0-9]{2}\/[0-9]{2}\/[0-9]{4}|[0-9]{2}\/20[0-9]{2})/;
-  if (!matchDate.test(msg.text)) {
-    bot.sendMessage(msg.chat.id, 'Vou calcular pra vc: ' + msg.text + ' = ' + eval(msg.text));
-  }
   services.math.execute(bot, msg);
 });
 
 bot.onText(/machonha|weeb|marijuana|erva/, (mgs, match) => {
   services.maconha.execute(bot, msg);
+});
+
+// risada
+bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
+  services.risada.execute(bot, msg);
 });
