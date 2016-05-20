@@ -7,6 +7,7 @@ Bot para o Telegram do grupo do Be MEAN
 ## Funcionalidades
 
 - Quem é ...? // Busca na WIkipedia
+- Onde é ...? // Busca no Maps e envia a localização
 - Cálculos // Adicionar Exponenciação, Raiz, ETC
 - O que é ...? // Busca no Google
 - #twitter hashtag // busca a hashtag no Twitter
