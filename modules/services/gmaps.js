@@ -3,7 +3,6 @@
 const url = require('url');
 const https = require('https');
 
-
 const execute = (bot, msg) => {
   const query = "Curitiba".replace(/["'!?]/g, '');
   const _base = 'https://maps.googleapis.com/maps/api/geocode/json';
@@ -35,11 +34,10 @@ const execute = (bot, msg) => {
     });
   });
   req.end();
-
   req.on('error', (e) => {
     console.error(e);
   });
-
+}
 module.exports = {
     execute: execute
 }
