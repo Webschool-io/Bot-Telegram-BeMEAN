@@ -15,8 +15,8 @@ const http = require('http');
     res.on('end', (err) => {
       if(err) console.log("Erro end: " + err)
       else {
-        data = JSON.parse(data);
-        console.log("data.AbstractText: " + data.AbstractText);
+        // data = JSON.parse(data);
+        console.log("data: " + data);
       }
     });
   });

@@ -5,7 +5,6 @@ const http = require('http');
 
 const execute = (bot, msg, match) => {
   const query = match.query;
-  console.log('match.query', match.query)
   bot.sendMessage(msg.chat.id, "Procurando no Duckduckgo: " + query);
   const _base = 'http://api.duckduckgo.com/?format=json&q=';
   const _url = url.parse(_base + encodeURIComponent(query))
@@ -19,8 +18,9 @@ const execute = (bot, msg, match) => {
     res.on('end', (err) => {
       try {
         data = JSON.parse(data);
-        bot.sendMessage(msg.chat.id, "Retorno Duck: " + data.AbstractText);
-        console.log("data.AbstractText): " + data.AbstractText);
+        const _return = "Segundo o DuckDuckGo: "+data.AbstractText+" Saiba mais em "+AbstractURL
+        bot.sendMessage(msg.chat.id, _return);
+        // console.log("data.AbstractText): " + data.AbstractText);
       } catch (e) {
         bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
         console.log("Erro end: " + err)
