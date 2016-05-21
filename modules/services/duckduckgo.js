@@ -17,11 +17,13 @@ const execute = (bot, msg, match) => {
     let data = '';
     res.on('data', (chunk) => data += chunk);
     res.on('end', (err) => {
-      if(err) console.log("Erro end: " + err)
-      else {
-        bot.sendMessage(msg.chat.id, JSON.stringify(data.AbstractText));
-        // data = JSON.parse(data);
-        console.log("data.AbstractText): " + data.AbstractText);
+      try {
+        data = JSON.parse(data);
+        bot.sendMessage(msg.chat.id, "Retorno Duck: " + data.Heading);
+        console.log("data.Heading): " + data.Heading);
+      } catch (e) {
+        bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
+        console.log("Erro end: " + err)
       }
     });
   });
