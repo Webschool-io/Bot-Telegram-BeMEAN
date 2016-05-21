@@ -1,7 +1,7 @@
 'use strict';
 
 const url = require('url');
-const https = require('https');
+const http = require('http');
 
 const execute = (bot, msg, match) => {
   const query = match[2]
