@@ -93,5 +93,5 @@ bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
 // speak
 bot.onText(/speak/, (msg, match) => {
   bot.sendMessage(msg.chat.id, 'Enviando audio de teste ');
-  // services.speak.execute(bot, msg, match);
+  services.speak.execute(bot, msg, match);
 });
