@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 const spawnSync = require('child_process').spawnSync;
 
 const execute = (bot, msg, match) => {
