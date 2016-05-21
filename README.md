@@ -4,7 +4,6 @@ Bot para o Telegram do grupo do Be MEAN
 - https://github.com/strikeentco/tg-yarl
 - https://github.com/mdibaiee/node-telegram-api
 
-
 ## Comandos
 
 - (Quem|O que|O q|oq|Cadê|Cade) (é|eh|eah|e|significa) {BUSCA}? 
@@ -27,6 +26,18 @@ Bot para o Telegram do grupo do Be MEAN
   + Busca o comando no site da [MDN](http://mdn/.io) e retorna a URL
   + Exemplo: js map
   + Exemplo: js date
+- {ARRAY}.map({CALLBACK})
+  + Executa o comando map 
+  + Exemplo: [1,2,3,4].map( num => num*2 )
+  + Exemplo: [1,2,3,4].map( num => num*Math.sqrt(9) )
+- {ARRAY}.filter({CALLBACK})
+  + Executa o comando filter 
+  + Exemplo: [1,2,3,4].filter( num => num%2 )
+  + Exemplo: [1,2,3,4].filter( num => !num%2 )
+- {ARRAY}.reduce({CALLBACK})
+  + Executa o comando reduce 
+  + Exemplo: [1,2,3,4].reduce( (antes, atual) => antes+atual )
+  + Exemplo: [1,2,3,4].reduce( (antes, atual) => antes*atual )
 }
 
 ## Funcionalidades
@@ -44,3 +55,8 @@ Bot para o Telegram do grupo do Be MEAN
 - [JS]{COMANDO} // Busca em mdn.io/{COMANDO}
 - [eval]{CODE} // Enviar para um https://eval.in da vida
 - Integração com a API Luis.ai com tradução automática
+
+## Autores
+
+- [rmunhoz](https://github.com/RMunhoz)
+- [suissa](https://github.com/suissa)
