@@ -5,12 +5,11 @@ const risadas = [
   'hahahahaha',
   'hauhauhauh',
   'kkkkkkkkkk',
-  'asfdglkhjs',
   'ri litros ahuah'
 ]
 
 const execute = (bot, msg, args) => {
-  bot.sendMessage(msg.chat.id, 'risada: ' + risadas[Math.floor(Math.random() * risadas.length)]);
+  bot.sendMessage(msg.chat.id, risadas[Math.floor(Math.random() * risadas.length)]);
 }
 
 module.exports = {
