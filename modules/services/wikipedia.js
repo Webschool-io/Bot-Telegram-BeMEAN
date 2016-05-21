@@ -67,7 +67,7 @@ const escapeHTML = (code) =>
             bot.sendMessage(msg.chat.id, _return, pm);
             break;
             case 404:
-            bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
+            // bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
             duckduckgo.execute(bot, msg, args);
             break;
         }
