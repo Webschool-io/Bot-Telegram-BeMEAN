@@ -101,6 +101,6 @@ bot.onText(/maconha|weed|marijuana|erva|bagulho/i, (msg, match) => {
 });
 
 // risada
-bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
+bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h+u+a|h+u+e+h+u+e/i, (msg, match) => {
   services.risada.execute(bot, msg);
 });
