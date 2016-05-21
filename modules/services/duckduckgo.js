@@ -4,7 +4,7 @@ const url = require('url');
 const https = require('https');
 
 const execute = (bot, msg, match) => {
-  const query = match[3].replace(/["'!?]/g, '');
+  const query = match[2]
   bot.sendMessage(msg.chat.id, "Procurando no Duckduckgo: " + query);
   const _base = 'http://api.duckduckgo.com/?format=json&q=';
   const _url = url.parse(_base + encodeURIComponent(query))
