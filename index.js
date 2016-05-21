@@ -91,6 +91,6 @@ bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
 });
 
 // speak
-bot.onText(/^\/fale\s+([a-zA-Z])+/, (msg, match) => {
+bot.onText(/fale\s+([a-zA-Z])+/, (msg, match) => {
   services.speak.execute(bot, msg, match);
 });
