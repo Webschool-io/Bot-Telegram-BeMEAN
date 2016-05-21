@@ -60,7 +60,7 @@ bot.onText(/\.filter/, (msg, match) => {
   bot.sendMessage(msg.chat.id, 'Resposta do filter: '+eval(msg.text));
 });
 // Pares
-bot.onText(/\^par/, (msg, match) => {
+bot.onText(/^par/, (msg, match) => {
   const _arr = msg.text.split('par ')[1]
   const arr = JSON.parse(_arr);
   const _return =  arr.filter((acc)=> !(acc % 2));
