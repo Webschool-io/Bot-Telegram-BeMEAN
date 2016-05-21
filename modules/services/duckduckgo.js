@@ -2,7 +2,7 @@
 
 const url = require('url');
 const http = require('http');
-const pm = { 'parse_mode': 'Markdown' };
+const parse = { 'parse_mode': 'HTML' };
 
 const execute = (bot, msg, match) => {
   const query = match.query;
@@ -20,7 +20,8 @@ const execute = (bot, msg, match) => {
     res.on('end', (err) => {
       try {
         data = JSON.parse(data);
-        bot.sendMessage(msg.chat.id, "Segundo o DuckDuckGo: _"+data.AbstractText+"_ Saiba mais em ["+data.AbstractURL+"]("+data.AbstractURL+")", pm);
+        const _return = "Segundo o DuckDuckGo: <i>"+data.AbstractText+"</i> Saiba mais em "+data.AbstractURL;
+        bot.sendMessage(msg.chat.id, _return, parse);
         console.log("data): " + data);
       } catch (e) {
         bot.sendMessage(msg.chat.id, "DEU MERDA: "+e, pm);
