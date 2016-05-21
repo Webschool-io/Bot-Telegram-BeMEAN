@@ -7,7 +7,6 @@ const risada = require('./services/risada');
 const gmaps = require('./services/gmaps');
 const mdn = require('./services/mdn');
 const md5 = require('./services/md5');
-const speak = require('./services/speak');
 
 module.exports = {
   wikipedia: wikipedia,
@@ -16,6 +15,5 @@ module.exports = {
   risada: risada,
   gmaps: gmaps,
   mdn: mdn,
-  md5: md5,
-  speak: speak
+  md5: md5
 }
