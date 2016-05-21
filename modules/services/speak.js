@@ -6,10 +6,10 @@ const spawnSync = require('child_process').spawnSync;
 const execute = (bot, msg, match) => {
   const _txt = msg.text.replace(/['"\\]/g, '');
   const fileName = Math.random().toString()+ '.mp3'
-  // const out = spawnSync('sh', ['-c', "espeak -v pt --stdout '"+_txt+"' | avconv -i pipe:0 "+fileName]);
-  // const audio = fs.readFileSync(fileName);
-  bot.sendMessage(msg.chat.id, 'Enviando audio falando: vai mano veio');
-  bot.sendVoice(msg.chat.id, 'vai.mp3');
+  const out = spawnSync('sh', ['-c', "espeak -v pt --stdout '"+_txt+"' | avconv -i pipe:0 '"+fileName+"'"]);
+  const audio = fs.readFileSync(fileName);
+  bot.sendMessage(msg.chat.id, 'Enviando audio falando: '+_txt);
+  bot.sendVoice(msg.chat.id, audio);
 }
 
 module.exports = {
