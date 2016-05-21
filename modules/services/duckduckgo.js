@@ -18,7 +18,7 @@ const execute = (bot, msg, match) => {
     res.on('end', (err) => {
       try {
         data = JSON.parse(data);
-        const _return = "Segundo o DuckDuckGo: "+data.AbstractText+" Saiba mais em "+AbstractURL
+        const _return = "Segundo o DuckDuckGo: "+data.AbstractText+" Saiba mais em "+AbstractURL;
         bot.sendMessage(msg.chat.id, _return);
         // console.log("data.AbstractText): " + data.AbstractText);
       } catch (e) {
