@@ -21,7 +21,7 @@ const execute = (bot, msg, match) => {
       else {
         bot.sendMessage(msg.chat.id, data.AbstractText);
         // data = JSON.parse(data);
-        console.log("data.AbstractText: " + data.AbstractText);
+        console.log("data: " + data);
       }
     });
   });
