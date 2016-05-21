@@ -89,9 +89,3 @@ bot.onText(/maconha|weed|marijuana|erva|bagulho/i, (msg, match) => {
 bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+/i, (msg, match) => {
   services.risada.execute(bot, msg);
 });
-
-// speak
-// bot.onText(/^speak\s+([a-zA-Z])+/, (msg, match) => {
-//   bot.sendMessage(msg.chat.id, 'Enviando audio de teste ');
-//   services.speak.execute(bot, msg, match);
-// });
