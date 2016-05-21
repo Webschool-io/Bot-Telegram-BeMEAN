@@ -19,8 +19,8 @@ const execute = (bot, msg, match) => {
     res.on('end', (err) => {
       try {
         data = JSON.parse(data);
-        bot.sendMessage(msg.chat.id, "Retorno Duck: " + data.Heading);
-        console.log("data.Heading): " + data.Heading);
+        bot.sendMessage(msg.chat.id, "Retorno Duck: " + data.AbstractText);
+        console.log("data.AbstractText): " + data.AbstractText);
       } catch (e) {
         bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
         console.log("Erro end: " + err)
