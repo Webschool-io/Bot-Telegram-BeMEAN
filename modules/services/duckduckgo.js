@@ -2,10 +2,10 @@
 
 const url = require('url');
 const http = require('http');
-const pm = { 'parse_mode': 'Markdown' };
 
 const execute = (bot, msg, match) => {
   const query = match.query;
+  console.log('match.query', match.query)
   bot.sendMessage(msg.chat.id, "Procurando no Duckduckgo: " + query);
   const _base = 'http://api.duckduckgo.com/?format=json&q=';
   const _url = url.parse(_base + encodeURIComponent(query))
@@ -19,11 +19,10 @@ const execute = (bot, msg, match) => {
     res.on('end', (err) => {
       try {
         data = JSON.parse(data);
-        const _return = "Segundo o DuckDuckGo: _"+data.AbstractText+"_ Saiba mais em "+AbstractURL;
-        bot.sendMessage(msg.chat.id, _return, pm);
-        // console.log("data.AbstractText): " + data.AbstractText);
+        bot.sendMessage(msg.chat.id, "Segundo o DuckDuckGo: " + data.AbstractText);
+        console.log("data.AbstractText): " + data.AbstractText);
       } catch (e) {
-        bot.sendMessage(msg.chat.id, "DEU MERDA: "+e, pm);
+        bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
         console.log("Erro end: " + err)
       }
     });
