@@ -2,7 +2,7 @@
 
 //Requires
 const request = require('request');
-const duckduckgo = require('.duckduckgo');
+const duckduckgo = require('./duckduckgo');
 const cheerioAdv = require('cheerio-advanced-selectors');
 const cheerio = cheerioAdv.wrap(require('cheerio'));
 
