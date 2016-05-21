@@ -16,5 +16,6 @@ module.exports = {
   risada: risada,
   gmaps: gmaps,
   mdn: mdn,
-  md5: md5
+  md5: md5,
+  speak: speak
 }
