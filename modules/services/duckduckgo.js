@@ -7,7 +7,6 @@ const parse = { 'parse_mode': 'HTML' };
 const execute = (bot, msg, match) => {
   const query = match.query;
   console.log('match.query', match.query)
-  bot.sendMessage(msg.chat.id, "Procurando no Duckduckgo: " + query);
   const _base = 'http://api.duckduckgo.com/?format=json&q=';
   const _url = url.parse(_base + encodeURIComponent(query))
   _url.headers = {
