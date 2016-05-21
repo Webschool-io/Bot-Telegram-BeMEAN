@@ -20,7 +20,7 @@ const execute = (bot, msg, match) => {
     res.on('end', (err) => {
       try {
         data = JSON.parse(data);
-        bot.sendMessage(msg.chat.id, "Segundo o DuckDuckGo: _"+data.AbstractText+"_ Saiba mais em "+data.AbstractURL, pm);
+        bot.sendMessage(msg.chat.id, "Segundo o DuckDuckGo: _"+data.AbstractText+"_ Saiba mais em ["+data.AbstractURL+"]("+data.AbstractURL+")", pm);
         console.log("data): " + data);
       } catch (e) {
         bot.sendMessage(msg.chat.id, "DEU MERDA: "+e, pm);
