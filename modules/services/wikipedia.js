@@ -68,7 +68,7 @@ const escapeHTML = (code) =>
             break;
             case 404:
             bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
-            duckduckgo.execute(bot, msg, match);
+            duckduckgo.execute(bot, msg, args);
             break;
         }
     } else {
