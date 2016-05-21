@@ -58,5 +58,5 @@ Bot para o Telegram do grupo do Be MEAN
 
 ## Autores
 
-- [rmunhoz](https://github.com/RMunhoz)
+- [rohmunhoz](https://github.com/rohmunhoz)
 - [suissa](https://github.com/suissa)
