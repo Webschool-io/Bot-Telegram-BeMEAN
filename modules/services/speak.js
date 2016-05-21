@@ -10,7 +10,7 @@ const execute = (bot, msg, match) => {
   const out = execSync("espeak -v pt --stdout '"+_txt+"' | avconv -i pipe:0 '"+fileName+"'");
   const audio = fs.readFileSync(fileName);
   bot.sendMessage(msg.chat.id, 'Enviando audio: '+fileName);
-  bot.sendVoice(msg.chat.id, fileName);
+  bot.sendVoice(msg.chat.id, audio);
 }
 
 module.exports = {
