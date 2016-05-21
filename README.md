@@ -4,11 +4,35 @@ Bot para o Telegram do grupo do Be MEAN
 - https://github.com/strikeentco/tg-yarl
 - https://github.com/mdibaiee/node-telegram-api
 
+
+## Comandos
+
+- (Quem|O que|O q|oq|Cadê|Cade) (é|eh|eah|e|significa) {BUSCA}? 
+  - Busca na Wikipedia e no DuckDuckGo e envia o texto
+  - Exemplo: O que é JavaScript?
+  - Exemplo: o que é React.js?
+- Onde (fica|está|é|eh) {BUSCA}?
+  - Busca no Maps e envia a localização
+  - Exemplo: Onde fica Curitiba?
+  - Exemplo: onde fica PUC Consolação São Paulo?
+- Cálculos
+  + Cálculos simples e usando funções do objeto Math do JS
+  - Exemplo: 2 + 3 - 4 * 5 / 1
+  - Exemplo: 2 + Math.pow(2,3) + Math.sqrt(9) + Math.max(1,2,3,4,5,6)
+- Data
+  + Executa funções do objeto Date do JS
+  + Exemplo: Date.now()
+  + Exemplo: var dt = new Date; dt.getFullYear();
+- JS {COMANDO}
+  + Busca o comando no site da [MDN](http://mdn/.io) e retorna a URL
+  + Exemplo: js map
+  + Exemplo: js date
+}
+
 ## Funcionalidades
 
 - Quem é ...? // Busca na WIkipedia
 - Onde é ...? // Busca no Maps e envia a localização
-- Cálculos // Adicionar Exponenciação, Raiz, ETC
 - O que é ...? // Busca no Google
 - #twitter hashtag // busca a hashtag no Twitter
 - #insta hashtag // busca a hashtag no Instagram
