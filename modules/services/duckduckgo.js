@@ -19,9 +19,9 @@ const execute = (bot, msg, match) => {
     res.on('end', (err) => {
       if(err) console.log("Erro end: " + err)
       else {
-        bot.sendMessage(msg.chat.id, data.AbstractText);
+        bot.sendMessage(msg.chat.id, JSON.stringify(data.AbstractText));
         // data = JSON.parse(data);
-        console.log("data: " + data);
+        console.log("data.AbstractText): " + data.AbstractText));
       }
     });
   });
