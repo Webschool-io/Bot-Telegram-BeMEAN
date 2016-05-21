@@ -5,8 +5,8 @@ const http = require('http');
 
 const execute = (bot, msg, match) => {
   const query = match.query;
-  // console.log('match', match)
-  // bot.sendMessage(msg.chat.id, "Procurando no Duckduckgo: " + query);
+  console.log('match.query', match.query)
+  bot.sendMessage(msg.chat.id, "Procurando no Duckduckgo: " + query);
   const _base = 'http://api.duckduckgo.com/?format=json&q=';
   const _url = url.parse(_base + encodeURIComponent(query))
   _url.headers = {
@@ -21,7 +21,7 @@ const execute = (bot, msg, match) => {
       else {
         bot.sendMessage(msg.chat.id, data.AbstractText);
         // data = JSON.parse(data);
-        // console.log("data.AbstractText: " + data.AbstractText);
+        console.log("data.AbstractText: " + data.AbstractText);
       }
     });
   });
