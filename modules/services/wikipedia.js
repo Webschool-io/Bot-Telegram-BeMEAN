@@ -2,6 +2,7 @@
 
 //Requires
 const request = require('request');
+const duckduckgo = require('.duckduckgo');
 const cheerioAdv = require('cheerio-advanced-selectors');
 const cheerio = cheerioAdv.wrap(require('cheerio'));
 
@@ -67,6 +68,7 @@ const escapeHTML = (code) =>
             break;
             case 404:
             bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
+            duckduckgo.execute(bot, msg, match);
             break;
         }
     } else {
