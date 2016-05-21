@@ -23,7 +23,7 @@ const execute = (bot, msg, match) => {
         bot.sendMessage(msg.chat.id, "Segundo o DuckDuckGo: _"+data.AbstractText+"_ Saiba mais em");
         console.log("data): " + data);
       } catch (e) {
-        bot.sendMessage(msg.chat.id, "DEU MERDA: "+e), pm);
+        bot.sendMessage(msg.chat.id, "DEU MERDA: "+e, pm);
         console.log("Erro end: " + err)
       }
     });
