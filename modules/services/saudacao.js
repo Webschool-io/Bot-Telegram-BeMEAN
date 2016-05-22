@@ -1,10 +1,16 @@
 'use strict';
 
-const dia = /dia/i, tarde = /tarde/i, noite = /noite/i;
+const date = new Date()
+const horas = date.getUTCHours() - 3;
+const minutos = date.getMinutes();
+
+const messages = {
+    "ok": "Aoba, b%ao% %pr%, jovem!",
+    "wrongPeriod": "B%ao% %pu%, jovem? Agora são " + horas + "h" + minutos + "! Você devia regular seus horários!"
+}
 
 const execute = (bot, msg, match) => {
-
-    const date = new Date(), pu = match[2], horas = date.getUTCHours() - 3, minutos = date.getMinutes();
+    const pu = match[2];
     let pr = "";
     if (horas <= 12) {
         pr = "dia";
@@ -15,11 +21,10 @@ const execute = (bot, msg, match) => {
     }
 
     if (pr == pu.toLowerCase()) {
-        bot.sendMessage(msg.chat.id, "Aoba, b" + match[1] + " " + pr + ", jovem!", { 'reply_to_message_id': msg.message_id });
+        bot.sendMessage(msg.chat.id, messages.ok.replace("%ao%", match[1]).replace("%pr%", pr), { 'reply_to_message_id': msg.message_id });
     } else {
-        bot.sendMessage(msg.chat.id, "B" + match[1] + " " + pu + ", jovem? Agora são " + horas + "h" + minutos + "! Você devia regular seus horários!", { 'reply_to_message_id': msg.message_id });
+        bot.sendMessage(msg.chat.id, messages.wrongPeriod.replace("%ao%", match[1]).replace("%pu%", pu), { 'reply_to_message_id': msg.message_id });
     }
-
 }
 
 module.exports = {
