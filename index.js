@@ -34,7 +34,7 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
 // Date
 bot.onText(/Date\.|new Date/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
-  bot.sendMessage(msg.chat.id, 'Resposta do Date: '+eval(msg.text));
+  bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
 });
 
 // md5
@@ -45,33 +45,33 @@ bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
 // reduce
 bot.onText(/\.reduce/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
-  bot.sendMessage(msg.chat.id, 'Resposta do reduce: '+eval(msg.text));
+  bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text));
 });
 
 // map
 bot.onText(/\.map/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
-  bot.sendMessage(msg.chat.id, 'Resposta do map: '+eval(msg.text));
+  bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text));
 });
 
 // filter
 bot.onText(/\.filter/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
-  bot.sendMessage(msg.chat.id, 'Resposta do filter: '+eval(msg.text));
+  bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text));
 });
 // Pares
 bot.onText(/^par/i, (msg, match) => {
   const _arr = msg.text.split('par ')[1]
   const arr = JSON.parse(_arr);
-  const _return =  arr.filter((acc)=> !(acc % 2));
-  bot.sendMessage(msg.chat.id, 'Par(es): '+_return);
+  const _return = arr.filter((acc) => !(acc % 2));
+  bot.sendMessage(msg.chat.id, 'Par(es): ' + _return);
 });
 // Ímpares
 bot.onText(/^impar/i, (msg, match) => {
   const _arr = msg.text.split('par ')[1]
   const arr = JSON.parse(_arr);
-  const _return =  arr.filter((acc)=> (acc % 2));
-  bot.sendMessage(msg.chat.id, 'Ímpar(es): '+_return);
+  const _return = arr.filter((acc) => (acc % 2));
+  bot.sendMessage(msg.chat.id, 'Ímpar(es): ' + _return);
 });
 
 
@@ -103,4 +103,9 @@ bot.onText(/maconha|weed|marijuana|erva|bagulho/i, (msg, match) => {
 // risada
 bot.onText(/kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h+u+a|h+u+e+h+u+e/i, (msg, match) => {
   services.risada.execute(bot, msg);
+});
+
+// saudação
+bot.onText(/^b(oa|om) (dia|tarde|noite)/i, (msg, match) => {
+  services.saudacao.execute(bot, msg, match);
 });
