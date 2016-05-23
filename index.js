@@ -42,22 +42,27 @@ bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
   services.md5.execute(bot, msg, match);
 });
 
+// Funções JS
 // reduce
 bot.onText(/\.reduce/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
   bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text));
 });
-
 // map
 bot.onText(/\.map/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
   bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text));
 });
-
 // filter
 bot.onText(/\.filter/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
   bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text));
+});
+// test
+bot.onText(/\.test/, (msg, match) => {
+  // services.mdn.execute(bot, msg, match);
+  // /^hello/.test('STRING')
+  bot.sendMessage(msg.chat.id, 'Resposta do test: ' + eval(msg.text));
 });
 // Pares
 bot.onText(/^par/i, (msg, match) => {
