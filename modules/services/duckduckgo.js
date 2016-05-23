@@ -18,10 +18,13 @@ const execute = (bot, msg, match) => {
     res.on('data', (chunk) => data += chunk);
     res.on('end', (err) => {
       try {
-        data = JSON.parse(data);
-        const _return = "Segundo o DuckDuckGo: <i>"+data.AbstractText+"</i> Saiba mais em "+data.AbstractURL;
-        bot.sendMessage(msg.chat.id, _return, parse);
-        console.log("data): " + data);
+        if(data !== "" && data !== " ") {
+          data = JSON.parse(data);
+          const _return = "Segundo o DuckDuckGo: <i>"+data.AbstractText+"</i> Saiba mais em "+data.AbstractURL;
+          bot.sendMessage(msg.chat.id, _return, parse);
+          console.log("data): " + data);
+        }
+        else bot.sendMessage(msg.chat.id, "Não achei manda jovem! Sorry mesmo.", parse);
       } catch (e) {
         bot.sendMessage(msg.chat.id, "DEU MERDA: "+e, pm);
         console.log("Erro end: " + err)
