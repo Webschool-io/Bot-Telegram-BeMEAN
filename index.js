@@ -31,6 +31,12 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
   }
 });
 
+// command1@BeMEANoficial_bot
+bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg, match) => {
+  bot.sendMessage(msg.chat.id, 'ESSE COMANDO NAO EXISTE PORRAA!!!!');
+});
+
+
 // Date
 bot.onText(/Date\.|new Date/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
