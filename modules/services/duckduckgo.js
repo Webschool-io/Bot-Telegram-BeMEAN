@@ -18,8 +18,8 @@ const execute = (bot, msg, match) => {
     res.on('data', (chunk) => data += chunk);
     res.on('end', (err) => {
       try {
-        if(data !== "" && data !== " ") {
-          data = JSON.parse(data);
+        data = JSON.parse(data);
+        if(data.DefinitionSource !== "") {
           const _return = "Segundo o DuckDuckGo: <i>"+data.AbstractText+"</i> Saiba mais em "+data.AbstractURL;
           bot.sendMessage(msg.chat.id, _return, parse);
           bot.sendMessage(msg.chat.id, 'Data: "'+JSON.stringify(data)+'"');
