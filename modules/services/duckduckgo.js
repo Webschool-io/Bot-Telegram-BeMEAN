@@ -3,7 +3,19 @@
 const url = require('url');
 const http = require('http');
 const parse = { 'parse_mode': 'HTML' };
-
+const stickers = [
+    'BQADBAADMgEAAl6A9AWiXNcdh4N2fgI',
+    'BQADBAADzQADXoD0BfaPN-SRlpBYAg',
+    'BQADBAADxQADXoD0Be6MWaqIBanrAg',
+    'BQADBAADAQEAAl6A9AVrEFjvEfTbRwI',
+    'BQADBAADOQEAAl6A9AWLW7oQoiHXdAI',
+    'BQADBAADBwEAAl6A9AXuD8xAc5avLwI',
+    'BQADBAADxwADXoD0BaTJK9_y3lrtAg',
+    'BQADBAADyQADXoD0BYyFKrC9hFpcAg',
+    'BQADBAADywADXoD0BaJ-5YWTuZxTAg',
+    'BQADBAADzwADXoD0BactihrL_9LKAg',
+    'BQADBAAD6wADXoD0Bbi4Fg2kp0fUAg'
+]
 const execute = (bot, msg, match) => {
   const query = match.query;
   console.log('match.query', match.query)
@@ -25,7 +37,12 @@ const execute = (bot, msg, match) => {
           bot.sendMessage(msg.chat.id, 'Data: "'+JSON.stringify(data)+'"');
           console.log("data): " + data);
         }
-        else bot.sendMessage(msg.chat.id, "Não achei manda jovem! Sorry mesmo, mas você pode fumar um pra relaxar.", parse);
+        else {
+          const sticker = stickers[Math.floor(Math.random() * stickers.length)];
+          const _return = "Não achei manda jovem! Sorry mesmo, mas você pode fumar um pra relaxar.";
+          bot.sendMessage(msg.chat.id, , parse);
+          bot.sendSticker(msg.chat.id, sticker);
+        }
       } catch (e) {
         bot.sendMessage(msg.chat.id, "DEU MERDA: "+e, pm);
         console.log("Erro end: " + err)
