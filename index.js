@@ -81,13 +81,18 @@ bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
   services.gmaps.execute(bot, msg, match);
 });
 
+// Github
+bot.onText(/(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i, (msg, match)  => {
+  services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
+});
+
 // MDN
 bot.onText(/^js\s+([a-zA-Z])+/i, (msg, match) => {
   services.mdn.execute(bot, msg, match);
 });
 
 // Wikipedia
-bot.onText(/(Quem|O que|O q|oq|Cadê|Cade) (é|eh|eah|e|significa) ([^?]*)\??/i, (msg, match) => {
+bot.onText(/(Quem|O que|O q|oq|Cadê|Cade) (é|eh|eah|e|significa) ([^?]*)\s*?\??/i, (msg, match) => {
   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
 });
 
