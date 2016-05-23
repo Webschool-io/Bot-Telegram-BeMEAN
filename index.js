@@ -3,6 +3,9 @@
 const TelegramBot = require('node-telegram-bot-api');
 require('dotenv').config();
 
+const Mediator = require('./modules/mediator/');
+
+
 const token = process.env.API_TOKEN || 'INSERT API_TOKEN';
 // Setup polling way
 const bot = new TelegramBot(token, { polling: true });
@@ -38,10 +41,15 @@ bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg, match) => {
 
 
 // Date
-bot.onText(/Date\.|new Date/, (msg, match) => {
-  // services.mdn.execute(bot, msg, match);
+
+let member = 'Date';
+let regex = /Date\.|new Date/;
+let fn = (msg, match) => {
   bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
-});
+};
+Mediator.add(member, regex, fn);
+Mediator.on(bot, regex, fn);
+// bot.onText(/Date\.|new Date/, );
 
 // md5
 bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {

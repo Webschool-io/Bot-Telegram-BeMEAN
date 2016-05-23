@@ -1,3 +1,3 @@
-'use strict';
-
-module.exports = (regex, fn) => {};
+module.exports = (bot, regex, fn) => {
+  bot.onText(regex, fn);
+};
