@@ -111,7 +111,7 @@ bot.onText(/(420)|maconha|weed|marijuana|erva|bagulho/i, (msg, match) => {
 });
 
 // risada
-bot.onText(/^lol|kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h+u+a|h+u+e+h+u+e/i, (msg, match) => {
+bot.onText(/lol|kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h+u+a|h+u+e+h+u+e/i, (msg, match) => {
   services.risada.execute(bot, msg);
 });
 
