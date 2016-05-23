@@ -34,7 +34,7 @@ const execute = (bot, msg, match) => {
         if(data.AbstractText !== "") {
           const _return = "Segundo o DuckDuckGo: <i>"+data.AbstractText+"</i> Saiba mais em "+data.AbstractURL;
           bot.sendMessage(msg.chat.id, _return, parse);
-          bot.sendMessage(msg.chat.id, 'Data: "'+JSON.stringify(data)+'"');
+          // bot.sendMessage(msg.chat.id, 'Data: "'+JSON.stringify(data)+'"');
           console.log("data): " + data);
         }
         else {
