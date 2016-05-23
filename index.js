@@ -39,9 +39,7 @@ bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg, match) => {
   bot.sendMessage(msg.chat.id, 'ESSE COMANDO NAO EXISTE PORRAA!!!!');
 });
 
-
 // Date
-
 let member = 'Date';
 let regex = /Date\.|new Date/;
 let fn = (msg, match) => {
