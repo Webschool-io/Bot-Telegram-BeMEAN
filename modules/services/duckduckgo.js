@@ -25,7 +25,7 @@ const execute = (bot, msg, match) => {
           bot.sendMessage(msg.chat.id, 'Data: "'+JSON.stringify(data)+'"');
           console.log("data): " + data);
         }
-        else bot.sendMessage(msg.chat.id, "Não achei manda jovem! Sorry mesmo.", parse);
+        else bot.sendMessage(msg.chat.id, "Não achei manda jovem! Sorry mesmo, mas você pode fumar um pra relaxar.", parse);
       } catch (e) {
         bot.sendMessage(msg.chat.id, "DEU MERDA: "+e, pm);
         console.log("Erro end: " + err)
