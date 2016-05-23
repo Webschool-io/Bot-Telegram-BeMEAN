@@ -5,7 +5,7 @@ let horas = date.getUTCHours() - 3;
 let minutos = date.getMinutes();
 
 const messages = {
-  "ok": "Aoba, b%ao% %pr%, jovem!",
+  "ok": "Opa, b%ao% %pr%, jovem!",
   "wrongPeriod": "B%ao% %pu%, jovem? Agora são " + horas + "h" + minutos + "! Você devia regular seus horários!"
 }
 
