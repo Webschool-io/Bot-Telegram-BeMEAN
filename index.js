@@ -82,7 +82,7 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     //   [/\.map/, _services.map.fn(bot, msg)]
       // [/\.filter/, _services.filter.fn(bot, msg)],
       // [/\.test/, _services.test.fn(bot, msg)]
-    );
+    // );
   }
 });
 // bot.onText(/\.test/, (msg, match) => {
