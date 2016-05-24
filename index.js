@@ -115,17 +115,10 @@ var _obj = {
   member: 'mdn'
 , regex: /^js\s+([a-zA-Z])+/i
 , fn: (msg, match) => {
-  services.mdn.execute(bot, msg, match);
+  services[_obj.member].execute(bot, msg, match);
   }
 }
 _services.push(_obj);
-// var member = 'MDN';
-// var regex = /^js\s+([a-zA-Z])+/i;
-// var fn = (msg, match) => {
-//   services.mdn.execute(bot, msg, match);
-// };
-// Mediator.add(member, regex, fn);
-// Mediator.on(bot, regex, fn);
 
 // Wikipedia
 var member = 'Wikipedia';
