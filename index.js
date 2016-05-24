@@ -124,9 +124,16 @@ bot.onText(/^js\s+([a-zA-Z])+/i, (msg, match) => {
 });
 
 // Wikipedia
-bot.onText(/(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i, (msg, match) => {
+let member = 'Wikipedia';
+let regex = /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i;
+let fn = (msg, match)  => {
   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-});
+})
+Mediator.add(member, regex, fn);
+Mediator.on(bot, regex, fn);
+// bot.onText(/(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i, (msg, match) => {
+//   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
+// });
 
 // calcular
 bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, match) => {
