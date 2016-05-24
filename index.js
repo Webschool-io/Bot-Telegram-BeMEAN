@@ -80,7 +80,7 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     _services.forEach( function(element, index) {
       console.log('testando: ', _services[index].regex)
       console.log('input: ', match[1]);
-      console.log('COM: ', match);
+      console.log('msg: ', msg);
       if(_services[index].regex.test(match[1])) _services[index].fn(bot, msg, match);
     });
   }
