@@ -72,7 +72,10 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
 
   if(Array.isArray(match)) {
     _services.forEach( function(element, index) {
+      console.log('element', element)
       if(_services[index].regex.test(match)){
+        console.log('ENTRO AQUI', element)
+        console.log('fn', _services[index].fn)
         _services[index].fn();
       }
     });
