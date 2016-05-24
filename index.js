@@ -50,7 +50,8 @@ bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
 
 bot.onText(/\.\w+\(/i, (msg, match) => {
   const _services = {
-    'reduce': { regex: /\.reduce/
+    'reduce': { 
+        regex: /\.reduce/
       , fn: (bot, msg) => { console.log('REDUCEE')
           bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text));
         }
@@ -74,9 +75,9 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     var $ = fun.parameter;
     var servicesPattern = fun(
       [/\.reduce/, _services.reduce.fn(bot, msg)],
-      [/\.map/, _services.map.fn(bot, msg)],
-      [/\.filter/, _services.filter.fn(bot, msg)],
-      [/\.test/, _services.test.fn(bot, msg)]
+      [/\.map/, _services.map.fn(bot, msg)]
+      // [/\.filter/, _services.filter.fn(bot, msg)],
+      // [/\.test/, _services.test.fn(bot, msg)]
     );
     servicesPattern(match[0]);
     // console.log('achou _matchs', _matchs)
