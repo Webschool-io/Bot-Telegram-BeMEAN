@@ -37,7 +37,7 @@ bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg, match) => {
 });
 
 
-bot.onText(/([^a-zA-Z])/i, (msg, match) => {
+bot.on('text', (msg, match) => {
 
   console.log('Got message: ' + msg.text);
 
@@ -101,7 +101,6 @@ bot.onText(/([^a-zA-Z])/i, (msg, match) => {
       //console.log('testando: ', _services[index].regex)
       //console.log('input: ', match[1]);
       //console.log('msg: ', msg);
-      console.log(_services[index].regex + ': \n' + _services[index].regex.test(msg.text));
       if (_services[index].regex.test(msg.text)) {
         var _match = msg.text.match(_services[index].regex)
         _services[index].fn(bot, msg, _match);
