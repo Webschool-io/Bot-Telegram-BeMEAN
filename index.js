@@ -72,10 +72,10 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     }
   };
 
+
   // _services.forEach( function(element, index) {
     // var _matchs = match[0].match(element.regex);
-      // console.log(' _matchs', _matchs)
-    if(Array.isArray(match[0] && match.length > 0) {
+    if(Array.isArray(match[0]) && match.length > 0) {
       // console.log('achou _matchs', _matchs)
       switch(_matchs[0]){
         case '.reduce(': _services.reduce.fn(bot, msg);
