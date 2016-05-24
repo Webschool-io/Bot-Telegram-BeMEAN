@@ -71,7 +71,7 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text))
     }
   };
-  // services.mdn.execute(bot, msg, match);
+
   _services.forEach( function(element, index) {
     var _matchs = match[0].match(element.regex);
       console.log(' _matchs', _matchs)
