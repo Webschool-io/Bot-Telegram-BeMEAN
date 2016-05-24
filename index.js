@@ -152,7 +152,8 @@ var _obj = {
 , fn: (msg, match) => {
     console.log('wikipedia')
     const parse = { 'wh': match[1], 'query': match[3] };
-    require('./modules/mediator/wikipedia')(bot, msg, parse)
+    services.wikipedia.execute(bot, msg, parse);
+    // require('./modules/mediator/wikipedia')(bot, msg, parse)
   }
 }
 _services.push(_obj);
