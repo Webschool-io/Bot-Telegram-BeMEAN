@@ -79,8 +79,8 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
   if(Array.isArray(match)) {
     _services.forEach( function(element, index) {
       console.log('testando: ', _services[index].regex)
-      console.log('COM: ', match[2])
-      if(_services[index].regex.test(match[2])) _services[index].fn(bot, msg, match);
+      console.log('COM: ', match)
+      if(_services[index].regex.test(match[0])) _services[index].fn(bot, msg, match);
     });
   }
 });
