@@ -77,9 +77,9 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     }
   };
 
-  array.forEach( function(element, index) {
-    // statements
-  });
+  // array.forEach( function(element, index) {
+  //   // statements
+  // });
 
   if(Array.isArray(match)) {
     [_services.reduce.regex, _services.reduce.fn(bot, msg)];
