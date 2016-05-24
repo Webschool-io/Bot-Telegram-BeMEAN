@@ -101,6 +101,10 @@ bot.onText(/([^a-zA-Z])/i, (msg, match) => {
       if (_services[index].regex.test(msg.text)) {
         var _match = msg.text.match(_services[index].regex)
         _services[index].fn(bot, msg, _match);
+      } else {
+        if (msg.chat.type == 'private') {
+          services.masem.execute(bot, msg);
+        }
       }
     });
   }
