@@ -160,7 +160,7 @@ var _obj = {};
 
 _services.forEach( function(element, index) {
   Mediator.add(bot, element.member, element.regex, element.fn);
-  // Mediator.on(bot, element.regex, element.fn);
+  Mediator.on(bot, element.regex, element.fn);
 });
-Mediator.on(bot, 'wikipedia');
+// Mediator.on(bot, 'wikipedia');
 
