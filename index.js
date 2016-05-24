@@ -37,18 +37,7 @@ bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg, match) => {
 });
 
 
-// Date
-// bot.onText(/Date\.|new Date/, (msg, match) => {
-//   // services.mdn.execute(bot, msg, match);
-//   bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
-// });
-
-// md5
-// bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
-//   services.md5.execute(bot, msg, match);
-// });
-
-bot.onText(/\.\w+\(/i, (msg, match) => {
+bot.onText(/([^a-zA-Z])/i, (msg, match) => {
   const _services = [
     { 
       regex: /\.reduce/
@@ -70,6 +59,10 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
       regex: /Date\.|new Date/
     , fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text))
     }
+  , {
+      regex: /^md5\s+([a-zA-Z])+/i
+    , fn: (bot, msg, match) => services.md5.execute(bot, msg, match)
+    }
   ];
 
   if(Array.isArray(match)) {
@@ -81,6 +74,8 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     });
   }
 });
+
+
 // Pares
 bot.onText(/^par/i, (msg, match) => {
   const _arr = msg.text.split('par ')[1]
@@ -97,9 +92,9 @@ bot.onText(/^impar/i, (msg, match) => {
 });
 
 
-bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
-  services.md5.execute(bot, msg, match)
-});
+// bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
+//   services.md5.execute(bot, msg, match)
+// });
 // GMaps
 bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
   services.gmaps.execute(bot, msg, match);
