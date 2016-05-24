@@ -145,16 +145,16 @@ _services.push(_obj);
 var _obj = {};
 
 // Wikipedia
-var serviceName = 'wikipedia';
-var _obj = {
-  member: serviceName
-, regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
-, fn: (msg, match) => {
-    console.log('wikipedia')
-  services[serviceName].execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-  }
-}
-_services.push(_obj);
+// var serviceName = 'wikipedia';
+// var _obj = {
+//   member: serviceName
+// , regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
+// , fn: (msg, match) => {
+//     console.log('wikipedia')
+//   services[serviceName].execute(bot, msg, { 'wh': match[1], 'query': match[3] });
+//   }
+// }
+// _services.push(_obj);
 var _obj = {};
 
 _services.forEach( function(element, index) {
