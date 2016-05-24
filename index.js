@@ -93,10 +93,19 @@ bot.onText(/^impar/i, (msg, match) => {
 
 
 // GMaps
-bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
-  let url = require('url');
-  services.gmaps.execute(bot, msg, match);
-});
+
+let member = 'GMaps';
+let regex = /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i;
+let fn = (msg, match) => {
+//   let url = require('url');
+//   services.gmaps.execute(bot, msg, match);
+// }
+Mediator.add(member, regex, fn);
+Mediator.on(bot, regex, fn);
+// bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
+//   let url = require('url');
+//   services.gmaps.execute(bot, msg, match);
+// });
 
 // Github
 bot.onText(/(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i, (msg, match)  => {
