@@ -74,7 +74,7 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
 
     var $ = fun.parameter;
     var servicesPattern = fun(
-      [/\.reduce/, _services.reduce.fn(bot, msg)],
+      ['.reduce(', _services.reduce.fn(bot, msg)],
       [/\.map/, _services.map.fn(bot, msg)]
       // [/\.filter/, _services.filter.fn(bot, msg)],
       // [/\.test/, _services.test.fn(bot, msg)]
