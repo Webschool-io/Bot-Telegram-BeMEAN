@@ -88,7 +88,7 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
         console.log('filter switch')
         _services.filter.fn(bot, msg);
       break;
-      case _services.map.regex.test(match[0]): 
+      case '.map(': 
         console.log('map switch')
         _services.map.fn(bot, msg);
       break;
