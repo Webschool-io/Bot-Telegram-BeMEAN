@@ -101,7 +101,7 @@ bot.onText(/(.*)/i, (msg, match) => {
       fn: (bot, msg, match) => services.tuamae.execute(bot, msg, match)
     },
     {
-      regex:/^gme\s+([a-zA-Z])+/,
+      regex:/^gme\s+([a-zA-Z ])+/i,
       fn: (bot, msg, match) => services.gme.execute(bot, msg, match)
     }
   ];
