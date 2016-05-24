@@ -56,7 +56,7 @@ bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
 // });
 
 bot.onText(/\.\w+\(/i, (msg, match) => {
-  
+
     console.log('match', match)
   const _services = [
     { member: 'reduce', regex: /\.reduce/, fn: bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text))
@@ -73,6 +73,15 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
       console.log(' _matchs', _matchs)
     if(Array.isArray(_matchs)) {
       console.log('achou _matchs', _matchs)
+      switch(_matchs[0]){
+        case '.reduce': _services.reduce.fn();
+        break;
+        case '.filter': _services.filter.fn();
+        break;
+        case '.map': _services.map.fn();
+        break;
+        default: bot.sendMessage(msg.chat.id, 'FUUUUU!!!')
+      }
     }
   });
 });
