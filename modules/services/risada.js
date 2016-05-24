@@ -9,6 +9,7 @@ const risadas = [
 ]
 
 const execute = (bot, msg, args) => {
+  console.log('Risada: ' + args[0]);
   bot.sendMessage(msg.chat.id, risadas[Math.floor(Math.random() * risadas.length)]);
 }
 
