@@ -8,6 +8,7 @@ const webschool = require('./commands/webschool');
 const help = require('./commands/help');
 const par = require('./commands/par');
 const impar = require('./commands/impar');
+const repo = require('./commands/repo');
 
 module.exports = {
     'echo': echo,
@@ -17,5 +18,6 @@ module.exports = {
     'webschool': webschool,
     'help': help,
     'par': par,
-    'impar': impar
+    'impar': impar,
+    'repo': repo
 }
