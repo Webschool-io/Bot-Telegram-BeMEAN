@@ -107,12 +107,13 @@ _services.push(_obj);
 var _obj = {};
 
 // md5
+var serviceName = 'md5';
 var _obj = {
-  member: 'md5'
+  member: serviceName
 , regex: /^md5\s+([a-zA-Z])+/i
 , fn: (msg, match) => {
-    console.log('_obj.member', _obj.member)
-    services[_obj.member].execute(bot, msg, match);
+    console.log('serviceName', serviceName)
+    services[serviceName].execute(bot, msg, match);
   }
 }
 _services.push(_obj);
