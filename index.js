@@ -76,9 +76,24 @@ bot.onText(/^impar/i, (msg, match) => {
   const _return = arr.filter((acc) => (acc % 2));
   bot.sendMessage(msg.chat.id, 'Ímpar(es): ' + _return);
 });
+// calcular
+bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, match) => {
+  services.math.execute(bot, msg);
+});
+bot.onText(/(420)|maconha|weed|marijuana|erva|bagulho/i, (msg, match) => {
+  services.maconha.execute(bot, msg);
+});
+// risada
+bot.onText(/lol|kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h+u+a|h+u+e+h+u+e/i, (msg, match) => {
+  services.risada.execute(bot, msg);
+});
+// saudação
+bot.onText(/b(oa|om) (dia|tarde|noite)/i, (msg, match) => {
+  services.saudacao.execute(bot, msg, match);
+});
+
 
 // Services
-
 const _services = [];
 // Date
 var _obj = {
@@ -129,33 +144,6 @@ var _obj = {
   }
 }
 _services.push(_obj);
-// var member = 'Wikipedia';
-// var regex = /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i;
-// var fn = (msg, match)  => {
-//   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-// };
-// Mediator.add(member, regex, fn);
-// Mediator.on(bot, regex, fn);
-
-// calcular
-bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, match) => {
-  services.math.execute(bot, msg);
-});
-
-bot.onText(/(420)|maconha|weed|marijuana|erva|bagulho/i, (msg, match) => {
-  services.maconha.execute(bot, msg);
-});
-
-// risada
-bot.onText(/lol|kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h+u+a|h+u+e+h+u+e/i, (msg, match) => {
-  services.risada.execute(bot, msg);
-});
-
-// saudação
-bot.onText(/b(oa|om) (dia|tarde|noite)/i, (msg, match) => {
-  services.saudacao.execute(bot, msg, match);
-});
-
 
 _services.forEach( function(element, index) {
   Mediator.add(element.member, element.regex, element.fn);
