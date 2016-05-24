@@ -63,6 +63,10 @@ bot.onText(/([^a-zA-Z])/i, (msg, match) => {
       regex: /^md5\s+([a-zA-Z])+/i
     , fn: (bot, msg, match) => services.md5.execute(bot, msg, match)
     }
+  , {
+      regex: /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i
+    , fn: (bot, msg, match) => services.gmaps.execute(bot, msg, match);
+    }
   ];
 
   if(Array.isArray(match)) {
@@ -96,14 +100,14 @@ bot.onText(/^impar/i, (msg, match) => {
 //   services.md5.execute(bot, msg, match)
 // });
 // GMaps
-bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
-  services.gmaps.execute(bot, msg, match);
-});
+// bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
+//   services.gmaps.execute(bot, msg, match);
+// });
 
 // Github
-bot.onText(/(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i, (msg, match)  => {
-  services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-});
+// bot.onText(/(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i, (msg, match)  => {
+//   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
+// });
 
 // MDN
 bot.onText(/^js\s+([a-zA-Z])+/i, (msg, match) => {
