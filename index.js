@@ -80,7 +80,7 @@ bot.onText(/([^a-zA-Z])/i, (msg, match) => {
       fn: (bot, msg, match) => services.math.execute(bot, msg)
     },
     {
-      regex: /(420)|maconha|weed|marijuana|erva|bagulho/i,
+      regex: /(420)|maconha|weed|marijuana|erva|bagulho|manhuca/i,
       fn: (bot, msg, match) => services.maconha.execute(bot, msg)
     },
     {
