@@ -74,7 +74,10 @@ bot.onText(/([^a-zA-Z])/i, (msg, match) => {
       console.log('testando: ', _services[index].regex)
       console.log('input: ', match[1]);
       console.log('msg: ', msg);
-      if(_services[index].regex.test(msg.text)) _services[index].fn(bot, msg, match);
+      if(_services[index].regex.test(msg.text)) {
+        var _match = msg.text.match(services[index].regex)
+        _services[index].fn(bot, msg, _match);
+      }
     });
   }
 });
