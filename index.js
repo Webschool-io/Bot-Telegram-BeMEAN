@@ -68,7 +68,8 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     }
   , {
       regex: /^md5\s+([a-zA-Z])+/i
-    , fn: (bot, msg, match) => services.md5.execute(bot, msg, match)
+    // , fn: (bot, msg, match) => services.md5.execute(bot, msg, match)
+    , fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'KD O MD5?')
     }
   , {
       regex: /Date\.|new Date/
