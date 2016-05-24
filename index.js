@@ -101,7 +101,7 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     //     _services.test.fn(bot, msg);
     //   break;
       // default: bot.sendMessage(msg.chat.id, 'FUUUUU!!!')
-    }
+    // }
   }
 });
 bot.onText(/\.test/, (msg, match) => {
