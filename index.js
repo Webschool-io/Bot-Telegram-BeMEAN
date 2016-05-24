@@ -91,6 +91,10 @@ bot.onText(/(.*)/i, (msg, match) => {
     {
       regex: /b(oa|om) (dia|tarde|noite)/i,
       fn: (bot, msg, match) => services.saudacao.execute(bot, msg, match)
+    },
+    {
+      regex: /bot(.*)(burro|idiota|retardado|troxa|maconheiro|inútil|doido)/i,
+      fb: (bot, msg, match) => services.tuamae.execute(bot, msg, match)
     }
   ];
 

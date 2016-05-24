@@ -9,6 +9,7 @@ const mdn = require('./services/mdn');
 const md5 = require('./services/md5');
 const saudacao = require('./services/saudacao');
 const masem = require('./services/masem');
+const tuamae = rquire('./services/tuamae');
 
 module.exports = {
   wikipedia: wikipedia,
@@ -19,5 +20,6 @@ module.exports = {
   mdn: mdn,
   md5: md5,
   saudacao: saudacao,
-  masem: masem
+  masem: masem,
+  tuamae: tuamae
 }
