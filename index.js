@@ -67,6 +67,18 @@ bot.onText(/([^a-zA-Z])/i, (msg, match) => {
       regex: /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i
     , fn: (bot, msg, match) => services.gmaps.execute(bot, msg, match)
     }
+  , {
+      regex: /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i
+    , fn: (bot, msg, match) => services.mdn.execute(bot, msg, match)
+    }
+  , {
+      regex: /^js\s+([a-zA-Z])+/i
+    , fn: (bot, msg, match) => services.mdn.execute(bot, msg, match)
+    }
+  , {
+      regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
+    , fn: (bot, msg, match) => services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
+    }
   ];
 
   if(Array.isArray(match)) {
@@ -113,9 +125,9 @@ bot.onText(/^impar/i, (msg, match) => {
 // });
 
 // MDN
-bot.onText(/^js\s+([a-zA-Z])+/i, (msg, match) => {
-  services.mdn.execute(bot, msg, match);
-});
+// bot.onText(/^js\s+([a-zA-Z])+/i, (msg, match) => {
+//   services.mdn.execute(bot, msg, match);
+// });
 
 // Wikipedia
 bot.onText(/(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i, (msg, match) => {
