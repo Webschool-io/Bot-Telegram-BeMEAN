@@ -52,21 +52,21 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
   const _services = [
     { 
         regex: /\.reduce/
-      , fn: (bot, msg) => { console.log('REDUCEE')
+      , fn: (bot, msg, match) => { console.log('REDUCEE')
           bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text));
         }
     },
     {
       regex: /\.map/
-    , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text))
+    , fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text))
     },
     {
       regex: /\.filter/
-    , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text))
+    , fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text))
     },
     {
       regex: /\.test/
-    , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do test: ' + eval(msg.text))
+    , fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do test: ' + eval(msg.text))
     }
   ];
 
@@ -76,7 +76,7 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
       if(_services[index].regex.test(match)){
         console.log('ENTRO AQUI', element)
         console.log('fn', _services[index].fn)
-        _services[index].fn();
+        _services[index].fn(bot, msg, match);
       }
     });
     // var $ = fun.parameter;
