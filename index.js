@@ -48,15 +48,7 @@ bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
   services.md5.execute(bot, msg, match);
 });
 
-// Funções JS
-// reduce
-
-// _services.forEach( function(element, index) {
-//   bot.onText(element.regex, element.fn);
-// });
-
 bot.onText(/\.\w+\(/i, (msg, match) => {
-
   const _services = {
     'reduce': { regex: /\.reduce/
       , fn: (bot, msg) => { console.log('REDUCEE')
@@ -76,10 +68,6 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do test: ' + eval(msg.text))
     }
   };
-
-  // array.forEach( function(element, index) {
-  //   // statements
-  // });
 
   if(Array.isArray(match)) {
 
@@ -112,11 +100,11 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     // }
   }
 });
-bot.onText(/\.test/, (msg, match) => {
-  // services.mdn.execute(bot, msg, match);
-  // /^hello/.test('STRING')
-  bot.sendMessage(msg.chat.id, 'Resposta do test: ' + eval(msg.text));
-});
+// bot.onText(/\.test/, (msg, match) => {
+//   // services.mdn.execute(bot, msg, match);
+//   // /^hello/.test('STRING')
+//   bot.sendMessage(msg.chat.id, 'Resposta do test: ' + eval(msg.text));
+// });
 // Pares
 bot.onText(/^par/i, (msg, match) => {
   const _arr = msg.text.split('par ')[1]
