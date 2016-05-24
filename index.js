@@ -94,7 +94,7 @@ bot.onText(/(.*)/i, (msg, match) => {
     },
     {
       regex: /bot(.*)(burro|idiota|retardado|troxa|maconheiro|inútil|doido)/i,
-      fb: (bot, msg, match) => services.tuamae.execute(bot, msg, match)
+      fn: (bot, msg, match) => services.tuamae.execute(bot, msg, match)
     }
   ];
 
