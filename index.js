@@ -37,9 +37,7 @@ bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg, match) => {
 });
 
 
-bot.on('text', (msg, match) => {
-
-  console.log('Got message: ' + msg.text);
+bot.onText(/(.*)/i, (msg, match) => {
 
   const _services = [
     {
