@@ -96,6 +96,7 @@ bot.onText(/b(oa|om) (dia|tarde|noite)/i, (msg, match) => {
 // Services
 const _services = [];
 // Date
+var serviceName = 'date';
 var _obj = {
   member: 'date'
 , regex: /Date\.|new Date/
@@ -112,7 +113,7 @@ var _obj = {
   member: serviceName
 , regex: /^md5\s+([a-zA-Z])+/i
 , fn: (msg, match) => {
-    console.log('serviceName', serviceName)
+    // console.log('serviceName', serviceName)
     services[serviceName].execute(bot, msg, match);
   }
 }
@@ -120,34 +121,37 @@ _services.push(_obj);
 var _obj = {};
 
 // GMaps
+var serviceName = 'gmaps';
 var _obj = {
   member: 'gmaps'
 , regex: /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i
 , fn: (msg, match) => {
-  services[_obj.member].execute(bot, msg, match);
+  services[serviceName].execute(bot, msg, match);
   }
 }
 _services.push(_obj);
 var _obj = {};
 
 // MDN
+var serviceName = 'mdn';
 var _obj = {
   member: 'mdn'
 , regex: /^js\s+([a-zA-Z])+/i
 , fn: (msg, match) => {
-  services[_obj.member].execute(bot, msg, match);
+  services[serviceName].execute(bot, msg, match);
   }
 }
 _services.push(_obj);
 var _obj = {};
 
 // Wikipedia
+var serviceName = 'wikipedia';
 var _obj = {
   member: 'wikipedia'
 , regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
 , fn: (msg, match) => {
     console.log('wikipedia')
-  services[_obj.member].execute(bot, msg, { 'wh': match[1], 'query': match[3] });
+  services[serviceName].execute(bot, msg, { 'wh': match[1], 'query': match[3] });
   }
 }
 _services.push(_obj);
