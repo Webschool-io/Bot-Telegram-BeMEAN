@@ -80,11 +80,17 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     if(Array.isArray(match[0]) && match.length > 0) {
       // console.log('achou _matchs', _matchs)
       switch(_matchs[0]){
-        case '.reduce(': _services.reduce.fn(bot, msg);
+        case '.reduce(': 
+          console.log('reduce switch')
+          _services.reduce.fn(bot, msg);
         break;
-        case '.filter(': _services.filter.fn(bot, msg);
+        case '.filter(': 
+          console.log('filter switch')
+          _services.filter.fn(bot, msg);
         break;
-        case '.map(': _services.map.fn(bot, msg);
+        case '.map(': 
+          console.log('map switch')
+          _services.map.fn(bot, msg);
         break;
         default: bot.sendMessage(msg.chat.id, 'FUUUUU!!!')
       }
