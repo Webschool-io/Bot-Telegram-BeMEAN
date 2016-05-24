@@ -72,7 +72,7 @@ bot.onText(/([^a-zA-Z])/i, (msg, match) => {
       fn: (bot, msg, match) => services.mdn.execute(bot, msg, match)
     },
     {
-      regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i,
+      regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^?]*)\s?\??/i,
       fn: (bot, msg, match) => services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] })
     },
     {
