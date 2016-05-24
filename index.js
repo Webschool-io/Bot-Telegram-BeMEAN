@@ -104,17 +104,19 @@ var _obj = {
   }
 }
 _services.push(_obj);
+var _obj = {};
 
 // md5
 var _obj = {
   member: 'md5'
 , regex: /^md5\s+([a-zA-Z])+/i
 , fn: (msg, match) => {
-    console.log('md5')
+    console.log('_obj.member', _obj.member)
     services[_obj.member].execute(bot, msg, match);
   }
 }
 _services.push(_obj);
+var _obj = {};
 
 // GMaps
 var _obj = {
@@ -125,6 +127,7 @@ var _obj = {
   }
 }
 _services.push(_obj);
+var _obj = {};
 
 // MDN
 var _obj = {
@@ -135,6 +138,7 @@ var _obj = {
   }
 }
 _services.push(_obj);
+var _obj = {};
 
 // Wikipedia
 var _obj = {
@@ -146,6 +150,7 @@ var _obj = {
   }
 }
 _services.push(_obj);
+var _obj = {};
 
 _services.forEach( function(element, index) {
   Mediator.add(element.member, element.regex, element.fn);

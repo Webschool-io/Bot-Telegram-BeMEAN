@@ -24,6 +24,10 @@ Mediator.add = (member, regex, fn) => {
   console.log('Mediator.members', Mediator.members)
 };
 
+// Mediator.on = (bot, element.regex, element.fn) => {
+//   bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
+// }
+
 
 // bot.onText(/Date\.|new Date/, (msg, match) => {
 //   // services.mdn.execute(bot, msg, match);
