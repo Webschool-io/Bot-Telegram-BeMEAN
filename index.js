@@ -95,7 +95,6 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
       case _services.test.regex.test(match[0]):
         _services.test.fn(bot, msg);
       break;
-      default: bot.sendMessage(msg.chat.id, 'FUUUUU!!!')
     }
   }
 });
