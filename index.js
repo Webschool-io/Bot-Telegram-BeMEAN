@@ -80,15 +80,15 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
   if(Array.isArray(match)) {
     // console.log('achou _matchs', _matchs)
     switch(match[0]){
-      case '.reduce(': 
+      case _services.reduce.regex.test(match[0]): 
         console.log('reduce switch')
         _services.reduce.fn(bot, msg);
       break;
-      case '.filter(': 
+      case _services.filter.regex.test(match[0]): 
         console.log('filter switch')
         _services.filter.fn(bot, msg);
       break;
-      case '.map(': 
+      case _services.map.regex.test(match[0]): 
         console.log('map switch')
         _services.map.fn(bot, msg);
       break;
