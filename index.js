@@ -89,22 +89,8 @@ var _obj = {
   }
 }
 _services.push(_obj);
-_services.forEach( function(element, index) {
-  Mediator.add(element.member, element.regex, element.fn);
-  Mediator.on(bot, element.regex, element.fn);
-});
-// var member = 'Date';
-// var regex = /Date\.|new Date/;
-// var fn = (msg, match) => {
-//   bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
-// };
-// var member = 'Date';
-// var regex = /Date\.|new Date/;
-// var fn = (msg, match) => {
-//   bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
-// };
-Mediator.add(member, regex, fn);
-Mediator.on(bot, regex, fn);
+// Mediator.add(member, regex, fn);
+// Mediator.on(bot, regex, fn);
 // bot.onText(/Date\.|new Date/, );
 
 // md5
@@ -155,4 +141,10 @@ bot.onText(/lol|kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h
 // saudação
 bot.onText(/b(oa|om) (dia|tarde|noite)/i, (msg, match) => {
   services.saudacao.execute(bot, msg, match);
+});
+
+
+_services.forEach( function(element, index) {
+  Mediator.add(element.member, element.regex, element.fn);
+  Mediator.on(bot, element.regex, element.fn);
 });
