@@ -82,11 +82,13 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
   // });
 
   if(Array.isArray(match)) {
+
+    var $ = fun.parameter;
     var servicesPattern = fun(
-      [_services.reduce.regex, _services.reduce.fn(bot, msg)],
-      [_services.map.regex, _services.map.fn(bot, msg)],
-      [_services.filter.regex, _services.filter.fn(bot, msg)],
-      [_services.test.regex, _services.test.fn(bot, msg)]
+      // [_services.reduce.regex, _services.reduce.fn(bot, msg)],
+      // [_services.map.regex, _services.map.fn(bot, msg)],
+      // [_services.filter.regex, _services.filter.fn(bot, msg)],
+      [/\.test/, _services.test.fn(bot, msg)]
     );
     servicesPattern(match[0]);
     // console.log('achou _matchs', _matchs)
