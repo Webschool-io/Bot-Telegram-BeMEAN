@@ -57,7 +57,7 @@ bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
 
 bot.onText(/\.\w+\(/i, (msg, match) => {
 
-    console.log('match', match)
+    console.log('match 0', match[0])
   const _services = {
     'reduce': { regex: /\.reduce/
       , fn: (bot, msg) => { console.log('REDUCEE')
