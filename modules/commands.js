@@ -6,6 +6,8 @@ const id = require('./commands/id');
 const start = require('./commands/start');
 const webschool = require('./commands/webschool');
 const help = require('./commands/help');
+const par = require('./commands/par');
+const impar = require('./commands/impar');
 
 module.exports = {
     'echo': echo,
@@ -13,5 +15,7 @@ module.exports = {
     'id': id,
     'start': start,
     'webschool': webschool,
-    'help': help
+    'help': help,
+    'par': par,
+    'impar': impar
 }
