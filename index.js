@@ -38,10 +38,10 @@ bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg, match) => {
 
 
 // Date
-bot.onText(/Date\.|new Date/, (msg, match) => {
-  // services.mdn.execute(bot, msg, match);
-  bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
-});
+// bot.onText(/Date\.|new Date/, (msg, match) => {
+//   // services.mdn.execute(bot, msg, match);
+//   bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
+// });
 
 // md5
 // bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
@@ -68,7 +68,11 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     }
   , {
       regex: /^md5\s+([a-zA-Z])+/i
-    , fn: (bot, msg, match) => services.md5.execute(bot, msg, match);
+    , fn: (bot, msg, match) => services.md5.execute(bot, msg, match)
+    }
+  , {
+      regex: /Date\.|new Date/
+    , fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text))
     }
   ];
 
