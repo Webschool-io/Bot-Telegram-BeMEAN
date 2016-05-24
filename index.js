@@ -78,6 +78,8 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
 
   if(Array.isArray(match)) {
     _services.forEach( function(element, index) {
+      console.log('testando: ', _services[index].regex)
+      console.log('COM: ', match)
       if(_services[index].regex.test(match)) _services[index].fn(bot, msg, match);
     });
   }
