@@ -95,7 +95,7 @@ var _obj = {
   member: 'md5'
 , regex: /^md5\s+([a-zA-Z])+/i
 , fn: (msg, match) => {
-    services.md5.execute(bot, msg, match);
+    services[_obj.member].execute(bot, msg, match);
   }
 }
 _services.push(_obj);
@@ -105,7 +105,7 @@ var _obj = {
   member: 'gmaps'
 , regex: /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i
 , fn: (msg, match) => {
-  services.gmaps.execute(bot, msg, match);
+  services[_obj.member].execute(bot, msg, match);
   }
 }
 _services.push(_obj);
@@ -121,13 +121,21 @@ var _obj = {
 _services.push(_obj);
 
 // Wikipedia
-var member = 'Wikipedia';
-var regex = /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i;
-var fn = (msg, match)  => {
-  services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-};
-Mediator.add(member, regex, fn);
-Mediator.on(bot, regex, fn);
+var _obj = {
+  member: 'wikipedia'
+, regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
+, fn: (msg, match) => {
+  services[_obj.member].execute(bot, msg, { 'wh': match[1], 'query': match[3] });
+  }
+}
+_services.push(_obj);
+// var member = 'Wikipedia';
+// var regex = /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i;
+// var fn = (msg, match)  => {
+//   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
+// };
+// Mediator.add(member, regex, fn);
+// Mediator.on(bot, regex, fn);
 
 // calcular
 bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, match) => {
