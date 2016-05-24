@@ -82,7 +82,7 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
   });
 
   if(Array.isArray(match)) {
-    [_services.reduce.regex, _services.reduce.fn(bot, msg);]
+    [_services.reduce.regex, _services.reduce.fn(bot, msg)];
     // console.log('achou _matchs', _matchs)
     // switch(match[0]){
     //   case '.reduce(': 
