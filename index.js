@@ -1,5 +1,5 @@
 'use strict';
-
+const fun = require('funcy');
 const TelegramBot = require('node-telegram-bot-api');
 require('dotenv').config();
 
@@ -77,24 +77,29 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     }
   };
 
+  array.forEach( function(element, index) {
+    // statements
+  });
+
   if(Array.isArray(match)) {
+    [_services.reduce.regex, _services.reduce.fn(bot, msg);]
     // console.log('achou _matchs', _matchs)
-    switch(match[0]){
-      case '.reduce(': 
-        console.log('reduce switch')
-        _services.reduce.fn(bot, msg);
-      break;
-      case '.filter(': 
-        console.log('filter switch')
-        _services.filter.fn(bot, msg);
-      break;
-      case '.map(': 
-        console.log('map switch')
-        _services.map.fn(bot, msg);
-      break;
-      case _services.test.regex.test(match[0]):
-        _services.test.fn(bot, msg);
-      break;
+    // switch(match[0]){
+    //   case '.reduce(': 
+    //     console.log('reduce switch')
+    //     _services.reduce.fn(bot, msg);
+    //   break;
+    //   case '.filter(': 
+    //     console.log('filter switch')
+    //     _services.filter.fn(bot, msg);
+    //   break;
+    //   case '.map(': 
+    //     console.log('map switch')
+    //     _services.map.fn(bot, msg);
+    //   break;
+    //   case _services.test.regex.test(match[0]):
+    //     _services.test.fn(bot, msg);
+    //   break;
       // default: bot.sendMessage(msg.chat.id, 'FUUUUU!!!')
     }
   }
