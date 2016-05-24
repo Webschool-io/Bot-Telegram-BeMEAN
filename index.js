@@ -136,14 +136,14 @@ var _obj = {
 _services.push(_obj);
 
 // Wikipedia
-var _obj = {
-  member: 'wikipedia'
-, regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
-, fn: (msg, match) => {
-  services[_obj.member].execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-  }
-}
-_services.push(_obj);
+// var _obj = {
+//   member: 'wikipedia'
+// , regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
+// , fn: (msg, match) => {
+//   services[_obj.member].execute(bot, msg, { 'wh': match[1], 'query': match[3] });
+//   }
+// }
+// _services.push(_obj);
 
 _services.forEach( function(element, index) {
   Mediator.add(element.member, element.regex, element.fn);
