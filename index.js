@@ -99,17 +99,23 @@ var _obj = {
   }
 }
 _services.push(_obj);
-// bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
-//   services.md5.execute(bot, msg, match);
-// });
+
 // GMaps
-var member = 'GMaps';
-var regex = /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i;
-var fn = (msg, match) => {
+var _obj = {
+  member: 'gmaps'
+, regex: /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i
+, fn: (msg, match) => {
   services.gmaps.execute(bot, msg, match);
+  }
 }
-Mediator.add(member, regex, fn);
-Mediator.on(bot, regex, fn);
+_services.push(_obj);
+// var member = 'GMaps';
+// var regex = /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i;
+// var fn = (msg, match) => {
+//   services.gmaps.execute(bot, msg, match);
+// }
+// Mediator.add(member, regex, fn);
+// Mediator.on(bot, regex, fn);
 
 // MDN
 var member = 'MDN';
