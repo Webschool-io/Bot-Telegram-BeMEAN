@@ -110,6 +110,7 @@ var _obj = {
   member: 'md5'
 , regex: /^md5\s+([a-zA-Z])+/i
 , fn: (msg, match) => {
+    console.log('md5')
     services[_obj.member].execute(bot, msg, match);
   }
 }
@@ -140,6 +141,7 @@ var _obj = {
   member: 'wikipedia'
 , regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
 , fn: (msg, match) => {
+    console.log('wikipedia')
   services[_obj.member].execute(bot, msg, { 'wh': match[1], 'query': match[3] });
   }
 }
