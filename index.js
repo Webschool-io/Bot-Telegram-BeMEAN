@@ -94,10 +94,10 @@ bot.onText(/([^a-zA-Z])/i, (msg, match) => {
   ];
 
   if (Array.isArray(match)) {
-    _services.forEach(function (element, index) {
-      console.log('testando: ', _services[index].regex)
-      console.log('input: ', match[1]);
-      console.log('msg: ', msg);
+    _services.forEach((element, index) => {
+      //console.log('testando: ', _services[index].regex)
+      //console.log('input: ', match[1]);
+      //console.log('msg: ', msg);
       if (_services[index].regex.test(msg.text)) {
         var _match = msg.text.match(_services[index].regex)
         _services[index].fn(bot, msg, _match);
