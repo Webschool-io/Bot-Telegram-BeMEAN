@@ -49,26 +49,26 @@ bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
 });
 
 bot.onText(/\.\w+\(/i, (msg, match) => {
-  const _services = {
-    'reduce': { 
+  const _services = [
+    { 
         regex: /\.reduce/
       , fn: (bot, msg) => { console.log('REDUCEE')
           bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text));
         }
-      }
-  , 'map': {
+    },
+    {
       regex: /\.map/
     , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text))
-    }
-  , 'filter': {
+    },
+    {
       regex: /\.filter/
     , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text))
-    }
-  , 'test': {
+    },
+    {
       regex: /\.test/
     , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do test: ' + eval(msg.text))
     }
-  };
+  ];
 
   if(Array.isArray(match)) {
     _services.forEach( function(element, index) {
