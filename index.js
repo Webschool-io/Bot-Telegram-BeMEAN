@@ -130,7 +130,7 @@ var member = 'Wikipedia';
 var regex = /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i;
 var fn = (msg, match)  => {
   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-})
+};
 Mediator.add(member, regex, fn);
 Mediator.on(bot, regex, fn);
 // bot.onText(/(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i, (msg, match) => {
