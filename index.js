@@ -147,5 +147,5 @@ _services.push(_obj);
 
 _services.forEach( function(element, index) {
   Mediator.add(element.member, element.regex, element.fn);
-  // Mediator.on(bot, element.regex, element.fn);
+  Mediator.on(bot, element.regex, element.fn);
 });
