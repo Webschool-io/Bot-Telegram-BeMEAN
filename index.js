@@ -125,3 +125,8 @@ bot.onText(/lol|kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h
 bot.onText(/b(oa|om) (dia|tarde|noite)/i, (msg, match) => {
   services.saudacao.execute(bot, msg, match);
 });
+
+// gme - Google ME (http://lmgtfy.com)
+bot.onText(/^gme\s+([a-zA-Z])+/i, (msg, match) => {
+  services.gme.execute(bot, msg, match);
+});

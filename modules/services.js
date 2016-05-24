@@ -8,6 +8,7 @@ const gmaps = require('./services/gmaps');
 const mdn = require('./services/mdn');
 const md5 = require('./services/md5');
 const saudacao = require('./services/saudacao');
+const gme = require('./services/gme');
 
 module.exports = {
   wikipedia: wikipedia,
@@ -17,5 +18,6 @@ module.exports = {
   gmaps: gmaps,
   mdn: mdn,
   md5: md5,
-  saudacao: saudacao
+  saudacao: saudacao,
+  gme: gme
 }
