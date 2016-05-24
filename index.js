@@ -57,7 +57,6 @@ bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
 
 bot.onText(/\.\w+\(/i, (msg, match) => {
 
-    console.log('match 0', match[0])
   const _services = {
     'reduce': { regex: /\.reduce/
       , fn: (bot, msg) => { console.log('REDUCEE')
@@ -72,42 +71,34 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
       regex: /\.filter/
     , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text))
     }
+  , 'test': {
+      regex: /\.test/
+    , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do test: ' + eval(msg.text))
+    }
   };
 
-
-  // _services.forEach( function(element, index) {
-    // var _matchs = match[0].match(element.regex);
-    if(Array.isArray(match)) {
-      // console.log('achou _matchs', _matchs)
-      switch(match[0]){
-        case '.reduce(': 
-          console.log('reduce switch')
-          _services.reduce.fn(bot, msg);
-        break;
-        case '.filter(': 
-          console.log('filter switch')
-          _services.filter.fn(bot, msg);
-        break;
-        case '.map(': 
-          console.log('map switch')
-          _services.map.fn(bot, msg);
-        break;
-        default: bot.sendMessage(msg.chat.id, 'FUUUUU!!!')
-      }
+  if(Array.isArray(match)) {
+    // console.log('achou _matchs', _matchs)
+    switch(match[0]){
+      case '.reduce(': 
+        console.log('reduce switch')
+        _services.reduce.fn(bot, msg);
+      break;
+      case '.filter(': 
+        console.log('filter switch')
+        _services.filter.fn(bot, msg);
+      break;
+      case '.map(': 
+        console.log('map switch')
+        _services.map.fn(bot, msg);
+      break;
+      case '.test(':
+        _services.test.fn(bot, msg);
+      break;
+      default: bot.sendMessage(msg.chat.id, 'FUUUUU!!!')
     }
-  // });
+  }
 });
-// map
-// bot.onText(/\.map/, (msg, match) => {
-//   // services.mdn.execute(bot, msg, match);
-//   bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text));
-// });
-// filter
-// bot.onText(/\.filter/, (msg, match) => {
-//   // services.mdn.execute(bot, msg, match);
-//   bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text));
-// });
-// test
 bot.onText(/\.test/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
   // /^hello/.test('STRING')
