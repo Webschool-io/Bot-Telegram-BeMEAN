@@ -138,7 +138,7 @@ var _obj = {
   member: serviceName
 , regex: /^js\s+([a-zA-Z])+/i
 , fn: (msg, match) => {
-  services[serviceName].execute(bot, msg, match);
+   return services[serviceName].execute(bot, msg, match);
   }
 }
 _services.push(_obj);
