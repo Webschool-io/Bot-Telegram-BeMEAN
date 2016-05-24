@@ -123,7 +123,7 @@ var _obj = {};
 // GMaps
 var serviceName = 'gmaps';
 var _obj = {
-  member: 'gmaps'
+  member: serviceName
 , regex: /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i
 , fn: (msg, match) => {
   services[serviceName].execute(bot, msg, match);
@@ -135,7 +135,7 @@ var _obj = {};
 // MDN
 var serviceName = 'mdn';
 var _obj = {
-  member: 'mdn'
+  member: serviceName
 , regex: /^js\s+([a-zA-Z])+/i
 , fn: (msg, match) => {
   services[serviceName].execute(bot, msg, match);
@@ -147,7 +147,7 @@ var _obj = {};
 // Wikipedia
 var serviceName = 'wikipedia';
 var _obj = {
-  member: 'wikipedia'
+  member: serviceName
 , regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
 , fn: (msg, match) => {
     console.log('wikipedia')
