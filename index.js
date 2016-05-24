@@ -3,6 +3,9 @@
 const TelegramBot = require('node-telegram-bot-api');
 require('dotenv').config();
 
+const Mediator = require('./modules/mediator/');
+
+
 const token = process.env.API_TOKEN || 'INSERT API_TOKEN';
 // Setup polling way
 const bot = new TelegramBot(token, { polling: true });
@@ -12,8 +15,8 @@ const services = require('./modules/services');
 
 // Matches commands
 bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
-  let command = match[1];
-  let args = match[2];
+  var command = match[1];
+  var args = match[2];
   if (command) {
     if (command in commands) {
       command = commands[command];
@@ -36,17 +39,6 @@ bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg, match) => {
   bot.sendMessage(msg.chat.id, 'ESSE COMANDO NAO EXISTE PORRAA!!!!');
 });
 
-
-// Date
-bot.onText(/Date\.|new Date/, (msg, match) => {
-  // services.mdn.execute(bot, msg, match);
-  bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
-});
-
-// md5
-bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
-  services.md5.execute(bot, msg, match);
-});
 
 // Funções JS
 // reduce
@@ -84,49 +76,92 @@ bot.onText(/^impar/i, (msg, match) => {
   const _return = arr.filter((acc) => (acc % 2));
   bot.sendMessage(msg.chat.id, 'Ímpar(es): ' + _return);
 });
-
-
-// GMaps
-bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
-  let url = require('url');
-  services.gmaps.execute(bot, msg, match);
-});
-
-// Github
-bot.onText(/(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i, (msg, match)  => {
-  services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-});
-
-// MDN
-bot.onText(/^js\s+([a-zA-Z])+/i, (msg, match) => {
-  services.mdn.execute(bot, msg, match);
-});
-
-// Wikipedia
-bot.onText(/(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i, (msg, match) => {
-  services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-});
-
 // calcular
 bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, match) => {
   services.math.execute(bot, msg);
 });
-
 bot.onText(/(420)|maconha|weed|marijuana|erva|bagulho/i, (msg, match) => {
   services.maconha.execute(bot, msg);
 });
-
 // risada
 bot.onText(/lol|kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h+u+a|h+u+e+h+u+e/i, (msg, match) => {
   services.risada.execute(bot, msg);
 });
-
 // saudação
 bot.onText(/b(oa|om) (dia|tarde|noite)/i, (msg, match) => {
   services.saudacao.execute(bot, msg, match);
 });
-
 // gme - Google ME (http://lmgtfy.com)
 bot.onText(/^gme\s+([a-zA-Z])+/i, (msg, match) => {
   services.gme.execute(bot, msg, match);
+}
+
+
+// Services
+const _services = [];
+// Date
+var serviceName = 'date';
+var _obj = {
+  member: 'date'
+, regex: /Date\.|new Date/
+, fn: (msg, match) => {
+    bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
+  }
+}
+_services.push(_obj);
+var _obj = {};
+
+// md5
+var serviceName = 'md5';
+var _obj = {
+  member: serviceName
+, regex: /^md5\s+([a-zA-Z])+/i
+, fn: (msg, match) => {
+    // console.log('serviceName', serviceName)
+    services[serviceName].execute(bot, msg, match);
+  }
+}
+_services.push(_obj);
+var _obj = {};
+
+// GMaps
+var serviceName = 'gmaps';
+var _obj = {
+  member: serviceName
+, regex: /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i
+, fn: (msg, match) => {
+  services[serviceName].execute(bot, msg, match);
+  }
+}
+_services.push(_obj);
+var _obj = {};
+
+// MDN
+var serviceName = 'mdn';
+var _obj = {
+  member: serviceName
+, regex: /^js\s+([a-zA-Z])+/i
+, fn: (msg, match) => {
+  services[serviceName].execute(bot, msg, match);
+  }
+}
+_services.push(_obj);
+var _obj = {};
+
+// Wikipedia
+// var serviceName = 'wikipedia';
+// var _obj = {
+//   member: serviceName
+// , regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
+// , fn: (msg, match) => {
+//     console.log('wikipedia')
+//   services[serviceName].execute(bot, msg, { 'wh': match[1], 'query': match[3] });
+//   }
+// }
+// _services.push(_obj);
+var _obj = {};
+
+_services.forEach( function(element, index) {
+  Mediator.add(bot, element.member, element.regex, element.fn);
+  // Mediator.on(bot, element.regex, element.fn);
 });
