@@ -60,7 +60,9 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     console.log('match', match)
   const _services = {
     'reduce': { regex: /\.reduce/
-      , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text))
+      , fn: (bot, msg) => { console.log('REDUCEE')
+          bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text));
+        }
       }
   , 'map': {
       regex: /\.map/
