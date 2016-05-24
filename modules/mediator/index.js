@@ -24,9 +24,9 @@ Mediator.add = (member, regex, fn) => {
   console.log('Mediator.members', Mediator.members)
 };
 
-Mediator.on = (bot, element.regex, element.fn) => {
-  bot.onText(element.regex, element.fn);
-  console.log('bot.onText(element.regex, element.fn)', element.regex, element.fn)
+Mediator.on = (bot, regex, fn) => {
+  bot.onText(regex, fn);
+  console.log('bot.onText(regex, fn)', regex, fn)
 }
 
 
