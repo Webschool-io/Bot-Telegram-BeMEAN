@@ -28,6 +28,10 @@ A ideia é que ele possa lhe ajudar a achar a informação mais fácil, principa
   + Busca o comando no site da [MDN](http://mdn/.io) e retorna a URL
   + Exemplo: js map
   + Exemplo: js date
+- GME {String}
+  + Retorna a URL da pergunta a ser pesquisada no Google
+  + Exemplo: gme como se faz café?
+  + Retorno: http://pt-br.lmgtfy.com/?q=como+se+faz+caf%C3%A9%3F
 - {ARRAY}.map({CALLBACK})
   + Executa o comando map 
   + Exemplo: [1,2,3,4].map( num => num*2 )

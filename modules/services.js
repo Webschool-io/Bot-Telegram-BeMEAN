@@ -10,6 +10,7 @@ const md5 = require('./services/md5');
 const saudacao = require('./services/saudacao');
 const masem = require('./services/masem');
 const tuamae = require('./services/tuamae');
+const gme = require('./services/gme');
 
 module.exports = {
   wikipedia: wikipedia,
@@ -21,5 +22,6 @@ module.exports = {
   md5: md5,
   saudacao: saudacao,
   masem: masem,
-  tuamae: tuamae
+  tuamae: tuamae,
+  gme: gme
 }

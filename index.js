@@ -99,6 +99,10 @@ bot.onText(/(.*)/i, (msg, match) => {
     {
       regex: /(burro|idiota|retardado|trou?xa|maconheiro|inútil|doido|fiduma(e|é)gua|z(e|é) r(u|o)ela|ot(á|a)rio|v(i|e)ado).*bot/i,
       fn: (bot, msg, match) => services.tuamae.execute(bot, msg, match)
+    },
+    {
+      regex:/^gme\s+([a-zA-Z])+/,
+      fn: (bot, msg, match) => services.gme.execute(bot, msg, match)
     }
   ];
 
@@ -178,3 +182,4 @@ bot.onText(/lol|kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h
 bot.onText(/b(oa|om) (dia|tarde|noite)/i, (msg, match) => {
   services.saudacao.execute(bot, msg, match);
 });*/
+
