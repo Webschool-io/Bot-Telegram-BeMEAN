@@ -93,7 +93,6 @@ bot.onText(/^impar/i, (msg, match) => {
 
 
 // GMaps
-
 let member = 'GMaps';
 let regex = /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i;
 let fn = (msg, match) => {
@@ -108,9 +107,16 @@ Mediator.on(bot, regex, fn);
 // });
 
 // Github
-bot.onText(/(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i, (msg, match)  => {
+let member = 'Github';
+let regex = /(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i;
+let fn = (msg, match)  => {
   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-});
+})
+Mediator.add(member, regex, fn);
+Mediator.on(bot, regex, fn);
+// bot.onText(/(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i, (msg, match)  => {
+//   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
+// });
 
 // MDN
 bot.onText(/^js\s+([a-zA-Z])+/i, (msg, match) => {
