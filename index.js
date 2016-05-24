@@ -85,10 +85,10 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
 
     var $ = fun.parameter;
     var servicesPattern = fun(
-      // [_services.reduce.regex, _services.reduce.fn(bot, msg)],
-      // [_services.map.regex, _services.map.fn(bot, msg)],
-      [/\.filter/, _services.filter.fn(bot, msg)]
-      // [/\.test/, _services.test.fn(bot, msg)]
+      [/\.reduce/, _services.reduce.fn(bot, msg)],
+      [/\.map/, _services.map.fn(bot, msg)],
+      [/\.filter/, _services.filter.fn(bot, msg)],
+      [/\.test/, _services.test.fn(bot, msg)]
     );
     servicesPattern(match[0]);
     // console.log('achou _matchs', _matchs)
