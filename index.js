@@ -80,11 +80,11 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
   if(Array.isArray(match)) {
     // console.log('achou _matchs', _matchs)
     switch(match[0]){
-      case _services.reduce.regex.test(match[0]): 
+      case '.reduce(': 
         console.log('reduce switch')
         _services.reduce.fn(bot, msg);
       break;
-      case _services.filter.regex.test(match[0]): 
+      case '.filter(': 
         console.log('filter switch')
         _services.filter.fn(bot, msg);
       break;
@@ -95,6 +95,7 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
       case _services.test.regex.test(match[0]):
         _services.test.fn(bot, msg);
       break;
+      // default: bot.sendMessage(msg.chat.id, 'FUUUUU!!!')
     }
   }
 });
