@@ -138,23 +138,24 @@ var _obj = {
   member: serviceName
 , regex: /^js\s+([a-zA-Z])+/i
 , fn: (msg, match) => {
-   return services[serviceName].execute(bot, msg, match);
+   services[serviceName].execute(bot, msg, match);
   }
 }
 _services.push(_obj);
 var _obj = {};
 
 // Wikipedia
-// var serviceName = 'wikipedia';
-// var _obj = {
-//   member: serviceName
-// , regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
-// , fn: (msg, match) => {
-//     console.log('wikipedia')
-//   services[serviceName].execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-//   }
-// }
-// _services.push(_obj);
+var serviceName = 'wikipedia';
+var _obj = {
+  member: serviceName
+, regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
+, fn: (msg, match) => {
+    console.log('wikipedia')
+    const parse = { 'wh': match[1], 'query': match[3] };
+    require('./modules/mediator/wikipedia')(bot, msg, parse)
+  }
+}
+_services.push(_obj);
 var _obj = {};
 
 _services.forEach( function(element, index) {
