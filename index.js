@@ -59,12 +59,14 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
 
     console.log('match', match)
   const _services = [
-    { member: 'reduce', regex: /\.reduce/, fn: bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text))
+    { member: 'reduce', regex: /\.reduce/
+    , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text))
     }
-  , { member: 'map', regex: /\.map/, fn: bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text))
+  , { member: 'map', regex: /\.map/
+    , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text))
     }
   , { member: 'filter', regex: /\.filter/
-    , fn: bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text))
+    , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text))
     }
   ];
   // services.mdn.execute(bot, msg, match);
@@ -74,11 +76,11 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     if(Array.isArray(_matchs)) {
       console.log('achou _matchs', _matchs)
       switch(_matchs[0]){
-        case '.reduce': _services.reduce.fn();
+        case '.reduce': _services.reduce.fn(bot, msg);
         break;
-        case '.filter': _services.filter.fn();
+        case '.filter': _services.filter.fn(bot, msg);
         break;
-        case '.map': _services.map.fn();
+        case '.map': _services.map.fn(bot, msg);
         break;
         default: bot.sendMessage(msg.chat.id, 'FUUUUU!!!')
       }
