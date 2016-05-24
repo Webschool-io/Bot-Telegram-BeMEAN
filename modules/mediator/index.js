@@ -17,11 +17,12 @@ const Commands = require('./../commands');
 Mediator.members = [];
 
 
-Mediator.add = (member, regex, fn) => {
+Mediator.add = (bot, member, regex, fn) => {
   const _obj = {};
   _obj[member] = {regex, fn}
   Mediator.members.push(_obj);
-  console.log('Mediator.members', Mediator.members)
+  bot.onText(regex, fn);
+  // console.log('Mediator.members', Mediator.members)
 };
 
 Mediator.on = (bot, regex, fn) => {
