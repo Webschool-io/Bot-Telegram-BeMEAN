@@ -12,7 +12,7 @@ Mediator.add = (bot, member, regex, fn) => {
   _obj[member] = {regex, fn}
   Mediator.members.push(_obj);
   // bot.onText(regex, fn);
-  // console.log('Mediator.members', Mediator.members)
+  console.log('Mediator.members', Mediator.members)
 };
 
 Mediator.on = (bot, regex, fn) => {
@@ -28,7 +28,5 @@ Mediator.on = (bot, regex, fn) => {
 //   // services.mdn.execute(bot, msg, match);
 //   bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
 // });
-module.exports = () => {
-  return Mediator
-};
+module.exports = Mediator;
 
