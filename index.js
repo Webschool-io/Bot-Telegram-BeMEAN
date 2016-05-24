@@ -51,14 +51,13 @@ bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
 // Funções JS
 // reduce
 const _services = [
-  { member: 'reduce', regex: /\.reduce/
-  , fn: bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text));
+  { member: 'reduce', regex: /\.reduce/, fn: bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text))
   }
 , { member: 'map', regex: /\.map/
-  , fn: bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text));
+  , fn: bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text))
   }
 , { member: 'filter', regex: /\.filter/
-  , fn: bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text));
+  , fn: bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text))
   }
 ];
 
