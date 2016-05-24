@@ -107,21 +107,28 @@ Mediator.on(bot, regex, fn);
 // });
 
 // Github
-let member = 'Github';
-let regex = /(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i;
-let fn = (msg, match)  => {
-  services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-})
-Mediator.add(member, regex, fn);
-Mediator.on(bot, regex, fn);
+// let member = 'Github';
+// let regex = /(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i;
+// let fn = (msg, match)  => {
+//   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
+// })
+// Mediator.add(member, regex, fn);
+// Mediator.on(bot, regex, fn);
 // bot.onText(/(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i, (msg, match)  => {
 //   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
 // });
 
 // MDN
-bot.onText(/^js\s+([a-zA-Z])+/i, (msg, match) => {
+let member = 'MDN';
+let regex = /^js\s+([a-zA-Z])+/i;
+let fn = (msg, match) => {
   services.mdn.execute(bot, msg, match);
-});
+};
+Mediator.add(member, regex, fn);
+Mediator.on(bot, regex, fn);
+// bot.onText(/^js\s+([a-zA-Z])+/i, (msg, match) => {
+//   services.mdn.execute(bot, msg, match);
+// });
 
 // Wikipedia
 let member = 'Wikipedia';
