@@ -95,17 +95,18 @@ bot.onText(/(.*)/i, (msg, match) => {
   ];
 
   if (Array.isArray(match)) {
+    let recognized = false;
     _services.forEach((element, index) => {
       //console.log('testando: ', _services[index].regex)
       //console.log('input: ', match[1]);
       //console.log('msg: ', msg);
       if (_services[index].regex.test(msg.text)) {
+        recognized = true;
         var _match = msg.text.match(_services[index].regex)
         _services[index].fn(bot, msg, _match);
       }
     });
-  } else {
-    if (msg.chat.type == 'private') {
+    if (!recognized) {
       services.masem.execute(bot, msg);
     }
   }
