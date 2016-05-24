@@ -50,25 +50,32 @@ bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
 
 // Funções JS
 // reduce
-const _services = [
-  { member: 'reduce', regex: /\.reduce/, fn: bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text))
-  }
-, { member: 'map', regex: /\.map/
-  , fn: bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text))
-  }
-, { member: 'filter', regex: /\.filter/
-  , fn: bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text))
-  }
-];
 
-_services.forEach( function(element, index) {
-  bot.onText(element.regex, element.fn);
-});
-
-// bot.onText(/\.reduce/, (msg, match) => {
-//   // services.mdn.execute(bot, msg, match);
-//   bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text));
+// _services.forEach( function(element, index) {
+//   bot.onText(element.regex, element.fn);
 // });
+
+bot.onText(/\.\w+\(/i, (msg, match) => {
+  
+  const _services = [
+    { member: 'reduce', regex: /\.reduce/, fn: bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text))
+    }
+  , { member: 'map', regex: /\.map/, fn: bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text))
+    }
+  , { member: 'filter', regex: /\.filter/
+    , fn: bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text))
+    }
+  ];
+  // services.mdn.execute(bot, msg, match);
+  _services.forEach( function(element, index) {
+    console.log('match', match)
+    var _matchs = match[0].match(element.regex);
+      console.log(' _matchs', _matchs)
+    if(Array.isArray(_matchs)) {
+      console.log('achou _matchs', _matchs)
+    }
+  });
+});
 // map
 // bot.onText(/\.map/, (msg, match) => {
 //   // services.mdn.execute(bot, msg, match);
