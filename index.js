@@ -106,7 +106,7 @@ bot.onText(/(.*)/i, (msg, match) => {
         _services[index].fn(bot, msg, _match);
       }
     });
-    if (!recognized && msg.type == 'private') {
+    if (!recognized && msg.chat.type == 'private') {
       services.masem.execute(bot, msg);
     }
   }
