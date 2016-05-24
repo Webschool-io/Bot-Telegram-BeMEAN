@@ -35,7 +35,7 @@ A ideia é que ele possa lhe ajudar a achar a informação mais fácil, principa
 - {ARRAY}.filter({CALLBACK})
   + Executa o comando filter 
   + Exemplo: [1,2,3,4].filter( num => num%2 )
-  + Exemplo: [1,2,3,4].filter( num => !num%2 )
+  + Exemplo: [1,2,3,4].filter( num => !(num%2) )
 - {ARRAY}.reduce({CALLBACK})
   + Executa o comando reduce 
   + Exemplo: [1,2,3,4].reduce( (antes, atual) => antes+atual )

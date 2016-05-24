@@ -72,27 +72,10 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
 
   if(Array.isArray(match)) {
     _services.forEach( function(element, index) {
-      console.log('element', element)
-      if(_services[index].regex.test(match)){
-        console.log('ENTRO AQUI', element)
-        console.log('fn', _services[index].fn)
-        _services[index].fn(bot, msg, match);
-      }
+      if(_services[index].regex.test(match)) _services[index].fn(bot, msg, match);
     });
-    // var $ = fun.parameter;
-    // var servicesPattern = fun(
-    //   ['.reduce(', _services.reduce.fn(bot, msg)],
-    //   [/\.map/, _services.map.fn(bot, msg)]
-      // [/\.filter/, _services.filter.fn(bot, msg)],
-      // [/\.test/, _services.test.fn(bot, msg)]
-    // );
   }
 });
-// bot.onText(/\.test/, (msg, match) => {
-//   // services.mdn.execute(bot, msg, match);
-//   // /^hello/.test('STRING')
-//   bot.sendMessage(msg.chat.id, 'Resposta do test: ' + eval(msg.text));
-// });
 // Pares
 bot.onText(/^par/i, (msg, match) => {
   const _arr = msg.text.split('par ')[1]
