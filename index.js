@@ -81,7 +81,7 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
       console.log('testando: ', _services[index].regex)
       console.log('input: ', match[1]);
       console.log('msg: ', msg);
-      if(_services[index].regex.test(match[1])) _services[index].fn(bot, msg, match);
+      if(_services[index].regex.test(msg.text)) _services[index].fn(bot, msg, match);
     });
   }
 });
