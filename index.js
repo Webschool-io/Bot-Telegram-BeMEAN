@@ -71,34 +71,18 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
   };
 
   if(Array.isArray(match)) {
-
-    var $ = fun.parameter;
-    var servicesPattern = fun(
-      ['.reduce(', _services.reduce.fn(bot, msg)],
-      [/\.map/, _services.map.fn(bot, msg)]
+    _services.forEach( function(element, index) {
+      if(_services[index].regex.test(match)){
+        _services[index].fn();
+      }
+    });
+    // var $ = fun.parameter;
+    // var servicesPattern = fun(
+    //   ['.reduce(', _services.reduce.fn(bot, msg)],
+    //   [/\.map/, _services.map.fn(bot, msg)]
       // [/\.filter/, _services.filter.fn(bot, msg)],
       // [/\.test/, _services.test.fn(bot, msg)]
     );
-    servicesPattern(match[0]);
-    // console.log('achou _matchs', _matchs)
-    // switch(match[0]){
-    //   case '.reduce(': 
-    //     console.log('reduce switch')
-    //     _services.reduce.fn(bot, msg);
-    //   break;
-    //   case '.filter(': 
-    //     console.log('filter switch')
-    //     _services.filter.fn(bot, msg);
-    //   break;
-    //   case '.map(': 
-    //     console.log('map switch')
-    //     _services.map.fn(bot, msg);
-    //   break;
-    //   case _services.test.regex.test(match[0]):
-    //     _services.test.fn(bot, msg);
-    //   break;
-      // default: bot.sendMessage(msg.chat.id, 'FUUUUU!!!')
-    // }
   }
 });
 // bot.onText(/\.test/, (msg, match) => {
