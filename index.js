@@ -72,7 +72,7 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     }
   };
 
-  _services.forEach( function(element, index) {
+  // _services.forEach( function(element, index) {
     var _matchs = match[0].match(element.regex);
       console.log(' _matchs', _matchs)
     if(Array.isArray(_matchs)) {
@@ -87,7 +87,7 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
         default: bot.sendMessage(msg.chat.id, 'FUUUUU!!!')
       }
     }
-  });
+  // });
 });
 // map
 // bot.onText(/\.map/, (msg, match) => {
