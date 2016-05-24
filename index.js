@@ -39,20 +39,6 @@ bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg, match) => {
   bot.sendMessage(msg.chat.id, 'ESSE COMANDO NAO EXISTE PORRAA!!!!');
 });
 
-// Date
-var member = 'Date';
-var regex = /Date\.|new Date/;
-var fn = (msg, match) => {
-  bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
-};
-Mediator.add(member, regex, fn);
-Mediator.on(bot, regex, fn);
-// bot.onText(/Date\.|new Date/, );
-
-// md5
-bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
-  services.md5.execute(bot, msg, match);
-});
 
 // Funções JS
 // reduce
@@ -91,7 +77,40 @@ bot.onText(/^impar/i, (msg, match) => {
   bot.sendMessage(msg.chat.id, 'Ímpar(es): ' + _return);
 });
 
+// Services
 
+const _services = [];
+// Date
+var _obj = {
+  member: 'Date'
+, regex: /Date\.|new Date/
+, fn: (msg, match) => {
+    bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
+  }
+}
+_services.push(_obj);
+_services.forEach( function(element, index) {
+  Mediator.add(element.member, element.regex, element.fn);
+  Mediator.on(bot, element.regex, element.fn);
+});
+// var member = 'Date';
+// var regex = /Date\.|new Date/;
+// var fn = (msg, match) => {
+//   bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
+// };
+// var member = 'Date';
+// var regex = /Date\.|new Date/;
+// var fn = (msg, match) => {
+//   bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
+// };
+Mediator.add(member, regex, fn);
+Mediator.on(bot, regex, fn);
+// bot.onText(/Date\.|new Date/, );
+
+// md5
+bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
+  services.md5.execute(bot, msg, match);
+});
 // GMaps
 var member = 'GMaps';
 var regex = /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i;
@@ -101,18 +120,6 @@ var fn = (msg, match) => {
 Mediator.add(member, regex, fn);
 Mediator.on(bot, regex, fn);
 
-// Github
-// var member = 'Github';
-// var regex = /(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i;
-// var fn = (msg, match)  => {
-//   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-// })
-// Mediator.add(member, regex, fn);
-// Mediator.on(bot, regex, fn);
-// bot.onText(/(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i, (msg, match)  => {
-//   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-// });
-
 // MDN
 var member = 'MDN';
 var regex = /^js\s+([a-zA-Z])+/i;
@@ -121,9 +128,6 @@ var fn = (msg, match) => {
 };
 Mediator.add(member, regex, fn);
 Mediator.on(bot, regex, fn);
-// bot.onText(/^js\s+([a-zA-Z])+/i, (msg, match) => {
-//   services.mdn.execute(bot, msg, match);
-// });
 
 // Wikipedia
 var member = 'Wikipedia';
@@ -133,9 +137,6 @@ var fn = (msg, match)  => {
 };
 Mediator.add(member, regex, fn);
 Mediator.on(bot, regex, fn);
-// bot.onText(/(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i, (msg, match) => {
-//   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-// });
 
 // calcular
 bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, match) => {
