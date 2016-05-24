@@ -57,6 +57,7 @@ bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
 
 bot.onText(/\.\w+\(/i, (msg, match) => {
   
+    console.log('match', match)
   const _services = [
     { member: 'reduce', regex: /\.reduce/, fn: bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text))
     }
@@ -68,7 +69,6 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
   ];
   // services.mdn.execute(bot, msg, match);
   _services.forEach( function(element, index) {
-    console.log('match', match)
     var _matchs = match[0].match(element.regex);
       console.log(' _matchs', _matchs)
     if(Array.isArray(_matchs)) {
