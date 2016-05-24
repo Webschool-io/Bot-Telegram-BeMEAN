@@ -88,6 +88,7 @@ const escapeHTML = (code) =>
  var execute = (bot, msg, args) => {
     try {
       const _url = 'https://pt.wikipedia.org/w/index.php?title=' + args.query.toLowerCase().replace(" ", "_");
+      console.log(_url);
       request(_url, (err, res, html) => {
         parseResponse(err, res, html, args, bot, msg, _url);
       });
