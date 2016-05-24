@@ -93,11 +93,11 @@ bot.onText(/(.*)/i, (msg, match) => {
       fn: (bot, msg, match) => services.saudacao.execute(bot, msg, match)
     },
     {
-      regex: /bot.*(burro|idiota|retardado|trou?xa|maconheiro|inútil|doido|fiduma(e|é)gua|z(e|é) r(u|o)ela|ot(á|a)rio)/i,
+      regex: /bot.*(burro|idiota|retardado|trou?xa|maconheiro|inútil|doido|fiduma(e|é)gua|z(e|é) r(u|o)ela|ot(á|a)rio|v(i|e)ado)/i,
       fn: (bot, msg, match) => services.tuamae.execute(bot, msg, match)
     },
     {
-      regex: /(burro|idiota|retardado|trou?xa|maconheiro|inútil|doido|fiduma(e|é)gua|z(e|é) r(u|o)ela|ot(á|a)rio).*bot/i,
+      regex: /(burro|idiota|retardado|trou?xa|maconheiro|inútil|doido|fiduma(e|é)gua|z(e|é) r(u|o)ela|ot(á|a)rio|v(i|e)ado).*bot/i,
       fn: (bot, msg, match) => services.tuamae.execute(bot, msg, match)
     }
   ];
