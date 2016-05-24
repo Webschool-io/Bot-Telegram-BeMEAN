@@ -38,6 +38,9 @@ bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg, match) => {
 
 
 bot.onText(/([^a-zA-Z])/i, (msg, match) => {
+
+  console.log('Got message: ' + msg.text);
+
   const _services = [
     {
       regex: /\.reduce/,
