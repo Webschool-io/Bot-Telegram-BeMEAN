@@ -9,7 +9,7 @@ const mdn = require('./services/mdn');
 const md5 = require('./services/md5');
 const saudacao = require('./services/saudacao');
 const masem = require('./services/masem');
-const tuamae = rquire('./services/tuamae');
+const tuamae = require('./services/tuamae');
 
 module.exports = {
   wikipedia: wikipedia,
