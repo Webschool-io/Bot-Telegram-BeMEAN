@@ -82,21 +82,26 @@ bot.onText(/^impar/i, (msg, match) => {
 const _services = [];
 // Date
 var _obj = {
-  member: 'Date'
+  member: 'date'
 , regex: /Date\.|new Date/
 , fn: (msg, match) => {
     bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
   }
 }
 _services.push(_obj);
-// Mediator.add(member, regex, fn);
-// Mediator.on(bot, regex, fn);
-// bot.onText(/Date\.|new Date/, );
 
 // md5
-bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
-  services.md5.execute(bot, msg, match);
-});
+var _obj = {
+  member: 'md5'
+, regex: /^md5\s+([a-zA-Z])+/i
+, fn: (msg, match) => {
+    services.md5.execute(bot, msg, match);
+  }
+}
+_services.push(_obj);
+// bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
+//   services.md5.execute(bot, msg, match);
+// });
 // GMaps
 var member = 'GMaps';
 var regex = /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i;
