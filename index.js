@@ -79,7 +79,7 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
     // var _matchs = match[0].match(element.regex);
     if(Array.isArray(match)) {
       // console.log('achou _matchs', _matchs)
-      switch(_matchs[0]){
+      switch(match[0]){
         case '.reduce(': 
           console.log('reduce switch')
           _services.reduce.fn(bot, msg);
