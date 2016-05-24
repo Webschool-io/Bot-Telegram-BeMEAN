@@ -44,29 +44,31 @@ bot.onText(/Date\.|new Date/, (msg, match) => {
 });
 
 // md5
-bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
-  services.md5.execute(bot, msg, match);
-});
+// bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
+//   services.md5.execute(bot, msg, match);
+// });
 
 bot.onText(/\.\w+\(/i, (msg, match) => {
   const _services = [
     { 
-        regex: /\.reduce/
-      , fn: (bot, msg, match) => { console.log('REDUCEE')
-          bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text));
-        }
-    },
-    {
+      regex: /\.reduce/
+    , fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text));
+    }
+  , {
       regex: /\.map/
     , fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text))
-    },
-    {
+    }
+  , {
       regex: /\.filter/
     , fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text))
-    },
-    {
+    }
+  , {
       regex: /\.test/
     , fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do test: ' + eval(msg.text))
+    }
+  , {
+      regex: /^md5\s+([a-zA-Z])+/i
+    , fn: (bot, msg, match) => services.md5.execute(bot, msg, match);
     }
   ];
 
