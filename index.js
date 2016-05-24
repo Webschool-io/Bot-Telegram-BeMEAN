@@ -15,8 +15,8 @@ const services = require('./modules/services');
 
 // Matches commands
 bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
-  let command = match[1];
-  let args = match[2];
+  var command = match[1];
+  var args = match[2];
   if (command) {
     if (command in commands) {
       command = commands[command];
@@ -40,9 +40,9 @@ bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg, match) => {
 });
 
 // Date
-let member = 'Date';
-let regex = /Date\.|new Date/;
-let fn = (msg, match) => {
+var member = 'Date';
+var regex = /Date\.|new Date/;
+var fn = (msg, match) => {
   bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
 };
 Mediator.add(member, regex, fn);
@@ -93,18 +93,18 @@ bot.onText(/^impar/i, (msg, match) => {
 
 
 // GMaps
-let member = 'GMaps';
-let regex = /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i;
-let fn = (msg, match) => {
+var member = 'GMaps';
+var regex = /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i;
+var fn = (msg, match) => {
   services.gmaps.execute(bot, msg, match);
 }
 Mediator.add(member, regex, fn);
 Mediator.on(bot, regex, fn);
 
 // Github
-// let member = 'Github';
-// let regex = /(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i;
-// let fn = (msg, match)  => {
+// var member = 'Github';
+// var regex = /(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i;
+// var fn = (msg, match)  => {
 //   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
 // })
 // Mediator.add(member, regex, fn);
@@ -114,9 +114,9 @@ Mediator.on(bot, regex, fn);
 // });
 
 // MDN
-let member = 'MDN';
-let regex = /^js\s+([a-zA-Z])+/i;
-let fn = (msg, match) => {
+var member = 'MDN';
+var regex = /^js\s+([a-zA-Z])+/i;
+var fn = (msg, match) => {
   services.mdn.execute(bot, msg, match);
 };
 Mediator.add(member, regex, fn);
@@ -126,9 +126,9 @@ Mediator.on(bot, regex, fn);
 // });
 
 // Wikipedia
-let member = 'Wikipedia';
-let regex = /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i;
-let fn = (msg, match)  => {
+var member = 'Wikipedia';
+var regex = /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i;
+var fn = (msg, match)  => {
   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
 })
 Mediator.add(member, regex, fn);
