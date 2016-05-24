@@ -92,7 +92,7 @@ bot.onText(/\.\w+\(/i, (msg, match) => {
         console.log('map switch')
         _services.map.fn(bot, msg);
       break;
-      case '.test(':
+      case _services.test.regex.test(match[0]):
         _services.test.fn(bot, msg);
       break;
       default: bot.sendMessage(msg.chat.id, 'FUUUUU!!!')
