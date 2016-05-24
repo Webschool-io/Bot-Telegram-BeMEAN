@@ -58,17 +58,19 @@ bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
 bot.onText(/\.\w+\(/i, (msg, match) => {
 
     console.log('match', match)
-  const _services = [
-    { member: 'reduce', regex: /\.reduce/
-    , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text))
-    }
-  , { member: 'map', regex: /\.map/
+  const _services = {
+    'reduce': { regex: /\.reduce/
+      , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text))
+      }
+  , 'map': {
+      regex: /\.map/
     , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text))
     }
-  , { member: 'filter', regex: /\.filter/
+  , 'filter': {
+      regex: /\.filter/
     , fn: (bot, msg) => bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text))
     }
-  ];
+  };
   // services.mdn.execute(bot, msg, match);
   _services.forEach( function(element, index) {
     var _matchs = match[0].match(element.regex);
