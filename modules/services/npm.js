@@ -19,7 +19,7 @@ const execute = (bot, msg, match) => {
     res.on('end', (err) => {
       try {
         const $ = cheerio.load(data);
-        const _return = $('#readme').html()
+        const _return = $('#readme .deep-link').text()
         console.log("data _return: " + _return);
         bot.sendMessage(msg.chat.id, _return, parse);
       } catch (e) {
