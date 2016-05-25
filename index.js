@@ -98,12 +98,16 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       fn: (bot, msg, match) => services.tuamae.execute(bot, msg, match)
     },
     {
-      regex: /❤️/i,
+      regex: /(❤️|\<\3)/i,
       fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADBAADVQEAAjW7NgAB0v4JTCS9HssC', { 'reply_to_message_id': msg.message_id })
     },
     {
       regex: /^gme\s+([a-zA-Z ])+/i,
       fn: (bot, msg, match) => services.gme.execute(bot, msg, match)
+    },
+    {
+      regex: /(\:\D|😁)/,
+      fn: (bot, msg, matcg) => bot.sendSticker(msg.chat.id, 'BQADBAADuRYAAvEGNAbXUwABQaBhbw4C', { 'reply_to_message_id': msg.message_id })
     }
   ];
 
