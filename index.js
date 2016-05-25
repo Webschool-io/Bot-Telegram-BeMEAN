@@ -124,7 +124,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'sticker-webschool',
-      regex: /(❤️|<3)/i,
+      regex: /webschool/i,
       fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADAQADEwADt-CfBI-cLGYwa_u3Ag', { 'reply_to_message_id': msg.message_id })
     },
   ];
