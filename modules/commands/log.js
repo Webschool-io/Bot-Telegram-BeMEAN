@@ -13,3 +13,8 @@ const execute = (msg, match, bot) => {
         bot.sendMessage(msg.chat.id, "Me obrigue :P", { 'reply_to_message_id': msg.message_id });
     }
 }
+
+module.exports = {
+    'execute': execute,
+    'numParams': 1
+}
