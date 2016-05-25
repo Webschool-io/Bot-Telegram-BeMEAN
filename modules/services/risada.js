@@ -1,6 +1,6 @@
 'use strict';
 
-const limite = 2;
+const limite = 3;
 const risadas = [
   'hehehehehe',
   'hahahahaha',
