@@ -24,7 +24,7 @@ const execute = (bot, msg, match) => {
           quickDef: $('.package-description').text(),
           longDef: $('#readme .deep-link').text().substr(0, 300)
         };
-        const _return = 'Segundo o npm : "<i>' + answers.quickDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
+        const _return = 'Segundo o npm : "<i>' + answers.quickDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url.href;
         bot.sendMessage(msg.chat.id, _return, parse);
         // const __return = 'Segundo o npm long: "<i>' + answers.longDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
         // bot.sendMessage(msg.chat.id, __return, parse);
