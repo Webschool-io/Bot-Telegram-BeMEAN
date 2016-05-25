@@ -2,6 +2,8 @@
 
 const url = require('url');
 const https = require('https');
+const cheerioAdv = require('cheerio-advanced-selectors');
+const cheerio = cheerioAdv.wrap(require('cheerio'));
 const parse = { 'parse_mode': 'HTML' };
 const stickers = [
     'BQADBAADMgEAAl6A9AWiXNcdh4N2fgI',
@@ -29,12 +31,14 @@ const execute = (bot, msg, match) => {
     res.on('data', (chunk) => data += chunk);
     res.on('end', (err) => {
       try {
-        console.log("datanpm: " + data);
-        data = JSON.parse(data);
+        const $ = cheerio.load(data);
+        const _return = $('#readme').text()
+        console.log("data _return: " + _return);
+        // data = JSON.parse(data);
         // bot.sendMessage(msg.chat.id, data, parse);
-        bot.sendMessage(msg.chat.id, 'Data: "'+JSON.stringify(data)+'"');
+        bot.sendMessage(msg.chat.id, _return, parse);
       } catch (e) {
-        bot.sendMessage(msg.chat.id, "DEU MERDA: "+e, pm);
+        bot.sendMessage(msg.chat.id, "DEU MERDA: "+e);
         console.log("Erro end: " + err)
       }
     });
