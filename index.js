@@ -131,6 +131,8 @@ bot.on('sticker', (msg) => {
   ]
   if (msg.chat.type == 'private' && msg.chat.id in ids) {
     bot.sendMessage(msg.chat.id, msg.sticker.file_id, { 'reply_to_message_id': msg.message_id });
+  } else {
+    console.log(msg.chat.id in ids);
   }
 });
 
