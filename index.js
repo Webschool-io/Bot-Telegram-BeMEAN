@@ -127,6 +127,11 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       regex: /webschool/i,
       fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADAQADEwADt-CfBI-cLGYwa_u3Ag', { 'reply_to_message_id': msg.message_id })
     },
+    {
+      member: 'sticker-bemean',
+      regex: /webschool/i,
+      fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', { 'reply_to_message_id': msg.message_id })
+    },
   ];
 
   if (Array.isArray(match)) {
