@@ -79,7 +79,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'npm',
-      regex: /^js\s+([a-zA-Z])+/i,
+      regex: /^npm\s+([a-zA-Z])+/i,
       fn: (bot, msg, match) => services.npm.execute(bot, msg, match)
     },
     {
