@@ -9,7 +9,7 @@ const execute = (bot, msg, match) => {
   const query = match.query;
   const _base = 'https://www.npmjs.com/package/';
   const _url = url.parse(_base + encodeURIComponent(query))
-  console.log('_url', _url)
+  console.log('match', match)
   _url.headers = {
     'User-Agent': 'Telegram Bot',
     'Accept-Language': 'pt-BR;q=1, pt;q=0.8, en;q=0.5'
