@@ -13,6 +13,7 @@ const execute = (bot, msg, match) => {
     'User-Agent': 'Telegram Bot',
     'Accept-Language': 'pt-BR;q=1, pt;q=0.8, en;q=0.5'
   }
+  console.log('_url', _url)
   const req = https.request(_url, (res) => {
     let data = '';
     res.on('data', (chunk) => data += chunk);
@@ -23,10 +24,10 @@ const execute = (bot, msg, match) => {
           quickDef: $('.package-description').text(),
           longDef: $('#readme .deep-link').text().substr(0, 300)
         };
-        const _return = 'Segundo o npm quick: "<i>' + answers.quickDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
+        const _return = 'Segundo o npm : "<i>' + answers.quickDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
         bot.sendMessage(msg.chat.id, _return, parse);
-        const __return = 'Segundo o npm long: "<i>' + answers.longDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
-        bot.sendMessage(msg.chat.id, __return, parse);
+        // const __return = 'Segundo o npm long: "<i>' + answers.longDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
+        // bot.sendMessage(msg.chat.id, __return, parse);
       } catch (e) {
         bot.sendMessage(msg.chat.id, "DEU MERDA: "+e);
         console.log("Erro end: " + err)
