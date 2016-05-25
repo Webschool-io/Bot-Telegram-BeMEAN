@@ -120,7 +120,12 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     {
       member: 'sticker-heart',
       regex: /(❤️|<3|S2)/i,
-      fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADAgADVgADGgZFBFCh0QP4JfyUAg', { 'reply_to_message_id': msg.message_id })
+      fn: (bot, msg, match) => {
+        const _stickers = ['BQADAgADVgADGgZFBFCh0QP4JfyUAg', 'BQADAQAD4AADeHUJBT9wFXPXtg5CAg', 'BQADAQADDgEAAs0wkgABkjFnUg42-BYC'];
+        const sticker = stickers[Math.floor(Math.random() * stickers.length)];
+        const { 'reply_to_message_id': msg.message_id };
+        bot.sendSticker(msg.chat.id, sticker, reply);
+      }
     },
     {
       member: 'sticker-webschool',
