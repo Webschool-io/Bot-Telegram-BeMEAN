@@ -29,7 +29,7 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
 });
 
 // command1@BeMEANoficial_bot
-bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg, match) => {
+bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg) => {
   bot.sendMessage(msg.chat.id, 'ESSE COMANDO NAO EXISTE PORRAA!!!!');
 });
 
@@ -114,13 +114,13 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'sticker-worry',
-      regex: /(\:\D|😁)/,
+      regex: /(:D|😁)/,
       fn: (bot, msg, matcg) => bot.sendSticker(msg.chat.id, 'BQADBAADuRYAAvEGNAbXUwABQaBhbw4C', { 'reply_to_message_id': msg.message_id })
     },
     {
       member: 'sticker-heart',
       regex: /(❤️|<3|S2)/i,
-      fn: (bot, msg, match) => {
+      fn: (bot, msg) => {
         const _stickers = ['BQADAgADVgADGgZFBFCh0QP4JfyUAg', 'BQADAQAD4AADeHUJBT9wFXPXtg5CAg', 'BQADAQADDgEAAs0wkgABkjFnUg42-BYC'];
         const sticker = _stickers[Math.floor(Math.random() * _stickers.length)];
         const reply = { 'reply_to_message_id': msg.message_id };
@@ -136,7 +136,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       member: 'sticker-bemean',
       regex: /bemean|be\s*mean/i,
       fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', { 'reply_to_message_id': msg.message_id })
-    },
+    }
   ];
 
   const _load = (match) => {
@@ -145,7 +145,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       _services.forEach((element, index) => {
         if (_services[index].regex.test(msg.text)) {
           recognized = true;
-          var _match = msg.text.match(_services[index].regex)
+          var _match = msg.text.match(_services[index].regex);
           _services[index].fn(bot, msg, _match);
         }
       });
@@ -153,7 +153,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
         services.masem.execute(bot, msg);
       }
     }
-  }
+  };
   _load(match);
 });
 
@@ -163,7 +163,7 @@ bot.on('sticker', (msg) => {
   let ids = [
     16715013,
     77586615
-  ]
+  ];
   if (msg.chat.type == 'private' && ids.indexOf(msg.chat.id) >= 0) {
     bot.sendMessage(msg.chat.id, msg.sticker.file_id, { 'reply_to_message_id': msg.message_id });
   }
