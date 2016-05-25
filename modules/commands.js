@@ -11,7 +11,6 @@ const impar = require('./commands/impar');
 const repo = require('./commands/repo');
 const sendsticker = require('./commands/sendsticker');
 const log = require('./commands/log');
-// const npm = require('./commands/npm');
 
 module.exports = {
     'echo': echo,
@@ -25,5 +24,4 @@ module.exports = {
     'repo': repo,
     'sendsticker': sendsticker,
     'log': log
-    // 'npm': npm
 }
