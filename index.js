@@ -16,10 +16,11 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
   if (command) {
     if (command in commands) {
       command = commands[command];
-      if (match.length > command.numParams) {
+      let argsCount = match.length - 2
+      if (argsCount >= command.numParams) {
         command.execute(msg, match, bot);
       } else {
-        bot.sendMessage(msg.chat.id, "Ops, número incorreto de parâmetros fornecidos (" + match.length + "). Número de parâmetros exigidos: " + command.numParams + " :/");
+        bot.sendMessage(msg.chat.id, "Ops, número incorreto de parâmetros fornecidos (" + argsCount + "). Número de parâmetros exigidos: " + command.numParams + " :/");
       }
     } else {
       bot.sendMessage(msg.chat.id, "Eita, esse comando não existe :/");

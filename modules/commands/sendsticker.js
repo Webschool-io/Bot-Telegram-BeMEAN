@@ -1,7 +1,11 @@
 'use strict';
 
 const execute = (msg, match, bot) => {
-    bot.sendSticker(msg.chat.id, match[2]);
+    try {
+        bot.sendSticker(msg.chat.id, match[2]);
+    } catch (Ex) {
+        bot.sendMessage(msg.chat.id, "Erro ao enviar sticker: `" + ex + "`", { 'parse_mode': 'Markdown' });
+    }
 }
 
 module.exports = {
