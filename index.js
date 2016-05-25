@@ -99,7 +99,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       regex: /<3/i,
-      fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADBAADVQEAAjW7NgAB0v4JTCS9HssC');
+      fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADBAADVQEAAjW7NgAB0v4JTCS9HssC')
     },
     {
       regex: /^gme\s+([a-zA-Z ])+/i,
