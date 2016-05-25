@@ -9,6 +9,7 @@ const execute = (bot, msg, match) => {
     let date = new Date()
     let horas = date.getUTCHours() - 3;
     let minutos = date.getMinutes();
+    minutos = minutos < 10 ? '0' + minutos : minutos;
     const pu = match[2];
     let pr = "";
     if (horas <= 12) {
