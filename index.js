@@ -38,95 +38,123 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
 
   const _services = [
     {
+      member: 'reduce',
       regex: /\.reduce/,
       fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text))
     },
     {
+      member: 'map',
       regex: /\.map/,
       fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text))
     },
     {
+      member: 'filter',
       regex: /\.filter/,
       fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text))
     },
     {
+      member: 'test',
       regex: /\.test/,
       fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do test: ' + eval(msg.text))
     },
     {
+      member: 'date',
       regex: /Date\.|new Date/,
       fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text))
     },
     {
+      member: 'md5',
       regex: /^md5\s+([a-zA-Z])+/i,
       fn: (bot, msg, match) => services.md5.execute(bot, msg, match)
     },
     {
+      member: 'gmaps',
       regex: /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i,
       fn: (bot, msg, match) => services.gmaps.execute(bot, msg, match)
     },
     {
+      member: 'mdn',
       regex: /^js\s+([a-zA-Z])+/i,
       fn: (bot, msg, match) => services.mdn.execute(bot, msg, match)
     },
     {
+      member: 'wikipedia',
       regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^?]*)\s?\??/i,
       fn: (bot, msg, match) => services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] })
     },
     {
+      member: 'math',
       regex: /(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i,
       fn: (bot, msg, match) => services.math.execute(bot, msg)
     },
     {
+      member: 'maconha',
       regex: /(420)|maconha|weed|marijuana|erva|bagulho|manhuca/i,
       fn: (bot, msg, match) => services.maconha.execute(bot, msg)
     },
     {
+      member: 'risada',
       regex: /lol|kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h+u+a|h+u+e+h+u+e/i,
       fn: (bot, msg, match) => services.risada.execute(bot, msg)
     },
     {
+      member: 'saudacao',
       regex: /b(oa|om) (dia|tarde|noite)/i,
       fn: (bot, msg, match) => services.saudacao.execute(bot, msg, match)
     },
     {
+      member: 'tuamae',
       regex: /bot.*(burro|idiota|retardado|trou?xa|maconheiro|inútil|doido|fiduma(e|é)gua|z(e|é) r(u|o)ela|ot(á|a)rio|v(i|e)ado)/i,
       fn: (bot, msg, match) => services.tuamae.execute(bot, msg, match)
     },
     {
-      regex: /(burro|idiota|retardado|trou?xa|maconheiro|inútil|doido|fiduma(e|é)gua|z(e|é) r(u|o)ela|ot(á|a)rio|v(i|e)ado).*bot/i,
-      fn: (bot, msg, match) => services.tuamae.execute(bot, msg, match)
-    },
-    {
-      regex: /(❤️|<3)/i,
-      fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADBAADVQEAAjW7NgAB0v4JTCS9HssC', { 'reply_to_message_id': msg.message_id })
-    },
-    {
+      member: 'lmgtfy',
       regex: /^gme\s+([a-zA-Z ])+/i,
       fn: (bot, msg, match) => services.gme.execute(bot, msg, match)
     },
     {
+      member: 'sticker-worry',
       regex: /(\:\D|😁)/,
       fn: (bot, msg, matcg) => bot.sendSticker(msg.chat.id, 'BQADBAADuRYAAvEGNAbXUwABQaBhbw4C', { 'reply_to_message_id': msg.message_id })
-    }
+    },
+    {
+      member: 'sticker-heart',
+      regex: /(❤️|<3|S2)/i,
+      fn: (bot, msg, match) => {
+        const _stickers = ['BQADAgADVgADGgZFBFCh0QP4JfyUAg', 'BQADAQAD4AADeHUJBT9wFXPXtg5CAg', 'BQADAQADDgEAAs0wkgABkjFnUg42-BYC'];
+        const sticker = _stickers[Math.floor(Math.random() * _stickers.length)];
+        const reply = { 'reply_to_message_id': msg.message_id };
+        bot.sendSticker(msg.chat.id, sticker, reply);
+      }
+    },
+    {
+      member: 'sticker-webschool',
+      regex: /webschool/i,
+      fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADAQADEwADt-CfBI-cLGYwa_u3Ag', { 'reply_to_message_id': msg.message_id })
+    },
+    {
+      member: 'sticker-bemean',
+      regex: /bemean|be\s*mean/i,
+      fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', { 'reply_to_message_id': msg.message_id })
+    },
   ];
 
-  if (Array.isArray(match)) {
-    let recognized = false;
-    _services.forEach((element, index) => {
-      //console.log('testando: ', _services[index].regex)
-      //console.log('input: ', match[1]);
-      //console.log('msg: ', msg);
-      if (_services[index].regex.test(msg.text)) {
-        recognized = true;
-        var _match = msg.text.match(_services[index].regex)
-        _services[index].fn(bot, msg, _match);
+  const _load = (match) => {
+    if (Array.isArray(match)) {
+      let recognized = false;
+      _services.forEach((element, index) => {
+        if (_services[index].regex.test(msg.text)) {
+          recognized = true;
+          var _match = msg.text.match(_services[index].regex)
+          _services[index].fn(bot, msg, _match);
+        }
+      });
+      if (!recognized && msg.chat.type == 'private') {
+        services.masem.execute(bot, msg);
       }
-    });
-    if (!recognized && msg.chat.type == 'private') {
-      services.masem.execute(bot, msg);
     }
   }
+  _load(match);
 });
 
 
