@@ -9,6 +9,7 @@ const execute = (bot, msg, match) => {
   const query = match.query;
   const _base = 'https://www.npmjs.com/package/';
   const _url = url.parse(_base + encodeURIComponent(query))
+  console.log('_url', _url)
   _url.headers = {
     'User-Agent': 'Telegram Bot',
     'Accept-Language': 'pt-BR;q=1, pt;q=0.8, en;q=0.5'
@@ -19,7 +20,7 @@ const execute = (bot, msg, match) => {
     res.on('end', (err) => {
       try {
         const $ = cheerio.load(data);
-        const _return = $('#readme').text()
+        const _return = $('#readme').html()
         console.log("data _return: " + _return);
         bot.sendMessage(msg.chat.id, _return, parse);
       } catch (e) {
