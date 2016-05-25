@@ -1,6 +1,6 @@
 'use strict';
 
-const limite = 3;
+const limite = 2;
 const risadas = [
   'hehehehehe',
   'hahahahaha',
@@ -12,7 +12,6 @@ const risadas = [
 let contadores = [];
 
 const execute = (bot, msg, args) => {
-  console.log(contadores);
   let contagem = contadores[msg.chat.id];
   if ((contagem && contagem >= limite) || msg.chat.type == 'private') {
     bot.sendMessage(msg.chat.id, risadas[Math.floor(Math.random() * risadas.length)]);
@@ -22,7 +21,7 @@ const execute = (bot, msg, args) => {
   } else if (!contagem) {
     contadores[msg.chat.id] = 1;
   } else if (contagem < limite) {
-    contadores[msg.chat.id] = contagem + 1;
+    contadores[msg.chat.id]++;
   }
 }
 
