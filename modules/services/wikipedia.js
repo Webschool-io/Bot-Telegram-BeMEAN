@@ -87,6 +87,7 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
  * @param args Objeto contento o tipo de pesquisa a realizar(wh) e o termo pesquisado (query)
  */
 var execute = (bot, msg, args) => {
+    console.log('args', args)
     if(args.query.toLowerCase().match(/quem é o seu criador/i)) {
       console.log('quem é o seu criador')
       bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', { 'reply_to_message_id': msg.message_id })
