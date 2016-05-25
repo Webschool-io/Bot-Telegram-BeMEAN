@@ -22,7 +22,7 @@ const execute = (bot, msg, args) => {
   } else if (!contagem) {
     contadores[msg.chat.id] = 1;
   } else if (contagem < limite) {
-    contadores[chat.msg.id] = contagem + 1;
+    contadores[msg.chat.id] = contagem + 1;
   }
 }
 
