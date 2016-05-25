@@ -6,7 +6,7 @@ const cheerioAdv = require('cheerio-advanced-selectors');
 const cheerio = cheerioAdv.wrap(require('cheerio'));
 const parse = { 'parse_mode': 'HTML' };
 const execute = (bot, msg, match) => {
-  const arr = match.query.split('npm ');
+  const arr = msg.text.split('npm ');
   const _base = 'https://www.npmjs.com/package/';
   const _url = url.parse(_base + encodeURIComponent(_base[1]));
   console.log('arr', arr)
