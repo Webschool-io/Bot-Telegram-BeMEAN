@@ -8,9 +8,7 @@ const parse = { 'parse_mode': 'HTML' };
 const execute = (bot, msg, match) => {
   const arr = msg.text.split('npm ');
   const _base = 'https://www.npmjs.com/package/';
-  const _url = url.parse(_base + encodeURIComponent(_base[1]));
-  console.log('arr', arr)
-  console.log('_url', _url)
+  const _url = url.parse(_base + encodeURIComponent(arr[1]));
   _url.headers = {
     'User-Agent': 'Telegram Bot',
     'Accept-Language': 'pt-BR;q=1, pt;q=0.8, en;q=0.5'
