@@ -25,10 +25,8 @@ const execute = (bot, msg, match) => {
         const $ = cheerio.load(data);
         const _return = 'Segundo o npm quick: "<i>' + answers.quickDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
         bot.sendMessage(msg.chat.id, _return, ph);
-        const _return = 'Segundo o npm long: "<i>' + answers.longDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
-        bot.sendMessage(msg.chat.id, _return, ph);
-        // console.log("data _return: " + _return);
-        bot.sendMessage(msg.chat.id, _return, parse);
+        const __return = 'Segundo o npm long: "<i>' + answers.longDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
+        bot.sendMessage(msg.chat.id, __return, ph);
       } catch (e) {
         bot.sendMessage(msg.chat.id, "DEU MERDA: "+e);
         console.log("Erro end: " + err)
