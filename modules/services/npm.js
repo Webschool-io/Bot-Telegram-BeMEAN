@@ -18,9 +18,16 @@ const execute = (bot, msg, match) => {
     res.on('data', (chunk) => data += chunk);
     res.on('end', (err) => {
       try {
+        const answers = {
+          quickDef: $('.package-description').text(),
+          longDef: $('#readme .deep-link').text().substr(0, 300)
+        };
         const $ = cheerio.load(data);
-        const _return = $('#readme .deep-link').text()
-        console.log("data _return: " + _return);
+        const _return = 'Segundo o npm quick: "<i>' + answers.quickDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
+        bot.sendMessage(msg.chat.id, _return, ph);
+        const _return = 'Segundo o npm long: "<i>' + answers.longDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
+        bot.sendMessage(msg.chat.id, _return, ph);
+        // console.log("data _return: " + _return);
         bot.sendMessage(msg.chat.id, _return, parse);
       } catch (e) {
         bot.sendMessage(msg.chat.id, "DEU MERDA: "+e);
