@@ -123,7 +123,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       fn: (bot, msg, match) => {
         const _stickers = ['BQADAgADVgADGgZFBFCh0QP4JfyUAg', 'BQADAQAD4AADeHUJBT9wFXPXtg5CAg', 'BQADAQADDgEAAs0wkgABkjFnUg42-BYC'];
         const sticker = stickers[Math.floor(Math.random() * stickers.length)];
-        const { 'reply_to_message_id': msg.message_id };
+        const reply = { 'reply_to_message_id': msg.message_id };
         bot.sendSticker(msg.chat.id, sticker, reply);
       }
     },
