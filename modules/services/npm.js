@@ -5,19 +5,6 @@ const https = require('https');
 const cheerioAdv = require('cheerio-advanced-selectors');
 const cheerio = cheerioAdv.wrap(require('cheerio'));
 const parse = { 'parse_mode': 'HTML' };
-const stickers = [
-    'BQADBAADMgEAAl6A9AWiXNcdh4N2fgI',
-    'BQADBAADzQADXoD0BfaPN-SRlpBYAg',
-    'BQADBAADxQADXoD0Be6MWaqIBanrAg',
-    'BQADBAADAQEAAl6A9AVrEFjvEfTbRwI',
-    'BQADBAADOQEAAl6A9AWLW7oQoiHXdAI',
-    'BQADBAADBwEAAl6A9AXuD8xAc5avLwI',
-    'BQADBAADxwADXoD0BaTJK9_y3lrtAg',
-    'BQADBAADyQADXoD0BYyFKrC9hFpcAg',
-    'BQADBAADywADXoD0BaJ-5YWTuZxTAg',
-    'BQADBAADzwADXoD0BactihrL_9LKAg',
-    'BQADBAAD6wADXoD0Bbi4Fg2kp0fUAg'
-]
 const execute = (bot, msg, match) => {
   const query = match.query;
   const _base = 'https://www.npmjs.com/package/';
@@ -34,8 +21,6 @@ const execute = (bot, msg, match) => {
         const $ = cheerio.load(data);
         const _return = $('#readme').text()
         console.log("data _return: " + _return);
-        // data = JSON.parse(data);
-        // bot.sendMessage(msg.chat.id, data, parse);
         bot.sendMessage(msg.chat.id, _return, parse);
       } catch (e) {
         bot.sendMessage(msg.chat.id, "DEU MERDA: "+e);
