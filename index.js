@@ -108,6 +108,11 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       fn: (bot, msg, match) => services.tuamae.execute(bot, msg, match)
     },
     {
+      member: 'lmgtfy',
+      regex: /^gme\s+([a-zA-Z ])+/i,
+      fn: (bot, msg, match) => services.gme.execute(bot, msg, match)
+    },
+    {
       member: 'sticker-worry',
       regex: /(\:\D|😁)/,
       fn: (bot, msg, matcg) => bot.sendSticker(msg.chat.id, 'BQADBAADuRYAAvEGNAbXUwABQaBhbw4C', { 'reply_to_message_id': msg.message_id })
@@ -118,9 +123,9 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADAgADVgADGgZFBFCh0QP4JfyUAg', { 'reply_to_message_id': msg.message_id })
     },
     {
-      member: 'lmgtfy',
-      regex: /^gme\s+([a-zA-Z ])+/i,
-      fn: (bot, msg, match) => services.gme.execute(bot, msg, match)
+      member: 'sticker-webschool',
+      regex: /(❤️|<3)/i,
+      fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADAQADEwADt-CfBI-cLGYwa_u3Ag', { 'reply_to_message_id': msg.message_id })
     },
   ];
 
