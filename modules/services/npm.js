@@ -1,7 +1,7 @@
 'use strict';
 
 const url = require('url');
-const http = require('http');
+const https = require('https');
 const parse = { 'parse_mode': 'HTML' };
 const stickers = [
     'BQADBAADMgEAAl6A9AWiXNcdh4N2fgI',
@@ -24,7 +24,7 @@ const execute = (bot, msg, match) => {
     'User-Agent': 'Telegram Bot',
     'Accept-Language': 'pt-BR;q=1, pt;q=0.8, en;q=0.5'
   }
-  const req = http.request(_url, (res) => {
+  const req = https.request(_url, (res) => {
     let data = '';
     res.on('data', (chunk) => data += chunk);
     res.on('end', (err) => {
