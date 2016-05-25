@@ -114,7 +114,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'criador',
-      regex: /^Bot quem é o seu criador/i,
+      regex: /^\/bot\s(quem é o seu criador)+\??/i,
       fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', { 'reply_to_message_id': msg.message_id })
     },
     {
