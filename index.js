@@ -129,7 +129,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'sticker-bemean',
-      regex: /webschool/i,
+      regex: /bemean|be\s*mean/i,
       fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', { 'reply_to_message_id': msg.message_id })
     },
   ];
