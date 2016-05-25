@@ -9,6 +9,8 @@ const help = require('./commands/help');
 const par = require('./commands/par');
 const impar = require('./commands/impar');
 const repo = require('./commands/repo');
+const sendsticker = require('./commands/sendsticker');
+const log = require('./commands/log');
 
 module.exports = {
     'echo': echo,
@@ -19,5 +21,7 @@ module.exports = {
     'help': help,
     'par': par,
     'impar': impar,
-    'repo': repo
+    'repo': repo,
+    'sendsticker': sendsticker,
+    'log': log
 }

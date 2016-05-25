@@ -13,14 +13,10 @@ const services = require('./modules/services');
 // Matches commands
 bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
   let command = match[1];
-  let args = match[2];
   if (command) {
     if (command in commands) {
       command = commands[command];
       if (match.length > command.numParams) {
-        if (args) {
-          args = args.split(' ');
-        }
         command.execute(msg, match, bot);
       } else {
         bot.sendMessage(msg.chat.id, "Ops, número incorreto de parâmetros fornecidos (" + match.length + "). Número de parâmetros exigidos: " + command.numParams + " :/");
