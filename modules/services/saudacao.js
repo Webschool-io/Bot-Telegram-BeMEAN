@@ -2,7 +2,7 @@
 
 const messages = {
     "ok": "Opa, b%ao% %pr%, jovem!",
-    "wrongPeriod": "B%ao% %pu%, jovem? Agora são " + horas + "h" + minutos + "! Você devia regular seus horários!"
+    "wrongPeriod": "B%ao% %pu%, jovem? Agora são %horas%h%minutos%! Você devia regular seus horários!"
 }
 
 const execute = (bot, msg, match) => {
@@ -22,7 +22,7 @@ const execute = (bot, msg, match) => {
     if (pr == pu.toLowerCase()) {
         bot.sendMessage(msg.chat.id, messages.ok.replace("%ao%", match[1]).replace("%pr%", pr), { 'reply_to_message_id': msg.message_id });
     } else {
-        bot.sendMessage(msg.chat.id, messages.wrongPeriod.replace("%ao%", match[1]).replace("%pu%", pu), { 'reply_to_message_id': msg.message_id });
+        bot.sendMessage(msg.chat.id, messages.wrongPeriod.replace("%ao%", match[1]).replace("%pu%", pu).replace("%horas%", horas).replace("%minutos%", minutos), { 'reply_to_message_id': msg.message_id });
     }
 }
 
