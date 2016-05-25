@@ -125,6 +125,8 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
   }
 });
 
+
+
 bot.on('sticker', (msg) => {
   let ids = [
     16715013,
