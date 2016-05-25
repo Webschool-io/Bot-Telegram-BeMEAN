@@ -6,10 +6,11 @@ const cheerioAdv = require('cheerio-advanced-selectors');
 const cheerio = cheerioAdv.wrap(require('cheerio'));
 const parse = { 'parse_mode': 'HTML' };
 const execute = (bot, msg, match) => {
-  const query = match.query;
+  const arr = match.query.split('npm ');
   const _base = 'https://www.npmjs.com/package/';
-  const _url = url.parse(_base + encodeURIComponent(query))
-  console.log('match', match)
+  const _url = url.parse(_base + encodeURIComponent(_base[1]));
+  console.log('arr', arr)
+  console.log('_url', _url)
   _url.headers = {
     'User-Agent': 'Telegram Bot',
     'Accept-Language': 'pt-BR;q=1, pt;q=0.8, en;q=0.5'
