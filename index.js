@@ -101,7 +101,7 @@ bot.onText(/(.*)/i, (msg, match) => {
       fn: (bot, msg, match) => services.tuamae.execute(bot, msg, match)
     },
     {
-      regex:/^gme\s+([a-zA-Z ])+/i,
+      regex: /^gme\s+([a-zA-Z ])+/i,
       fn: (bot, msg, match) => services.gme.execute(bot, msg, match)
     }
   ];
@@ -122,6 +122,10 @@ bot.onText(/(.*)/i, (msg, match) => {
       services.masem.execute(bot, msg);
     }
   }
+});
+
+bot.on('sticker', (msg) => {
+  bot.sendMessage(msg.chat.id, msg.sticker.file_id, { 'reply_to_message_id': msg.message_id });
 });
 
 // Pares
