@@ -119,7 +119,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'sticker-heart',
-      regex: /(❤️|<3)/i,
+      regex: /(❤️|<3|S2)/i,
       fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADAgADVgADGgZFBFCh0QP4JfyUAg', { 'reply_to_message_id': msg.message_id })
     },
     {
