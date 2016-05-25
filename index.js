@@ -113,11 +113,6 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       fn: (bot, msg, match) => services.gme.execute(bot, msg, match)
     },
     {
-      member: 'criador',
-      regex: /^bot\s(quem é o seu criador)+\??/i,
-      fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', { 'reply_to_message_id': msg.message_id })
-    },
-    {
       member: 'sticker-worry',
       regex: /(:D|😁)/,
       fn: (bot, msg, matcg) => bot.sendSticker(msg.chat.id, 'BQADBAADuRYAAvEGNAbXUwABQaBhbw4C', { 'reply_to_message_id': msg.message_id })

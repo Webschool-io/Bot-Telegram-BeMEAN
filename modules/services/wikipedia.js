@@ -47,35 +47,35 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
     const query = args.query;
     const wh = args.wh;
     if (!err) {
-        switch (res.statusCode) {
-            case 200:
-                const $ = cheerio.load(html);
-                const answers = {
-                    quickDef: $('#bodyContent #mw-content-text p:first').not('.coordinates').text(),
-                    coordinates: $('#bodyContent #mw-content-text p.coordinates').text(),
-                    longDef: $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 300)
-                };
+      switch (res.statusCode) {
+        case 200:
+          const $ = cheerio.load(html);
+          const answers = {
+              quickDef: $('#bodyContent #mw-content-text p:first').not('.coordinates').text(),
+              coordinates: $('#bodyContent #mw-content-text p.coordinates').text(),
+              longDef: $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 300)
+          };
 
-                var answer = answers.quickDef;
+          var answer = answers.quickDef;
 
-                if (wh.match(regexOnde)) {
-                    answer = (answers.coordinates != "") ? answers.coordinates : messages.coordsNotFound + answers.longDef;
-                }
+          if (wh.match(regexOnde)) {
+              answer = (answers.coordinates != "") ? answers.coordinates : messages.coordsNotFound + answers.longDef;
+          }
 
-                answer = (answer == "") ? answers.longDef : answer;
-                const _return = 'Segundo a Wikipédia: "<i>' + answer.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
+          answer = (answer == "") ? answers.longDef : answer;
+          const _return = 'Segundo a Wikipédia: "<i>' + answer.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
 
-                bot.sendMessage(msg.chat.id, _return, ph);
-                break;
-            case 404:
-                // bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
-                duckduckgo.execute(bot, msg, args);
-                break;
+          bot.sendMessage(msg.chat.id, _return, ph);
+          break;
+        case 404:
+          // bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
+          duckduckgo.execute(bot, msg, args);
+          break;
         }
     } else {
-        const mili = new Date().getTime();
-        bot.sendMessage(msg.chat.id, messages.requestError.replace("%mili%", mili), pm);
-        console.log(messages.consoleRequestError.replace("%mili%", mili).replace("%err%", err));
+      const mili = new Date().getTime();
+      bot.sendMessage(msg.chat.id, messages.requestError.replace("%mili%", mili), pm);
+      console.log(messages.consoleRequestError.replace("%mili%", mili).replace("%err%", err));
     }
 }
 
@@ -87,16 +87,22 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
  * @param args Objeto contento o tipo de pesquisa a realizar(wh) e o termo pesquisado (query)
  */
 var execute = (bot, msg, args) => {
-    try {
+    if(args.query.toLowerCase().match(/quem é o seu criador/i)) {
+      console.log('quem é o seu criador')
+      bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', { 'reply_to_message_id': msg.message_id })
+    }
+    else {
+      try {
         const _url = 'https://pt.wikipedia.org/w/index.php?title=' + args.query.toLowerCase().split(" ").join("_");
         request(_url, (err, res, html) => {
             parseResponse(err, res, html, args, bot, msg, _url);
         });
-    } catch (e) {
-        bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
+      } catch (e) {
+          bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
+      }
     }
 }
 
 module.exports = {
-    execute: execute
+  execute: execute
 }
