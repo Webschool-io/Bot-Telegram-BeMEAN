@@ -78,6 +78,11 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       fn: (bot, msg, match) => services.mdn.execute(bot, msg, match)
     },
     {
+      member: 'npm',
+      regex: /^js\s+([a-zA-Z])+/i,
+      fn: (bot, msg, match) => services.npm.execute(bot, msg, match)
+    },
+    {
       member: 'wikipedia',
       regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^?]*)\s?\??/i,
       fn: (bot, msg, match) => services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] })

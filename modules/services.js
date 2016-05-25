@@ -11,6 +11,7 @@ const saudacao = require('./services/saudacao');
 const masem = require('./services/masem');
 const tuamae = require('./services/tuamae');
 const gme = require('./services/gme');
+const npm = require('./services/npm');
 
 module.exports = {
   wikipedia: wikipedia,
@@ -23,5 +24,6 @@ module.exports = {
   saudacao: saudacao,
   masem: masem,
   tuamae: tuamae,
-  gme: gme
+  gme: gme,
+  npm: npm
 }
