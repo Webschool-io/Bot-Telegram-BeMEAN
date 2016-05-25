@@ -18,11 +18,11 @@ const execute = (bot, msg, match) => {
     res.on('data', (chunk) => data += chunk);
     res.on('end', (err) => {
       try {
+        const $ = cheerio.load(data);
         const answers = {
           quickDef: $('.package-description').text(),
           longDef: $('#readme .deep-link').text().substr(0, 300)
         };
-        const $ = cheerio.load(data);
         const _return = 'Segundo o npm quick: "<i>' + answers.quickDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
         bot.sendMessage(msg.chat.id, _return, ph);
         const __return = 'Segundo o npm long: "<i>' + answers.longDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
