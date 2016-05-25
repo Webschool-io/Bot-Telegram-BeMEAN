@@ -24,9 +24,9 @@ const execute = (bot, msg, match) => {
           longDef: $('#readme .deep-link').text().substr(0, 300)
         };
         const _return = 'Segundo o npm quick: "<i>' + answers.quickDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
-        bot.sendMessage(msg.chat.id, _return, ph);
+        bot.sendMessage(msg.chat.id, _return, parse);
         const __return = 'Segundo o npm long: "<i>' + answers.longDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
-        bot.sendMessage(msg.chat.id, __return, ph);
+        bot.sendMessage(msg.chat.id, __return, parse);
       } catch (e) {
         bot.sendMessage(msg.chat.id, "DEU MERDA: "+e);
         console.log("Erro end: " + err)
