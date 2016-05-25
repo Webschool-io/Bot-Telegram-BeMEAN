@@ -1,15 +1,14 @@
 'use strict';
 
-let date = new Date()
-let horas = date.getUTCHours() - 3;
-let minutos = date.getMinutes();
-
 const messages = {
-  "ok": "Opa, b%ao% %pr%, jovem!",
-  "wrongPeriod": "B%ao% %pu%, jovem? Agora são " + horas + "h" + minutos + "! Você devia regular seus horários!"
+    "ok": "Opa, b%ao% %pr%, jovem!",
+    "wrongPeriod": "B%ao% %pu%, jovem? Agora são " + horas + "h" + minutos + "! Você devia regular seus horários!"
 }
 
 const execute = (bot, msg, match) => {
+    let date = new Date()
+    let horas = date.getUTCHours() - 3;
+    let minutos = date.getMinutes();
     const pu = match[2];
     let pr = "";
     if (horas <= 12) {
