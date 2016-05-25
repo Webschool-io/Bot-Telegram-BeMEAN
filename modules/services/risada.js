@@ -8,6 +8,8 @@ const risadas = [
   'ri litros ahuah'
 ]
 
+//let 
+
 const execute = (bot, msg, args) => {
   bot.sendMessage(msg.chat.id, risadas[Math.floor(Math.random() * risadas.length)]);
 }
