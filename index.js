@@ -98,7 +98,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       fn: (bot, msg, match) => services.tuamae.execute(bot, msg, match)
     },
     {
-      regex: /(❤️|\<\3)/i,
+      regex: /(❤️|<3)/i,
       fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADBAADVQEAAjW7NgAB0v4JTCS9HssC', { 'reply_to_message_id': msg.message_id })
     },
     {
