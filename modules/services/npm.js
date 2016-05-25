@@ -29,10 +29,10 @@ const execute = (bot, msg, match) => {
     res.on('data', (chunk) => data += chunk);
     res.on('end', (err) => {
       try {
+        console.log("datanpm: " + data);
         data = JSON.parse(data);
         // bot.sendMessage(msg.chat.id, data, parse);
         bot.sendMessage(msg.chat.id, 'Data: "'+JSON.stringify(data)+'"');
-        console.log("data): " + data);
       } catch (e) {
         bot.sendMessage(msg.chat.id, "DEU MERDA: "+e, pm);
         console.log("Erro end: " + err)
