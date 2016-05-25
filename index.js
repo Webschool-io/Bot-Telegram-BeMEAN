@@ -16,7 +16,7 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
   if (command) {
     if (command in commands) {
       command = commands[command];
-      let argsCount = match.length - 2
+      let argsCount = match.length - 2;
       if (argsCount >= command.numParams) {
         command.execute(msg, match, bot);
       } else {
