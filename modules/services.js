@@ -15,6 +15,7 @@ const npm = require('./services/npm');
 const evalReduce = require('./services/eval-reduce');
 const stickerHeart = require('./services/sticker-heart');
 const stickerHappy = require('./services/sticker-happy');
+const stickerWebschool = require('./services/sticker-webschool');
 
 module.exports = {
   wikipedia,
@@ -31,5 +32,6 @@ module.exports = {
   npm,
   evalReduce,
   stickerHeart,
-  stickerHappy
+  stickerHappy,
+  stickerWebschool
 }
