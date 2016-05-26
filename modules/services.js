@@ -17,11 +17,11 @@ const masem = require('./services/masem');
 const tuamae = require('./services/tuamae');
 const gme = require('./services/gme');
 const npm = require('./services/npm');
-const evalReduce = require('./services/eval-reduce');
-const evalMap= require('./services/eval-map');
-const evalFilter = require('./services/eval-filter');
-const evalTest = require('./services/eval-test');
-const evalRDate = require('./services/eval-date');
+// const evalReduce = require('./services/eval-reduce');
+// const evalMap= require('./services/eval-map');
+// const evalFilter = require('./services/eval-filter');
+// const evalTest = require('./services/eval-test');
+// const evalRDate = require('./services/eval-date');
 const stickerHeart = require('./services/sticker-heart');
 const stickerHappy = require('./services/sticker-happy');
 const stickerWebschool = require('./services/sticker-webschool');
@@ -40,7 +40,11 @@ module.exports = {
   tuamae,
   gme,
   npm,
-  evalReduce,
+  evalDate,
+  evalFilter,
+  evalMap,
+  evalRduce,
+  evalTest,
   stickerHeart,
   stickerHappy,
   stickerWebschool,
