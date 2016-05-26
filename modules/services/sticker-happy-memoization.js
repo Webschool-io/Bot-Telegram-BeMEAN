@@ -11,10 +11,7 @@ let memoization = []
 const memoize = (rand) => {
   if(rand !== memoization[memoization.length-1])
     memoization.push(rand);
-  else{
-    rand = _rand(stickers);
-    memoization.push(rand);
-  }
+  else memoize(_rand(stickers));
 }
 const _rand = (stickers) => Math.floor(Math.random() * stickers.length);
 const execute = (bot, msg) => {
