@@ -40,7 +40,8 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     {
       member: 'reduce',
       regex: /\.reduce/,
-      fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text))
+      // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text))
+      fn: (bot, msg, match) => services.evalReduce.execute(bot, msg)
     },
     {
       member: 'map',
@@ -121,8 +122,6 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       member: 'sticker-happy',
       regex: /(:D|😁)/,
       fn: (bot, msg) => services.stickerHappy.execute(bot, msg, match)
-      // fn: (bot, msg, matcg) => bot.sendSticker(msg.chat.id, 'BQADBAADuRYAAvEGNAbXUwABQaBhbw4C', { 'reply_to_message_id': msg.message_id })
-    },
     {
       member: 'sticker-heart',
       regex: /(❤️|<3|S2)/i,
