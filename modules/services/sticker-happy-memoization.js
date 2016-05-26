@@ -20,7 +20,12 @@ const memoize = (rand) => {
 }
 const testMemoization = (stckr) => {
   console.log('stckr', stckr)
-  if(memoization[memoization.length-1] === stckr) return_rand(stickers);
+  if(memoization[memoization.length-1] === stckr) {
+    console.log('memoization[memoization.length-1] === stckr', memoization[memoization.length-1] === stckr);
+    const _return = _rand(stickers);
+    console.log('_return', _return)
+    return _return;
+  }
   return stckr;
 }
 const _rand = (stickers) => Math.floor(Math.random() * stickers.length);

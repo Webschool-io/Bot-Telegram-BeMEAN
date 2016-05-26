@@ -25,8 +25,8 @@ const testMemoization = (stckr) => {
 const _rand = (stickers) => Math.floor(Math.random() * stickers.length);
 const execute = () => {
   let stckr = testMemoization(_rand(stickers));
-  console.log('execute stckr', stckr)
-  return stckr;
+  console.log('memoize', memoize(stckr))
+  return memoize(stckr);
 }
 
 module.exports = {

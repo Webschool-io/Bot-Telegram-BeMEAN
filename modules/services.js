@@ -14,7 +14,7 @@ const gme = require('./services/gme');
 const npm = require('./services/npm');
 const evalReduce = require('./services/eval-reduce');
 const stickerHeart = require('./services/sticker-heart');
-const stickerHappy = require('./services/sticker-happy-memoization');
+const stickerHappy = require('./services/sticker-happy');
 const stickerWebschool = require('./services/sticker-webschool');
 const stickerBemean = require('./services/sticker-bemean');
 
