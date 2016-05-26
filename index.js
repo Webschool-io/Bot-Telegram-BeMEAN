@@ -91,11 +91,11 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^?]*)\s?\??/i,
       fn: (bot, msg, match) => services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] })
     },
-    // {
-    //   member: 'math',
-    //   regex: /(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i,
-    //   fn: (bot, msg, match) => services.math.execute(bot, msg)
-    // },
+    {
+      member: 'math',
+      regex: /(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i,
+      fn: (bot, msg, match) => services.math.execute(bot, msg)
+    },
     {
       member: 'maconha',
       regex: /(420)|maconha|weed|marijuana|erva|bagulho|manhuca/i,
