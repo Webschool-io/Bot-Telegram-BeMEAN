@@ -118,9 +118,9 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       fn: (bot, msg, match) => services.gme.execute(bot, msg, match)
     },
     {
-      member: 'sticker-worry',
+      member: 'sticker-happy',
       regex: /(:D|😁)/,
-      fn: (bot, msg) => services.stickerWorry.execute(bot, msg, match)
+      fn: (bot, msg) => services.stickerHappy.execute(bot, msg, match)
       // fn: (bot, msg, matcg) => bot.sendSticker(msg.chat.id, 'BQADBAADuRYAAvEGNAbXUwABQaBhbw4C', { 'reply_to_message_id': msg.message_id })
     },
     {
