@@ -40,7 +40,6 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     {
       member: 'reduce',
       regex: /\.reduce/,
-      // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text))
       fn: (bot, msg, match) => services.evalReduce.execute(bot, msg)
     },
     {
@@ -122,6 +121,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       member: 'sticker-happy',
       regex: /(:D|😁)/,
       fn: (bot, msg) => services.stickerHappy.execute(bot, msg, match)
+    },
     {
       member: 'sticker-heart',
       regex: /(❤️|<3|S2)/i,
