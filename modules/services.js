@@ -13,6 +13,7 @@ const tuamae = require('./services/tuamae');
 const gme = require('./services/gme');
 const npm = require('./services/npm');
 const stickerHeart = require('./services/sticker-heart');
+const stickerWorry = require('./services/sticker-worry');
 
 module.exports = {
   wikipedia,
@@ -27,5 +28,6 @@ module.exports = {
   tuamae,
   gme,
   npm,
-  stickerHeart
+  stickerHeart,
+  stickerWorry
 }

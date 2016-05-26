@@ -120,7 +120,8 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     {
       member: 'sticker-worry',
       regex: /(:D|😁)/,
-      fn: (bot, msg, matcg) => bot.sendSticker(msg.chat.id, 'BQADBAADuRYAAvEGNAbXUwABQaBhbw4C', { 'reply_to_message_id': msg.message_id })
+      fn: (bot, msg) => services.stickerWorry.execute(bot, msg, match)
+      // fn: (bot, msg, matcg) => bot.sendSticker(msg.chat.id, 'BQADBAADuRYAAvEGNAbXUwABQaBhbw4C', { 'reply_to_message_id': msg.message_id })
     },
     {
       member: 'sticker-heart',
