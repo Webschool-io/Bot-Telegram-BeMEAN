@@ -26,11 +26,10 @@ const testMemoization = (stckr) => {
 const _rand = (stickers) => Math.floor(Math.random() * stickers.length);
 const execute = () => {
   let stckr = testMemoization(_rand(stickers));
-  // console.log('execute stckr', stckr)
+  console.log('execute stckr', stckr)
   const reply = { 'reply_to_message_id': msg.message_id };
   // console.log('sticker', sticker)
   bot.sendSticker(msg.chat.id, stckr, reply);
-  // if(memoization.length > 0) memoization = []
 }
 
 module.exports = {
