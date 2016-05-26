@@ -1,8 +1,10 @@
 'use strict';
 
 const stickers = [
-  'BQADBAADHAAD06wKAqJqWahqXj1sAg',
-  'BQADAQADJwQAAmdLbgH9Ks60pHGEcgI'
+  'BQADAgADwQEAAhlgSwTFGD3TrpTVcAI',
+  'BQADAgADfwEAAksODwABX50lGXzKqSsC',
+  'BQADAgADrQEAAksODwAB4ac6Jt5y74UC',
+  'BQADAgADgwEAAksODwABss0TWyMJO_YC'
 ];
 
 const execute = (bot, msg) => {
