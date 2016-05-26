@@ -12,18 +12,20 @@ const masem = require('./services/masem');
 const tuamae = require('./services/tuamae');
 const gme = require('./services/gme');
 const npm = require('./services/npm');
+const stickerHeart = require('./services/sticker-heart');
 
 module.exports = {
-  wikipedia: wikipedia,
-  math: math,
-  maconha: maconha,
-  risada: risada,
-  gmaps: gmaps,
-  mdn: mdn,
-  md5: md5,
-  saudacao: saudacao,
-  masem: masem,
-  tuamae: tuamae,
-  gme: gme,
-  npm: npm
+  wikipedia,
+  math,
+  maconha,
+  risada,
+  gmaps,
+  mdn,
+  md5,
+  saudacao,
+  masem,
+  tuamae,
+  gme,
+  npm,
+  stickerHeart
 }
