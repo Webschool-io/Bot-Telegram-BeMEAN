@@ -6,6 +6,7 @@ const stickers = [
   'BQADAgADrQEAAksODwAB4ac6Jt5y74UC',
   'BQADAgADgwEAAksODwABss0TWyMJO_YC'
 ];
+let counter = 0;
 let memoization = []
 
 const memoize = (rand) => {
@@ -16,12 +17,16 @@ const memoize = (rand) => {
     memoization.push(rand);
   }
 }
+const testMemoization = (stckr) => {
+  console.log('stckr', stckr)
+  if(memoization[memoization.length-1] === stckr) return_rand(stickers);
+  return stckr;
+}
 const _rand = (stickers) => Math.floor(Math.random() * stickers.length);
 const execute = () => {
-  memoize(_rand(stickers));
-  const sticker = stickers[memoization.length-1];
-  if(memoization.length > 1) memoization = []
-  return sticker;
+  let stckr = testMemoization(_rand(stickers));
+  console.log('execute stckr', stckr)
+  return stckr;
 }
 
 module.exports = {

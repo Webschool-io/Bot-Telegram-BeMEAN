@@ -10,23 +10,24 @@ const stickers = [
   'BQADAgADgwEAAksODwABss0TWyMJO_YC'
 ];
 
-let _returns = [];
-
 describe('Testando memoization', () => {
+  let _returns = [];
   it('não pode retornar igual a última', () => {
     _returns.push(memoization.execute());
+    console.log('_returns', _returns)
+    console.log('_returns[_returns.length-1]', _returns[_returns.length-1])
+    expect(_returns[_returns.length-1]).to.not.equal(memoization.execute());
+  })
+  it('não pode retornar igual a última', () => {
+    _returns.push(memoization.execute());
+    console.log('_returns', _returns)
+    console.log('_returns[_returns.length-1]', _returns[_returns.length-1])
+    expect(_returns[_returns.length-1]).to.not.equal(memoization.execute());
+  })
+  it('não pode retornar igual a última', () => {
+    _returns.push(memoization.execute());
+    console.log('_returns', _returns)
+    console.log('_returns[_returns.length-1]', _returns[_returns.length-1])
     expect(_returns[_returns.length-1]).to.not.equal(memoization.execute());
   })
 });
-
-// console.log('_returns',_returns[_returns.length-1])
-// console.log('memoization.execute()', memoization.execute())
-
-// assert.notEqual(memoization.execute(), _returns[_returns.length-1])
-
-// _returns.push(memoization.execute());
-// console.log('_returns',_returns)
-// _returns.push(memoization.execute());
-// console.log('_returns',_returns)
-// _returns.push(memoization.execute());
-// console.log('_returns',_returns)
