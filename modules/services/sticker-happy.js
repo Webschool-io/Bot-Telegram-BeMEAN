@@ -1,7 +1,6 @@
 'use strict';
 
 const stickers = [
-  'BQADBAADuRYAAvEGNAbXUwABQaBhbw4C',
   'BQADBAADHAAD06wKAqJqWahqXj1sAg',
   'BQADAQADJwQAAmdLbgH9Ks60pHGEcgI'
 ];
