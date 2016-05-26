@@ -135,9 +135,9 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     {
       member: 'sticker-bemean',
       regex: /bemean|be\s*mean/i,
-      fn: (bot, msg, match) => bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', { 'reply_to_message_id': msg.message_id })
+      fn: (bot, msg, match) => services.stickerBemean.execute(bot, msg)
     }
-  ];
+  ]
 
   const _load = (match) => {
     if (Array.isArray(match)) {
