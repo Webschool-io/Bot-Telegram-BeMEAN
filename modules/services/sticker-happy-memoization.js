@@ -25,7 +25,7 @@ const execute = (bot, msg) => {
   const reply = { 'reply_to_message_id': msg.message_id };
   console.log('sticker', sticker)
   bot.sendSticker(msg.chat.id, sticker, reply);
-  if(memoization.length > 0) memoization = []
+  // if(memoization.length > 0) memoization = []
 }
 
 module.exports = {
