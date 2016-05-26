@@ -18,12 +18,9 @@ const memoize = (rand) => {
 }
 const _rand = (stickers) => Math.floor(Math.random() * stickers.length);
 const execute = (bot, msg) => {
-  // memoize(_rand(stickers));
-  // const sticker = stickers[memoization.length-1];
-  // const reply = { 'reply_to_message_id': msg.message_id };
-  // bot.sendSticker(msg.chat.id, sticker, reply);
   memoize(_rand(stickers));
   const sticker = stickers[memoization.length-1];
+  console.log('sticker', sticker)
   bot.sendSticker(msg.chat.id, sticker, reply);
   if(memoization.length > 1) memoization = []
 }
