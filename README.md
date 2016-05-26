@@ -33,17 +33,21 @@ A ideia é que ele possa lhe ajudar a achar a informação mais fácil, principa
   + Exemplo: gme como se faz café?
   + Retorno: http://pt-br.lmgtfy.com/?q=como+se+faz+caf%C3%A9%3F
 - {ARRAY}.map({CALLBACK})
-  + Executa o comando map 
+  + Executa o comando map
   + Exemplo: [1,2,3,4].map( num => num*2 )
   + Exemplo: [1,2,3,4].map( num => num*Math.sqrt(9) )
 - {ARRAY}.filter({CALLBACK})
-  + Executa o comando filter 
+  + Executa o comando filter
   + Exemplo: [1,2,3,4].filter( num => num%2 )
   + Exemplo: [1,2,3,4].filter( num => !(num%2) )
 - {ARRAY}.reduce({CALLBACK})
-  + Executa o comando reduce 
+  + Executa o comando reduce
   + Exemplo: [1,2,3,4].reduce( (antes, atual) => antes+atual )
   + Exemplo: [1,2,3,4].reduce( (antes, atual) => antes*atual )
+- regex {REGEX}.test({STRING})
+  + Executa o comando test
+  + Exemplo: regex /bazing/.test('bazinga')
+  + Exemplo: regex /[0-9]/.test('82882')
 }
 
 ## Funcionalidades
