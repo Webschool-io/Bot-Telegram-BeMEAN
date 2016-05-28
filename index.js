@@ -143,7 +143,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'omdb',
-      regex: /bot, (?:voc[e|ê])? *(?:j[a|á])? *(?:viu|assist[iu|e]|gost[a|ou]|conhece) *(?:de )? *([^?]+)/i,
+      regex: /bot, (?:v?o?c?[e|ê]?)? *(?:j[a|á])? *(?:viu|assist[iu|e]|gost[a|ou]|conhece) *(?:de )? *([^?]+)/i,
       fn: (bot, msg, match) => services.omdb.execute(bot, msg, match)
     }
   ];
