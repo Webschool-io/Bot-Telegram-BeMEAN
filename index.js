@@ -1,11 +1,11 @@
 'use strict';
-const fun = require('funcy');
+//const fun = require('funcy');
 const TelegramBot = require('node-telegram-bot-api');
 require('dotenv').config();
 
 const token = process.env.API_TOKEN || 'INSERT API_TOKEN';
 // Setup polling way
-const bot = new TelegramBot(token, { polling: true });
+const bot = new TelegramBot(token, {polling: true});
 
 const commands = require('./modules/commands');
 const services = require('./modules/services');
@@ -89,7 +89,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     {
       member: 'wikipedia',
       regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^?]*)\s?\??/i,
-      fn: (bot, msg, match) => services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] })
+      fn: (bot, msg, match) => services.wikipedia.execute(bot, msg, {'wh': match[1], 'query': match[3]})
     },
     {
       member: 'math',
@@ -140,8 +140,13 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       member: 'sticker-bemean',
       regex: /bemean|be\s*mean/i,
       fn: (bot, msg, match) => services.stickerBemean.execute(bot, msg)
+    },
+    {
+      member: 'omdb',
+      regex: /bot, (?:voc[e|ê])? *(?:j[a|á])? *(?:viu|assist[iu|e]|gost[a|ou]|conhece) *(?:de )? *([^?]+)/i,
+      fn: (bot, msg, match) => services.omdb.execute(bot, msg, match)
     }
-  ]
+  ];
 
   const _load = (match) => {
     if (Array.isArray(match)) {
@@ -162,32 +167,31 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
 });
 
 
-
 bot.on('sticker', (msg) => {
   let ids = [
     16715013,
     77586615
   ];
   if (msg.chat.type == 'private' && ids.indexOf(msg.chat.id) >= 0) {
-    bot.sendMessage(msg.chat.id, msg.sticker.file_id, { 'reply_to_message_id': msg.message_id });
+    bot.sendMessage(msg.chat.id, msg.sticker.file_id, {'reply_to_message_id': msg.message_id});
   }
 });
 
 // Pares
 /*bot.onText(/^par/i, (msg, match) => {
-  const _arr = msg.text.split('par ')[1]
-  const arr = JSON.parse(_arr);
-  const _return = arr.filter((acc) => !(acc % 2));
-  bot.sendMessage(msg.chat.id, 'Par(es): ' + _return);
-});*/
+ const _arr = msg.text.split('par ')[1]
+ const arr = JSON.parse(_arr);
+ const _return = arr.filter((acc) => !(acc % 2));
+ bot.sendMessage(msg.chat.id, 'Par(es): ' + _return);
+ });*/
 
 // Ímpares
 /*bot.onText(/^impar/i, (msg, match) => {
-  const _arr = msg.text.split('par ')[1]
-  const arr = JSON.parse(_arr);
-  const _return = arr.filter((acc) => (acc % 2));
-  bot.sendMessage(msg.chat.id, 'Ímpar(es): ' + _return);
-});*/
+ const _arr = msg.text.split('par ')[1]
+ const arr = JSON.parse(_arr);
+ const _return = arr.filter((acc) => (acc % 2));
+ bot.sendMessage(msg.chat.id, 'Ímpar(es): ' + _return);
+ });*/
 
 
 // bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
@@ -210,25 +214,25 @@ bot.on('sticker', (msg) => {
 
 // Wikipedia
 /*bot.onText(/(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i, (msg, match) => {
-  services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-});
+ services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
+ });
 
-// calcular
-bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, match) => {
-  services.math.execute(bot, msg);
-});
+ // calcular
+ bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, match) => {
+ services.math.execute(bot, msg);
+ });
 
-bot.onText(/(420)|maconha|weed|marijuana|erva|bagulho/i, (msg, match) => {
-  services.maconha.execute(bot, msg);
-});
+ bot.onText(/(420)|maconha|weed|marijuana|erva|bagulho/i, (msg, match) => {
+ services.maconha.execute(bot, msg);
+ });
 
-// risada
-bot.onText(/lol|kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h+u+a|h+u+e+h+u+e/i, (msg, match) => {
-  services.risada.execute(bot, msg);
-});
+ // risada
+ bot.onText(/lol|kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h+u+a|h+u+e+h+u+e/i, (msg, match) => {
+ services.risada.execute(bot, msg);
+ });
 
-// saudação
-bot.onText(/b(oa|om) (dia|tarde|noite)/i, (msg, match) => {
-  services.saudacao.execute(bot, msg, match);
-});*/
+ // saudação
+ bot.onText(/b(oa|om) (dia|tarde|noite)/i, (msg, match) => {
+ services.saudacao.execute(bot, msg, match);
+ });*/
 
