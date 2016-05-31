@@ -23,7 +23,8 @@ const execute = (bot, msg, match, forceSearch = false, id) => {
   }
 };
 
-const _findInfo = (bot, msg, title, forceSearch = false, id) => {
+const _findInfo = (bot, msg, title, forceSearch, id) => {
+  forceSearch = forceSearch || false;
   const _runSearch = (bot, msg, title, force) => {
     request(API_URLS.search + encodeURIComponent(title), (err, res, content) => {
       if (!err) {
