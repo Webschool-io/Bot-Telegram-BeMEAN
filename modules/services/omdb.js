@@ -15,7 +15,8 @@ const MESSAGES = {
 
 const IMDB_URL = 'http://www.imdb.com/title/';
 
-const execute = (bot, msg, match, forceSearch = false, id) => {
+const execute = (bot, msg, match, forceSearch, id) => {
+  forceSearch = forceSearch || false;
   if (match[1] && match[1] != " " && match[1] != "") {
     _findInfo(bot, msg, match[1], id);
   } else {
@@ -73,7 +74,8 @@ const _findInfo = (bot, msg, title, forceSearch, id) => {
   }
 };
 
-const _respond = (bot, msg, info, force = false) => {
+const _respond = (bot, msg, info, force) => {
+  force = force || false;
   if (info) {
     if (info.count == 1) {
       if (!force) bot.sendMessage(msg.chat.id, "Opa, esse eu conheço!");
