@@ -1,0 +1,12 @@
+{
+  "apps": [
+    {
+      "script": "/bots/Bot-Telegram-BeMEAN/index.js",
+      "watch": true,
+      "instances": 1,
+      "error_file": "/bots/logs/bemean-error.log",
+      "out_file": "/bots/logs/bemean-out.log",
+      "combine_logs": false
+    }
+  ]
+}
