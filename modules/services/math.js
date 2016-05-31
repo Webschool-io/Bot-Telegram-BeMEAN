@@ -2,6 +2,8 @@
 
 
 const pm = {'parse_mode': 'Markdown'};
+const isOk = require('../regexutils').isInputOK;
+
 const execute = (bot, msg) => {
   //const matchDate = /([0-9]{2}\/[0-9]{2}\/[0-9]{4}|[0-9]{2}\/20[0-9]{2})/;
   if (isOk(msg.text)) {

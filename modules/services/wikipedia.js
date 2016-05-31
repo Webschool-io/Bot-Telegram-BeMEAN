@@ -15,8 +15,8 @@ const messages = {
     requestError: "Droga, deu um erro aqui em :/ ID do erro: `%mili%`",
     consoleRequestError: "Erro %mili%: %err%",
     noResultsFound: "Vish, a Wikipedia não tem nada sobre ",
-    communicationError: "Putz, não tô conseguindo conversar com a Wikipedia :/ Tenta depois `%e%`",
-}
+  communicationError: "Putz, não tô conseguindo conversar com a Wikipedia :/ Tenta depois `%e%`"
+};
 
 // Makes HTML more compatible to https://core.telegram.org/bots/api#html-style
 const simpleHTML = (code) =>
@@ -31,13 +31,13 @@ const simpleHTML = (code) =>
         .replace(/<[^>]*$/g, '')
         .replace(/&#([0-9]+);/, (match, g1) => String.fromCharCode(g1))
         .replace(/(\n\s*){3,}/g, '\n\n')
-        .replace(/^\s*|\s*$/g, '')
+        .replace(/^\s*|\s*$/g, '');
 
 const escapeHTML = (code) =>
     code.replace(/&/gi, '&amp;')
         .replace(/>/gi, '&gt;')
         .replace(/</gi, '&lt;')
-        .replace(/"/gi, '&quot;')
+        .replace(/"/gi, '&quot;');
 
 /**
  * Realiza o parse de uma response vinda do request
@@ -50,6 +50,7 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
       switch (res.statusCode) {
         case 200:
           const $ = cheerio.load(html);
+          //noinspection JSJQueryEfficiency,JSJQueryEfficiency,JSJQueryEfficiency
           const answers = {
               quickDef: $('#bodyContent #mw-content-text p:first').not('.coordinates').text(),
               coordinates: $('#bodyContent #mw-content-text p.coordinates').text(),
@@ -77,7 +78,7 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
       bot.sendMessage(msg.chat.id, messages.requestError.replace("%mili%", mili), pm);
       console.log(messages.consoleRequestError.replace("%mili%", mili).replace("%err%", err));
     }
-}
+};
 
 /**
  * Função principal do módulo
@@ -89,7 +90,7 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
 var execute = (bot, msg, args) => {
     // console.log('args', args.query, args.query.toLowerCase().match(/o seu criador/i))
     if(args.query.toLowerCase() == 'o seu criador') {
-      console.log('quem é o seu criador')
+      console.log('quem é o seu criador');
       bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', { 'reply_to_message_id': msg.message_id })
     }
     else {
@@ -102,8 +103,8 @@ var execute = (bot, msg, args) => {
           bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
       }
     }
-}
+};
 
 module.exports = {
   execute: execute
-}
+};

@@ -12,14 +12,15 @@ const execute = (bot, msg, match) => {
   _url.headers = {
     'User-Agent': 'Telegram Bot',
     'Accept-Language': 'pt-BR;q=1, pt;q=0.8, en;q=0.5'
-  }
-  console.log('_url', _url)
+  };
+  console.log('_url', _url);
   const req = https.request(_url, (res) => {
     let data = '';
     res.on('data', (chunk) => data += chunk);
     res.on('end', (err) => {
       try {
         const $ = cheerio.load(data);
+        //noinspection JSJQueryEfficiency
         const answers = {
           quickDef: $('.package-description').text(),
           longDef: $('#readme .deep-link').text().substr(0, 300)
@@ -36,7 +37,7 @@ const execute = (bot, msg, match) => {
   });
   req.end();
   req.on('error', (e) => console.error(e));
-}
+};
 module.exports = {
     execute: execute
-}
+};

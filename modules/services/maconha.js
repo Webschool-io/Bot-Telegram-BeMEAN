@@ -12,14 +12,14 @@ const stickers = [
     'BQADBAADywADXoD0BaJ-5YWTuZxTAg',
     'BQADBAADzwADXoD0BactihrL_9LKAg',
     'BQADBAAD6wADXoD0Bbi4Fg2kp0fUAg'
-]
+];
 
 const execute = (bot, msg) => {
     const sticker = stickers[Math.floor(Math.random() * stickers.length)];
     bot.sendMessage(msg.chat.id, "Legalize já :P", {'reply_to_message_id': msg.message_id});
     bot.sendSticker(msg.chat.id, sticker, {'reply_to_message_id': msg.message_id});
-}
+};
 
 module.exports = {
     execute: execute
-}
+};

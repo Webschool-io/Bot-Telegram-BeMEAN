@@ -6,8 +6,8 @@ const execute = (bot, msg, match) => {
   const cmd = msg.text.replace(/gme /ig, '');
   const _url = 'http://pt-br.lmgtfy.com/?q=' + encodeURIComponent(cmd);
   bot.sendMessage(msg.chat.id, _url);
-}
+};
 
 module.exports = {
   execute: execute
-}
+};

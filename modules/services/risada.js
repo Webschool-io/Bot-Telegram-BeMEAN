@@ -7,7 +7,7 @@ const risadas = [
   'hauhauhauh',
   'kkkkkkkkkk',
   'ri litros ahuah'
-]
+];
 
 let contadores = [];
 
@@ -23,8 +23,8 @@ const execute = (bot, msg, args) => {
   } else if (contagem < limite) {
     contadores[msg.chat.id]++;
   }
-}
+};
 
 module.exports = {
   execute: execute
-}
+};

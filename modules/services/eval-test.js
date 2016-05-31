@@ -1,6 +1,8 @@
 'use strict';
 
 const _eval = 'test';
+const isOk = require('../regexutils').isInputOK;
+
 const execute = (bot, msg, match) => {
   const _test = msg.text.split('regex ')[1];
   if (isOk(msg.text)) {

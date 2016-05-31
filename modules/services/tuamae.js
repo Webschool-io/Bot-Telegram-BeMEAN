@@ -9,12 +9,12 @@ const answers = [
     'Oloco, xinga não, jovem :/',
     'Se vira aí então, troxa',
     'Aff, vou embora então!'
-]
+];
 
 const execute = (bot, msg, match) => {
     bot.sendMessage(msg.chat.id, answers[Math.floor(Math.random() * answers.length)]);
-}
+};
 
 module.exports = {
     execute: execute
-}
+};

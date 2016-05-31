@@ -15,15 +15,15 @@ const stickers = [
     'BQADBAADywADXoD0BaJ-5YWTuZxTAg',
     'BQADBAADzwADXoD0BactihrL_9LKAg',
     'BQADBAAD6wADXoD0Bbi4Fg2kp0fUAg'
-]
+];
 const execute = (bot, msg, match) => {
   const query = match.query;
   const _base = 'http://api.duckduckgo.com/?format=json&q=';
-  const _url = url.parse(_base + encodeURIComponent(query))
+  const _url = url.parse(_base + encodeURIComponent(query));
   _url.headers = {
     'User-Agent': 'Telegram Bot',
     'Accept-Language': 'pt-BR;q=1, pt;q=0.8, en;q=0.5'
-  }
+  };
   const req = http.request(_url, (res) => {
     let data = '';
     res.on('data', (chunk) => data += chunk);
@@ -50,7 +50,7 @@ const execute = (bot, msg, match) => {
   });
   req.end();
   req.on('error', (e) => console.error(e));
-}
+};
 module.exports = {
     execute: execute
-}
+};

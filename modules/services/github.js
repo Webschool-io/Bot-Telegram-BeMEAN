@@ -14,8 +14,8 @@ const messages = {
     requestError: "Droga, deu um erro aqui em :/ ID do erro: `%mili%`",
     consoleRequestError: "Erro %mili%: %err%",
     noResultsFound: "Vish, a Wikipedia não tem nada sobre ",
-    communicationError: "Putz, não tô conseguindo conversar com a Wikipedia :/ Tenta depois `%e%`",
-}
+  communicationError: "Putz, não tô conseguindo conversar com a Wikipedia :/ Tenta depois `%e%`"
+};
 
 // Makes HTML more compatible to https://core.telegram.org/bots/api#html-style
 const simpleHTML = (code) =>
@@ -30,13 +30,13 @@ const simpleHTML = (code) =>
       .replace(/<[^>]*$/g, '')
       .replace(/&#([0-9]+);/, (match,g1) => String.fromCharCode(g1))
       .replace(/(\n\s*){3,}/g, '\n\n')
-      .replace(/^\s*|\s*$/g, '')
+      .replace(/^\s*|\s*$/g, '');
 
 const escapeHTML = (code) =>
   code.replace(/&/gi, '&amp;')
       .replace(/>/gi, '&gt;')
       .replace(/</gi, '&lt;')
-      .replace(/"/gi, '&quot;')
+      .replace(/"/gi, '&quot;');
 
 /**
  * Realiza o parse de uma response vinda do request
@@ -54,8 +54,7 @@ const escapeHTML = (code) =>
                 'link': $('.main-content h3.repo-list-name').text()
             };
 
-            var answer = answers.quickDef
-=
+              var answer = answers.quickDef;
             const _return = 'Via Github: "' + answer.replace(/\[[^]]*\]/, "") + '". fonte: ' +_url;
 
             bot.sendMessage(msg.chat.id, _return, pm);
@@ -70,7 +69,7 @@ const escapeHTML = (code) =>
         bot.sendMessage(msg.chat.id, messages.requestError.replace("%mili%", mili), pm);
         console.log(messages.consoleRequestError.replace("%mili%", mili).replace("%err%", err));
     }
-}
+};
 
 /**
  * Função principal do módulo
@@ -88,8 +87,8 @@ const escapeHTML = (code) =>
     } catch (e) {
       bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
     }
-}
+};
 
 module.exports = {
     execute: execute
-}
+};
