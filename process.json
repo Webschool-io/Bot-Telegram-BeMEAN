@@ -1,6 +1,7 @@
 {
   "apps": [
     {
+      "name": "BeMEAN-bot",
       "script": "/bots/Bot-Telegram-BeMEAN/index.js",
       "watch": true,
       "instances": 1,
