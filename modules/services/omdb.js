@@ -6,11 +6,13 @@ const API_URLS = {
   search: "http://www.omdbapi.com/?plot=short&r=json&s=",
   with_id: "http://www.omdbapi.com/?plot=short&r=json&i="
 };
+
 const MESSAGES = {
   search_succes_nf: "Hm... Esse nome me lembra mais de um título. Clique no botão do título desejado para mais informações.",
   search_succes_f: "Escolha um título para obter os detalhes",
   search_fail_nf: "Vish, esse aí eu não conheço, não :/"
 };
+
 const IMDB_URL = 'http://www.imdb.com/title/';
 
 const execute = (bot, msg, match, forceSearch = false, id) => {
@@ -20,7 +22,6 @@ const execute = (bot, msg, match, forceSearch = false, id) => {
     bot.sendMessage(msg.chat.id, "Como vou saber, se vc não me fala o nome, jovem?");
   }
 };
-
 
 const _findInfo = (bot, msg, title, forceSearch = false, id) => {
   const _runSearch = (bot, msg, title, force) => {
@@ -69,8 +70,6 @@ const _findInfo = (bot, msg, title, forceSearch = false, id) => {
   } else {
     _runSearch(bot, msg, title, true);
   }
-
-
 };
 
 const _respond = (bot, msg, info, force = false) => {
