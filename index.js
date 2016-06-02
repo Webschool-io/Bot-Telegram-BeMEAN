@@ -13,7 +13,7 @@ const services = require('./modules/services');
 const security = require('./modules/security');
 const monitutils = require('./modules/utils/monitutils');
 
-monitutils.notifySharedAccount(bot, "*Bot reiniciado.*");
+monitutils.notifySharedAccount(bot, "*Bot " + username + " reiniciado.*");
 
 // Matches commands
 bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?(@.*)?/i, (msg, match) => {
