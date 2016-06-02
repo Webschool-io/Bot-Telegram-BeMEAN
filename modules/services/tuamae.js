@@ -11,7 +11,7 @@ const answers = [
     'Aff, vou embora então!'
 ];
 
-const execute = (bot, msg, match) => {
+const execute = (bot, msg) => {
     bot.sendMessage(msg.chat.id, answers[Math.floor(Math.random() * answers.length)]);
 };
 

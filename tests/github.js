@@ -14,7 +14,7 @@ const messages = {
     requestError: "Droga, deu um erro aqui em :/ ID do erro: `%mili%`",
     consoleRequestError: "Erro %mili%: %err%",
     noResultsFound: "Vish, a Wikipedia não tem nada sobre ",
-    communicationError: "Putz, não tô conseguindo conversar com a Wikipedia :/ Tenta depois `%e%`",
+  communicationError: "Putz, não tô conseguindo conversar com a Wikipedia :/ Tenta depois `%e%`"
 };
 
 // Makes HTML more compatible to https://core.telegram.org/bots/api#html-style
@@ -55,7 +55,7 @@ const escapeHTML = (code) =>
             };
 
               var answer = answers.quickDef;
-            const _return = 'Via Github: "' + answer.replace(/\[[^]]*\]/, "") + '". fonte: ' +_url;
+              const _return = 'Via Github: "' + answer.replace(/\[[^]]*]/, "") + '". fonte: ' + _url;
 
             bot.sendMessage(msg.chat.id, _return, pm);
             break;

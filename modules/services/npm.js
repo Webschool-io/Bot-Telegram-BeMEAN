@@ -5,7 +5,7 @@ const https = require('https');
 const cheerioAdv = require('cheerio-advanced-selectors');
 const cheerio = cheerioAdv.wrap(require('cheerio'));
 const parse = { 'parse_mode': 'HTML' };
-const execute = (bot, msg, match) => {
+const execute = (bot, msg) => {
   const arr = msg.text.split('npm ');
   const _base = 'https://www.npmjs.com/package/';
   const _url = url.parse(_base + encodeURIComponent(arr[1]));
@@ -25,7 +25,7 @@ const execute = (bot, msg, match) => {
           quickDef: $('.package-description').text(),
           longDef: $('#readme .deep-link').text().substr(0, 300)
         };
-        const _return = 'Segundo o npm : "<i>' + answers.quickDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url.href;
+        const _return = 'Segundo o npm : "<i>' + answers.quickDef.replace(/\[[^]]*]/, "") + '</i>". fonte: ' + _url.href;
         bot.sendMessage(msg.chat.id, _return, parse);
         // const __return = 'Segundo o npm long: "<i>' + answers.longDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
         // bot.sendMessage(msg.chat.id, __return, parse);

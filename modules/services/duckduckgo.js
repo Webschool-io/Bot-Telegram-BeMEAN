@@ -2,19 +2,19 @@
 
 const url = require('url');
 const http = require('http');
-const parse = { 'parse_mode': 'HTML' };
+const parse = {'parse_mode': 'HTML'};
 const stickers = [
-    'BQADBAADMgEAAl6A9AWiXNcdh4N2fgI',
-    'BQADBAADzQADXoD0BfaPN-SRlpBYAg',
-    'BQADBAADxQADXoD0Be6MWaqIBanrAg',
-    'BQADBAADAQEAAl6A9AVrEFjvEfTbRwI',
-    'BQADBAADOQEAAl6A9AWLW7oQoiHXdAI',
-    'BQADBAADBwEAAl6A9AXuD8xAc5avLwI',
-    'BQADBAADxwADXoD0BaTJK9_y3lrtAg',
-    'BQADBAADyQADXoD0BYyFKrC9hFpcAg',
-    'BQADBAADywADXoD0BaJ-5YWTuZxTAg',
-    'BQADBAADzwADXoD0BactihrL_9LKAg',
-    'BQADBAAD6wADXoD0Bbi4Fg2kp0fUAg'
+  'BQADBAADMgEAAl6A9AWiXNcdh4N2fgI',
+  'BQADBAADzQADXoD0BfaPN-SRlpBYAg',
+  'BQADBAADxQADXoD0Be6MWaqIBanrAg',
+  'BQADBAADAQEAAl6A9AVrEFjvEfTbRwI',
+  'BQADBAADOQEAAl6A9AWLW7oQoiHXdAI',
+  'BQADBAADBwEAAl6A9AXuD8xAc5avLwI',
+  'BQADBAADxwADXoD0BaTJK9_y3lrtAg',
+  'BQADBAADyQADXoD0BYyFKrC9hFpcAg',
+  'BQADBAADywADXoD0BaJ-5YWTuZxTAg',
+  'BQADBAADzwADXoD0BactihrL_9LKAg',
+  'BQADBAAD6wADXoD0Bbi4Fg2kp0fUAg'
 ];
 const execute = (bot, msg, match) => {
   const query = match.query;
@@ -30,8 +30,12 @@ const execute = (bot, msg, match) => {
     res.on('end', (err) => {
       try {
         data = JSON.parse(data);
-        if(data.AbstractText !== "") {
-          const _return = "Segundo o DuckDuckGo: <i>"+data.AbstractText+"</i> Saiba mais em "+data.AbstractURL;
+        /**
+         * @param data.AbstractText
+         * @param data.AbstractURL
+         */
+        if (data.AbstractText !== "") {
+          const _return = "Segundo o DuckDuckGo: <i>" + data.AbstractText + "</i> Saiba mais em " + data.AbstractURL;
           bot.sendMessage(msg.chat.id, _return, parse);
           // bot.sendMessage(msg.chat.id, 'Data: "'+JSON.stringify(data)+'"');
           console.log("data): " + data);
@@ -43,7 +47,7 @@ const execute = (bot, msg, match) => {
           bot.sendSticker(msg.chat.id, sticker);
         }
       } catch (e) {
-        bot.sendMessage(msg.chat.id, "DEU MERDA: "+e, pm);
+        bot.sendMessage(msg.chat.id, "DEU MERDA: " + e);
         console.log("Erro end: " + err)
       }
     });
@@ -52,5 +56,5 @@ const execute = (bot, msg, match) => {
   req.on('error', (e) => console.error(e));
 };
 module.exports = {
-    execute: execute
+  execute: execute
 };

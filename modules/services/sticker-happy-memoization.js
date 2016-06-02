@@ -29,7 +29,14 @@ const testMemoization = (stckr) => {
   return stckr;
 };
 const _rand = (stickers) => Math.floor(Math.random() * stickers.length);
-const execute = () => {
+
+/**
+ * @param bot
+ * @param msg
+ * @param msg.message_id
+ * @param msg.chat.id
+ */
+const execute = (bot, msg) => {
   let stckr = testMemoization(_rand(stickers));
   console.log('execute stckr', stckr);
   const reply = { 'reply_to_message_id': msg.message_id };

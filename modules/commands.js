@@ -24,4 +24,4 @@ module.exports = {
     'repo': repo,
     'sendsticker': sendsticker,
     'log': log
-}
+};

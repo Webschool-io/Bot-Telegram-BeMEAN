@@ -21,9 +21,6 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
     if (command in commands) {
       command = commands[command];
       if (match.length > command.numParams) {
-        if (args) {
-          args = args.split(' ');
-        }
         command.execute(msg, match, bot);
       } else {
         bot.sendMessage(msg.chat.id, "Ops, número incorreto de parâmetros fornecidos (" + match.length + "). Número de parâmetros exigidos: " + command.numParams + " :/");
@@ -64,14 +61,14 @@ bot.onText(/\.test/, (msg, match) => {
 });
 // Pares
 bot.onText(/^par/i, (msg, match) => {
-  const _arr = msg.text.split('par ')[1]
+  const _arr = msg.text.split('par ')[1];
   const arr = JSON.parse(_arr);
   const _return = arr.filter((acc) => !(acc % 2));
   bot.sendMessage(msg.chat.id, 'Par(es): ' + _return);
 });
 // Ímpares
 bot.onText(/^impar/i, (msg, match) => {
-  const _arr = msg.text.split('par ')[1]
+  const _arr = msg.text.split('par ')[1];
   const arr = JSON.parse(_arr);
   const _return = arr.filter((acc) => (acc % 2));
   bot.sendMessage(msg.chat.id, 'Ímpar(es): ' + _return);
@@ -103,7 +100,7 @@ var _obj = {
 , fn: (msg, match) => {
     bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
   }
-}
+};
 _services.push(_obj);
 var _obj = {};
 
@@ -116,7 +113,7 @@ var _obj = {
     // console.log('serviceName', serviceName)
     services[serviceName].execute(bot, msg, match);
   }
-}
+};
 _services.push(_obj);
 var _obj = {};
 
@@ -128,7 +125,7 @@ var _obj = {
 , fn: (msg, match) => {
   services[serviceName].execute(bot, msg, match);
   }
-}
+};
 _services.push(_obj);
 var _obj = {};
 
@@ -140,7 +137,7 @@ var _obj = {
 , fn: (msg, match) => {
    services[serviceName].execute(bot, msg, match);
   }
-}
+};
 _services.push(_obj);
 var _obj = {};
 
@@ -150,12 +147,12 @@ var _obj = {
   member: serviceName
 , regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
 , fn: (msg, match) => {
-    console.log('wikipedia')
+    console.log('wikipedia');
     const parse = { 'wh': match[1], 'query': match[3] };
     services.wikipedia.execute(bot, msg, parse);
     // require('./modules/mediator/wikipedia')(bot, msg, parse)
   }
-}
+};
 _services.push(_obj);
 var _obj = {};
 

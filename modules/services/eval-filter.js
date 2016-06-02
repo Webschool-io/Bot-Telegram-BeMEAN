@@ -3,7 +3,7 @@
 const _eval = 'filter';
 const isOk = require('../regexutils').isInputOK;
 
-const execute = (bot, msg, match) => {
+const execute = (bot, msg) => {
 	if (isOk(msg.text)) {
 		bot.sendMessage(msg.chat.id, _eval + ': ' + eval(msg.text));
 	} else {

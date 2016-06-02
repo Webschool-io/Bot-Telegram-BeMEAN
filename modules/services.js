@@ -3,7 +3,7 @@
 const evalDate = require('./services/eval-date');
 const evalFilter = require('./services/eval-filter');
 const evalMap = require('./services/eval-map');
-const evalRduce = require('./services/eval-reduce');
+const evalReduce = require('./services/eval-reduce');
 const evalTest = require('./services/eval-test');
 const wikipedia = require('./services/wikipedia');
 const math = require('./services/math');
@@ -44,7 +44,7 @@ module.exports = {
   evalDate,
   evalFilter,
   evalMap,
-  evalRduce,
+  evalReduce,
   evalTest,
   stickerHeart,
   stickerHappy,

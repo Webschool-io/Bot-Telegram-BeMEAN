@@ -6,4 +6,4 @@ const execute = (msg, match, bot) => bot.sendMessage(msg.chat.id, msgDefault, {'
 module.exports = {
     'execute': execute,
     'numParams': 0
-}
+};

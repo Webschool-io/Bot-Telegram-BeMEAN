@@ -10,7 +10,7 @@ const Interface = Object.seal({
 , members: []
 // , emmit
 // , remove
-})
+});
 console.log('no interface.js', Interface.add);
 module.exports = Interface;
 

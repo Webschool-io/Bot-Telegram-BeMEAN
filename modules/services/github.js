@@ -7,7 +7,6 @@ const cheerioAdv = require('cheerio-advanced-selectors');
 const cheerio = cheerioAdv.wrap(require('cheerio'));
 
 //Strings
-const regexOnde = /Onde|ond|cadê|cade/i;
 const pm = { 'parse_mode': 'HTML' };
 const messages = {
     coordsNotFound: "*Vish, não achei as coordenadas, mas aí vai a definição: *\n",
@@ -44,7 +43,6 @@ const escapeHTML = (code) =>
  const parseResponse = (err, res, html, args, bot, msg, _url) => {
 
     const query = args.query;
-    const wh = args.wh;
     if (!err) {
         switch (res.statusCode) {
             case 200:
@@ -55,7 +53,7 @@ const escapeHTML = (code) =>
             };
 
               var answer = answers.quickDef;
-            const _return = 'Via Github: "' + answer.replace(/\[[^]]*\]/, "") + '". fonte: ' +_url;
+              const _return = 'Via Github: "' + answer.replace(/\[[^]]*]/, "") + '". fonte: ' + _url;
 
             bot.sendMessage(msg.chat.id, _return, pm);
             break;

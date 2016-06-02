@@ -11,7 +11,7 @@ const risadas = [
 
 let contadores = [];
 
-const execute = (bot, msg, args) => {
+const execute = (bot, msg) => {
   let contagem = contadores[msg.chat.id];
   if ((contagem && contagem >= limite) || msg.chat.type == 'private') {
     bot.sendMessage(msg.chat.id, risadas[Math.floor(Math.random() * risadas.length)]);

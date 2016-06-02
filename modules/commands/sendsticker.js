@@ -10,9 +10,9 @@ const execute = (msg, match, bot) => {
     } catch (Ex) {
         bot.sendMessage(msg.chat.id, "Erro ao enviar sticker: `" + ex + "`", { 'parse_mode': 'Markdown', 'reply_to_message_id': msg.message_id });
     }
-}
+};
 
 module.exports = {
     execute: execute,
     'numParams': 1
-}
+};

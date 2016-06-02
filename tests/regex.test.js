@@ -3,6 +3,9 @@
 const expect = require('chai').expect;
 const ctrl = require('./pokemon-controller');
 
+/**
+ * @param describe
+ */
 describe('Controller of Pokemons', () => {
   const pokemon = {
     name        : 'Jean',
@@ -21,6 +24,10 @@ describe('Controller of Pokemons', () => {
 
   describe('create a new polkemon', () => {
     it('exprect a new pokmeno has created', done => {
+      /**
+       * @param data
+       * @param data._id
+       */
       ctrl.create(pokemon,(err,data) => {
         /*jshint expr: true*/
         expect(err).to.not.exist;

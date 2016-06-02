@@ -12,9 +12,9 @@ const execute = (msg, match, bot) => {
     } else {
         bot.sendMessage(msg.chat.id, "Id da conversa:  " + msg.chat.id + '\nId do usuário: ' + msg.from.id);
     }
-}
+};
 
 module.exports = {
     'execute': execute,
     'numParams': 0
-}
+};

@@ -4,26 +4,30 @@ const TelegramBot = require('node-telegram-bot-api');
 require('dotenv').config();
 
 const token = process.env.API_TOKEN || 'INSERT API_TOKEN';
+const username = process.env.USERNAME || '@bemean_oficialbot';
 // Setup polling way
 const bot = new TelegramBot(token, {polling: true});
 
 const commands = require('./modules/commands');
 const services = require('./modules/services');
 
+
 // Matches commands
-bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
-  let command = match[1];
-  if (command) {
-    if (command in commands) {
-      command = commands[command];
-      let argsCount = match.length - 2;
-      if (argsCount >= command.numParams) {
-        command.execute(msg, match, bot);
+bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?(@.*)?/i, (msg, match) => {
+  if ((match[3] && match[3] == username) || !match[3]) {
+    let command = match[1];
+    if (command) {
+      if (command in commands) {
+        command = commands[command];
+        let argsCount = match.length - 2;
+        if (argsCount >= command.numParams) {
+          command.execute(msg, match, bot);
+        } else {
+          bot.sendMessage(msg.chat.id, "Ops, número incorreto de parâmetros fornecidos (" + argsCount + "). Número de parâmetros exigidos: " + command.numParams + " :/");
+        }
       } else {
-        bot.sendMessage(msg.chat.id, "Ops, número incorreto de parâmetros fornecidos (" + argsCount + "). Número de parâmetros exigidos: " + command.numParams + " :/");
+        if (match[3]) bot.sendMessage(msg.chat.id, "Eita, esse comando não existe :/");
       }
-    } else {
-      bot.sendMessage(msg.chat.id, "Eita, esse comando não existe :/");
     }
   }
 });
