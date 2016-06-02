@@ -15,18 +15,18 @@ describe('Testando memoization', () => {
     _returns.push(memoization.execute());
     console.log('_returns', _returns);
     console.log('_returns[_returns.length-1]', _returns[_returns.length - 1]);
-    expect(_returns[_returns.length-1]).to.not.equal(memoization.execute());
+    expect(_returns[_returns.length - 1]).to.not.equal(memoization.execute());
   });
   it('não pode retornar igual a última', () => {
     _returns.push(memoization.execute());
     console.log('_returns', _returns);
     console.log('_returns[_returns.length-1]', _returns[_returns.length - 1]);
-    expect(_returns[_returns.length-1]).to.not.equal(memoization.execute());
+    expect(_returns[_returns.length - 1]).to.not.equal(memoization.execute());
   });
   it('não pode retornar igual a última', () => {
     _returns.push(memoization.execute());
     console.log('_returns', _returns);
     console.log('_returns[_returns.length-1]', _returns[_returns.length - 1]);
-    expect(_returns[_returns.length-1]).to.not.equal(memoization.execute());
+    expect(_returns[_returns.length - 1]).to.not.equal(memoization.execute());
   })
 });

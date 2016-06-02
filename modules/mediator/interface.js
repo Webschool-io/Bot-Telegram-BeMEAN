@@ -1,13 +1,13 @@
 'use strict';
 
 /*
-  Esse Mediator trabalha com REGEX em vez de EVENOS especificamente para BOTS
-*/
+ Esse Mediator trabalha com REGEX em vez de EVENOS especificamente para BOTS
+ */
 
 const Interface = Object.seal({
   add: require('./add')
-, on: require('./on')
-, members: []
+  , on: require('./on')
+  , members: []
 // , emmit
 // , remove
 });

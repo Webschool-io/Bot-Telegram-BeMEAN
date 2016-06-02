@@ -9,12 +9,12 @@ const execute = (bot, msg) => {
   const fileName = Math.random().toString() + '.mp3';
   // const out = execSync("espeak -v pt --stdout '"+_txt+"' | avconv -i pipe:0 '"+fileName+"'");
   // const audio = fs.readFileSync(fileName);
-  bot.sendMessage(msg.chat.id, 'Enviando audio: '+fileName);
+  bot.sendMessage(msg.chat.id, 'Enviando audio: ' + fileName);
   // bot.sendVoice(msg.chat.id, './'+fileName);
 };
 
 module.exports = {
-    execute: execute
+  execute: execute
 };
 
 // const sendSpeak = (chat, txt, opts, callback) => {

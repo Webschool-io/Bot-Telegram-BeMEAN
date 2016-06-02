@@ -13,15 +13,15 @@ const sendsticker = require('./commands/sendsticker');
 const log = require('./commands/log');
 
 module.exports = {
-    'echo': echo,
-    'ping': ping,
-    'id': id,
-    'start': start,
-    'webschool': webschool,
-    'help': help,
-    'par': par,
-    'impar': impar,
-    'repo': repo,
-    'sendsticker': sendsticker,
-    'log': log
+  'echo': echo,
+  'ping': ping,
+  'id': id,
+  'start': start,
+  'webschool': webschool,
+  'help': help,
+  'par': par,
+  'impar': impar,
+  'repo': repo,
+  'sendsticker': sendsticker,
+  'log': log
 };

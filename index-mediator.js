@@ -5,10 +5,9 @@ require('dotenv').config();
 
 const Mediator = require('./modules/mediator/');
 
-
 const token = process.env.API_TOKEN || 'INSERT API_TOKEN';
 // Setup polling way
-const bot = new TelegramBot(token, { polling: true });
+const bot = new TelegramBot(token, {polling: true});
 
 const commands = require('./modules/commands');
 const services = require('./modules/services');
@@ -35,7 +34,6 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?/, (msg, match) => {
 bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg, match) => {
   bot.sendMessage(msg.chat.id, 'ESSE COMANDO NAO EXISTE PORRAA!!!!');
 });
-
 
 // Funções JS
 // reduce
@@ -89,15 +87,14 @@ bot.onText(/b(oa|om) (dia|tarde|noite)/i, (msg, match) => {
   services.saudacao.execute(bot, msg, match);
 });
 
-
 // Services
 const _services = [];
 // Date
 var serviceName = 'date';
 var _obj = {
   member: 'date'
-, regex: /Date\.|new Date/
-, fn: (msg, match) => {
+  , regex: /Date\.|new Date/
+  , fn: (msg, match) => {
     bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
   }
 };
@@ -108,8 +105,8 @@ var _obj = {};
 var serviceName = 'md5';
 var _obj = {
   member: serviceName
-, regex: /^md5\s+([a-zA-Z])+/i
-, fn: (msg, match) => {
+  , regex: /^md5\s+([a-zA-Z])+/i
+  , fn: (msg, match) => {
     // console.log('serviceName', serviceName)
     services[serviceName].execute(bot, msg, match);
   }
@@ -121,9 +118,9 @@ var _obj = {};
 var serviceName = 'gmaps';
 var _obj = {
   member: serviceName
-, regex: /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i
-, fn: (msg, match) => {
-  services[serviceName].execute(bot, msg, match);
+  , regex: /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i
+  , fn: (msg, match) => {
+    services[serviceName].execute(bot, msg, match);
   }
 };
 _services.push(_obj);
@@ -133,9 +130,9 @@ var _obj = {};
 var serviceName = 'mdn';
 var _obj = {
   member: serviceName
-, regex: /^js\s+([a-zA-Z])+/i
-, fn: (msg, match) => {
-   services[serviceName].execute(bot, msg, match);
+  , regex: /^js\s+([a-zA-Z])+/i
+  , fn: (msg, match) => {
+    services[serviceName].execute(bot, msg, match);
   }
 };
 _services.push(_obj);
@@ -145,10 +142,10 @@ var _obj = {};
 var serviceName = 'wikipedia';
 var _obj = {
   member: serviceName
-, regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
-, fn: (msg, match) => {
+  , regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
+  , fn: (msg, match) => {
     console.log('wikipedia');
-    const parse = { 'wh': match[1], 'query': match[3] };
+    const parse = {'wh': match[1], 'query': match[3]};
     services.wikipedia.execute(bot, msg, parse);
     // require('./modules/mediator/wikipedia')(bot, msg, parse)
   }
@@ -156,7 +153,7 @@ var _obj = {
 _services.push(_obj);
 var _obj = {};
 
-_services.forEach( function(element, index) {
+_services.forEach(function (element, index) {
   Mediator.add(bot, element.member, element.regex, element.fn);
   Mediator.on(bot, element.regex, element.fn);
 });

@@ -8,12 +8,12 @@ const ctrl = require('./pokemon-controller');
  */
 describe('Controller of Pokemons', () => {
   const pokemon = {
-    name        : 'Jean',
-    description : 'Pokemonzudo S2',
-    type        : 'Fire',
-    attack      : 85,
-    defense     : 85,
-    height      : 1.80
+    name: 'Jean',
+    description: 'Pokemonzudo S2',
+    type: 'Fire',
+    attack: 85,
+    defense: 85,
+    height: 1.80
   };
 
   after(done => {
@@ -28,7 +28,7 @@ describe('Controller of Pokemons', () => {
        * @param data
        * @param data._id
        */
-      ctrl.create(pokemon,(err,data) => {
+      ctrl.create(pokemon, (err, data) => {
         /*jshint expr: true*/
         expect(err).to.not.exist;
         expect(data._id).to.exist;

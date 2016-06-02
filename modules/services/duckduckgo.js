@@ -46,7 +46,8 @@ const execute = (bot, msg, match) => {
           bot.sendMessage(msg.chat.id, _return, parse);
           bot.sendSticker(msg.chat.id, sticker);
         }
-      } catch (e) {
+      }
+      catch (e) {
         bot.sendMessage(msg.chat.id, "DEU MERDA: " + e);
         console.log("Erro end: " + err)
       }

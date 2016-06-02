@@ -8,8 +8,7 @@ const cheerio = cheerioAdv.wrap(require('cheerio'));
 
 //Strings
 const regexOnde = /Onde|ond|cadê|cade/i;
-const pm = {'parse_mode': 'Markdown'};
-const ph = {'parse_mode': 'HTML'};
+const pm = {'parse_mode': 'HTML'};
 const messages = {
   coordsNotFound: "*Vish, não achei as coordenadas, mas aí vai a definição: *\n",
   requestError: "Droga, deu um erro aqui em :/ ID do erro: `%mili%`",
@@ -50,23 +49,15 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
     switch (res.statusCode) {
       case 200:
         const $ = cheerio.load(html);
-        //noinspection JSJQueryEfficiency,JSJQueryEfficiency,JSJQueryEfficiency
         const answers = {
-          quickDef: $('#bodyContent #mw-content-text p:first').not('.coordinates').text(),
-          coordinates: $('#bodyContent #mw-content-text p.coordinates').text(),
-          longDef: $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 300)
+          quickDef: $('.main-content .repo-list-description').not('.coordinates').text(),
+          'link': $('.main-content h3.repo-list-name').text()
         };
 
         var answer = answers.quickDef;
+        const _return = 'Via Github: "' + answer.replace(/\[[^]]*]/, "") + '". fonte: ' + _url;
 
-        if (wh.match(regexOnde)) {
-          answer = (answers.coordinates != "") ? answers.coordinates : messages.coordsNotFound + answers.longDef;
-        }
-
-        answer = (answer == "") ? answers.longDef : answer;
-        const _return = 'Segundo a Wikipédia: "<i>' + answer.replace(/\[[^]]*]/, "") + '</i>". fonte: ' + _url;
-
-        bot.sendMessage(msg.chat.id, _return, ph);
+        bot.sendMessage(msg.chat.id, _return, pm);
         break;
       case 404:
         // bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
@@ -88,21 +79,14 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
  * @param args Objeto contento o tipo de pesquisa a realizar(wh) e o termo pesquisado (query)
  */
 var execute = (bot, msg, args) => {
-  // console.log('args', args.query, args.query.toLowerCase().match(/o seu criador/i))
-  if (args.query.toLowerCase() == 'o seu criador') {
-    console.log('quem é o seu criador');
-    bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', {'reply_to_message_id': msg.message_id})
+  try {
+    const _url = 'https://pt.wikipedia.org/w/index.php?title=' + args.query.replace(" ", "_");
+    request(_url, (err, res, html) => {
+      parseResponse(err, res, html, args, bot, msg, _url);
+    });
   }
-  else {
-    try {
-      const _url = 'https://pt.wikipedia.org/w/index.php?title=' + args.query.toLowerCase().split(" ").join("_");
-      request(_url, (err, res, html) => {
-        parseResponse(err, res, html, args, bot, msg, _url);
-      });
-    }
-    catch (e) {
-      bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
-    }
+  catch (e) {
+    bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
   }
 };
 

@@ -4,7 +4,7 @@ const url = require('url');
 const https = require('https');
 const cheerioAdv = require('cheerio-advanced-selectors');
 const cheerio = cheerioAdv.wrap(require('cheerio'));
-const parse = { 'parse_mode': 'HTML' };
+const parse = {'parse_mode': 'HTML'};
 const execute = (bot, msg) => {
   const arr = msg.text.split('npm ');
   const _base = 'https://www.npmjs.com/package/';
@@ -29,8 +29,9 @@ const execute = (bot, msg) => {
         bot.sendMessage(msg.chat.id, _return, parse);
         // const __return = 'Segundo o npm long: "<i>' + answers.longDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
         // bot.sendMessage(msg.chat.id, __return, parse);
-      } catch (e) {
-        bot.sendMessage(msg.chat.id, "DEU MERDA: "+e);
+      }
+      catch (e) {
+        bot.sendMessage(msg.chat.id, "DEU MERDA: " + e);
         console.log("Erro end: " + err)
       }
     });
@@ -39,5 +40,5 @@ const execute = (bot, msg) => {
   req.on('error', (e) => console.error(e));
 };
 module.exports = {
-    execute: execute
+  execute: execute
 };

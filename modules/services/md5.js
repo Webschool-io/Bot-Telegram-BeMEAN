@@ -9,5 +9,5 @@ const execute = (bot, msg, match) => {
   console.log('query', query)
 };
 module.exports = {
-    execute: execute
+  execute: execute
 };

@@ -6,7 +6,6 @@ const Commands = require('./../commands');
 
 Mediator.members = [];
 
-
 Mediator.add = (bot, member, regex, fn) => {
   const _obj = {};
   _obj[member] = {regex, fn};
@@ -21,7 +20,6 @@ Mediator.on = (bot, regex, fn) => {
   // Mediator.members[member].fn(bot, msg)
   // console.log('bot.onText(regex, fn)', regex, fn)
 };
-
 
 // bot.onText(/Date\.|new Date/, (msg, match) => {
 //   // services.mdn.execute(bot, msg, match);

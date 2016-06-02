@@ -1,3 +1,4 @@
 'use strict';
 
-module.exports = (member, fn) => {};
+module.exports = (member, fn) => {
+};
