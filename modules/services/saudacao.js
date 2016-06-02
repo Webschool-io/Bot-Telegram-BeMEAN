@@ -14,11 +14,11 @@ const execute = (bot, msg, match) => {
   minutos = minutos < 10 ? '0' + minutos : minutos;
   const pu = match[2];
   let pr = "";
-  if (horas <= 12) {
+  if (horas < 12) {
     pr = "dia";
-  } else if (horas > 12 && horas <= 18) {
+  } else if (horas >= 12 && horas < 18) {
     pr = "tarde";
-  } else if (horas > 18) {
+  } else if (horas >= 18) {
     pr = "noite";
   }
 
