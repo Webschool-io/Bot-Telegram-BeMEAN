@@ -151,7 +151,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'sticker-heart',
-      regex: /(❤️|<3|S2)/i,
+      regex: /(❤️|<3|S2[^\d]?)/i,
       fn: (bot, msg) => services.stickerHeart.execute(bot, msg, match),
       eval: false
     },
