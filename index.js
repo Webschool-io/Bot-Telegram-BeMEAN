@@ -103,7 +103,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'wikipedia',
-      regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^?]*)\s?\??/i,
+      regex: /^(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^?]*)\s?\??/i,
       fn: (bot, msg, match) => services.wikipedia.execute(bot, msg, {'wh': match[1], 'query': match[3]}),
       eval: false
     },
