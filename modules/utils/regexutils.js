@@ -6,7 +6,8 @@ const regex = {
     /.*exec.*/ig,
     /.*env.*/ig,
     /.*exit.*/ig,
-    /.*require.*/ig
+    /.*require.*/ig,
+    /.*bot*./ig
   ]
 };
 
