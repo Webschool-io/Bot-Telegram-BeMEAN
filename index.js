@@ -186,7 +186,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
           if (security.isSecure(msg, service.eval)) {
             service.fn(bot, msg, _match);
           } else {
-            monitutils.notifyBlacklistedEval(msg, bot);
+            monitutils.notifyBlacklistedEval(msg, bot, service.member);
           }
         }
       });

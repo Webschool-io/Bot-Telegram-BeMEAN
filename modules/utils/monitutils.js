@@ -15,10 +15,10 @@ const notifySharedAccount = (bot, txt) => {
   bot.sendMessage(shared_account_id, txt, {parse_mode: 'Markdown'});
 };
 
-const notifyBlacklistedEval = (msg, bot) => {
-  const userinfo = msg.from.first_name + ' ' + msg.from.last_name + ' | @' + msg.from.username + ' | ' + msg.from.last_name;
+const notifyBlacklistedEval = (msg, bot, service) => {
+  const userinfo = msg.from.first_name + ' ' + msg.from.last_name + ' | @' + msg.from.username;
   const evalInfo = '`' + msg.text + '`';
-  notifyAdmins(bot, "Eval malicioso recebido: " + evalInfo + "\nEnviado por: " + userinfo);
+  notifyAdmins(bot, "Eval malicioso recebido: " + evalInfo + "\nEnviado por: " + userinfo + '\nService: ' + service);
 };
 
 module.exports = {
