@@ -109,7 +109,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'math',
-      regex: /(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i,
+      regex: /^(?!http)(Math\.)|^(?!http)\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i,
       fn: (bot, msg, match) => services.math.execute(bot, msg),
       eval: true
     },
