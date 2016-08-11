@@ -14,7 +14,6 @@ const errMsg = "Droga, ocorreu um erro ao processar a solicitação :/";
 
 const localeNotFound = (bot, msg, query, result) => {
   bot.sendMessage(msg.chat.id, "Então... Tem certeza que esse lugar existe? Pq procurei ele no Google Maps, e não achei, não :/");
-  monitutils.notifySharedAccount(bot, "Locale not found at gmaps service: " + query + "\nresult: " + encodeURIComponent(JSON.stringify(result)));
 }
 
 const execute = (bot, msg, match) => {
@@ -32,13 +31,11 @@ const execute = (bot, msg, match) => {
     }
 
     if (result.status != 'OK' || !result) {
-      monitutils.notifySharedAccount(bot, "Erro no service do gmaps:\nQuery: `" + query + "`\nresult: `" + JSON.stringify(result) + "`");
       if (result.status == 'ZERO_RESULTS') {
-        localeNotFound(bot, msg, query, result)
-        return;
-      };
-
-      bot.sendMessage(msg.chat.id, errMsg);
+        localeNotFound(bot, msg, query, result);
+      } else {
+        bot.sendMessage(msg.chat.id, errMsg);
+      }
       return;
     }
 
