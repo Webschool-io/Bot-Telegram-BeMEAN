@@ -3,9 +3,47 @@
 const url = require('url');
 const https = require('https');
 
+const GoogleMapsAPI = require('googlemaps');
+const config = {
+  key: 'AIzaSyBnsCuuS0N0Akc1I3WEifbNoBCQ1iZ4a9g', //Não tente usar a chave, ela só aceita requests do meu server =)
+  secure: true
+}
+const api = new GoogleMapsAPI(config);
+const monitutils = require('./modules/utils/monitutils');
+const errMsg = "Droga, ocorreu um erro ao processar a solicitação :/";
+
+
 const execute = (bot, msg, match) => {
   // const query = msg.text.replace(/["'!?]/g, '');
   const query = match[3].replace(/["'!?]/g, '');
+  let geocodeParams = {
+    'address': query,
+  }
+
+  api.geocode(geocodeParams, (err, result) => {
+    if (err) {
+      bot.sendMessage(msg.chat.id, errMsg);
+      monitutils.notifySharedAccount(bot, "Erro no service do gmaps:\nQuery: `" + query + "`\nerr: `" + err + "`");
+      return;
+    }
+
+    if (result.status != 'OK' || !result) {
+      bot.sendMessage(msg.chat.id, errMsg);
+      monitutils.notifySharedAccount(bot, "Erro no service do gmaps:\nQuery: `" + query + "`\nresult: `" + result + "`");
+      return;
+    }
+
+    if (!result[0]) {
+      bot.sendMessage(msg.chat.id, "Então... Tem certeza que esse lugar existe? Pq procurei ele no Google Maps, e não achei, não :/");
+      return;
+    }
+
+    if (result[0]) {
+      bot.sendMessage(msg.chat.id, JSON.stringify(result[0]));
+    }
+  });
+
+  /*
   bot.sendLocation(msg.chat.id, 'query: ' + query);
   const _base = 'https://maps.googleapis.com/maps/api/geocode/json';
   var _url = url.parse(_base + '?sensor=false&address=' + encodeURIComponent(query));
@@ -13,12 +51,12 @@ const execute = (bot, msg, match) => {
     'User-Agent': 'Mozilla like'
     , 'Accept-Language': 'pt-BR;q=1, pt;q=0.8, en;q=0.5'
   };
-  /*var options = {
+  var options = {
    hostname: '_base',
    port: 443,
    path: '?sensor=false&address=' + encodeURIComponent(query),
    method: 'GET'
-   };*/
+   };
   var req = https.request(_url, (res) => {
     let data = '';
     let coords = {};
@@ -28,21 +66,26 @@ const execute = (bot, msg, match) => {
         /**
          * @param coords.lat
          * @param coords.lng
-         */
-        data = JSON.parse(data);
-        coords = data.count[0].geometry.location;
-        console.log("coords: " + JSON.stringify(coords));
-        bot.sendLocation(msg.chat.id, coords.lat, coords.lng);
-      }
-      catch (err) {
-        console.log("Erro end: " + err)
-      }
-    });
-  });
-  req.end();
-  req.on('error', (e) => {
-    console.error(e);
-  });
+         **/
+  /*
+ data = JSON.parse(data);
+ bot.sendMessage(msg.chat.id, JSON.stringify(data), {
+   'parse_mode': 'Markdown',
+   'reply_to_message_id': msg.message_id
+ });
+ coords = data.count[0].geometry.location;
+ console.log("coords: " + JSON.stringify(coords));
+ bot.sendLocation(msg.chat.id, coords.lat, coords.lng);
+}
+catch (err) {
+ console.log("Erro end: " + err)
+}
+});
+});
+req.end();
+req.on('error', (e) => {
+console.error(e);
+});*/
 };
 module.exports = {
   execute: execute
