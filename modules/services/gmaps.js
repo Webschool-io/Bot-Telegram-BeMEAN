@@ -9,7 +9,7 @@ const config = {
   secure: true
 }
 const api = new GoogleMapsAPI(config);
-const monitutils = require('./modules/utils/monitutils');
+const monitutils = require('../utils/monitutils');
 const errMsg = "Droga, ocorreu um erro ao processar a solicitação :/";
 
 
