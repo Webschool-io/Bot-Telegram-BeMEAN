@@ -32,9 +32,13 @@ const execute = (bot, msg, match) => {
     }
 
     if (result.status != 'OK' || !result) {
-      bot.sendMessage(msg.chat.id, errMsg);
       monitutils.notifySharedAccount(bot, "Erro no service do gmaps:\nQuery: `" + query + "`\nresult: `" + JSON.stringify(result) + "`");
-      if (result.status == 'ZERO_RESULTS') localeNotFound(bot, msg, query, result);
+      if (result.status == 'ZERO_RESULTS') {
+        localeNotFound(bot, msg, query, result)
+        return;
+      };
+
+      bot.sendMessage(msg.chat.id, errMsg);
       return;
     }
 
