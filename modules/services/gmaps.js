@@ -35,7 +35,7 @@ const execute = (bot, msg, match) => {
 
     if (!result[0]) {
       bot.sendMessage(msg.chat.id, "Então... Tem certeza que esse lugar existe? Pq procurei ele no Google Maps, e não achei, não :/");
-      monitutils.notifySharedAccount(bot, "Locale not found at gmaps service: " + query + "\nresult: " + JSON.stringify(result));
+      monitutils.notifySharedAccount(bot, "Locale not found at gmaps service: " + query + "\nresult: " + encodeURIComponent(JSON.stringify(result)));
       return;
     }
 
