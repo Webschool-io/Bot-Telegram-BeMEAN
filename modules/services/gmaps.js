@@ -33,14 +33,22 @@ const execute = (bot, msg, match) => {
       return;
     }
 
-    if (!result[0]) {
+    if (!result.results[0]) {
       bot.sendMessage(msg.chat.id, "Então... Tem certeza que esse lugar existe? Pq procurei ele no Google Maps, e não achei, não :/");
       monitutils.notifySharedAccount(bot, "Locale not found at gmaps service: " + query + "\nresult: " + encodeURIComponent(JSON.stringify(result)));
       return;
     }
 
-    if (result[0]) {
-      bot.sendMessage(msg.chat.id, JSON.stringify(result[0]));
+    if (result.results[0]) {
+      let info = result.results[0];
+      let name, lat, lng;
+      
+      name = info.formattedaddress;
+      lat = info.geometry.location.lat;
+      lng = info.geometry.location.lng;
+      
+      bot.sendMessage(msg.chat.id, "Encontrei isso no Google Maps: " + name);
+      bot.sendLocation(msg.chat.id, lat, lng);
     }
   });
 
