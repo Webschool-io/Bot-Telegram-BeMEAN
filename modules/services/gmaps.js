@@ -23,13 +23,13 @@ const execute = (bot, msg, match) => {
   api.geocode(geocodeParams, (err, result) => {
     if (err) {
       bot.sendMessage(msg.chat.id, errMsg);
-      monitutils.notifySharedAccount(bot, "Erro no service do gmaps:\nQuery: `" + query + "`\nerr: `" + err + "`");
+      monitutils.notifySharedAccount(bot, "Erro no service do gmaps:\nQuery: `" + query + "`\nerr: `" + JSON.stringify(err) + "`");
       return;
     }
 
     if (result.status != 'OK' || !result) {
       bot.sendMessage(msg.chat.id, errMsg);
-      monitutils.notifySharedAccount(bot, "Erro no service do gmaps:\nQuery: `" + query + "`\nresult: `" + result + "`");
+      monitutils.notifySharedAccount(bot, "Erro no service do gmaps:\nQuery: `" + query + "`\nresult: `" + JSON.stringify(result) + "`");
       return;
     }
 
