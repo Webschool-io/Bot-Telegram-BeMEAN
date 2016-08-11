@@ -42,12 +42,14 @@ const execute = (bot, msg, match) => {
     if (result.results[0]) {
       let info = result.results[0];
       let name, lat, lng;
-      
+
       name = info.formattedaddress;
       lat = info.geometry.location.lat;
       lng = info.geometry.location.lng;
-      
+
       bot.sendMessage(msg.chat.id, "Encontrei isso no Google Maps: " + name);
+      monitutils.notifySharedAccount(bot, "info: `" + info + "`");
+      monitutils.notifySharedAccount(bot, "info: `" + encodeURIComponent(info) + "`");
       bot.sendLocation(msg.chat.id, lat, lng);
     }
   });
