@@ -12,7 +12,7 @@ const api = new GoogleMapsAPI(config);
 const monitutils = require('../utils/monitutils');
 const errMsg = "Droga, ocorreu um erro ao processar a solicitação :/";
 
-const localeNotFound = (bot, query, result) => {
+const localeNotFound = (bot, msg, query, result) => {
   bot.sendMessage(msg.chat.id, "Então... Tem certeza que esse lugar existe? Pq procurei ele no Google Maps, e não achei, não :/");
   monitutils.notifySharedAccount(bot, "Locale not found at gmaps service: " + query + "\nresult: " + encodeURIComponent(JSON.stringify(result)));
 }
@@ -34,12 +34,12 @@ const execute = (bot, msg, match) => {
     if (result.status != 'OK' || !result) {
       bot.sendMessage(msg.chat.id, errMsg);
       monitutils.notifySharedAccount(bot, "Erro no service do gmaps:\nQuery: `" + query + "`\nresult: `" + JSON.stringify(result) + "`");
-      if (result.status == 'ZERO_RESULTS') localeNotFound(bot, query, result);
+      if (result.status == 'ZERO_RESULTS') localeNotFound(bot, msg, query, result);
       return;
     }
 
     if (!result.results[0]) {
-      localeNotFound(bot, query, result);
+      localeNotFound(bot, msg, query, result);
       return;
     }
 
