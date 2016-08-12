@@ -13,7 +13,7 @@ const execute = (bot, msg) => {
     };
     
     api.reverseGeocode(reverseParams, (err, result) => {
-        bot.sendMessage(msg.chat.id, "Resultado: `" + JSON.stringify(result) + "`", {'parse_mode': 'markdown'});
+        console.log(JSON.stringify(result));
     });
 };
 
