@@ -6,7 +6,7 @@ require('dotenv').config();
 const token = process.env.API_TOKEN || 'INSERT API_TOKEN';
 const username = process.env.USERNAME || '@bemean_oficialbot';
 // Setup polling way
-const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(token, { polling: true });
 
 const commands = require('./modules/commands');
 const services = require('./modules/services');
@@ -104,7 +104,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     {
       member: 'wikipedia',
       regex: /^(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^?]*)\s?\??/i,
-      fn: (bot, msg, match) => services.wikipedia.execute(bot, msg, {'wh': match[1], 'query': match[3]}),
+      fn: (bot, msg, match) => services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] }),
       eval: false
     },
     {
@@ -202,8 +202,12 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
 bot.on('sticker', (msg) => {
   let ids = require('./modules/utils/monitutils').adminIds;
   if (msg.chat.type == 'private' && ids.indexOf(msg.chat.id) >= 0) {
-    bot.sendMessage(msg.chat.id, msg.sticker.file_id, {'reply_to_message_id': msg.message_id});
+    bot.sendMessage(msg.chat.id, msg.sticker.file_id, { 'reply_to_message_id': msg.message_id });
   }
+});
+
+bot.on('location', (msg) => {
+  services.whereami.execute(bot, msg);
 });
 
 // Pares
