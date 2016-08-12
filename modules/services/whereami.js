@@ -9,7 +9,8 @@ const monitutils = require('../utils/monitutils');
 const execute = (bot, msg) => {
     let reverseParams = {
         'latlng': msg.location.latitude + ',' + msg.location.longitude,
-        'language': 'pt-BR'
+        'language': 'pt-BR',
+        'location_type': 'APPROXIMATE'
     };
     
     api.reverseGeocode(reverseParams, (err, result) => {
