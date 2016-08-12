@@ -6,6 +6,11 @@ const config = {
 const api = new GoogleMapsAPI(config);
 const monitutils = require('../utils/monitutils');
 
+const localeNotFound = (bot, msg, query, result) => {
+  bot.sendMessage(msg.chat.id, "Então... Tem certeza que esse lugar existe? Pq procurei ele no Google Maps, e não achei, não :/");
+}
+
+
 const execute = (bot, msg) => {
     let reverseParams = {
         'latlng': msg.location.latitude + ',' + msg.location.longitude,
@@ -14,7 +19,33 @@ const execute = (bot, msg) => {
     };
     
     api.reverseGeocode(reverseParams, (err, result) => {
-        console.log(JSON.stringify(result));
+        
+        if (err) {
+            bot.sendMessage(msg.chat.id, errMsg);
+            monitutils.notifySharedAccount(bot, "Erro no service do whereami:\nerr: `" + JSON.stringify(err) + "`");
+            return;
+        }
+
+        if (result.status != 'OK' || !result) {
+            if (result.status == 'ZERO_RESULTS') {
+                localeNotFound(bot, msg, query, result);
+            } else {
+                bot.sendMessage(msg.chat.id, errMsg);
+            }
+            return;
+        }
+
+        if (!result.results[0]) {
+            localeNotFound(bot, msg, query, result);
+            return;
+        }
+        
+        if(result.results[0]){
+            let info = result.results[0];
+            let name = info.formatted_address;
+            
+            bot.sendMessage(msg.chat.id, 'Segundo o Google Maps, você está nesse endereço: `' + name + '`', {'parse_mode': 'Markdown'});
+        }
     });
 };
 
