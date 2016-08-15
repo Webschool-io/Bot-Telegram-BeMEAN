@@ -53,7 +53,7 @@ const execute = (bot, msg, match) => {
                 if (err) {
                     sendError(bot, msg, err, data);
                 } else {
-                    bot.sendMessage(msg.chat.id, "Valor da config `" + key + "`: `" + data + "`")
+                    bot.sendMessage(msg.chat.id, "Valor da config `" + match[1] + "`: `" + data + "`")
                 }
             });
         } else {
