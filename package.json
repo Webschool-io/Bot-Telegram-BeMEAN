@@ -23,6 +23,7 @@
     "github": "^0.2.4",
     "googlemaps": "^1.11.1",
     "md5": "^2.1.0",
+    "mongoose": "^4.5.9",
     "node-telegram-bot-api": "^0.21.1",
     "request": "^2.72.0"
   }

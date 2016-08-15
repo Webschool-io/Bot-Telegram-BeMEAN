@@ -28,6 +28,7 @@ const stickerWebschool = require('./services/sticker-webschool');
 const stickerBemean = require('./services/sticker-bemean');
 const omdb = require('./services/omdb');
 const whereami = require('./services/whereami');
+const config = require('./services/config');
 
 module.exports = {
   wikipedia,
@@ -52,5 +53,6 @@ module.exports = {
   stickerWebschool,
   stickerBemean,
   omdb,
-  whereami
+  whereami,
+  config
 };

@@ -172,6 +172,12 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       regex: /bot, (?:v?o?c?[e|ê]?)? *(?:j[a|á])? *(?:viu|assist[iu|e]|gost[a|ou]|conhece) *(?:de )? *([^?]+)/i,
       fn: (bot, msg, match) => services.omdb.execute(bot, msg, match),
       eval: false
+    },
+    {
+      member: 'config',
+      regex: /config +([^ ]+) *([^ ]+)*/i,
+      fn: (bot, msg, match) => services.config.execute(bot, msg, match),
+      eval: false
     }
   ];
 

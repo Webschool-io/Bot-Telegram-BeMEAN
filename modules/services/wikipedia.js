@@ -8,8 +8,8 @@ const cheerio = cheerioAdv.wrap(require('cheerio'));
 
 //Strings
 const regexOnde = /Onde|ond|cadê|cade/i;
-const pm = {'parse_mode': 'Markdown'};
-const ph = {'parse_mode': 'HTML'};
+const pm = { 'parse_mode': 'Markdown' };
+const ph = { 'parse_mode': 'HTML' };
 const messages = {
   coordsNotFound: "*Vish, não achei as coordenadas, mas aí vai a definição: *\n",
   requestError: "Droga, deu um erro aqui em :/ ID do erro: `%mili%`",
@@ -20,24 +20,24 @@ const messages = {
 
 // Makes HTML more compatible to https://core.telegram.org/bots/api#html-style
 const simpleHTML = (code) =>
-    code.split(/\s+/m).join(' ')
-        .replace(/<\/?(p|h[1-6])[^>]*>/gi, '\n\n')
-        .replace(/<\/?(br|div|ol|ul)[^>]*>/gi, '\n')
-        .replace(/<li[^>]*>/gi, '  • ')
-        .replace(/<\/li[^>]*>/gi, '\n')
-        .replace(/(<(?!\/?(b|i|a|pre|code))[^>]+>)/g, '')
-        .replace(/(<[^\/]>[^<]*)<[^\/]>/g, '$1')
-        .replace(/<\/[^>]+>([^<]*<\/[^>]+>)/g, '$1')
-        .replace(/<[^>]*$/g, '')
-        .replace(/&#([0-9]+);/, (match, g1) => String.fromCharCode(g1))
-        .replace(/(\n\s*){3,}/g, '\n\n')
-        .replace(/^\s*|\s*$/g, '');
+  code.split(/\s+/m).join(' ')
+    .replace(/<\/?(p|h[1-6])[^>]*>/gi, '\n\n')
+    .replace(/<\/?(br|div|ol|ul)[^>]*>/gi, '\n')
+    .replace(/<li[^>]*>/gi, '  • ')
+    .replace(/<\/li[^>]*>/gi, '\n')
+    .replace(/(<(?!\/?(b|i|a|pre|code))[^>]+>)/g, '')
+    .replace(/(<[^\/]>[^<]*)<[^\/]>/g, '$1')
+    .replace(/<\/[^>]+>([^<]*<\/[^>]+>)/g, '$1')
+    .replace(/<[^>]*$/g, '')
+    .replace(/&#([0-9]+);/, (match, g1) => String.fromCharCode(g1))
+    .replace(/(\n\s*){3,}/g, '\n\n')
+    .replace(/^\s*|\s*$/g, '');
 
 const escapeHTML = (code) =>
-    code.replace(/&/gi, '&amp;')
-        .replace(/>/gi, '&gt;')
-        .replace(/</gi, '&lt;')
-        .replace(/"/gi, '&quot;');
+  code.replace(/&/gi, '&amp;')
+    .replace(/>/gi, '&gt;')
+    .replace(/</gi, '&lt;')
+    .replace(/"/gi, '&quot;');
 
 /**
  * Realiza o parse de uma response vinda do request
@@ -91,7 +91,10 @@ var execute = (bot, msg, args) => {
   // console.log('args', args.query, args.query.toLowerCase().match(/o seu criador/i))
   if (args.query.toLowerCase() == 'o seu criador') {
     console.log('quem é o seu criador');
-    bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', {'reply_to_message_id': msg.message_id})
+    s.get(msg.chat.id, 'stickers', (err, data) => {
+      if (data == 'true') bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', { 'reply_to_message_id': msg.message_id })
+      else bot.sendMessage(msg.chat.id, 'https://github.com/Webschool-io/Bot-Telegram-BeMEAN');
+    });
   }
   else {
     try {
