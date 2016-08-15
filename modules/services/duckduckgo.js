@@ -1,8 +1,10 @@
 'use strict';
 
+const s = require('../settings');
+
 const url = require('url');
 const http = require('http');
-const parse = {'parse_mode': 'HTML'};
+const parse = { 'parse_mode': 'HTML' };
 const stickers = [
   'BQADBAADMgEAAl6A9AWiXNcdh4N2fgI',
   'BQADBAADzQADXoD0BfaPN-SRlpBYAg',
@@ -44,7 +46,9 @@ const execute = (bot, msg, match) => {
           const sticker = stickers[Math.floor(Math.random() * stickers.length)];
           const _return = "<b>Não achei nada jovem!</b> Sorry mesmo, mas você pode fumar um pra relaxar.";
           bot.sendMessage(msg.chat.id, _return, parse);
-          bot.sendSticker(msg.chat.id, sticker);
+          s.get(msg.chat.id, 'stickers', (err, data) => {
+            if (data == 'true') bot.sendSticker(msg.chat.id, sticker);
+          });
         }
       }
       catch (e) {

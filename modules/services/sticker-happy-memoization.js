@@ -7,6 +7,8 @@ const stickers = [
   'BQADAgADgwEAAksODwABss0TWyMJO_YC'
 ];
 
+const s = require('../settings');
+
 let counter = 0;
 let memoization = [];
 
@@ -39,9 +41,11 @@ const _rand = (stickers) => Math.floor(Math.random() * stickers.length);
 const execute = (bot, msg) => {
   let stckr = testMemoization(_rand(stickers));
   console.log('execute stckr', stckr);
-  const reply = {'reply_to_message_id': msg.message_id};
+  const reply = { 'reply_to_message_id': msg.message_id };
   // console.log('sticker', sticker)
-  bot.sendSticker(msg.chat.id, stckr, reply);
+  s.get(msg.chat.id, 'stickers', (err, data) => {
+    if (data == 'true') bot.sendSticker(msg.chat.id, stckr, reply);
+  })
 };
 
 module.exports = {

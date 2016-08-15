@@ -1,7 +1,7 @@
 const s = require('./db').setting;
 
 const configs = {
-    stickers: false
+    stickers: 'true'
 };
 
 const callback = (err, data) => {
