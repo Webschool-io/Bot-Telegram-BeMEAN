@@ -1,7 +1,12 @@
 const s = require('./db').setting;
 
 const configs = {
-    stickers: 'true'
+    stickers: 'true',
+    greetings: 'true',
+    location: 'true',
+    search: 'true',
+    funny: 'true',
+    services: 'true'
 };
 
 const callback = (err, data) => {

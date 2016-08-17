@@ -15,7 +15,15 @@ const MESSAGES = {
 
 const IMDB_URL = 'http://www.imdb.com/title/';
 
+const s = require('../settings');
+
 const execute = (bot, msg, match, forceSearch, id) => {
+  s.get(msg.chat.id, 'search', (err, data) => {
+    if (data == 'true') _execute(bot, msg, match, forceSearch, id);
+  })
+}
+
+const _execute = (bot, msg, match, forceSearch, id) => {
   //noinspection JSUnusedAssignment
   forceSearch = forceSearch || false;
   if (match[1] && match[1] != " " && match[1] != "") {
@@ -37,7 +45,7 @@ const _findInfo = (bot, msg, title, forceSearch, id) => {
             results: []
           };
           _info.Search.forEach((result) => {
-            _return.results.push([{text: result.Title, callback_data: {movie_id: result.imdbID}}]);
+            _return.results.push([{ text: result.Title, callback_data: { movie_id: result.imdbID } }]);
           });
           _respond(bot, msg, _return, force);
         } else {
@@ -104,7 +112,7 @@ const _respond = (bot, msg, info, force) => {
         });
       }, 1000);
     } else {
-      bot.sendMessage(msg.chat.id, force ? MESSAGES.search_succes_f : MESSAGES.search_succes_nf, {reply_markup: {inline_keyboard: info.results}})
+      bot.sendMessage(msg.chat.id, force ? MESSAGES.search_succes_f : MESSAGES.search_succes_nf, { reply_markup: { inline_keyboard: info.results } })
     }
   } else {
     bot.sendMessage(msg.chat.id, MESSAGES.search_fail_nf);

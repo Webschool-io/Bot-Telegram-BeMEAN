@@ -9,9 +9,17 @@ const risadas = [
   'ri litros ahuah'
 ];
 
+const s = require('../settings');
+
 let contadores = [];
 
 const execute = (bot, msg) => {
+  s.get(msg.chat.id, 'funny', (err, data) => {
+    if (data == 'true') _execute(bot, msg);
+  });
+}
+
+const _execute = (bot, msg) => {
   let contagem = contadores[msg.chat.id];
   if ((contagem && contagem >= limite) || msg.chat.type == 'private') {
     bot.sendMessage(msg.chat.id, risadas[Math.floor(Math.random() * risadas.length)]);

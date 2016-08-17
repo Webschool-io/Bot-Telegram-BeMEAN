@@ -16,7 +16,9 @@ const localeNotFound = (bot, msg, query, result) => {
   bot.sendMessage(msg.chat.id, "Então... Tem certeza que esse lugar existe? Pq procurei ele no Google Maps, e não achei, não :/");
 }
 
-const execute = (bot, msg, match) => {
+const s = require('../settings');
+
+const _execute = (bot, msg, match) => {
   // const query = msg.text.replace(/["'!?]/g, '');
   const query = match[3].replace(/["'!?]/g, '');
   let geocodeParams = {
@@ -56,51 +58,14 @@ const execute = (bot, msg, match) => {
       bot.sendLocation(msg.chat.id, lat, lng);
     }
   });
-
-  /*
-  bot.sendLocation(msg.chat.id, 'query: ' + query);
-  const _base = 'https://maps.googleapis.com/maps/api/geocode/json';
-  var _url = url.parse(_base + '?sensor=false&address=' + encodeURIComponent(query));
-  _url.headers = {
-    'User-Agent': 'Mozilla like'
-    , 'Accept-Language': 'pt-BR;q=1, pt;q=0.8, en;q=0.5'
-  };
-  var options = {
-   hostname: '_base',
-   port: 443,
-   path: '?sensor=false&address=' + encodeURIComponent(query),
-   method: 'GET'
-   };
-  var req = https.request(_url, (res) => {
-    let data = '';
-    let coords = {};
-    res.on('data', (chunk) => data += chunk);
-    res.on('end', () => {
-      try {
-        /**
-         * @param coords.lat
-         * @param coords.lng
-         **/
-  /*
- data = JSON.parse(data);
- bot.sendMessage(msg.chat.id, JSON.stringify(data), {
-   'parse_mode': 'Markdown',
-   'reply_to_message_id': msg.message_id
- });
- coords = data.count[0].geometry.location;
- console.log("coords: " + JSON.stringify(coords));
- bot.sendLocation(msg.chat.id, coords.lat, coords.lng);
-}
-catch (err) {
- console.log("Erro end: " + err)
-}
-});
-});
-req.end();
-req.on('error', (e) => {
-console.error(e);
-});*/
 };
+
+const execute = (bot, msg, match) => {
+  s.get(msg.chat.id, 'location', (err, data) => {
+    if (data == 'true') _execute(bot, msg, match);
+  });
+};
+
 module.exports = {
   execute: execute
 };
