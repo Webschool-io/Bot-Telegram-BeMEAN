@@ -185,7 +185,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
 
   const _load = (match) => {
     s.get(msg.chat.id, 'services', (err, data) => {
-      if (data == 'true') {
+      if (data == 'true' && !msg.text.match(/.*config.*/)) {
         if (Array.isArray(match)) {
           let recognized = false;
           _services.forEach((element, index) => {
@@ -205,7 +205,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
           }
         }
       }
-    })
+    });
   };
 
   _load(match);

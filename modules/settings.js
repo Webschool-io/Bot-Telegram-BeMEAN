@@ -1,12 +1,12 @@
 const s = require('./db').setting;
 
 const configs = {
-    stickers: 'true',
-    greetings: 'true',
-    location: 'true',
-    search: 'true',
-    funny: 'true',
-    services: 'true'
+    stickers: { default: 'true', vals: ['true', 'false'] },
+    greetings: { default: 'true', vals: ['true', 'false'] },
+    location: { default: 'true', vals: ['true', 'false'] },
+    search: { default: 'true', vals: ['true', 'false'] },
+    funny: { default: 'true', vals: ['true', 'false'] },
+    services: { default: 'true', vals: ['true', 'false'] }
 };
 
 const callback = (err, data) => {
@@ -48,7 +48,7 @@ const get = (chat_id, key, cbk) => {
                 cbk(false, data[0].value);
             } else {
                 if (key in configs) {
-                    cbk(false, configs[key]);
+                    cbk(false, configs[key].default);
                 } else {
                     cbk({ msg: 'Config desconhecida: ' + key });
                 }

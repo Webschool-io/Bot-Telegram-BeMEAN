@@ -1,8 +1,25 @@
 const s = require('../settings');
 const mu = require('../utils/monitutils');
 
+const isValidValue = (config, value) => {
+    return (config in s.configs && (s.configs[config].vals.filter((v) => { return val == v }).length > 0));
+};
+
+const getAvailableConfigs = () => {
+    let result = '';
+    for (c in s.configs) {
+        result += '*' + c + ':*\n';
+        result += 'Valores: \n';
+        s.configs[c].vals.forEach((v) => {
+            result += ' - ' + v + '\n';
+        });
+        result += 'Padrão: ' + s.configs[c].default + '\n\n';
+    }
+    return result;
+};
+
 const configNotFound = (bot, msg) => {
-    bot.sendMessage(msg.chat.id, 'Acho que você não entendeu o esquema. A sintaxe correta é: `config [nome da config] (valor|clear)`\nConfigs disponíveis e seus valores padrão: `' + JSON.stringify(s.configs) + '`', { 'parse_mode': 'Markdown' });
+    bot.sendMessage(msg.chat.id, 'Acho que você não entendeu o esquema. A sintaxe correta é: `config [nome da config] (valor|clear)`\nConfigs disponíveis: ' + getAvailableConfigs(), { 'parse_mode': 'Markdown' });
 }
 
 const sendError = (bot, msg, err, data) => {
@@ -16,7 +33,7 @@ const execute = (bot, msg, match) => {
             if (match[1] in s.configs) {
                 s.clear(msg.chat.id, match[1], (err, data) => {
                     if (data.result.ok && !err) {
-                        bot.sendMessage(msg.chat.id, "Config redefinida");
+                        bot.sendMessage(msg.chat.id, "Config `" + match[1] + "` redefinida", { parse_mode: 'Markdown' });
                     } else {
                         sendError(bot, msg, err, data);
                     }
@@ -25,13 +42,13 @@ const execute = (bot, msg, match) => {
                 configNotFound(bot, msg);
             }
         } else {
-            if (match[1] in s.configs) {
+            if (match[1] in s.configs && isValidValue(match[1], match[2])) {
                 s.set(msg.chat.id, match[1], match[2], (err, data) => {
                     if (err) {
                         sendError(bot, msg, err, data);
                     } else {
                         if (data.key = match[1]) {
-                            bot.sendMessage(msg.chat.id, "Config salva");
+                            bot.sendMessage(msg.chat.id, "Config `" + match[1] + "` definida para `" + match[2] + "`", { parse_mode: 'Markdown' });
                         }
                     }
                 });
