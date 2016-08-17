@@ -20,7 +20,7 @@ const getAvailableConfigs = () => {
 };
 
 const configNotFound = (bot, msg) => {
-    bot.sendMessage(msg.chat.id, 'Acho que você não entendeu o esquema. A sintaxe correta é: `config [nome da config] (valor|clear)`\nConfigs disponíveis:\n' + getAvailableConfigs(), { 'parse_mode': 'Markdown' });
+    bot.sendMessage(msg.chat.id, 'Acho que você não entendeu o esquema. A sintaxe correta é: `config [nome da config] (valor|clear)`\n\nConfigs disponíveis:\n' + getAvailableConfigs(), { 'parse_mode': 'Markdown' });
 }
 
 const sendError = (bot, msg, err, data) => {
