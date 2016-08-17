@@ -13,7 +13,7 @@ const getAvailableConfigs = () => {
         s.configs[c].vals.forEach((v) => {
             result += ' `' + v + '`,';
         });
-        result = result.slice(0, -2);
+        result = result.slice(0, -1);
         result += '\nPadrão: `' + s.configs[c].default + '`\n\n';
     }
     return result;
