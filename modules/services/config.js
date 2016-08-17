@@ -9,17 +9,18 @@ const getAvailableConfigs = () => {
     let result = '';
     for (c in s.configs) {
         result += '*' + c + ':*\n';
-        result += 'Valores: \n';
+        result += 'Valores:';
         s.configs[c].vals.forEach((v) => {
-            result += ' - ' + v + '\n';
+            result += ' `' + v + '`,';
         });
-        result += 'Padrão: ' + s.configs[c].default + '\n\n';
+        result = result.slice(0, -2);
+        result += '\nPadrão: `' + s.configs[c].default + '`\n\n';
     }
     return result;
 };
 
 const configNotFound = (bot, msg) => {
-    bot.sendMessage(msg.chat.id, 'Acho que você não entendeu o esquema. A sintaxe correta é: `config [nome da config] (valor|clear)`\nConfigs disponíveis: ' + getAvailableConfigs(), { 'parse_mode': 'Markdown' });
+    bot.sendMessage(msg.chat.id, 'Acho que você não entendeu o esquema. A sintaxe correta é: `config [nome da config] (valor|clear)`\nConfigs disponíveis:\n' + getAvailableConfigs(), { 'parse_mode': 'Markdown' });
 }
 
 const sendError = (bot, msg, err, data) => {
