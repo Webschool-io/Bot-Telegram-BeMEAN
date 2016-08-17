@@ -2,7 +2,7 @@ const s = require('../settings');
 const mu = require('../utils/monitutils');
 
 const isValidValue = (config, value) => {
-    return (config in s.configs && (s.configs[config].vals.filter((v) => { return val == v }).length > 0));
+    return (config in s.configs && (s.configs[config].vals.filter((v) => { return value == v }).length > 0));
 };
 
 const getAvailableConfigs = () => {
