@@ -13,6 +13,8 @@ const services = require('./modules/services');
 const security = require('./modules/security');
 const monitutils = require('./modules/utils/monitutils');
 
+const s = require('./modules/settings');
+
 monitutils.notifySharedAccount(bot, "*Bot " + username + " reiniciado.*");
 
 // Matches commands
@@ -182,24 +184,28 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
   ];
 
   const _load = (match) => {
-    if (Array.isArray(match)) {
-      let recognized = false;
-      _services.forEach((element, index) => {
-        if (_services[index].regex.test(msg.text)) {
-          recognized = true;
-          var _match = msg.text.match(_services[index].regex);
-          const service = _services[index];
-          if (security.isSecure(msg, service.eval)) {
-            service.fn(bot, msg, _match);
-          } else {
-            monitutils.notifyBlacklistedEval(msg, bot, service.member);
+    s.get(msg.chat.id, 'services', (err, data) => {
+      if (data == 'true' || !msg.text.match(/.*config.*/)) {
+        if (Array.isArray(match)) {
+          let recognized = false;
+          _services.forEach((element, index) => {
+            if (_services[index].regex.test(msg.text)) {
+              recognized = true;
+              var _match = msg.text.match(_services[index].regex);
+              const service = _services[index];
+              if (security.isSecure(msg, service.eval)) {
+                service.fn(bot, msg, _match);
+              } else {
+                monitutils.notifyBlacklistedEval(msg, bot, service.member);
+              }
+            }
+          });
+          if (!recognized && msg.chat.type == 'private') {
+            services.masem.execute(bot, msg);
           }
         }
-      });
-      if (!recognized && msg.chat.type == 'private') {
-        services.masem.execute(bot, msg);
       }
-    }
+    });
   };
 
   _load(match);

@@ -18,6 +18,8 @@ const messages = {
   communicationError: "Putz, não tô conseguindo conversar com a Wikipedia :/ Tenta depois `%e%`"
 };
 
+const s = require('../settings');
+
 // Makes HTML more compatible to https://core.telegram.org/bots/api#html-style
 const simpleHTML = (code) =>
   code.split(/\s+/m).join(' ')
@@ -87,7 +89,7 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
  * @param msg Objeto mensagem a ser utilizado para se obter  o id
  * @param args Objeto contento o tipo de pesquisa a realizar(wh) e o termo pesquisado (query)
  */
-var execute = (bot, msg, args) => {
+var _execute = (bot, msg, args) => {
   // console.log('args', args.query, args.query.toLowerCase().match(/o seu criador/i))
   if (args.query.toLowerCase() == 'o seu criador') {
     console.log('quem é o seu criador');
@@ -108,6 +110,12 @@ var execute = (bot, msg, args) => {
     }
   }
 };
+
+const execute = (bot, msg, args) => {
+  s.get(msg.chat.id, 'search', (err, data) => {
+    if (data == 'true') _execute(bot, msg, args);
+  })
+}
 
 module.exports = {
   execute: execute
