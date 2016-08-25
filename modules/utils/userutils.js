@@ -60,14 +60,16 @@ const blacklistUser = (userId, reason, cbk) => {
 
 const whiteListUser = (userId, cbk) => {
     cbk = cbk || callback;
-    if (err) cbk(err, null)
-    else if (data.length > 0) {
-        let u = data[0];
-        u.blacklisted = { status: false };
-        u.save(cbk);
-    } else {
-        users.insert({ user_id: userId, blacklisted: { status: true, reason } }, cbk);
-    };
+    getUser(userId, (err, data) => {
+        if (err) cbk(err, null)
+        else if (data.length > 0) {
+            let u = data[0];
+            u.blacklisted = { status: false };
+            u.save(cbk);
+        } else {
+            users.insert({ user_id: userId, blacklisted: { status: true, reason } }, cbk);
+        };
+    });
 };
 
 const getUserCount = (cbk) => {
