@@ -11,7 +11,7 @@ const execute = (msg, match, bot) => {
             userutils.whiteListUser(user_id, (err, data) => {
                 if (err) bot.sendMessage(msg.chat.id, "Erro: `" + JSON.stringify(err) + "`", { parse_mode: 'Markdown' })
                 else {
-                    bot.sendMessage("Ok, usuário liberado.");
+                    bot.sendMessage(msg.chat.id, "Ok, usuário liberado.");
                 }
             });
         } else {
