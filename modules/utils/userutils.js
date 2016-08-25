@@ -36,7 +36,7 @@ const isUserBlacklisted = (userId, cbk) => {
     users.select({ user_id: userId }, (err, data) => {
         if (err) cbk(err, data);
         else if (data.length > 0) {
-            cbk(null, data[0].blisted);
+            cbk(null, data[0].blacklisted.status);
         } else {
             cbk(null, false);
         };
