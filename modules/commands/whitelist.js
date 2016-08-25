@@ -4,7 +4,7 @@ const userutils = require('../utils/userutils');
 const monitutils = require('../utils/monitutils');
 
 const execute = (msg, match, bot) => {
-    let user_id = msg.reply_to_message.from;
+    let user_id = msg.reply_to_message.from.id;
     if (!user_id) bot.sendMessage(msg.chat.id, "Ué, quer liberar quem, fio?");
     else {
         if (monitutils.isAdmin(msg.from.id)) {
