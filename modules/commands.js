@@ -11,17 +11,19 @@ const impar = require('./commands/impar');
 const repo = require('./commands/repo');
 const sendsticker = require('./commands/sendsticker');
 const log = require('./commands/log');
+const userstats = require('./userstats');
 
 module.exports = {
-  'echo': echo,
-  'ping': ping,
-  'id': id,
-  'start': start,
-  'webschool': webschool,
-  'help': help,
-  'par': par,
-  'impar': impar,
-  'repo': repo,
-  'sendsticker': sendsticker,
-  'log': log
+  echo,
+  ping,
+  id,
+  start,
+  webschool,
+  help,
+  par,
+  impar,
+  repo,
+  sendsticker,
+  log,
+  userstats
 };
