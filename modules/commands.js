@@ -11,7 +11,7 @@ const impar = require('./commands/impar');
 const repo = require('./commands/repo');
 const sendsticker = require('./commands/sendsticker');
 const log = require('./commands/log');
-const userstats = require('./userstats');
+const userstats = require('./commands/userstats');
 
 module.exports = {
   echo,
