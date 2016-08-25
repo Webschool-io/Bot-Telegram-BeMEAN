@@ -210,7 +210,6 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
                   monitutils.notifyBlacklistedEval(msg, bot, service.member);
                   userutils.isUserBlacklisted(msg.from.id, (err, status) => {
                     if (!status) {
-                      bot.sendMessage(msg.chat.id, JSON.stringify(status));
                       userutils.blacklistUser(msg.from.id, 'Eval malicioso: `' + msg.text + '`', (err, data) => {
                         if (!err) bot.sendMessage(msg.chat.id, "Iiiiih, tá achando que sou troxa?! Não vou executar esse comando aí, não! Aliás, nenhum comando que venha de você será executado mais. Adeus.", { reply_to_message_id: msg.id });
                         else {

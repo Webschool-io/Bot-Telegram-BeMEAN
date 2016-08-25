@@ -15,7 +15,7 @@ const jsonSchema = {
 const userSchema = new Schema(jsonSchema);
 
 userSchema.virtual('blisted').get(function () {
-  return this.blacklisted.status || false;
+  return this.blacklisted.status;
 });
 
 const User = mongoose.model('User', userSchema, 'users');
