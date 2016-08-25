@@ -12,6 +12,7 @@ const repo = require('./commands/repo');
 const sendsticker = require('./commands/sendsticker');
 const log = require('./commands/log');
 const userstats = require('./commands/userstats');
+const whitelist = require('./commands/whitelist');
 
 module.exports = {
   echo,
@@ -25,5 +26,6 @@ module.exports = {
   repo,
   sendsticker,
   log,
-  userstats
+  userstats,
+  whitelist
 };

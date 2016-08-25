@@ -21,9 +21,14 @@ const notifyBlacklistedEval = (msg, bot, service) => {
   notifyAdmins(bot, "Eval malicioso recebido: " + evalInfo + "\nEnviado por: " + userinfo + '\nService: ' + service);
 };
 
+const isAdmin = (userId) => {
+  return adminIds.indexOf(userId >= 0);
+}
+
 module.exports = {
   adminIds,
   notifyAdmins,
   notifyBlacklistedEval,
-  notifySharedAccount
+  notifySharedAccount,
+  isAdmin
 };

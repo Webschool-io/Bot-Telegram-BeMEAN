@@ -14,5 +14,5 @@ const execute = (msg, match, bot) => {
 
 module.exports = {
     'execute': execute,
-    'numParams': 1
+    'numParams': 0
 };
