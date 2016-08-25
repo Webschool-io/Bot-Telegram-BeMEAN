@@ -10,7 +10,7 @@ const userutils = require('./utils/userutils');
  */
 const isSecure = (msg, isEval, cbk) => {
   let secure = true;
-  userutils.isUserBlacklisted(msg.chat.from.id, (err, data) => {
+  userutils.isUserBlacklisted(msg.from.id, (err, data) => {
     if (err) secure = false;
     else {
       secure = !data;
