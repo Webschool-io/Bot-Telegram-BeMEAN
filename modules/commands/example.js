@@ -6,7 +6,7 @@ const execute = (msg, match, bot) => {
         reply_markup: {
             inline_keyboard: [[{
                 text: "Saiba como usar a gíria",
-                url: 'http://www.qualeagiria.com.br/giria/uva/'
+                url: 'http://www.qualeagiria.com.br'
             }]]
         },
         parse_mode: 'Markdown'
