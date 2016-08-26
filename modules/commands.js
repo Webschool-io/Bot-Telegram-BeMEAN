@@ -13,6 +13,7 @@ const sendsticker = require('./commands/sendsticker');
 const log = require('./commands/log');
 const userstats = require('./commands/userstats');
 const whitelist = require('./commands/whitelist');
+const example = require('./commands/example');
 
 module.exports = {
   echo,
@@ -27,5 +28,6 @@ module.exports = {
   sendsticker,
   log,
   userstats,
-  whitelist
+  whitelist,
+  example
 };
