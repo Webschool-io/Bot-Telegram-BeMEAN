@@ -22,7 +22,7 @@ const notifyBlacklistedEval = (msg, bot, service) => {
 };
 
 const isAdmin = (userId) => {
-  return adminIds.indexOf(userId >= 0);
+  return adminIds.indexOf(userId) >= 0;
 }
 
 module.exports = {
