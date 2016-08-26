@@ -7,12 +7,12 @@ const adminIds = [
 
 const notifyAdmins = (bot, txt) => {
   adminIds.forEach((id) => {
-    bot.sendMessage(id, txt, {parse_mode: 'Markdown'});
+    bot.sendMessage(id, txt, { parse_mode: 'Markdown' });
   });
 };
 
 const notifySharedAccount = (bot, txt) => {
-  bot.sendMessage(shared_account_id, txt, {parse_mode: 'Markdown'});
+  bot.sendMessage(shared_account_id, txt, { parse_mode: 'Markdown' });
 };
 
 const notifyBlacklistedEval = (msg, bot, service) => {
@@ -21,9 +21,14 @@ const notifyBlacklistedEval = (msg, bot, service) => {
   notifyAdmins(bot, "Eval malicioso recebido: " + evalInfo + "\nEnviado por: " + userinfo + '\nService: ' + service);
 };
 
+const isAdmin = (userId) => {
+  return adminIds.indexOf(userId) >= 0;
+}
+
 module.exports = {
   adminIds,
   notifyAdmins,
   notifyBlacklistedEval,
-  notifySharedAccount
+  notifySharedAccount,
+  isAdmin
 };

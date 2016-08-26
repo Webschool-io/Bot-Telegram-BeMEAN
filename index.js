@@ -12,10 +12,20 @@ const commands = require('./modules/commands');
 const services = require('./modules/services');
 const security = require('./modules/security');
 const monitutils = require('./modules/utils/monitutils');
+const userutils = require('./modules/utils/userutils');
 
 const s = require('./modules/settings');
 
 monitutils.notifySharedAccount(bot, "*Bot " + username + " reiniciado.*");
+
+bot.on('message', (msg) => {
+  if (msg.chat.type == 'private') {
+
+    userutils.saveUser({ user_id: msg.from.id, blacklisted: { status: false } }, (err, data) => {
+      if (err) monitutils.notifyAdmins(bot, "Erro ao salvar o user " + msg.from.id + " no banco. err: `" + JSON.stringify(err) + '`');
+    });
+  }
+});
 
 // Matches commands
 bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?(@.*)?/i, (msg, match) => {
@@ -193,11 +203,26 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
               recognized = true;
               var _match = msg.text.match(_services[index].regex);
               const service = _services[index];
-              if (security.isSecure(msg, service.eval)) {
-                service.fn(bot, msg, _match);
-              } else {
-                monitutils.notifyBlacklistedEval(msg, bot, service.member);
-              }
+              security.isSecure(msg, service.eval, (secure) => {
+                if (secure) {
+                  service.fn(bot, msg, _match);
+                } else {
+                  monitutils.notifyBlacklistedEval(msg, bot, service.member);
+                  userutils.isUserBlacklisted(msg.from.id, (err, status) => {
+                    if (!status) {
+                      userutils.blacklistUser(msg.from.id, 'Eval malicioso: `' + msg.text + '`', (err, data) => {
+                        if (!err) bot.sendMessage(msg.chat.id, "Iiiiih, tá achando que sou troxa?! Não vou executar esse comando aí, não! Aliás, nenhum comando que venha de você será executado mais. Adeus.", { reply_to_message_id: msg.id });
+                        else {
+                          bot.sendMessage(msg.chat.id, "Iiiiih, tá achando que sou troxa?! Não vou executar esse comando aí, não!", { reply_to_message_id: msg.id });
+                          monitutils.notifySharedAccount(bot, "Erro ao adicionar o user " + msg.from.id + " à blacklist. err: `" + JSON.stringify(err) + '`');
+                        }
+                      });
+                    } else {
+                      bot.sendMessage(msg.chat.id, "Não executo mais comandos vindos de você não, jovem", { reply_to_message_id: msg.id });
+                    }
+                  });
+                }
+              });
             }
           });
           if (!recognized && msg.chat.type == 'private') {

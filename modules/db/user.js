@@ -5,14 +5,20 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // Criação do Schema
 const jsonSchema = {
-  chat_id: Number,
-  key: String,
-  value: String
+  user_id: Number,
+  blacklisted: {
+    status: Boolean,
+    reason: String
+  }
 };
 
-const settingSchema = new Schema(jsonSchema);
+const userSchema = new Schema(jsonSchema);
 
-const Setting = mongoose.model('Setting', settingSchema, 'settings');
+userSchema.virtual('blisted').get(function () {
+  return this.blacklisted.status;
+});
+
+const User = mongoose.model('User', userSchema, 'users');
 
 const callback = (err, data) => {
   if (err) console.log('Erro no banco: ', err);
@@ -22,16 +28,16 @@ const callback = (err, data) => {
 const Controller = {
   insert: (d, cbk) => {
     cbk = cbk || callback;
-    const model = new Setting(d);
+    const model = new User(d);
     model.save(cbk);
   },
   select: (q, cbk) => {
     cbk = cbk || callback;
-    Setting.find(q, cbk);
+    User.find(q, cbk);
   },
   delete: (q, cbk) => {
     cbk = cbk || callback;
-    Setting.remove(q, cbk);
+    User.remove(q, cbk);
   }
 };
 
