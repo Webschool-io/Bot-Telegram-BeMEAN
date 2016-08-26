@@ -28,6 +28,5 @@ module.exports = {
   sendsticker,
   log,
   userstats,
-  whitelist,
-  example
+  whitelist
 };
