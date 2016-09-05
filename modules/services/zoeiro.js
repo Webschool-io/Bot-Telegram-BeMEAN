@@ -6,14 +6,17 @@ const answers = [
   'DON\'T STOP THE ZOEIRA!',
   'The zoeira: it never ends hu3hu3hu3hu3hu3hu3hu3hu3hu3hu3',
   'Simplesmente não tenho limites hu3hu3hu3hu3hu3hu3hu3hu3hu3hu3',
-  'Yes, I\'m very zoeiro, bitch'
+  'Yes, I\'m very zoeiro, bitch',
+  'I\'m just very zoeiro hu3hu3hu3hu3hu3hu3',
+  'You can never stop my zoeira hu3hu3hu3hu3'
 ];
 
 const stickers = [
   'BQADAQADbAADREz9A1_wd85nVY4cAg',
   'BQADAQADZgADREz9A6v7f7u8LNVRAg',
   'BQADAQADdQADREz9AyANyj7hw1A2Ag',
-  'BQADAQADeAADREz9A65VKkYpJMQKAg'
+  'BQADAQADeAADREz9A65VKkYpJMQKAg',
+  'BQADAQAD0wADREz9A2AB4VDafSQNAg'
 ]
 
 const s = require('../settings');
