@@ -193,7 +193,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'zoeiro',
-      regex: /bot.*(z(?:o|u)ei?ro|engra(?:ç|c|z)ado|doido|lou?(?:k|c)o)/i,
+      regex: /(?:bot.*(z(?:o|u)ei?ro|engra(?:ç|c|z)ado|doido|lou?(?:k|c)o))|z(?:o|u)ei?ra/i,
       fn: (bot, msg, match) => services.zoeiro.execute(bot, msg),
       eval: false
     }
