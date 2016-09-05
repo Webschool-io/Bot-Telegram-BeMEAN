@@ -25,9 +25,9 @@ const execute = (bot, msg) => {
 }
 
 const _execute = (bot, msg) => {
-  bot.sendMessage(msg.chat.id, answers[Math.floor(Math.random() * answers.length)]);
+  bot.sendMessage(msg.chat.id, answers[Math.floor(Math.random() * answers.length)], { reply_to_message_id: msg.id });
   s.get(msg.chat.id, 'stickers', (err, data) => {
-    if (data == 'true') bot.sendSticker(msg.chat.id, stickers[Math.floor(Math.random() * stickers.length)]);
+    if (data == 'true') bot.sendSticker(msg.chat.id, stickers[Math.floor(Math.random() * stickers.length)], { reply_to_message_id: msg.id });
   })
 };
 
