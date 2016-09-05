@@ -190,6 +190,12 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       regex: /config +([^ ]+) *([^ ]+)*/i,
       fn: (bot, msg, match) => services.config.execute(bot, msg, match),
       eval: false
+    },
+    {
+      member: 'zoeiro',
+      regex: /bot.*(z(?:o|u)ei?ro|engra(?:ç|c|z)ado|doido|lou?(?:k|c)o)/i,
+      fn: (bot, msg, match) => services.zoeiro.execute(bot, msg),
+      eval: false
     }
   ];
 

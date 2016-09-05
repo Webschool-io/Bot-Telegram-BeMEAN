@@ -29,6 +29,7 @@ const stickerBemean = require('./services/sticker-bemean');
 const omdb = require('./services/omdb');
 const whereami = require('./services/whereami');
 const config = require('./services/config');
+const zoeiro = require('./services/zoeiro');
 
 module.exports = {
   wikipedia,
@@ -54,5 +55,6 @@ module.exports = {
   stickerBemean,
   omdb,
   whereami,
-  config
+  config,
+  zoeiro
 };
