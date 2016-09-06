@@ -97,7 +97,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'gmaps',
-      regex: /onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i,
+      regex: /onde\s+(?:fica|está|é|eh)\s*(?:o|a)?\s+([^?]+)\??$/i,
       fn: (bot, msg, match) => services.gmaps.execute(bot, msg, match),
       eval: false
     },
