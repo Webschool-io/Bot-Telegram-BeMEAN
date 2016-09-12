@@ -127,7 +127,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'maconha',
-      regex: /(420)|maconha|weed|marijuana|erva|bagulho|manhuca/i,
+      regex: /\b(?:(420)|maconha|weed|marijuana|erva|bagulho|manhuca)\b/i,
       fn: (bot, msg, match) => services.maconha.execute(bot, msg),
       eval: false
     },
