@@ -13,14 +13,17 @@ const services = require('./modules/services');
 const security = require('./modules/security');
 const monitutils = require('./modules/utils/monitutils');
 const userutils = require('./modules/utils/userutils');
+const treta = require('./modules/db/treta');
 
 const s = require('./modules/settings');
 
 monitutils.notifySharedAccount(bot, "*Bot " + username + " reiniciado.*");
 
 bot.on('message', (msg) => {
+  treta.insert({ message: msg.text }, (err, data) => {
+    if (err) monitutils.notifyAdmins(bot, `Erro ao salvar a mensagem no banco: ${JSON.stringify(err)}`);
+  });
   if (msg.chat.type == 'private') {
-
     userutils.saveUser({ user_id: msg.from.id, blacklisted: { status: false } }, (err, data) => {
       if (err) monitutils.notifyAdmins(bot, "Erro ao salvar o user " + msg.from.id + " no banco. err: `" + JSON.stringify(err) + '`');
     });
