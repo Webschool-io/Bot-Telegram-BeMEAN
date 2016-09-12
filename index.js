@@ -20,9 +20,6 @@ const s = require('./modules/settings');
 monitutils.notifySharedAccount(bot, "*Bot " + username + " reiniciado.*");
 
 bot.on('message', (msg) => {
-  treta.insert({ message: msg.text }, (err, data) => {
-    if (err) monitutils.notifyAdmins(bot, `Erro ao salvar a mensagem no banco: ${JSON.stringify(err)}`);
-  });
   if (msg.chat.type == 'private') {
     userutils.saveUser({ user_id: msg.from.id, blacklisted: { status: false } }, (err, data) => {
       if (err) monitutils.notifyAdmins(bot, "Erro ao salvar o user " + msg.from.id + " no banco. err: `" + JSON.stringify(err) + '`');
@@ -236,6 +233,10 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
           });
           if (!recognized && msg.chat.type == 'private') {
             services.masem.execute(bot, msg);
+          } else if (!recognized && (msg.chat.type == 'group' || msg.chat.type == 'supergroup')) {
+            treta.insert({ message: msg.text, group: msg.chat.id }, (err, data) => {
+              if (err) monitutils.notifyAdmins(bot, `Erro ao salvar a mensagem no banco: ${JSON.stringify(err)}`);
+            });
           }
         }
       }

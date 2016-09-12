@@ -6,7 +6,8 @@ const Schema = mongoose.Schema;
 // Criação do Schema
 const jsonSchema = {
   message: String,
-  category: String
+  category: String,
+  group: String
 };
 
 const tretaSchema = new Schema(jsonSchema);
