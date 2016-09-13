@@ -20,44 +20,46 @@ const s = require('../settings');
 
 const _execute = (bot, msg, match) => {
   // const query = msg.text.replace(/["'!?]/g, '');
-  const query = match[3].replace(/["'!?]/g, '');
-  let geocodeParams = {
-    'address': query,
-  }
-
-  api.geocode(geocodeParams, (err, result) => {
-    if (err) {
-      bot.sendMessage(msg.chat.id, errMsg);
-      monitutils.notifySharedAccount(bot, "Erro no service do gmaps:\nQuery: `" + query + "`\nerr: `" + JSON.stringify(err) + "`");
-      return;
+  if (match[3]) {
+    const query = match[3].replace(/["'!?]/g, '');
+    let geocodeParams = {
+      'address': query,
     }
 
-    if (result.status != 'OK' || !result) {
-      if (result.status == 'ZERO_RESULTS') {
-        localeNotFound(bot, msg, query, result);
-      } else {
+    api.geocode(geocodeParams, (err, result) => {
+      if (err) {
         bot.sendMessage(msg.chat.id, errMsg);
+        monitutils.notifySharedAccount(bot, "Erro no service do gmaps:\nQuery: `" + query + "`\nerr: `" + JSON.stringify(err) + "`");
+        return;
       }
-      return;
-    }
 
-    if (!result.results[0]) {
-      localeNotFound(bot, msg, query, result);
-      return;
-    }
+      if (result.status != 'OK' || !result) {
+        if (result.status == 'ZERO_RESULTS') {
+          localeNotFound(bot, msg, query, result);
+        } else {
+          bot.sendMessage(msg.chat.id, errMsg);
+        }
+        return;
+      }
 
-    if (result.results[0]) {
-      let info = result.results[0];
-      let name, lat, lng;
+      if (!result.results[0]) {
+        localeNotFound(bot, msg, query, result);
+        return;
+      }
 
-      name = info.formatted_address;
-      lat = info.geometry.location.lat;
-      lng = info.geometry.location.lng;
+      if (result.results[0]) {
+        let info = result.results[0];
+        let name, lat, lng;
 
-      bot.sendMessage(msg.chat.id, "Encontrei isso no Google Maps: " + name);
-      bot.sendLocation(msg.chat.id, lat, lng);
-    }
-  });
+        name = info.formatted_address;
+        lat = info.geometry.location.lat;
+        lng = info.geometry.location.lng;
+
+        bot.sendMessage(msg.chat.id, "Encontrei isso no Google Maps: " + name);
+        bot.sendLocation(msg.chat.id, lat, lng);
+      }
+    });
+  }
 };
 
 const execute = (bot, msg, match) => {
