@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 const dbURI = 'mongodb://localhost/bemean';
 
+mongoose.Promise = global.Promise;
 mongoose.connect(dbURI);
 
 mongoose.connection.on('  ', function () {
