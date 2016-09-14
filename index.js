@@ -234,19 +234,25 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
           if (!recognized && msg.chat.type == 'private') {
             services.masem.execute(bot, msg);
           } else if (!recognized && (msg.chat.type == 'group' || msg.chat.type == 'supergroup') && msg.text) {
-            let hasLink = false;
-            if (msg.entities) {
-              msg.entities.forEach((el) => {
-                if (el.type == 'url' || el.type == 'text_link') {
-                  hasLink = true;
-                }
-              });
-            }
-            if (!hasLink) {
-              treta.insert({ message: msg.text, group: msg.chat.id }, (err, data) => {
-                if (err) monitutils.notifyAdmins(bot, `Erro ao salvar a mensagem no banco: ${JSON.stringify(err)}`);
-              });
-            }
+            s.getGlobal('learn_global', (err, data) => {
+              if (data == 'true') {
+                s.get(msg.chat.id, 'learn_local', (err, data) => {
+                  let hasLink = false;
+                  if (msg.entities) {
+                    msg.entities.forEach((el) => {
+                      if (el.type == 'url' || el.type == 'text_link') {
+                        hasLink = true;
+                      }
+                    });
+                  }
+                  if (!hasLink) {
+                    treta.insert({ message: msg.text, group: msg.chat.id }, (err, data) => {
+                      if (err) monitutils.notifyAdmins(bot, `Erro ao salvar a mensagem no banco: ${JSON.stringify(err)}`);
+                    });
+                  }
+                });
+              }
+            });
           }
         }
       }

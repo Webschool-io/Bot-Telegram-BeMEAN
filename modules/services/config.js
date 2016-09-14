@@ -32,27 +32,57 @@ const execute = (bot, msg, match) => {
     if (match[2]) {
         if (match[2] == 'clear') {
             if (match[1] in s.configs) {
-                s.clear(msg.chat.id, match[1], (err, data) => {
-                    if (data.result.ok && !err) {
-                        bot.sendMessage(msg.chat.id, "Config `" + match[1] + "` redefinida", { parse_mode: 'Markdown' });
+                if (s.configs[match[1]].global) {
+                    if (mu.isAdmin(msg.chat.id)) {
+                        s.clearGlobal(match[1], (err, data) => {
+                            if (data.result.ok && !err) {
+                                bot.sendMessage(msg.chat.id, "Config `" + match[1] + "` redefinida", { parse_mode: 'Markdown' });
+                            } else {
+                                sendError(bot, msg, err, data);
+                            }
+                        });
                     } else {
-                        sendError(bot, msg, err, data);
+                        bot.sendMessage(msg.chat.id, `Você não tem permissão para redefinir a config \`${match[1]}\``, { parse_mode: 'Markdown' });
                     }
-                });
+                } else {
+                    s.clear(msg.chat.id, match[1], (err, data) => {
+                        if (data.result.ok && !err) {
+                            bot.sendMessage(msg.chat.id, "Config `" + match[1] + "` redefinida", { parse_mode: 'Markdown' });
+                        } else {
+                            sendError(bot, msg, err, data);
+                        }
+                    });
+                }
             } else {
                 configNotFound(bot, msg);
             }
         } else {
             if (match[1] in s.configs && isValidValue(match[1], match[2])) {
-                s.set(msg.chat.id, match[1], match[2], (err, data) => {
-                    if (err) {
-                        sendError(bot, msg, err, data);
+                if (s.configs[match[1]].global) {
+                    if (mu.isAdmin(msg.chat.id)) {
+                        s.setGlobal(match[1], match[2], (err, data) => {
+                            if (err) {
+                                sendError(bot, msg, err, data);
+                            } else {
+                                if (data.key == match[1]) {
+                                    bot.sendMessage(msg.chat.id, `Config \`${match[1]}\` definida para \`${match[2]}\``, { parse_mode: 'Markdown' })
+                                }
+                            }
+                        });
                     } else {
-                        if (data.key = match[1]) {
-                            bot.sendMessage(msg.chat.id, "Config `" + match[1] + "` definida para `" + match[2] + "`", { parse_mode: 'Markdown' });
-                        }
+                        bot.sendMessage(msg.chat.id, `Você não tem permissão para definir a config \`${match[1]}\``, { parse_mode: 'Markdown' });
                     }
-                });
+                } else {
+                    s.set(msg.chat.id, match[1], match[2], (err, data) => {
+                        if (err) {
+                            sendError(bot, msg, err, data);
+                        } else {
+                            if (data.key == match[1]) {
+                                bot.sendMessage(msg.chat.id, "Config `" + match[1] + "` definida para `" + match[2] + "`", { parse_mode: 'Markdown' });
+                            }
+                        }
+                    });
+                }
             } else {
                 configNotFound(bot, msg);
             }
