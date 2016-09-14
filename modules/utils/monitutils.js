@@ -2,7 +2,8 @@
 const shared_account_id = 177865013;
 const adminIds = [
   16715013,
-  77586615
+  77586615,
+  151646095
 ];
 
 const notifyAdmins = (bot, txt) => {

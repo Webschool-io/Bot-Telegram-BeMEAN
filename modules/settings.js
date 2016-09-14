@@ -7,7 +7,8 @@ const configs = {
     search: { default: 'true', vals: ['true', 'false'] },
     funny: { default: 'true', vals: ['true', 'false'] },
     services: { default: 'true', vals: ['true', 'false'] },
-    learn_global: { default: 'true', vals: ['true', 'false'], global: true }
+    learn_global: { default: 'true', vals: ['true', 'false'], adminOnly: true, global: true },
+    lear_local: { default: 'true', vals: ['true', 'false'], adminOnly: true }
 };
 
 const callback = (err, data) => {
