@@ -2,13 +2,13 @@
 
 const safeEval = require('sewe');
 const TelegramBot = require('node-telegram-bot-api');
-require('dotenv').config();
+if (process.env.server != 'heroku') require('dotenv').config();
 
 const Mediator = require('./modules/mediator/');
 
 const token = process.env.API_TOKEN || 'INSERT API_TOKEN';
 // Setup polling way
-const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(token, { polling: true });
 
 const commands = require('./modules/commands');
 const services = require('./modules/services');
@@ -146,7 +146,7 @@ var _obj = {
   , regex: /(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i
   , fn: (msg, match) => {
     console.log('wikipedia');
-    const parse = {'wh': match[1], 'query': match[3]};
+    const parse = { 'wh': match[1], 'query': match[3] };
     services.wikipedia.execute(bot, msg, parse);
     // require('./modules/mediator/wikipedia')(bot, msg, parse)
   }

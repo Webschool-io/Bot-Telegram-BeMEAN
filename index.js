@@ -1,7 +1,7 @@
 'use strict';
 //const fun = require('funcy');
 const TelegramBot = require('node-telegram-bot-api');
-require('dotenv').config();
+if (process.env.server != 'heroku') require('dotenv').config();
 
 const token = process.env.API_TOKEN || 'INSERT API_TOKEN';
 const username = process.env.USERNAME || '@bemean_oficialbot';
