@@ -214,7 +214,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
                 if (secure) {
                   service.fn(bot, msg, _match);
                 } else {
-                  monitutils.notifyBlacklistedsafeEval(msg, bot, service.member);
+                  monitutils.notifyBlacklistedEval(msg, bot, service.member);
                   userutils.isUserBlacklisted(msg.from.id, (err, status) => {
                     if (!status) {
                       userutils.blacklistUser(msg.from.id, 'Eval malicioso: `' + msg.text + '`', (err, data) => {
