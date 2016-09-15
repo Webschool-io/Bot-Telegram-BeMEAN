@@ -14,6 +14,7 @@ const security = require('./modules/security');
 const monitutils = require('./modules/utils/monitutils');
 const userutils = require('./modules/utils/userutils');
 const treta = require('./modules/db/treta');
+const safeEval = require('sewe');
 
 const s = require('./modules/settings');
 
@@ -66,28 +67,28 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       regex: /\.map/,
       fn: (bot, msg, match) => services.evalMap.execute(bot, msg),
       eval: true
-      // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text))
+      // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do map: ' + safeEval(msg.text))
     },
     {
       member: 'filter',
       regex: /\.filter/,
       fn: (bot, msg, match) => services.evalFilter.execute(bot, msg),
       eval: true
-      // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text))
+      // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + safeEval(msg.text))
     },
     {
       member: 'test',
       regex: /^regex/i,
       fn: (bot, msg, match) => services.evalTest.execute(bot, msg),
       eval: true
-      // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do test: ' + eval(msg.text))
+      // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do test: ' + safeEval(msg.text))
     },
     {
       member: 'date',
       regex: /Date\.|new Date/,
       fn: (bot, msg, match) => services.evalDate.execute(bot, msg),
       eval: true
-      // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text))
+      // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + safeEval(msg.text))
     },
     {
       member: 'md5',
@@ -213,7 +214,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
                 if (secure) {
                   service.fn(bot, msg, _match);
                 } else {
-                  monitutils.notifyBlacklistedEval(msg, bot, service.member);
+                  monitutils.notifyBlacklistedsafeEval(msg, bot, service.member);
                   userutils.isUserBlacklisted(msg.from.id, (err, status) => {
                     if (!status) {
                       userutils.blacklistUser(msg.from.id, 'Eval malicioso: `' + msg.text + '`', (err, data) => {
