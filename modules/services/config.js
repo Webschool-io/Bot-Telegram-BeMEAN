@@ -58,7 +58,7 @@ const execute = (bot, msg, match) => {
             }
         } else {
             if (match[1] in s.configs && isValidValue(match[1], match[2])) {
-                if (mu.isAdmin(msg.chat.id) || !s.configs.adminOnly) {
+                if (mu.isAdmin(msg.chat.id) || !s.configs[match[1]].adminOnly) {
                     if (s.configs[match[1]].global) {
                         s.setGlobal(match[1], match[2], (err, data) => {
                             if (err) {
