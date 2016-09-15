@@ -1,6 +1,9 @@
 {
   "name": "Bot-Telegram-BeMEAN",
   "version": "1.0.0",
+  "engines": {
+    "node": "6.5.0"
+  },
   "description": "Bot para o Teegram do grupo do Be MEAN",
   "main": "index.js",
   "scripts": {
