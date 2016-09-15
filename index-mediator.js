@@ -1,5 +1,6 @@
 'use strict';
 
+const safeEval = require('sewe');
 const TelegramBot = require('node-telegram-bot-api');
 require('dotenv').config();
 
@@ -39,23 +40,23 @@ bot.onText(/^\/command1@BeMEANoficial_bot/i, (msg, match) => {
 // reduce
 bot.onText(/\.reduce/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
-  bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + eval(msg.text));
+  bot.sendMessage(msg.chat.id, 'Resposta do reduce: ' + safeEval(msg.text));
 });
 // map
 bot.onText(/\.map/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
-  bot.sendMessage(msg.chat.id, 'Resposta do map: ' + eval(msg.text));
+  bot.sendMessage(msg.chat.id, 'Resposta do map: ' + safeEval(msg.text));
 });
 // filter
 bot.onText(/\.filter/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
-  bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + eval(msg.text));
+  bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + safeEval(msg.text));
 });
 // test
 bot.onText(/\.test/, (msg, match) => {
   // services.mdn.execute(bot, msg, match);
   // /^hello/.test('STRING')
-  bot.sendMessage(msg.chat.id, 'Resposta do test: ' + eval(msg.text));
+  bot.sendMessage(msg.chat.id, 'Resposta do test: ' + safeEval(msg.text));
 });
 // Pares
 bot.onText(/^par/i, (msg, match) => {
@@ -95,7 +96,7 @@ var _obj = {
   member: 'date'
   , regex: /Date\.|new Date/
   , fn: (msg, match) => {
-    bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + eval(msg.text));
+    bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + safeEval(msg.text));
   }
 };
 _services.push(_obj);

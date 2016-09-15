@@ -2,11 +2,12 @@
 
 const pm = {'parse_mode': 'Markdown'};
 const isOk = require('../utils/regexutils').isInputOK;
+const safeEval = require('sewe');
 
 const execute = (bot, msg) => {
   //const matchDate = /([0-9]{2}\/[0-9]{2}\/[0-9]{4}|[0-9]{2}\/20[0-9]{2})/;
   if (isOk(msg.text)) {
-    const _return = 'Calculando: `' + msg.text + ' = ' + eval(msg.text) + '`';
+    const _return = 'Calculando: `' + msg.text + ' = ' + safeEval(msg.text) + '`';
     //if (!matchDate.test(msg.text)) bot.sendMessage(msg.chat.id, _return, pm);
     bot.sendMessage(msg.chat.id, _return, pm);
   } else {
