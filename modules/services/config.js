@@ -1,3 +1,5 @@
+'use strict';
+
 const s = require('../settings');
 const mu = require('../utils/monitutils');
 

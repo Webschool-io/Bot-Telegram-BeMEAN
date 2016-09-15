@@ -1,3 +1,5 @@
+'use strict';
+
 const s = require('./db').setting;
 
 const configs = {

@@ -1,3 +1,5 @@
+'use strict';
+
 const GoogleMapsAPI = require('googlemaps');
 const config = {
     key: 'AIzaSyBnsCuuS0N0Akc1I3WEifbNoBCQ1iZ4a9g', //Não tente usar a chave, ela só aceita requests do meu server =)

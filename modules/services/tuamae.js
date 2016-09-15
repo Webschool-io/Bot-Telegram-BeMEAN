@@ -1,3 +1,5 @@
+'use strict';
+
 const answers = [
   'Tua mãe!',
   'Me respeita, jovem!',
