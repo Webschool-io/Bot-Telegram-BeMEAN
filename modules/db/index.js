@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const dbURI = 'mongodb://localhost/bemean';
+const dbURI = process.env.dbURI || 'mongodb://localhost/bemean';
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbURI);
