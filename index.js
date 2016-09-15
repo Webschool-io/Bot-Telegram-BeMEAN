@@ -13,6 +13,7 @@ const services = require('./modules/services');
 const security = require('./modules/security');
 const monitutils = require('./modules/utils/monitutils');
 const userutils = require('./modules/utils/userutils');
+const treta = require('./modules/db/treta');
 
 const s = require('./modules/settings');
 
@@ -20,7 +21,6 @@ monitutils.notifySharedAccount(bot, "*Bot " + username + " reiniciado.*");
 
 bot.on('message', (msg) => {
   if (msg.chat.type == 'private') {
-
     userutils.saveUser({ user_id: msg.from.id, blacklisted: { status: false } }, (err, data) => {
       if (err) monitutils.notifyAdmins(bot, "Erro ao salvar o user " + msg.from.id + " no banco. err: `" + JSON.stringify(err) + '`');
     });
@@ -127,7 +127,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'maconha',
-      regex: /(420)|maconha|weed|marijuana|erva|bagulho|manhuca/i,
+      regex: /\b(?:(420)|maconha|weed|marijuana|erva|bagulho|manhuca)\b/i,
       fn: (bot, msg, match) => services.maconha.execute(bot, msg),
       eval: false
     },
@@ -233,6 +233,26 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
           });
           if (!recognized && msg.chat.type == 'private') {
             services.masem.execute(bot, msg);
+          } else if (!recognized && (msg.chat.type == 'group' || msg.chat.type == 'supergroup') && msg.text) {
+            s.getGlobal('learn_global', (err, data) => {
+              if (data == 'true') {
+                s.get(msg.chat.id, 'learn_local', (err, data) => {
+                  let hasLink = false;
+                  if (msg.entities) {
+                    msg.entities.forEach((el) => {
+                      if (el.type == 'url' || el.type == 'text_link') {
+                        hasLink = true;
+                      }
+                    });
+                  }
+                  if (!hasLink) {
+                    treta.insert({ message: msg.text, group: msg.chat.id }, (err, data) => {
+                      if (err) monitutils.notifyAdmins(bot, `Erro ao salvar a mensagem no banco: ${JSON.stringify(err)}`);
+                    });
+                  }
+                });
+              }
+            });
           }
         }
       }

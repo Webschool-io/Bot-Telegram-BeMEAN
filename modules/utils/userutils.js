@@ -66,9 +66,7 @@ const whiteListUser = (userId, cbk) => {
             let u = data[0];
             u.blacklisted = { status: false };
             u.save(cbk);
-        } else {
-            users.insert({ user_id: userId, blacklisted: { status: true, reason } }, cbk);
-        };
+        }
     });
 };
 
