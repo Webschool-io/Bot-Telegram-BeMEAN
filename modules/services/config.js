@@ -8,13 +8,15 @@ const isValidValue = (config, value) => {
 const getAvailableConfigs = () => {
     let result = '';
     for (c in s.configs) {
-        result += '*' + c + ':*\n';
-        result += 'Valores:';
-        s.configs[c].vals.forEach((v) => {
-            if (!s.configs[c].adminOnly) result += ' `' + v + '`,';
-        });
-        result = result.slice(0, -1);
-        result += '\nPadrão: `' + s.configs[c].default + '`\n\n';
+        if (!s.configs[c].adminOnly) {
+            result += '*' + c + ':*\n';
+            result += 'Valores:';
+            s.configs[c].vals.forEach((v) => {
+                result += ' `' + v + '`,';
+            });
+            result = result.slice(0, -1);
+            result += '\nPadrão: `' + s.configs[c].default + '`\n\n';
+        }
     }
     return result;
 };
