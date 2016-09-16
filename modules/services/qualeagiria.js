@@ -28,8 +28,8 @@ const parseResponse = (err, res, html, args, bot, msg) => {
         results.forEach((el) => {
           if (el.name != answer.name) text += `${el.name}\n`
         });
-        text += '\nFonte: http://www.qualeagiria.com.br';
       }
+      text += '\nFonte: http://www.qualeagiria.com.br';
       bot.sendMessage(msg.chat.id, text, {
         parse_mode: 'Markdown',
         reply_markup: {
