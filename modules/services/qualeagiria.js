@@ -4,11 +4,12 @@ const request = require('request');
 const s = require('../settings');
 const pm = {'parse_mode': 'Markdown'};
 
+const API_URL = 'http://www.qualeagiria.com.br/giria_telegram/?giria=';
+
 const messages = {
   requestError: "Droga, deu um erro aqui em :/ ID do erro: `%mili%`",
   consoleRequestError: "Erro %mili%: %err%",
   communicationError: "Putz, não tô conseguindo conversar com o Qual é a Gíria :/ Tenta depois ```%e%```",
-  defaultAnswer: "Segundo o qualeagiria: _%description%_. Fonte: http://www.qualeagiria.com.br/"
 };
 
 const wikipedia = require('./wikipedia');
@@ -21,7 +22,24 @@ const parseResponse = (err, res, html, args, bot, msg) => {
 
     if (Array.isArray(results) && results.length > 0) {
       answer = results[0];
-      bot.sendMessage(msg.chat.id, messages.defaultAnswer.replace('%description%', answer.description), pm);
+      let text = `Segundo o qualeagiria: _${answer.slug}_.`;
+      if (results.length > 1) {
+        text += '\n\nGírias parecidas:\n';
+        results.forEach((el) => {
+          text += `${el.name}\n`
+        });
+        text += '\nFonte: http://www.qualeagiria.com.br';
+      }
+      bot.sendMessage(msg.chat.id, text, {
+        parse_mode: 'Markdown',
+        reply_markup: {
+          inline_keyboard: [[{
+            text: "Mais informações",
+            url: answer.slug
+          }]]
+        }
+      })
+      ;
     } else {
       wikipedia.execute(bot, msg, args);
     }
@@ -42,7 +60,7 @@ const execute = (bot, msg, args) => {
   }
   else {
     try {
-      const _url = 'http://www.qualeagiria.com.br/giria_telegram/?giria=' + args.query.toLowerCase().split(" ").join("_");
+      const _url = API_URL + args.query.toLowerCase().split(" ").join("_");
       request(_url, (err, res, html) => {
         parseResponse(err, res, html, args, bot, msg, _url);
       });
