@@ -173,7 +173,7 @@ const map = [
   }
 ];
 
-export default {
+module.exports = {
   map,
   wikipedia,
   math,
