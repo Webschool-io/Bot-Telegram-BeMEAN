@@ -19,7 +19,7 @@ const parseResponse = (err, res, html, args, bot, msg) => {
 
     let results = JSON.parse(html);
 
-    if (isArray(results) && results.length > 0) {
+    if (Array.isArray(results) && results.length > 0) {
       answer = results[0];
       bot.sendMessage(msg.chat.id, messages.defaultAnswer.replace('%description%', answer.description), pm);
     } else {
