@@ -1,6 +1,6 @@
 'use strict';
 
-const modules = require('../index');
+const modules = require('../');
 
 const security = modules.security;
 const services = modules.services;
