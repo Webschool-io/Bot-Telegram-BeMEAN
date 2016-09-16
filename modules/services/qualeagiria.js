@@ -22,7 +22,7 @@ const parseResponse = (err, res, html, args, bot, msg) => {
 
     if (Array.isArray(results) && results.length > 0) {
       answer = results[0];
-      let text = `Segundo o qualeagiria: _"${answer.description.charAt(0).toUpperCase() + answer.description.slice(1)}"_.`;
+      let text = `Segundo o qualeagiria: _"${answer.description.charAt(0).toUpperCase() + answer.description.slice(1)}"_`;
       if (results.length > 1) {
         text += '\n\nGírias parecidas:\n';
         results.forEach((el) => {
