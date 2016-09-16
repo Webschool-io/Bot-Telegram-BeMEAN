@@ -42,7 +42,7 @@ const execute = (bot, msg, args) => {
   }
   else {
     try {
-      const _url = 'https://pt.wikipedia.org/w/index.php?title=' + args.query.toLowerCase().split(" ").join("_");
+      const _url = 'http://www.qualeagiria.com.br/giria_telegram/?giria=' + args.query.toLowerCase().split(" ").join("_");
       request(_url, (err, res, html) => {
         parseResponse(err, res, html, args, bot, msg, _url);
       });
