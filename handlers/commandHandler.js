@@ -1,6 +1,6 @@
 'use strict';
 
-const modules = require('../');
+const modules = require('../index');
 const commands = modules.commands;
 const username = process.env.USERNAME || '@bemean_oficialbot';
 

@@ -12,7 +12,6 @@ module.exports = {
     user: require('./utils/userutils'),
     regex: require('./utils/regexutils')
   },
-  db,
-  handlers: require('./handlers')
+  db
 }
 ;

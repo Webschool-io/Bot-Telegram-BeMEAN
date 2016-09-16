@@ -1,6 +1,6 @@
 'use strict';
 
-const modules = require('../');
+const modules = require('../index');
 const userutils = modules.utils.user;
 const monitutils = modules.utils.monit;
 

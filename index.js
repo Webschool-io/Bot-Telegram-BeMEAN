@@ -7,7 +7,7 @@ if (process.env.server != 'heroku') require('dotenv').config();
 const bot = new TelegramBot(process.env.API_TOKEN || 'INSERT API_TOKEN', {polling: true});
 
 const modules = require('./modules');
-const handlers = modules.handlers;
+const handlers = require('./handlers');
 
 modules.utils.monit.notifySharedAccount(bot, `*Bot ${process.env.USERNAME || '@bemean_oficialbot'} reiniciado.*`);
 
