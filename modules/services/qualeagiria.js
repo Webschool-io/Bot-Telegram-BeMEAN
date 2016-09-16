@@ -60,7 +60,7 @@ const execute = (bot, msg, args) => {
   }
   else {
     try {
-      const _url = API_URL + args.query.toLowerCase().split(" ").join("_");
+      const _url = API_URL + args.query.toLowerCase();
       request(_url, (err, res, html) => {
         parseResponse(err, res, html, args, bot, msg, _url);
       });
