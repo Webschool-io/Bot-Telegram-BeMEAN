@@ -6,7 +6,7 @@ if (process.env.server != 'heroku') require('dotenv').config();
 const token = process.env.API_TOKEN || 'INSERT API_TOKEN';
 const username = process.env.USERNAME || '@bemean_oficialbot';
 // Setup polling way
-const bot = new TelegramBot(token, { polling: true });
+const bot = new TelegramBot(token, {polling: true});
 
 const commands = require('./modules/commands');
 const services = require('./modules/services');
@@ -14,7 +14,6 @@ const security = require('./modules/security');
 const monitutils = require('./modules/utils/monitutils');
 const userutils = require('./modules/utils/userutils');
 const treta = require('./modules/db/treta');
-const safeEval = require('sewe');
 
 const s = require('./modules/settings');
 
@@ -22,7 +21,7 @@ monitutils.notifySharedAccount(bot, "*Bot " + username + " reiniciado.*");
 
 bot.on('message', (msg) => {
   if (msg.chat.type == 'private') {
-    userutils.saveUser({ user_id: msg.from.id, blacklisted: { status: false } }, (err, data) => {
+    userutils.saveUser({user_id: msg.from.id, blacklisted: {status: false}}, (err) => {
       if (err) monitutils.notifyAdmins(bot, "Erro ao salvar o user " + msg.from.id + " no banco. err: `" + JSON.stringify(err) + '`');
     });
   }
@@ -67,7 +66,6 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       regex: /\.map/,
       fn: (bot, msg, match) => services.evalMap.execute(bot, msg),
       eval: true
-      // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do map: ' + safeEval(msg.text))
     },
     {
       member: 'filter',
@@ -116,8 +114,8 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'wikipedia',
-      regex: /^(Quem|O que|O q|oq) (é|eh|eah|e|significa|são|sao) ([^?]*)\s?\??/i,
-      fn: (bot, msg, match) => services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] }),
+      regex: /^(Quem|O que|O q|oq) (é|eh|eah|e|significa|são|sao|foi|foram) ([^?]*)\s?\??/i,
+      fn: (bot, msg, match) => services.qualeagiria.execute(bot, msg, {'query': match[3]}),
       eval: false
     },
     {
@@ -217,15 +215,15 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
                   monitutils.notifyBlacklistedEval(msg, bot, service.member);
                   userutils.isUserBlacklisted(msg.from.id, (err, status) => {
                     if (!status) {
-                      userutils.blacklistUser(msg.from.id, 'Eval malicioso: `' + msg.text + '`', (err, data) => {
-                        if (!err) bot.sendMessage(msg.chat.id, "Iiiiih, tá achando que sou troxa?! Não vou executar esse comando aí, não! Aliás, nenhum comando que venha de você será executado mais. Adeus.", { reply_to_message_id: msg.id });
+                      userutils.blacklistUser(msg.from.id, 'Eval malicioso: `' + msg.text + '`', (err) => {
+                        if (!err) bot.sendMessage(msg.chat.id, "Iiiiih, tá achando que sou troxa?! Não vou executar esse comando aí, não! Aliás, nenhum comando que venha de você será executado mais. Adeus.", {reply_to_message_id: msg.id});
                         else {
-                          bot.sendMessage(msg.chat.id, "Iiiiih, tá achando que sou troxa?! Não vou executar esse comando aí, não!", { reply_to_message_id: msg.id });
+                          bot.sendMessage(msg.chat.id, "Iiiiih, tá achando que sou troxa?! Não vou executar esse comando aí, não!", {reply_to_message_id: msg.id});
                           monitutils.notifySharedAccount(bot, "Erro ao adicionar o user " + msg.from.id + " à blacklist. err: `" + JSON.stringify(err) + '`');
                         }
                       });
                     } else {
-                      bot.sendMessage(msg.chat.id, "Não executo mais comandos vindos de você não, jovem", { reply_to_message_id: msg.id });
+                      bot.sendMessage(msg.chat.id, "Não executo mais comandos vindos de você não, jovem", {reply_to_message_id: msg.id});
                     }
                   });
                 }
@@ -237,7 +235,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
           } else if (!recognized && (msg.chat.type == 'group' || msg.chat.type == 'supergroup') && msg.text) {
             s.getGlobal('learn_global', (err, data) => {
               if (data == 'true') {
-                s.get(msg.chat.id, 'learn_local', (err, data) => {
+                s.get(msg.chat.id, 'learn_local', (err) => {
                   let hasLink = false;
                   if (msg.entities) {
                     msg.entities.forEach((el) => {
@@ -247,7 +245,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
                     });
                   }
                   if (!hasLink) {
-                    treta.insert({ message: msg.text, group: msg.chat.id }, (err, data) => {
+                    treta.insert({message: msg.text, group: msg.chat.id}, (err) => {
                       if (err) monitutils.notifyAdmins(bot, `Erro ao salvar a mensagem no banco: ${JSON.stringify(err)}`);
                     });
                   }
@@ -266,70 +264,10 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
 bot.on('sticker', (msg) => {
   let ids = require('./modules/utils/monitutils').adminIds;
   if (msg.chat.type == 'private' && ids.indexOf(msg.chat.id) >= 0) {
-    bot.sendMessage(msg.chat.id, msg.sticker.file_id, { 'reply_to_message_id': msg.message_id });
+    bot.sendMessage(msg.chat.id, msg.sticker.file_id, {'reply_to_message_id': msg.message_id});
   }
 });
 
 bot.on('location', (msg) => {
   services.whereami.execute(bot, msg);
 });
-
-// Pares
-/*bot.onText(/^par/i, (msg, match) => {
- const _arr = msg.text.split('par ')[1]
- const arr = JSON.parse(_arr);
- const _return = arr.filter((acc) => !(acc % 2));
- bot.sendMessage(msg.chat.id, 'Par(es): ' + _return);
- });*/
-
-// Ímpares
-/*bot.onText(/^impar/i, (msg, match) => {
- const _arr = msg.text.split('par ')[1]
- const arr = JSON.parse(_arr);
- const _return = arr.filter((acc) => (acc % 2));
- bot.sendMessage(msg.chat.id, 'Ímpar(es): ' + _return);
- });*/
-
-
-// bot.onText(/^md5\s+([a-zA-Z])+/i, (msg, match) => {
-//   services.md5.execute(bot, msg, match)
-// });
-// GMaps
-// bot.onText(/onde\s+(fica|está|é|eh)\s*(o|a)?\s+(.+)$/i, (msg, match) => {
-//   services.gmaps.execute(bot, msg, match);
-// });
-
-// Github
-// bot.onText(/(gh|github|repo|repository|repositório|repositorio) ([^?]*)\??/i, (msg, match)  => {
-//   services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
-// });
-
-// MDN
-// bot.onText(/^js\s+([a-zA-Z])+/i, (msg, match) => {
-//   services.mdn.execute(bot, msg, match);
-// });
-
-// Wikipedia
-/*bot.onText(/(Quem|O que|O q|oq) (é|eh|eah|e|significa) ([^? ]*) ?\??/i, (msg, match) => {
- services.wikipedia.execute(bot, msg, { 'wh': match[1], 'query': match[3] });
- });
-
- // calcular
- bot.onText(/(Math\.)|\(?-?[.0-9]+(\s*[-+\/*]\s*-?[0-9Math]+)+(\)|\b|)/i, (msg, match) => {
- services.math.execute(bot, msg);
- });
-
- bot.onText(/(420)|maconha|weed|marijuana|erva|bagulho/i, (msg, match) => {
- services.maconha.execute(bot, msg);
- });
-
- // risada
- bot.onText(/lol|kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h+u+a|h+u+e+h+u+e/i, (msg, match) => {
- services.risada.execute(bot, msg);
- });
-
- // saudação
- bot.onText(/b(oa|om) (dia|tarde|noite)/i, (msg, match) => {
- services.saudacao.execute(bot, msg, match);
- });*/
-

@@ -17,11 +17,6 @@ const masem = require('./services/masem');
 const tuamae = require('./services/tuamae');
 const gme = require('./services/gme');
 const npm = require('./services/npm');
-// const evalReduce = require('./services/eval-reduce');
-// const evalMap= require('./services/eval-map');
-// const evalFilter = require('./services/eval-filter');
-// const evalTest = require('./services/eval-test');
-// const evalRDate = require('./services/eval-date');
 const stickerHeart = require('./services/sticker-heart');
 const stickerHappy = require('./services/sticker-happy');
 const stickerWebschool = require('./services/sticker-webschool');
@@ -30,6 +25,7 @@ const omdb = require('./services/omdb');
 const whereami = require('./services/whereami');
 const config = require('./services/config');
 const zoeiro = require('./services/zoeiro');
+const qualeagiria = require('./services/qualeagiria');
 
 module.exports = {
   wikipedia,
@@ -56,5 +52,6 @@ module.exports = {
   omdb,
   whereami,
   config,
-  zoeiro
+  zoeiro,
+  qualeagiria
 };
