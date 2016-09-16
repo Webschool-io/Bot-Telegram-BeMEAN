@@ -22,11 +22,11 @@ const parseResponse = (err, res, html, args, bot, msg) => {
 
     if (Array.isArray(results) && results.length > 0) {
       answer = results[0];
-      let text = `Segundo o qualeagiria: _${answer.slug}_.`;
+      let text = `Segundo o qualeagiria: _${answer.description}_.`;
       if (results.length > 1) {
         text += '\n\nGírias parecidas:\n';
         results.forEach((el) => {
-          text += `${el.name}\n`
+          if (el.name != answer.name) text += `${el.name}\n`
         });
         text += '\nFonte: http://www.qualeagiria.com.br';
       }
