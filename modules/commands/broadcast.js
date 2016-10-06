@@ -49,13 +49,15 @@ const doBroadcast = (ids, bot, msg) => {
     if (Array.isArray(ids)) {
         if (msg.reply_to_message) {
             let tfw = msg.reply_to_message,
-                i = 0;
+                sent = [];
             bot.sendMessage(msg.chat.id, `Enviando mensagem para: ${ids.length} conversas`)
                 .then(() => {
                     ids.forEach((id) => {
-                        console.log(`Enviando mensagem para ${id}`);
-                        bot.forwardMessage(id, tfw.chat.id, tfw.message_id)
-                            .catch(() => {});
+                        if (setn.indexOf(id) < 0) {
+                            bot.forwardMessage(id, tfw.chat.id, tfw.message_id)
+                                .catch(() => {})
+                        }
+                        sent.push(id);
                     });
                     bot.sendMessage(msg.chat.id, "Broadcast finalizado");
                 });
@@ -90,5 +92,5 @@ const fillGroups = (cbk, ids) => {
 module.exports = {
     execute,
     numParams: 1,
-    fillGroups
+    fillUsers
 }

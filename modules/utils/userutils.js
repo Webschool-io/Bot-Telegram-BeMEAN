@@ -31,9 +31,8 @@ const getUser = (userId, cbk) => {
 };
 
 const getUsers = (qry, cbk) => {
-    qry = qry || {};
     cbk = cbk || callback;
-    users.select(qry, cbk);
+    users.getUsers(cbk);
 }
 
 const deleteUser = (userId, cbk) => {
