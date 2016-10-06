@@ -34,7 +34,7 @@ const Controller = {
     Treta.remove(q, cbk);
   },
   getGroups: (cbk) => {
-    cbk = cbk || cbk;
+    cbk = cbk || callback;
     Treta.aggregate([{
       $group: {
         _id: '$group'

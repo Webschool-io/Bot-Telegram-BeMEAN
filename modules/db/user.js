@@ -40,7 +40,7 @@ const Controller = {
     User.remove(q, cbk);
   },
   getUsers: (cbk) => {
-    cbk = cbk || cbk;
+    cbk = cbk || callback;
     User.aggregate([{
       $group: {
         _id: '$user_id'
