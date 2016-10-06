@@ -57,7 +57,7 @@ const fillUsers = (cbk) => {
     userutils.getUsers({}, (err, data) => {
         let users = [];
         data.forEach((el) => {
-            users.push(el.user_id)
+            if (el.user_id) users.push(el.user_id)
         });
         cbk(users);
     });
@@ -67,7 +67,7 @@ const fillGroups = (cbk, ids) => {
     treta.getGroups((err, data) => {
         ids = ids || [];
         data.forEach((el) => {
-            ids.push(el.group_id);
+            if (el._id) ids.push(el._id);
         });
         cbk(ids);
     });
@@ -75,5 +75,6 @@ const fillGroups = (cbk, ids) => {
 
 module.exports = {
     execute,
-    numParams: 1
+    numParams: 1,
+    fillGroups
 }

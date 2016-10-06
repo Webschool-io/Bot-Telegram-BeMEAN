@@ -37,7 +37,7 @@ const Controller = {
     cbk = cbk || cbk;
     Treta.aggregate([{
       $group: {
-        group_id: '$group'
+        _id: '$group'
       }
     }], cbk);
   }
