@@ -9,7 +9,7 @@ const isValidValue = (config, value) => {
 
 const getAvailableConfigs = () => {
     let result = '';
-    for (c in s.configs) {
+    for (let c in s.configs) {
         if (!s.configs[c].adminOnly) {
             result += '*' + c + ':*\n';
             result += 'Valores:';
