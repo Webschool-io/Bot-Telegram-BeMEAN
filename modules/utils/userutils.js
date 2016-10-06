@@ -9,7 +9,9 @@ const callback = (err, data) => {
 
 const saveUser = (user, cbk) => {
     cbk = cbk || callback;
-    users.select({ user_id: user.user_id }, (err, data) => {
+    users.select({
+        user_id: user.user_id
+    }, (err, data) => {
         if (err) cbk(err, null)
         else if (data.length > 0) {
             let u = data[0];
@@ -23,17 +25,28 @@ const saveUser = (user, cbk) => {
 
 const getUser = (userId, cbk) => {
     cbk = cbk || callback;
-    users.select({ user_id: userId }, cbk);
+    users.select({
+        user_id: userId
+    }, cbk);
 };
+
+const getUsers = (qry, cbk) => {
+    cbk = cbk || callback;
+    users.getUsers(cbk);
+}
 
 const deleteUser = (userId, cbk) => {
     cbk = cbk || callback;
-    users.delete({ user_id: userId }, cbk)
+    users.delete({
+        user_id: userId
+    }, cbk)
 }
 
 const isUserBlacklisted = (userId, cbk) => {
     cbk = cbk || callback;
-    users.select({ user_id: userId }, (err, data) => {
+    users.select({
+        user_id: userId
+    }, (err, data) => {
         if (err) cbk(err, data);
         else if (data.length > 0) {
             cbk(null, data[0].blacklisted.status);
@@ -45,7 +58,9 @@ const isUserBlacklisted = (userId, cbk) => {
 
 const blacklistUser = (userId, reason, cbk) => {
     cbk = cbk || callback;
-    users.select({ user_id: userId }, (err, data) => {
+    users.select({
+        user_id: userId
+    }, (err, data) => {
         if (err) cbk(err, null)
         else if (data.length > 0) {
             let u = data[0];
@@ -53,7 +68,13 @@ const blacklistUser = (userId, reason, cbk) => {
             u.blacklisted.reason = reason;
             u.save(cbk);
         } else {
-            users.insert({ user_id: userId, blacklisted: { status: true, reason } }, cbk);
+            users.insert({
+                user_id: userId,
+                blacklisted: {
+                    status: true,
+                    reason
+                }
+            }, cbk);
         };
     })
 };
@@ -64,7 +85,9 @@ const whiteListUser = (userId, cbk) => {
         if (err) cbk(err, null)
         else if (data.length > 0) {
             let u = data[0];
-            u.blacklisted = { status: false };
+            u.blacklisted = {
+                status: false
+            };
             u.save(cbk);
         }
     });
@@ -84,5 +107,6 @@ module.exports = {
     blacklistUser,
     whiteListUser,
     isUserBlacklisted,
-    getUserCount
+    getUserCount,
+    getUsers
 }

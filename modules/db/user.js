@@ -38,6 +38,14 @@ const Controller = {
   delete: (q, cbk) => {
     cbk = cbk || callback;
     User.remove(q, cbk);
+  },
+  getUsers: (cbk) => {
+    cbk = cbk || callback;
+    User.aggregate([{
+      $group: {
+        _id: '$user_id'
+      }
+    }], cbk);
   }
 };
 
