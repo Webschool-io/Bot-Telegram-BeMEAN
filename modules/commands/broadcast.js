@@ -48,9 +48,12 @@ const execute = (msg, match, bot) => {
 const doBroadcast = (ids, bot, msg) => {
     if (Array.isArray(ids)) {
         if (msg.reply_to_message) {
-            let tfw = msg.reply_to_message;
+            let tfw = msg.reply_to_message,
+                i = 0;
             bot.sendMessage(msg.chat.id, `Enviando mensagem para: ${ids.length} conversas`);
-            bot.forwardMessage(msg.chat.id, tfw.chat.id, tfw.message_id);
+            ids.forEach((id) => {
+                bot.forwardMessage(id, tfw.chat.id, tfw.message_id);
+            });
             bot.sendMessage(msg.chat.id, "Broadcast finalizado");
         } else {
             bot.sendMessage(msg.chat.id, "Só funciona por reply, jovem!");
