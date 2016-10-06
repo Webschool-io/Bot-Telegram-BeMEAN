@@ -41,7 +41,7 @@ const execute = (msg, match, bot) => {
             sendUse(bot, msg)
         }
     } else {
-        bot.sendMessage("Você não tem permissão pra usar esse comando :/");
+        bot.sendMessage(msg.chat.id, "Você não tem permissão pra usar esse comando :/");
     }
 }
 
@@ -52,6 +52,7 @@ const doBroadcast = (ids, bot, msg) => {
                 i = 0;
             bot.sendMessage(msg.chat.id, `Enviando mensagem para: ${ids.length} conversas`);
             ids.forEach((id) => {
+                console.log(`Enviando mensagem para ${id}`);
                 bot.forwardMessage(id, tfw.chat.id, tfw.message_id);
             });
             bot.sendMessage(msg.chat.id, "Broadcast finalizado");
