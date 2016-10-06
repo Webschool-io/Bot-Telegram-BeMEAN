@@ -10,7 +10,7 @@ const sendUse = (bot, msg) => {
     });
 }
 
-const execute = (mag, match, bot) => {
+const execute = (msg, match, bot) => {
     if (monitutils.isAdmin(msg.from.id)) {
         if (match[2]) {
             let dest = match[2];
