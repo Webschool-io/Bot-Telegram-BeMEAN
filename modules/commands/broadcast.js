@@ -53,7 +53,7 @@ const doBroadcast = (ids, bot, msg) => {
             bot.sendMessage(msg.chat.id, `Enviando mensagem para: ${ids.length} conversas`)
                 .then(() => {
                     ids.forEach((id) => {
-                        if (setn.indexOf(id) < 0) {
+                        if (sent.indexOf(id) < 0) {
                             bot.forwardMessage(id, tfw.chat.id, tfw.message_id)
                                 .catch(() => {})
                         }
