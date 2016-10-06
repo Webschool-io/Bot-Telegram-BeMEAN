@@ -50,12 +50,15 @@ const doBroadcast = (ids, bot, msg) => {
         if (msg.reply_to_message) {
             let tfw = msg.reply_to_message,
                 i = 0;
-            bot.sendMessage(msg.chat.id, `Enviando mensagem para: ${ids.length} conversas`);
-            ids.forEach((id) => {
-                console.log(`Enviando mensagem para ${id}`);
-                bot.forwardMessage(id, tfw.chat.id, tfw.message_id);
-            });
-            bot.sendMessage(msg.chat.id, "Broadcast finalizado");
+            bot.sendMessage(msg.chat.id, `Enviando mensagem para: ${ids.length} conversas`)
+                .then(() => {
+                    ids.forEach((id) => {
+                        console.log(`Enviando mensagem para ${id}`);
+                        bot.forwardMessage(id, tfw.chat.id, tfw.message_id)
+                            .catch(() => {});
+                    });
+                    bot.sendMessage(msg.chat.id, "Broadcast finalizado");
+                });
         } else {
             bot.sendMessage(msg.chat.id, "Só funciona por reply, jovem!");
         }
