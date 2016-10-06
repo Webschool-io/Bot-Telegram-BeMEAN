@@ -74,5 +74,6 @@ const fillGroups = (cbk, ids) => {
 }
 
 module.exports = {
-    execute
+    execute,
+    numParams: 1
 }
