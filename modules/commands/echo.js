@@ -8,7 +8,7 @@
  * @param match
  * @param bot
  */
-const execute = (msg, match, bot) => bot.sendMessage(msg.chat.id, decodeURIComponent(match[2]), {
+const execute = (msg, match, bot) => bot.sendMessage(msg.chat.id, msg.text.replace('/echo ', ''), {
   'parse_mode': 'Markdown'
 });
 module.exports = {
