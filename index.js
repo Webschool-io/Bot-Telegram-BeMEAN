@@ -28,7 +28,7 @@ bot.on('message', (msg) => {
 });
 
 // Matches commands
-bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?(@.*)?/i, (msg, match) => {
+bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?(@.*bot)?/i, (msg, match) => {
   if ((match[3] && match[3] == username) || !match[3]) {
     let command = match[1];
     if (command) {
