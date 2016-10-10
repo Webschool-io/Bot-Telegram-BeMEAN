@@ -70,10 +70,10 @@ const doBroadcast = (ids, bot, msg) => {
 }
 
 const fillUsers = (cbk) => {
-    userutils.getUsers({}, (err, data) => {
+    userutils.getUsers((err, data) => {
         let users = [];
         data.forEach((el) => {
-            if (el.user_id) users.push(el.user_id)
+            if (el._id) users.push(el._id)
         });
         cbk(users);
     });

@@ -30,7 +30,7 @@ const getUser = (userId, cbk) => {
     }, cbk);
 };
 
-const getUsers = (qry, cbk) => {
+const getUsers = (cbk) => {
     cbk = cbk || callback;
     users.getUsers(cbk);
 }
