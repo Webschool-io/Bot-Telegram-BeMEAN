@@ -15,6 +15,7 @@
     "bemean",
     "telegram"
   ],
+  "repository": "https://github.com/Webschool-io/Bot-Telegram-BeMEAN",
   "author": "WebSchool / BeMEAN",
   "license": "ISC",
   "dependencies": {
