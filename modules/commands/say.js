@@ -23,7 +23,7 @@ const execute = (msg, match, bot) => {
       bot.sendMessage(msg.chat.id, "Uso: `/say \"mensagem\" IDs separados por expaço`", { parse_mode: 'Markdown' });
     }
   } else {
-    bot.sendMessage(msg.chat.id, 'Erro interno');
+    bot.sendMessage(msg.chat.id, "Uso: `/say \"mensagem\" IDs separados por expaço`", { parse_mode: 'Markdown' });
   }
 }
 
