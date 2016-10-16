@@ -1,6 +1,12 @@
 'use strict';
 
+const mu = require('../utils/monitutils');
+
 const execute = (msg, match, bot) => {
+  if (!mu.isAdmin(msg.from.id)) {
+    bot.sendMessage(msg.chat.id, "Você não tem privilégios para usar esse comando, jovem");
+    return null;
+  }
   if (match[2]) {
     try {
       const opts = match[2].match(/"(.*)" (.*)/);
