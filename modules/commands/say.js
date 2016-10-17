@@ -1,6 +1,7 @@
 'use strict';
 
 const mu = require('../utils/monitutils');
+const use = "Uso: `/say \"mensagem\" IDs separados por espaço`";
 
 const execute = (msg, match, bot) => {
   if (!mu.isAdmin(msg.from.id)) {
@@ -26,10 +27,10 @@ const execute = (msg, match, bot) => {
         throw "Formato incorreto";
       }
     } catch (ignored) {
-      bot.sendMessage(msg.chat.id, "Uso: `/say \"mensagem\" IDs separados por expaço`", { parse_mode: 'Markdown' });
+      bot.sendMessage(msg.chat.id, use, { parse_mode: 'Markdown' });
     }
   } else {
-    bot.sendMessage(msg.chat.id, "Uso: `/say \"mensagem\" IDs separados por expaço`", { parse_mode: 'Markdown' });
+    bot.sendMessage(msg.chat.id, use, { parse_mode: 'Markdown' });
   }
 }
 
