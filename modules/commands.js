@@ -16,7 +16,7 @@ const whitelist = require('./commands/whitelist');
 const example = require('./commands/example');
 const broadcast = require('./commands/broadcast');
 const say = require('./commands/say');
-const addid = require('./commands/addid');
+const saveid = require('./commands/saveid');
 
 module.exports = {
   echo,
@@ -34,5 +34,5 @@ module.exports = {
   whitelist,
   broadcast,
   say,
-  addid
+  saveid
 };
