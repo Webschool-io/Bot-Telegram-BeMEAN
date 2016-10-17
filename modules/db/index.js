@@ -28,5 +28,6 @@ process.on('SIGINT', function () {
 
 module.exports = {
     setting: require('./setting'),
-    user: require('./user')
+    user: require('./user'),
+    id: require('./id')
 };
