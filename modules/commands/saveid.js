@@ -10,6 +10,8 @@ const execute = (msg, match, bot) => {
     const id = vals[1];
     const key = vals[2];
 
+    bot.sendMessage(msg.chat.id, JSON.stringify(match));
+
     idu.add(key, id)
       .then((data) => {
         bot.sendMessage(msg.chat.id, `ID ${id} salvo como ${key}`);
