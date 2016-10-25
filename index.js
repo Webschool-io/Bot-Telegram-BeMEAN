@@ -278,6 +278,7 @@ bot.on('location', (msg) => {
  * Novo participante adicionado ao grupo
  */
  bot.on('new_chat_participant', (msg) => {
+  console.log('new_chat_participant');
   if(msg.new_chat_member.username == username.replace(/\@/i, '')){
     grouputils.saveGroup({chat_id: msg.chat.id});
     bot.sendMessage(msg.chat.id, "Aehooo! Cheguei ssabagass 😜");
