@@ -2,6 +2,7 @@
 
 const treta = require('../db/treta');
 const userutils = require('../utils/userutils');
+const grouputils = require('../utils/grouputils');
 const monitutils = require('../utils/monitutils');
 
 const sendUse = (bot, msg) => {
@@ -17,25 +18,25 @@ const execute = (msg, match, bot) => {
             let ids = [];
             switch (dest) {
                 case 'users':
-                    fillUsers((ids) => {
-                        doBroadcast(ids, bot, msg);
-                    });
-                    break;
+                fillUsers((ids) => {
+                    doBroadcast(ids, bot, msg);
+                });
+                break;
                 case 'groups':
+                fillGroups((ids) => {
+                    doBroadcast(ids, bot, msg);
+                });
+                break;
+                case 'all':
+                fillUsers((ids) => {
                     fillGroups((ids) => {
                         doBroadcast(ids, bot, msg);
-                    });
-                    break;
-                case 'all':
-                    fillUsers((ids) => {
-                        fillGroups((ids) => {
-                            doBroadcast(ids, bot, msg);
-                        }, ids)
-                    });
-                    break;
+                    }, ids)
+                });
+                break;
                 default:
-                    sendUse(bot, msg);
-                    break;
+                sendUse(bot, msg);
+                break;
             }
         } else {
             sendUse(bot, msg)
@@ -49,18 +50,18 @@ const doBroadcast = (ids, bot, msg) => {
     if (Array.isArray(ids)) {
         if (msg.reply_to_message) {
             let tfw = msg.reply_to_message,
-                sent = [];
+            sent = [];
             bot.sendMessage(msg.chat.id, `Enviando mensagem para: ${ids.length} conversas`)
-                .then(() => {
-                    ids.forEach((id) => {
-                        if (sent.indexOf(id) < 0) {
-                            bot.forwardMessage(id, tfw.chat.id, tfw.message_id)
-                                .catch(() => {})
-                        }
-                        sent.push(id);
-                    });
-                    bot.sendMessage(msg.chat.id, "Broadcast finalizado");
+            .then(() => {
+                ids.forEach((id) => {
+                    if (sent.indexOf(id) < 0) {
+                        bot.forwardMessage(id, tfw.chat.id, tfw.message_id)
+                        .catch(() => {})
+                    }
+                    sent.push(id);
                 });
+                bot.sendMessage(msg.chat.id, "Broadcast finalizado");
+            });
         } else {
             bot.sendMessage(msg.chat.id, "Só funciona por reply, jovem!");
         }
@@ -80,7 +81,7 @@ const fillUsers = (cbk) => {
 }
 
 const fillGroups = (cbk, ids) => {
-    treta.getGroups((err, data) => {
+    grouputils.getGroups((err, data) => {
         ids = ids || [];
         data.forEach((el) => {
             if (el._id) ids.push(el._id);
