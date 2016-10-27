@@ -66,7 +66,7 @@ bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?(@.*bot)?/i, (msg, match) => {
             bot.sendMessage(msg.chat.id, "Ops, número incorreto de parâmetros fornecidos (" + argsCount + "). Número de parâmetros exigidos: " + command.numParams + " :/");
           }
         } else {
-          if (match[3]) bot.sendMessage(msg.chat.id, "Eita, esse comando não existe :/");
+          if (match[3] || msg.chat.type == 'private') bot.sendMessage(msg.chat.id, "Eita, esse comando não existe :/");
         }
       }
     }
