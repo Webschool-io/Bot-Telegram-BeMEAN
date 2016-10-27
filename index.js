@@ -76,7 +76,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
     },
     {
       member: 'test',
-      regex: /^regex/i,
+      regex: /^regex (.+)/i,
       fn: (bot, msg, match) => services.evalTest.execute(bot, msg),
       eval: true
       // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do test: ' + safeEval(msg.text))
