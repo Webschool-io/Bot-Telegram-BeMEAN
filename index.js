@@ -51,7 +51,7 @@ bot.on('message', (msg) => {
 });
 
 // Matches commands
-bot.onText(/^\/(?!config)([a-zA-Z]+) ?([^@]+)?(@.*bot)?/i, (msg, match) => {
+bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?(@.*bot)?/i, (msg, match) => {
   processing = msg;
   if (!crashdata || msg != crashdata.msg) {
     if ((match[3] && match[3] == username) || !match[3]) {
@@ -188,7 +188,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       eval: false
     }, {
       member: 'config',
-      regex: /\/config +([^ ]+) *([^ ]+)*/i,
+      regex: /#config +([^ ]+) *([^ ]+)*/i,
       fn: (bot, msg, match) => services.config.execute(bot, msg, match),
       eval: false
     }, {
