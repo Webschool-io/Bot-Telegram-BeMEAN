@@ -188,7 +188,7 @@ bot.onText(/^([^\/]+)/i, (msg, match) => {
       eval: false
     }, {
       member: 'config',
-      regex: /config +([^ ]+) *([^ ]+)*/i,
+      regex: /\/config +([^ ]+) *([^ ]+)*/i,
       fn: (bot, msg, match) => services.config.execute(bot, msg, match),
       eval: false
     }, {
