@@ -297,8 +297,8 @@ const saveCrash = (err) => {
     msg: processing,
     time: new Date()
   }));
-  //process.exit(1);
+  monitutils.notifyAdmins(bot, `Erro ao processar: \`\`\`${JSON.stringify(processing)}\`\`\`\nErro: \`\`\`${err}\`\`\` `)
+  process.exit(1);
 }
 
 process.on('uncaughtException', saveCrash);
-process.on('unhandledRejection', saveCrash);
