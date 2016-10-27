@@ -51,7 +51,7 @@ bot.on('message', (msg) => {
 });
 
 // Matches commands
-bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?(@.*bot)?/i, (msg, match) => {
+bot.onText(/^\/(?!config)([a-zA-Z]+) ?([^@]+)?(@.*bot)?/i, (msg, match) => {
   processing = msg;
   if (!crashdata || msg != crashdata.msg) {
     if ((match[3] && match[3] == username) || !match[3]) {
