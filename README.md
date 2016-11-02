@@ -59,11 +59,13 @@ A ideia é que ele possa lhe ajudar a achar a informação mais fácil, principa
 - #insta hashtag // busca a hashtag no Instagram
 - [Code]... ? // Busca no Stackoverflow
 - [Github]... ? // Busca no Github
+
+### To Do
+
 - [Be MEAN] ...? // Adiciona a pergunta na FAQ para q eu, Suissa, responda
 - [Be MEAN FAQ] // Lista as perguntas e respostas da FAQ
 - [Error] // Busca no Stackoverflow
 - [JS]{COMANDO} // Busca em mdn.io/{COMANDO}
-- [eval]{CODE} // Enviar para um https://eval.in da vida
 - Integração com a API Luis.ai com tradução automática
 
 ## Autores
