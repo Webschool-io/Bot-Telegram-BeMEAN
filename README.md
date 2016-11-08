@@ -70,5 +70,5 @@ A ideia é que ele possa lhe ajudar a achar a informação mais fácil, principa
 
 ## Autores
 
-- [rohmunhoz](https://github.com/rohmunhoz)
+- [rjmunhoz](https://github.com/rjmunhoz)
 - [suissa](https://github.com/suissa)
