@@ -1,32 +1,44 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const dbURI = process.env.dbURI || 'mongodb://localhost/bemean';
+let dbURI = 'mongodb://localhost/bemean';
+
+if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+  const username = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
+  const password = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
+  const host = process.env.OPENSHIFT_MONGODB_DB_HOST;
+  const port = process.env.OPENSHIFT_MONGODB_DB_PORT;
+  const app_name = process.env.OPENSHIFT_APP_NAME;
+  dbURI =
+    `${username}:${password}@${host}:${port}/${app_name}`;
+}
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbURI);
 
 mongoose.connection.on('  ', function () {
-    console.log('Mongoose default connection open to ' + dbURI);
+  console.log('Mongoose default connection open to ' + dbURI);
 });
 mongoose.connection.on('error', function (err) {
-    console.log('Mongoose default connection error: ' + err);
+  console.log('Mongoose default connection error: ' + err);
 });
 mongoose.connection.on('disconnected', function () {
-    console.log('Mongoose default connection disconnected');
+  console.log('Mongoose default connection disconnected');
 });
 mongoose.connection.on('open', function () {
-    console.log('Mongoose default connection is open');
+  console.log('Mongoose default connection is open');
 });
 
 process.on('SIGINT', function () {
-    mongoose.connection.close(function () {
-        console.log('Mongoose default connection disconnected through app termination');
-        process.exit(0);
-    });
+  mongoose.connection.close(function () {
+    console.log(
+      'Mongoose default connection disconnected through app termination'
+    );
+    process.exit(0);
+  });
 });
 
 module.exports = {
-    setting: require('./setting'),
-    user: require('./user')
+  setting: require('./setting')
+  , user: require('./user')
 };
