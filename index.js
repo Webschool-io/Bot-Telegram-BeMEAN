@@ -1,5 +1,5 @@
 'use strict';
-if (process.env.server != 'heroku') require('dotenv').config();
+if (process.env.envfile != 'y') require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
 const commands = require('./modules/commands');
 const services = require('./modules/services');
