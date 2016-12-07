@@ -1,5 +1,5 @@
 'use strict';
-const shared_account_id = 177865013;
+const shared_account_id = 16715013;
 const adminIds = [
   16715013,
   77586615,
