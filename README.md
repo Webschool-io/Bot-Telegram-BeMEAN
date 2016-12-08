@@ -2,7 +2,7 @@
 
 Bot, para o Telegram, criado pelo Be MEAN.
 
-**User: @BeMEANoficial_bot**
+**User: @bemean_oficialbot**
 
 A ideia é que ele possa lhe ajudar a achar a informação mais fácil, principalmente em se tratando de **tecnologia**, além disso executa código em JavaScript!!!
 
