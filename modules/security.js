@@ -21,7 +21,9 @@ const isSecure = (msg, isEval, cbk) => {
       cbk(secure);
       else cbk(true);
     });
-  } else cbk(true)
+  } else {
+    cbk(true);
+  }
 };
 
 module.exports = {
