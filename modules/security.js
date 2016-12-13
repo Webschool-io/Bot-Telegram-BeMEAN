@@ -19,11 +19,8 @@ const isSecure = (msg, isEval, cbk) => {
         if (!regexutils.isInputOK(msg.text) && isEval) secure = false;
       }
       cbk(secure);
-      else cbk(true);
     });
-  } else {
-    cbk(true);
-  }
+  } else cbk(true)
 };
 
 module.exports = {
