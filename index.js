@@ -1,5 +1,6 @@
 'use strict';
 if (process.env.envfile === 'y') require('dotenv').config();
+console.log(process.env);
 const TelegramBot = require('node-telegram-bot-api');
 const commands = require('./modules/commands');
 const services = require('./modules/services');
