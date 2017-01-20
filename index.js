@@ -13,8 +13,7 @@ const fs = require('fs');
 
 console.log(process.env);
 
-const token = process.env.API_TOKEN || 'INSERT API_TOKEN';
-const username = process.env.USERNAME || '@bemean_oficialbot';
+const username = process.env.username || '@bemean_oficialbot';
 
 const PORT = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT;
 const TELEGRAM_TOKEN = process.env.API_TOKEN;
@@ -22,18 +21,20 @@ const HOST = process.env.OPENSHIFT_NODEJS_IP || process.env.LOCAL_IP;
 const DOMAIN = process.env.OPENSHIFT_APP_DNS || process.env.LOCAL_URL;
 
 //Setup WebHook way
-const bot = new TelegramBot(token, {
+/* const bot = new TelegramBot(token, {
   webHook: {
     host: HOST
     , port: PORT
   }
   , onlyFirstMatch: true
-});
+}); */
+
+const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
 
 bot.getMe()
   .then(me => {
     takeOff();
-    bot.setWebHook(DOMAIN + ':443/bot' + TELEGRAM_TOKEN);
+    //bot.setWebHook(DOMAIN + ':443/bot' + TELEGRAM_TOKEN);
     let info = [];
     const date = new Date();
     info.push('------------------------------');
