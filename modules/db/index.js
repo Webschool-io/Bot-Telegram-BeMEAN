@@ -3,14 +3,13 @@
 const mongoose = require('mongoose');
 let dbURI = 'mongodb://localhost/bemean';
 
-if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
-  const username = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
-  const password = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
-  const host = process.env.OPENSHIFT_MONGODB_DB_HOST;
-  const port = process.env.OPENSHIFT_MONGODB_DB_PORT;
-  const app_name = process.env.OPENSHIFT_APP_NAME;
-  dbURI =
-    `${username}:${password}@${host}:${port}/${app_name}`;
+if (process.env.MONGODB_DB_ENABLED) {
+  const username = process.env.MONGODB_DB_USERNAME;
+  const password = process.env.MONGODB_DB_PASSWORD;
+  const host = process.env.MONGODB_DB_HOST;
+  const port = process.env.MONGODB_DB_PORT;
+  const app_name = process.env.MONGODB_DB_NAME;
+  dbURI = `${username}:${password}@${host}:${port}/${app_name}`;
 }
 
 mongoose.Promise = global.Promise;
