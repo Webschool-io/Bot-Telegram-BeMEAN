@@ -1,6 +1,6 @@
 'use strict';
 if (process.env.envfile === 'y') require('dotenv').config();
-console.log(process.env);
+console.log(process.env.envfile);
 const TelegramBot = require('node-telegram-bot-api');
 const commands = require('./modules/commands');
 const services = require('./modules/services');
@@ -10,6 +10,8 @@ const userutils = require('./modules/utils/userutils');
 const treta = require('./modules/db/treta');
 const s = require('./modules/settings');
 const fs = require('fs');
+
+console.log(process.env);
 
 const token = process.env.API_TOKEN || 'INSERT API_TOKEN';
 const username = process.env.USERNAME || '@bemean_oficialbot';
