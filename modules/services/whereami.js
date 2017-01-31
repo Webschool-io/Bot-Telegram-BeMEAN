@@ -9,7 +9,7 @@ const api = new GoogleMapsAPI(config);
 const monitutils = require('../utils/monitutils');
 
 const localeNotFound = (bot, msg, query, result) => {
-    bot.sendMessage(msg.chat.id, "Então... Tem certeza que esse lugar existe? Pq procurei ele no Google Maps, e não achei, não :/");
+    bot.sendMessage(msg.chat.id, "Então... Tem certeza que esse lugar existe? Pq procurei ele no Google Maps, e não achei, não :/").catch(console.log);
 }
 
 const s = require('../settings');
@@ -24,7 +24,7 @@ const _execute = (bot, msg) => {
     api.reverseGeocode(reverseParams, (err, result) => {
 
         if (err) {
-            bot.sendMessage(msg.chat.id, errMsg);
+            bot.sendMessage(msg.chat.id, errMsg).catch(console.log);
             monitutils.notifySharedAccount(bot, "Erro no service do whereami:\nerr: `" + JSON.stringify(err) + "`");
             return;
         }
@@ -33,7 +33,7 @@ const _execute = (bot, msg) => {
             if (result.status == 'ZERO_RESULTS') {
                 localeNotFound(bot, msg, query, result);
             } else {
-                bot.sendMessage(msg.chat.id, errMsg);
+                bot.sendMessage(msg.chat.id, errMsg).catch(console.log);
             }
             return;
         }
@@ -47,7 +47,7 @@ const _execute = (bot, msg) => {
             let info = result.results[0];
             let name = info.formatted_address;
 
-            bot.sendMessage(msg.chat.id, 'Segundo o Google Maps, você está nesse endereço: `' + name + '`', { 'parse_mode': 'Markdown' });
+            bot.sendMessage(msg.chat.id, 'Segundo o Google Maps, você está nesse endereço: `' + name + '`', { 'parse_mode': 'Markdown' }).catch(console.log);
         }
     });
 }

@@ -27,9 +27,9 @@ const execute = (bot, msg, match) => {
       }
 
       if (pr == pu.toLowerCase()) {
-        bot.sendMessage(msg.chat.id, messages.ok.replace("%ao%", ending).replace("%pr%", pr), { 'reply_to_message_id': msg.message_id });
+        bot.sendMessage(msg.chat.id, messages.ok.replace("%ao%", ending).replace("%pr%", pr), { 'reply_to_message_id': msg.message_id }).catch(console.log);
       } else {
-        bot.sendMessage(msg.chat.id, messages.wrongPeriod.replace("%ao%", ending).replace("%pu%", pu).replace("%horas%", horas).replace("%minutos%", minutos), { 'reply_to_message_id': msg.message_id });
+        bot.sendMessage(msg.chat.id, messages.wrongPeriod.replace("%ao%", ending).replace("%pu%", pu).replace("%horas%", horas).replace("%minutos%", minutos), { 'reply_to_message_id': msg.message_id }).catch(console.log);
       }
     }
   });

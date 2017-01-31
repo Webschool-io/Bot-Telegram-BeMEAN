@@ -7,7 +7,7 @@ const monitutils = require('../utils/monitutils');
 const sendUse = (bot, msg) => {
     bot.sendMessage(msg.chat.id, "Uso: `/broadcast users|groups|all`", {
         parse_mode: 'Markdown'
-    });
+    }).catch(console.log);
 }
 
 const execute = (msg, match, bot) => {
@@ -41,7 +41,7 @@ const execute = (msg, match, bot) => {
             sendUse(bot, msg)
         }
     } else {
-        bot.sendMessage(msg.chat.id, "Você não tem permissão pra usar esse comando :/");
+        bot.sendMessage(msg.chat.id, "Você não tem permissão pra usar esse comando :/").catch(console.log);
     }
 }
 
@@ -50,7 +50,7 @@ const doBroadcast = (ids, bot, msg) => {
         if (msg.reply_to_message) {
             let tfw = msg.reply_to_message,
                 sent = [];
-            bot.sendMessage(msg.chat.id, `Enviando mensagem para: ${ids.length} conversas`)
+            bot.sendMessage(msg.chat.id, `Enviando mensagem para: ${ids.length} conversas`).catch(console.log)
                 .then(() => {
                     ids.forEach((id) => {
                         if (sent.indexOf(id) < 0) {
@@ -59,13 +59,13 @@ const doBroadcast = (ids, bot, msg) => {
                         }
                         sent.push(id);
                     });
-                    bot.sendMessage(msg.chat.id, "Broadcast finalizado");
+                    bot.sendMessage(msg.chat.id, "Broadcast finalizado").catch(console.log);
                 });
         } else {
-            bot.sendMessage(msg.chat.id, "Só funciona por reply, jovem!");
+            bot.sendMessage(msg.chat.id, "Só funciona por reply, jovem!").catch(console.log);
         }
     } else {
-        bot.sendMessage(msg.chat.id, "Erro interno");
+        bot.sendMessage(msg.chat.id, "Erro interno").catch(console.log);
     }
 }
 

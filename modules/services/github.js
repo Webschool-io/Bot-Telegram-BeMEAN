@@ -55,16 +55,16 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
         var answer = answers.quickDef;
         const _return = 'Via Github: "' + answer.replace(/\[[^]]*]/, "") + '". fonte: ' + _url;
 
-        bot.sendMessage(msg.chat.id, _return, pm);
+        bot.sendMessage(msg.chat.id, _return, pm).catch(console.log);
         break;
       case 404:
         // bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
-        duckduckgo.execute(bot, msg, args);
+        duckduckgo.execute(bot, msg, args).catch(console.log);
         break;
     }
   } else {
     const mili = new Date().getTime();
-    bot.sendMessage(msg.chat.id, messages.requestError.replace("%mili%", mili), pm);
+    bot.sendMessage(msg.chat.id, messages.requestError.replace("%mili%", mili), pm).catch(console.log);
     console.log(messages.consoleRequestError.replace("%mili%", mili).replace("%err%", err));
   }
 };
@@ -84,7 +84,7 @@ var execute = (bot, msg, args) => {
     });
   }
   catch (e) {
-    bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
+    bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm).catch(console.log);
   }
 };
 

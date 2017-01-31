@@ -38,21 +38,21 @@ const execute = (bot, msg, match) => {
          */
         if (data.AbstractText !== "") {
           const _return = "Segundo o DuckDuckGo: <i>" + data.AbstractText + "</i> Saiba mais em " + data.AbstractURL;
-          bot.sendMessage(msg.chat.id, _return, parse);
+          bot.sendMessage(msg.chat.id, _return, parse).catch(console.log);
           // bot.sendMessage(msg.chat.id, 'Data: "'+JSON.stringify(data)+'"');
           console.log("data): " + data);
         }
         else {
           const sticker = stickers[Math.floor(Math.random() * stickers.length)];
           const _return = "<b>Não achei nada jovem!</b> Sorry mesmo, mas você pode fumar um pra relaxar.";
-          bot.sendMessage(msg.chat.id, _return, parse);
+          bot.sendMessage(msg.chat.id, _return, parse).catch(console.log);
           s.get(msg.chat.id, 'stickers', (err, data) => {
-            if (data == 'true') bot.sendSticker(msg.chat.id, sticker);
+            if (data == 'true') bot.sendSticker(msg.chat.id, sticker).catch(console.log);
           });
         }
       }
       catch (e) {
-        bot.sendMessage(msg.chat.id, "DEU MERDA: " + e);
+        bot.sendMessage(msg.chat.id, "DEU MERDA: " + e).catch(console.log);
         console.log("Erro end: " + err)
       }
     });

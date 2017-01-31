@@ -40,7 +40,7 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
         answer = (answer == "") ? answers.longDef : answer;
         const _return = 'Segundo a Wikipédia: "<i>' + answer.replace(/\[[^]]*]/, "") + '</i>". fonte: ' + _url;
 
-        bot.sendMessage(msg.chat.id, _return, ph);
+        bot.sendMessage(msg.chat.id, _return, ph).catch(console.log);
         break;
       case 404:
         duckduckgo.execute(bot, msg, args);
@@ -48,7 +48,7 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
     }
   } else {
     const mili = new Date().getTime();
-    bot.sendMessage(msg.chat.id, messages.requestError.replace("%mili%", mili), pm);
+    bot.sendMessage(msg.chat.id, messages.requestError.replace("%mili%", mili), pm).catch(console.log);
     console.log(messages.consoleRequestError.replace("%mili%", mili).replace("%err%", err));
   }
 };
@@ -65,8 +65,8 @@ var _execute = (bot, msg, args) => {
   if (args.query.toLowerCase() == 'o seu criador') {
     console.log('quem é o seu criador');
     s.get(msg.chat.id, 'stickers', (err, data) => {
-      if (data == 'true') bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', {'reply_to_message_id': msg.message_id});
-      else bot.sendMessage(msg.chat.id, 'https://github.com/Webschool-io/Bot-Telegram-BeMEAN');
+      if (data == 'true') bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', {'reply_to_message_id': msg.message_id}).catch(console.log);
+      else bot.sendMessage(msg.chat.id, 'https://github.com/Webschool-io/Bot-Telegram-BeMEAN').catch(console.log);
     });
   }
   else {
@@ -77,7 +77,7 @@ var _execute = (bot, msg, args) => {
       });
     }
     catch (e) {
-      bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
+      bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm).catch(console.log);
     }
   }
 };

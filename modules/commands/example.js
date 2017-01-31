@@ -10,7 +10,7 @@ const execute = (msg, match, bot) => {
             }]]
         },
         parse_mode: 'Markdown'
-    });
+    }).catch(console.log);
 }
 
 module.exports = {

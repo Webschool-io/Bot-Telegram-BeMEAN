@@ -26,12 +26,12 @@ const execute = (bot, msg) => {
           longDef: $('#readme .deep-link').text().substr(0, 300)
         };
         const _return = 'Segundo o npm : "<i>' + answers.quickDef.replace(/\[[^]]*]/, "") + '</i>". fonte: ' + _url.href;
-        bot.sendMessage(msg.chat.id, _return, parse);
+        bot.sendMessage(msg.chat.id, _return, parse).catch(console.log);
         // const __return = 'Segundo o npm long: "<i>' + answers.longDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
         // bot.sendMessage(msg.chat.id, __return, parse);
       }
       catch (e) {
-        bot.sendMessage(msg.chat.id, "DEU MERDA: " + e);
+        bot.sendMessage(msg.chat.id, "DEU MERDA: " + e).catch(console.log);
         console.log("Erro end: " + err)
       }
     });

@@ -18,9 +18,9 @@ const stickers = [
 
 const _execute = (bot, msg) => {
   const sticker = stickers[Math.floor(Math.random() * stickers.length)];
-  bot.sendMessage(msg.chat.id, "Legalize já :P", { 'reply_to_message_id': msg.message_id });
+  bot.sendMessage(msg.chat.id, "Legalize já :P", { 'reply_to_message_id': msg.message_id }).catch(console.log);
   s.get(msg.chat.id, 'stickers', (err, data) => {
-    if (data == 'true') bot.sendSticker(msg.chat.id, sticker, { 'reply_to_message_id': msg.message_id });
+    if (data == 'true') bot.sendSticker(msg.chat.id, sticker, { 'reply_to_message_id': msg.message_id }).catch(console.log);
   });
 }
 

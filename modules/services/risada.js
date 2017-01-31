@@ -25,7 +25,7 @@ const execute = (bot, msg) => {
 const _execute = (bot, msg) => {
   let contagem = contadores[msg.chat.id];
   if ((contagem && contagem >= limite) || msg.chat.type == 'private') {
-    bot.sendMessage(msg.chat.id, risadas[Math.floor(Math.random() * risadas.length)]);
+    bot.sendMessage(msg.chat.id, risadas[Math.floor(Math.random() * risadas.length)]).catch(console.log);
     if (msg.chat.type != 'private') {
       contadores[msg.chat.id] = 0;
     }

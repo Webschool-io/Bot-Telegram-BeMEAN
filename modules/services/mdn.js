@@ -8,7 +8,7 @@ const execute = (bot, msg) => {
   const arr = msg.text.split(commmand + ' ');
   const cmd = arr.splice(1)[0];
   const _url = 'http://mdn.io/' + cmd;
-  bot.sendMessage(msg.chat.id, _url);
+  bot.sendMessage(msg.chat.id, _url).catch(console.log);
 };
 module.exports = {
   execute: execute

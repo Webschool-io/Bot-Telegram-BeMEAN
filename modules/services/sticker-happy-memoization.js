@@ -44,7 +44,7 @@ const execute = (bot, msg) => {
   const reply = { 'reply_to_message_id': msg.message_id };
   // console.log('sticker', sticker)
   s.get(msg.chat.id, 'stickers', (err, data) => {
-    if (data == 'true') bot.sendSticker(msg.chat.id, stckr, reply);
+    if (data == 'true') bot.sendSticker(msg.chat.id, stckr, reply).catch(console.log);
   })
 };
 

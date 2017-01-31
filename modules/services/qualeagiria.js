@@ -38,14 +38,14 @@ const parseResponse = (err, res, html, args, bot, msg) => {
             url: answer.slug
           }]]
         }
-      })
+      }).catch(console.log)
       ;
     } else {
       wikipedia.execute(bot, msg, args);
     }
   } else {
     const mili = new Date().getTime();
-    bot.sendMessage(msg.chat.id, messages.requestError.replace("%mili%", `${mili}`), pm);
+    bot.sendMessage(msg.chat.id, messages.requestError.replace("%mili%", `${mili}`), pm).catch(console.log);
     console.log(messages.consoleRequestError.replace("%mili%", `${mili}`).replace("%err%", err));
   }
 };
@@ -54,8 +54,8 @@ const execute = (bot, msg, args) => {
   if (args.query.toLowerCase() == 'o seu criador') {
     console.log('quem é o seu criador');
     s.get(msg.chat.id, 'stickers', (err, data) => {
-      if (data == 'true') bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', {'reply_to_message_id': msg.message_id});
-      else bot.sendMessage(msg.chat.id, 'https://github.com/Webschool-io/Bot-Telegram-BeMEAN');
+      if (data == 'true') bot.sendSticker(msg.chat.id, 'BQADAQADGgADt-CfBCZz7J0kak9nAg', {'reply_to_message_id': msg.message_id}).catch(console.log);
+      else bot.sendMessage(msg.chat.id, 'https://github.com/Webschool-io/Bot-Telegram-BeMEAN').catch(console.log);
     });
   }
   else {
@@ -66,7 +66,7 @@ const execute = (bot, msg, args) => {
       });
     }
     catch (e) {
-      bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm);
+      bot.sendMessage(msg.chat.id, messages.communicationError.replace("%e%", e), pm).catch(console.log);
     }
   }
 };

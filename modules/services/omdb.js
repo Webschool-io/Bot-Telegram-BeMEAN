@@ -29,7 +29,7 @@ const _execute = (bot, msg, match, forceSearch, id) => {
   if (match[1] && match[1] != " " && match[1] != "") {
     _findInfo(bot, msg, match[1], id);
   } else {
-    bot.sendMessage(msg.chat.id, "Como vou saber, se vc não me fala o nome, jovem?");
+    bot.sendMessage(msg.chat.id, "Como vou saber, se vc não me fala o nome, jovem?").catch(console.log);
   }
 };
 
@@ -100,7 +100,7 @@ const _respond = (bot, msg, info, force) => {
   force = force || false;
   if (info) {
     if (info.count == 1) {
-      if (!force) bot.sendMessage(msg.chat.id, "Opa, esse eu conheço!");
+      if (!force) bot.sendMessage(msg.chat.id, "Opa, esse eu conheço!").catch(console.log);
       setTimeout(() => {
         bot.sendMessage(msg.chat.id, info.text, {
           reply_markup: {
@@ -112,10 +112,10 @@ const _respond = (bot, msg, info, force) => {
         });
       }, 1000);
     } else {
-      bot.sendMessage(msg.chat.id, force ? MESSAGES.search_succes_f : MESSAGES.search_succes_nf, { reply_markup: { inline_keyboard: info.results } })
+      bot.sendMessage(msg.chat.id, force ? MESSAGES.search_succes_f : MESSAGES.search_succes_nf, { reply_markup: { inline_keyboard: info.results } }).catch(console.log)
     }
   } else {
-    bot.sendMessage(msg.chat.id, MESSAGES.search_fail_nf);
+    bot.sendMessage(msg.chat.id, MESSAGES.search_fail_nf).catch(console.log);
   }
 };
 
