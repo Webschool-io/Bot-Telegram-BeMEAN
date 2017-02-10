@@ -9,6 +9,7 @@ const jsonSchema = {
   id: Number
   , text: String
   , timeReceived: Date
+  , msg: String
 };
 
 const messageSchema = new Schema(jsonSchema);
@@ -39,15 +40,28 @@ const Controller = {
     Message.remove(q, cbk);
   },
   log: msg => {
+    let model
+      , logText;
     const timeReceived = new Date();
-    const model = new Message({
-      id: msg.id
-      , text: msg.text
-      , timeReceived
-    });
+
+    if (msg.text) {
+      model = new Message({
+        id: msg.id
+        , text: msg.text
+        , timeReceived
+      });
+    } else {
+      model = new Message({
+        id: msg.id
+        , text: msg.text
+        , timeReceived
+        , msg: JSON.stringify(msg)
+      });
+    }
+
     model.save((err, result) => {
-      if (!err) console.log(`[LOG][${moment(timeReceived).format('DD/MM/YY HH:mm:ss')}] ${msg.text}`);
-      else console.err(`[ERROR] Erro ao salvar mensagem ${msg.text}: ${err}`);
+      if (!err) console.log(`[LOG][${moment(timeReceived).format('DD/MM/YY HH:mm:ss')}] ${msg.text || 'Mensagem sem texto'}`);
+      else console.err(`[ERROR] Erro ao salvar mensagem ${msg.text || 'Mensagem sem texo'}: ${err}`);
     });
   }
 };
