@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const Schema = mongoose.Schema;
 // Criação do Schema
@@ -38,13 +39,14 @@ const Controller = {
     Message.remove(q, cbk);
   },
   log: msg => {
+    const timeReceived = new Date();
     const model = new Message({
       id: msg.id
       , text: msg.text
-      , timeReceived: new Date()
+      , timeReceived
     });
     model.save((err, result) => {
-      if (!err) console.log(`[LOG] ${msg.text}`);
+      if (!err) console.log(`[LOG][${moment(timeReceived).format('DD/MM/YY HH:mm:ss')}] ${msg.text}`);
       else console.err(`[ERROR] Erro ao salvar mensagem ${msg.text}: ${err}`);
     });
   }
