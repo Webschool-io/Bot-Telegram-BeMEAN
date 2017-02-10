@@ -21,5 +21,5 @@ const execute = (bot, msg) => {
 };
 
 module.exports = {
-  execute: execute
+  execute
 };

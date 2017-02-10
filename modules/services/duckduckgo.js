@@ -61,5 +61,5 @@ const execute = (bot, msg, match) => {
   req.on('error', (e) => console.error(e));
 };
 module.exports = {
-  execute: execute
+  execute
 };

@@ -69,5 +69,5 @@ const execute = (bot, msg, match) => {
 };
 
 module.exports = {
-  execute: execute
+  execute
 };

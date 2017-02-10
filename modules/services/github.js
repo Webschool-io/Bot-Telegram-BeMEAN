@@ -89,5 +89,5 @@ var execute = (bot, msg, args) => {
 };
 
 module.exports = {
-  execute: execute
+  execute
 };

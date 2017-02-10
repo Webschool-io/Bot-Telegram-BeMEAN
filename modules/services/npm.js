@@ -40,5 +40,5 @@ const execute = (bot, msg) => {
   req.on('error', (e) => console.error(e));
 };
 module.exports = {
-  execute: execute
+  execute
 };

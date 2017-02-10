@@ -87,7 +87,7 @@ const takeOff = () => {
   bot.on('message', (msg) => {
     message.log(msg);
     processing = msg;
-    if (!crashdata || msg != crashdata.msg) {
+    if (!crashdata || msg.id != crashdata.msg.id) {
       if (msg.chat.type == 'private') {
         userutils.saveUser({
           user_id: msg.from.id
@@ -101,6 +101,8 @@ const takeOff = () => {
             '`');
         });
       }
+    } else {
+      monitutils.notifyAdmins(bot, `Ignorando mensagem ${msg.id} como ação de recuperação após crash`);
     }
   });
 
@@ -159,19 +161,16 @@ const takeOff = () => {
           , fn: (bot, msg, match) => services.evalFilter.execute(bot
             , msg)
           , eval: true
-          // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do filter: ' + safeEval(msg.text))
         }, {
           member: 'test'
           , regex: /^regex (.+)/i
           , fn: (bot, msg, match) => services.evalTest.execute(bot, msg)
           , eval: true
-          // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do test: ' + safeEval(msg.text))
         }, {
           member: 'date'
           , regex: /Date\.|new Date/
           , fn: (bot, msg, match) => services.evalDate.execute(bot, msg)
           , eval: true
-          // fn: (bot, msg, match) => bot.sendMessage(msg.chat.id, 'Resposta do Date: ' + safeEval(msg.text))
         }, {
           member: 'md5'
           , regex: /^md5\s+([a-zA-Z])+/i

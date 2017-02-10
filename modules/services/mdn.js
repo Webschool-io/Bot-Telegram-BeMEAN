@@ -11,5 +11,5 @@ const execute = (bot, msg) => {
   bot.sendMessage(msg.chat.id, _url).catch(console.log);
 };
 module.exports = {
-  execute: execute
+  execute
 };
