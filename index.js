@@ -7,6 +7,7 @@ const security = require('./modules/security');
 const monitutils = require('./modules/utils/monitutils');
 const userutils = require('./modules/utils/userutils');
 const treta = require('./modules/db/treta');
+const message = require('./modules/db/message');
 const s = require('./modules/settings');
 const fs = require('fs');
 
@@ -84,6 +85,7 @@ const takeOff = () => {
   }
 
   bot.on('message', (msg) => {
+    message.log(msg);
     processing = msg;
     if (!crashdata || msg != crashdata.msg) {
       if (msg.chat.type == 'private') {
@@ -319,7 +321,7 @@ const takeOff = () => {
                                       , {
                                         reply_to_message_id: msg
                                           .id
-                              }).catch(console.log);
+                                      }).catch(console.log);
                                     monitutils.notifySharedAccount(
                                       bot
                                       , "Erro ao adicionar o user " +
