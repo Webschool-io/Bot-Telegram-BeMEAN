@@ -3,6 +3,7 @@
 const pm = { 'parse_mode': 'Markdown' };
 const isOk = require('../utils/regexutils').isInputOK;
 const safeEval = require('sewe');
+const s = require('../settings');
 
 const execute = (bot, msg) => {
   if (s.getGlobal('evals', (err, data) => {
