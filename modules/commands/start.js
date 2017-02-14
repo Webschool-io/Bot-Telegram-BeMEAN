@@ -1,7 +1,6 @@
 'use strict';
 
-// const msgDefault = "Ops, nada por aqui ainda. Por favor, volte outro dia =)";
-const msgDefault = "Sou muito tetudo e macio, porém por hora não tenho nada!";
+const msgDefault = "Opa, beleza? Sou o bot do BeMEAN. Não sabe o que é BeMEAN?! Corre! http://webschool.io";
 
 const execute = (msg, match, bot) => bot.sendMessage(msg.chat.id, msgDefault).catch(console.log);
 module.exports = {

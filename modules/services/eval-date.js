@@ -5,17 +5,6 @@ const isOk = require('../utils/regexutils').isInputOK;
 const safeEval = require('sewe');
 const s = require('../settings');
 
-/**
- *
- * @param bot
- * @param msg
- * @param msg.chat
- * @param msg.text
- * @param msg.from.id
- * @param msg.from.first_name
- * @param msg.from.last_name
- * @param msg.from.username
- */
 const execute = (bot, msg) => {
   if (s.getGlobal('evals', (err, data) => {
     if (data === 'true') {

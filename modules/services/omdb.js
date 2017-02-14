@@ -24,7 +24,6 @@ const execute = (bot, msg, match, forceSearch, id) => {
 }
 
 const _execute = (bot, msg, match, forceSearch, id) => {
-  //noinspection JSUnusedAssignment
   forceSearch = forceSearch || false;
   if (match[1] && match[1] != " " && match[1] != "") {
     _findInfo(bot, msg, match[1], id);
@@ -62,19 +61,6 @@ const _findInfo = (bot, msg, title, forceSearch, id) => {
     request(id ? API_URLS.with_id + id : API_URLS.exact + encodeURIComponent(title), (err, res, content) => {
       if (!err) {
         let _info = JSON.parse(content);
-        /**
-         * @param _info
-         * @param _info.totalResults
-         * @param _info.Search
-         * @param _info.Response
-         * @param _info.Title
-         * @param _info.Genre
-         * @param _info.Type
-         * @param _info.Released
-         * @param _info.Plot
-         * @param _info.Poster
-         * @param _info.imdbID
-         */
         if (_info.Response != 'False') {
           let _return = {
             count: 1,

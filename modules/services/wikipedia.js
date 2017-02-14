@@ -19,17 +19,12 @@ const messages = {
 
 const s = require('../settings');
 
-// Makes HTML more compatible to https://core.telegram.org/bots/api#html-style
-
-/**
- * Realiza o parse de uma response vinda do request
- */
+// Realiza o parse de uma response vinda do request
 const parseResponse = (err, res, html, args, bot, msg, _url) => {
   if (!err) {
     switch (res.statusCode) {
       case 200:
         const $ = cheerio.load(html);
-        //noinspection JSJQueryEfficiency,JSJQueryEfficiency,JSJQueryEfficiency
         const answers = {
           quickDef: $('#bodyContent #mw-content-text p:first').not('.coordinates').text(),
           longDef: $('#bodyContent #mw-content-text p').not('.coordinates').text().substr(0, 300)
@@ -53,15 +48,7 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
   }
 };
 
-/**
- * Função principal do módulo
- *
- * @param bot Objeto bot a ser utilizado para enviar as mensagens
- * @param msg Objeto mensagem a ser utilizado para se obter  o id
- * @param args Objeto contento o tipo de pesquisa a realizar(wh) e o termo pesquisado (query)
- */
 var _execute = (bot, msg, args) => {
-  // console.log('args', args.query, args.query.toLowerCase().match(/o seu criador/i))
   if (args.query.toLowerCase() == 'o seu criador') {
     console.log('quem é o seu criador');
     s.get(msg.chat.id, 'stickers', (err, data) => {

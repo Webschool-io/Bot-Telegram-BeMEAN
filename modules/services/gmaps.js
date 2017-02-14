@@ -19,7 +19,6 @@ const localeNotFound = (bot, msg, query, result) => {
 const s = require('../settings');
 
 const _execute = (bot, msg, match) => {
-  // const query = msg.text.replace(/["'!?]/g, '');
   if (match[3]) {
     const query = match[3].replace(/["'!?]/g, '');
     let geocodeParams = {

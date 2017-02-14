@@ -32,14 +32,9 @@ const execute = (bot, msg, match) => {
     res.on('end', (err) => {
       try {
         data = JSON.parse(data);
-        /**
-         * @param data.AbstractText
-         * @param data.AbstractURL
-         */
         if (data.AbstractText !== "") {
-          const _return = "Segundo o DuckDuckGo: <i>" + data.AbstractText + "</i> Saiba mais em " + data.AbstractURL;
+          const _return = "Achei isso no DuckDuckGo: <i>" + data.AbstractText + "</i> Saiba mais em " + data.AbstractURL;
           bot.sendMessage(msg.chat.id, _return, parse).catch(console.log);
-          // bot.sendMessage(msg.chat.id, 'Data: "'+JSON.stringify(data)+'"');
           console.log("data): " + data);
         }
         else {

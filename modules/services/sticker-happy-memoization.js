@@ -32,17 +32,10 @@ const testMemoization = (stckr) => {
 };
 const _rand = (stickers) => Math.floor(Math.random() * stickers.length);
 
-/**
- * @param bot
- * @param msg
- * @param msg.message_id
- * @param msg.chat.id
- */
 const execute = (bot, msg) => {
   let stckr = testMemoization(_rand(stickers));
   console.log('execute stckr', stckr);
   const reply = { 'reply_to_message_id': msg.message_id };
-  // console.log('sticker', sticker)
   s.get(msg.chat.id, 'stickers', (err, data) => {
     if (data == 'true') bot.sendSticker(msg.chat.id, stckr, reply).catch(console.log);
   })

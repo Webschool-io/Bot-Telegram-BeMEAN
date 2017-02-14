@@ -20,21 +20,11 @@ const TELEGRAM_TOKEN = process.env.API_TOKEN;
 const HOST = process.env.OPENSHIFT_NODEJS_IP || process.env.LOCAL_IP;
 const DOMAIN = process.env.OPENSHIFT_APP_DNS || process.env.LOCAL_URL;
 
-//Setup WebHook way
-/* const bot = new TelegramBot(token, {
-  webHook: {
-    host: HOST
-    , port: PORT
-  }
-  , onlyFirstMatch: true
-}); */
-
 const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
 
 bot.getMe()
   .then(me => {
     takeOff();
-    //bot.setWebHook(DOMAIN + ':443/bot' + TELEGRAM_TOKEN);
     let info = [];
     const date = new Date();
     info.push('------------------------------');
@@ -61,11 +51,6 @@ bot.getMe()
     console.log(info.join('\n'));
   })
   .catch(console.log);
-
-// Setup polling way
-//const bot = new TelegramBot(token, {
-//  polling: true
-//});
 
 const takeOff = () => {
   //Handling previous crash

@@ -8,10 +8,8 @@ const s = require('../settings');
 const execute = (bot, msg) => {
   if (s.getGlobal('evals', (err, data) => {
     if (data === 'true') {
-      //const matchDate = /([0-9]{2}\/[0-9]{2}\/[0-9]{4}|[0-9]{2}\/20[0-9]{2})/;
       if (isOk(msg.text)) {
         const _return = 'Calculando: `' + msg.text + ' = ' + safeEval(msg.text) + '`';
-        //if (!matchDate.test(msg.text)) bot.sendMessage(msg.chat.id, _return, pm);
         bot.sendMessage(msg.chat.id, _return, pm).catch(console.log);
       } else {
         require('../utils/monitutils').notifyAdmins(bot, 'Eval malicioso detectado: `' + msg.text + '`. Enviado por: ' + msg.from.id + ', ' + msg.from.first_name + ' ' + msg.from.last_name + ', @' + msg.from.username);

@@ -4,7 +4,7 @@ const url = require('url');
 const https = require('https');
 const cheerioAdv = require('cheerio-advanced-selectors');
 const cheerio = cheerioAdv.wrap(require('cheerio'));
-const parse = {'parse_mode': 'HTML'};
+const parse = { 'parse_mode': 'HTML' };
 const execute = (bot, msg) => {
   const arr = msg.text.split('npm ');
   const _base = 'https://www.npmjs.com/package/';
@@ -20,15 +20,12 @@ const execute = (bot, msg) => {
     res.on('end', (err) => {
       try {
         const $ = cheerio.load(data);
-        //noinspection JSJQueryEfficiency
         const answers = {
           quickDef: $('.package-description').text(),
           longDef: $('#readme .deep-link').text().substr(0, 300)
         };
         const _return = 'Segundo o npm : "<i>' + answers.quickDef.replace(/\[[^]]*]/, "") + '</i>". fonte: ' + _url.href;
         bot.sendMessage(msg.chat.id, _return, parse).catch(console.log);
-        // const __return = 'Segundo o npm long: "<i>' + answers.longDef.replace(/\[[^]]*\]/, "") + '</i>". fonte: ' + _url;
-        // bot.sendMessage(msg.chat.id, __return, parse);
       }
       catch (e) {
         bot.sendMessage(msg.chat.id, "DEU MERDA: " + e).catch(console.log);

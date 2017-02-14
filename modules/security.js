@@ -4,11 +4,6 @@ const regexutils = require('./utils/regexutils');
 const userutils = require('./utils/userutils');
 const monitutils = require('./utils/monitutils');
 
-/**
- *
- * @param msg
- * @param isEval
- */
 const isSecure = (msg, isEval, cbk) => {
   let secure = true;
   if (!monitutils.isAdmin(msg.chat.id)) {

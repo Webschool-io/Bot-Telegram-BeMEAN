@@ -37,9 +37,7 @@ const escapeHTML = (code) =>
         .replace(/</gi, '&lt;')
         .replace(/"/gi, '&quot;');
 
-/**
- * Realiza o parse de uma response vinda do request
- */
+// Realiza o parse de uma response vinda do request
 const parseResponse = (err, res, html, args, bot, msg, _url) => {
 
   const query = args.query;
@@ -58,7 +56,6 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
         bot.sendMessage(msg.chat.id, _return, pm).catch(console.log);
         break;
       case 404:
-        // bot.sendMessage(msg.chat.id, messages.noResultsFound + query);
         duckduckgo.execute(bot, msg, args).catch(console.log);
         break;
     }
@@ -69,13 +66,6 @@ const parseResponse = (err, res, html, args, bot, msg, _url) => {
   }
 };
 
-/**
- * Função principal do módulo
- *
- * @param bot Objeto bot a ser utilizado para enviar as mensagens
- * @param msg Objeto mensagem a ser utilizado para se obter  o id
- * @param args Objeto contento o tipo de pesquisa a realizar(wh) e o termo pesquisado (query)
- */
 var execute = (bot, msg, args) => {
   try {
     const _url = 'https://pt.wikipedia.org/w/index.php?title=' + args.query.replace(" ", "_");
