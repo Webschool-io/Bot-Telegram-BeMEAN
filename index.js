@@ -3,6 +3,7 @@ if (process.env.envfile != "n") require("dotenv").config();
 const TelegramBot = require("node-telegram-bot-api");
 const commands = require("./modules/commands");
 const services = require("./modules/services");
+const _services = services.defs;
 const security = require("./modules/security");
 const monitutils = require("./modules/utils/monitutils");
 const userutils = require("./modules/utils/userutils");
@@ -147,8 +148,6 @@ const takeOff = () => {
     if (!globalLock) {
       processing = msg;
       if (!crashdata || msg != crashdata.msg) {
-        const _services = services.defs;
-
         const _load = match => {
           s.get(msg.chat.id, "services", (err, data) => {
             if (data == "true" || msg.text.match(/.*config.*/)) {
