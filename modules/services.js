@@ -27,6 +27,35 @@ const config = require("./services/config");
 const zoeiro = require("./services/zoeiro");
 const qualeagiria = require("./services/qualeagiria");
 
+const services = {
+  wikipedia,
+  math,
+  maconha,
+  risada,
+  gmaps,
+  mdn,
+  md5,
+  saudacao,
+  masem,
+  tuamae,
+  gme,
+  npm,
+  evalDate,
+  evalFilter,
+  evalMap,
+  evalReduce,
+  evalTest,
+  stickerHeart,
+  stickerHappy,
+  stickerWebschool,
+  stickerBemean,
+  omdb,
+  whereami,
+  config,
+  zoeiro,
+  qualeagiria
+};
+
 const defs = [
   {
     member: "reduce",
