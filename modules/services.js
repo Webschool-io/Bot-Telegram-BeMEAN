@@ -196,5 +196,6 @@ module.exports = {
   whereami,
   config,
   zoeiro,
-  qualeagiria
+  qualeagiria,
+  defs
 };
