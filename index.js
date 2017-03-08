@@ -147,7 +147,7 @@ const takeOff = () => {
   bot.onText(/^([^\/]+)/i, (msg, match) => {
     if (!globalLock) {
       processing = msg;
-      if (!crashdata || msg != crashdata.msg) {
+      if (!crashdata || msg.id != crashdata.msg.id) {
         const _load = match => {
           s.get(msg.chat.id, "services", (err, data) => {
             if (data == "true" || msg.text.match(/.*config.*/)) {
@@ -297,7 +297,7 @@ const takeOff = () => {
 };
 
 const saveCrash = err => {
-  console.error(err);
+  message.error(err);
   fs.writeFileSync(
     "./.crash",
     JSON.stringify({

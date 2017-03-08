@@ -32,6 +32,7 @@
     "moment": "^2.17.1",
     "mongoose": "^4.5.9",
     "node-telegram-bot-api": "^0.21.1",
+    "prettyjson": "^1.2.1",
     "request": "^2.72.0",
     "sewe": "^1.0.0"
   }

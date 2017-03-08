@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const moment = require('moment');
+const pj = require('prettyjson');
 
 const Schema = mongoose.Schema;
 // Criação do Schema
@@ -9,7 +10,7 @@ const jsonSchema = {
   id: Number
   , text: String
   , timeReceived: Date
-  , msg: String
+  , msg: Schema.Types.ObjectId
 };
 
 const messageSchema = new Schema(jsonSchema);
@@ -44,26 +45,21 @@ const Controller = {
       , logText;
     const timeReceived = new Date();
 
-    if (msg.text) {
       model = new Message({
         id: msg.id
         , text: msg.text
         , timeReceived
+        , msg: msg.text ? undefined : msg
       });
-    } else {
-      model = new Message({
-        id: msg.id
-        , text: msg.text
-        , timeReceived
-        , msg: JSON.stringify(msg)
-      });
-    }
 
     model.save((err, result) => {
       if (!err) console.log(`[LOG][${moment(timeReceived).format('DD/MM/YY HH:mm:ss')}] ${msg.text || 'Mensagem sem texto'}`);
       else console.err(`[ERROR] Erro ao salvar mensagem ${msg.text || 'Mensagem sem texo'}: ${err}`);
     });
-  }
+}, error: msg => {
+      console.log(`[ERROR][${moment(timeReceived).format('DD/MM/YY HH:mm:ss')}] ${pj.render(msg)}`);
+    });
+}
 };
 
 module.exports = Controller;
