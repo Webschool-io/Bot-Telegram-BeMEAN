@@ -24,10 +24,12 @@ const omdb = require("./services/omdb");
 const whereami = require("./services/whereami");
 const config = require("./services/config");
 const zoeiro = require("./services/zoeiro");
+const entrarSair = require("./services/entrarSair");
 const qualeagiria = require("./services/qualeagiria");
 
 const services = {
   wikipedia,
+  entrarSair,
   maconha,
   risada,
   gmaps,
@@ -123,6 +125,12 @@ const defs = [
     fn: (bot, msg, match) => services.maconha.execute(bot, msg),
     eval: false
   },
+   {
+    member: "entrarSair",
+    regex: /\b(?:(420)|Entrou no grupo|Saiu do grupo|saiu do grupo|entrou no grupo)\b/i,
+    fn: (bot, msg, match) => services.entrarSair.execute(bot, msg),
+    eval: false
+  },
   {
     member: "risada",
     regex: /lol|kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h+u+a|h+u+e+h+u+e/i,
@@ -194,6 +202,7 @@ const defs = [
 module.exports = {
   wikipedia,
   maconha,
+  entrarSair,
   risada,
   gmaps,
   mdn,
