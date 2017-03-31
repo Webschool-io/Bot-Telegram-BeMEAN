@@ -24,12 +24,12 @@ const omdb = require("./services/omdb");
 const whereami = require("./services/whereami");
 const config = require("./services/config");
 const zoeiro = require("./services/zoeiro");
-const entrarSair = require("./services/entrarSair");
+const entrar = require("./services/entrar");
+const sair = require("./services/sair");
 const qualeagiria = require("./services/qualeagiria");
 
 const services = {
   wikipedia,
-  entrarSair,
   maconha,
   risada,
   gmaps,
@@ -53,6 +53,8 @@ const services = {
   whereami,
   config,
   zoeiro,
+  entrar,
+  sair,
   qualeagiria
 };
 
@@ -125,10 +127,16 @@ const defs = [
     fn: (bot, msg, match) => services.maconha.execute(bot, msg),
     eval: false
   },
+  {
+    member: "entrar",
+    regex: /\|Entrou no grupo|entrou no grupo)\b/i,
+    fn: (bot, msg, match) => services.entrar.execute(bot, msg),
+    eval: false
+  },
    {
-    member: "entrarSair",
-    regex: /\b(?:(420)|Entrou no grupo|Saiu do grupo|saiu do grupo|entrou no grupo)\b/i,
-    fn: (bot, msg, match) => services.entrarSair.execute(bot, msg),
+    member: "sair",
+    regex: /\Saiu do grupo|saiu do grupo)\b/i,
+    fn: (bot, msg, match) => services.sair.execute(bot, msg),
     eval: false
   },
   {
@@ -202,7 +210,6 @@ const defs = [
 module.exports = {
   wikipedia,
   maconha,
-  entrarSair,
   risada,
   gmaps,
   mdn,
@@ -225,6 +232,8 @@ module.exports = {
   whereami,
   config,
   zoeiro,
+  entrar,
+  sair,
   qualeagiria,
   defs
 };
