@@ -1,9 +1,7 @@
 'use strict';
 
 const answers = [
-  'Saiu !',
-  'Welcome to the jungle, baby!',
-  'Bem vindo ao Inferno!',
+  'Saiu porque não aguentou a pressão!',
   'Já vai tarde!'
 ];
 
