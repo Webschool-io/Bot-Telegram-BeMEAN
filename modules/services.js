@@ -130,13 +130,13 @@ const defs = [
   {
     member: "entrar",
     regex: /\|Entrou no grupo|entrou no grupo)\b/i,
-    fn: (bot, msg, match) => services.entrar.execute(bot, msg),
+    fn: (bot, msg, match) => _services.entrar.execute(bot, msg),
     eval: false
   },
    {
     member: "sair",
     regex: /\Saiu do grupo|saiu do grupo)\b/i,
-    fn: (bot, msg, match) => services.sair.execute(bot, msg),
+    fn: (bot, msg, match) => _services.sair.execute(bot, msg),
     eval: false
   },
   {
