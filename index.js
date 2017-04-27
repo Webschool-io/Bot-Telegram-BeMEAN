@@ -298,14 +298,14 @@ const takeOff = () => {
   bot.on("new_chat_participant", msg => {
     processing = msg;
     if (!crashdata || msg != crashdata.msg) {
-      _services.entrar.execute(bot, msg);
+      services.entrar.execute(bot, msg);
     }
   });
 
   bot.on("left_chat_participant", msg => {
     processing = msg;
     if (!crashdata || msg != crashdata.msg) {
-      _services.sair.execute(bot, msg);
+      services.sair.execute(bot, msg);
     }
   });
   
