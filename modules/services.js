@@ -128,18 +128,6 @@ const defs = [
     eval: false
   },
   {
-    member: "entrar",
-    regex: /\|Entrou no grupo|entrou no grupo)\b/i,
-    fn: (bot, msg, match) => _services.entrar.execute(bot, msg),
-    eval: false
-  },
-   {
-    member: "sair",
-    regex: /\Saiu do grupo|saiu do grupo)\b/i,
-    fn: (bot, msg, match) => _services.sair.execute(bot, msg),
-    eval: false
-  },
-  {
     member: "risada",
     regex: /lol|kkkk|huehue|h+a+h+a+|h+e+h+e+|h+i+h+i+|h+u+a+s+|j+e+j+e+|h+u+a+h+u+a|h+u+e+h+u+e/i,
     fn: (bot, msg, match) => services.risada.execute(bot, msg),
