@@ -24,6 +24,8 @@ const omdb = require("./services/omdb");
 const whereami = require("./services/whereami");
 const config = require("./services/config");
 const zoeiro = require("./services/zoeiro");
+const entrar = require("./services/entrar");
+const sair = require("./services/sair");
 const qualeagiria = require("./services/qualeagiria");
 
 const services = {
@@ -51,6 +53,8 @@ const services = {
   whereami,
   config,
   zoeiro,
+  entrar,
+  sair,
   qualeagiria
 };
 
@@ -216,6 +220,8 @@ module.exports = {
   whereami,
   config,
   zoeiro,
+  entrar,
+  sair,
   qualeagiria,
   defs
 };
