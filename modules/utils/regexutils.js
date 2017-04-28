@@ -1,5 +1,3 @@
-'use strict';
-
 const regex = {
   blacklist: [
     /.*process.*/ig,
@@ -22,7 +20,7 @@ const isInputOK = (input) => {
   return _return;
 };
 
-module.exports = {
+export default {
   regex,
   isInputOK
 };

@@ -1,8 +1,6 @@
-"use strict";
-
-const regexutils = require("./utils/regexutils");
-const userutils = require("./utils/userutils");
-const monitutils = require("./utils/monitutils");
+import regexutils from "./utils/regexutils";
+import userutils from "./utils/userutils";
+import monitutils from "./utils/monitutils";
 
 /*const isSecure = (msg, isEval, cbk) => {
   let secure = true;
@@ -21,6 +19,6 @@ const monitutils = require("./utils/monitutils");
 //Como nenhum eval está sendo executado, qualquer mensagem é segura
 const isSecure = (msg, isEval, cbk) => cbk(true);
 
-module.exports = {
+export default {
   isSecure
 };
