@@ -70,7 +70,6 @@ const takeOff = () => {
   } else {
     monitutils.notifySharedAccount(bot, `*Bot ${username} reiniciado.*`);
   }
-
   bot.on("message", msg => {
     message.log(msg);
     processing = msg;
