@@ -1,7 +1,5 @@
-'use strict';
-
-const expect = require('chai').expect;
-const s = require('../modules/utils/regexutils');
+import {expect} from 'chai';
+import s from '../modules/utils/regexutils';
 
 describe('Regex Utils', () => {
   describe('Filtrar evals maliciosos', ()=> {

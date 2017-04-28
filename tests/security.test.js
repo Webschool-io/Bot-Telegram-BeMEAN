@@ -1,7 +1,5 @@
-'use strict';
-
-const expect = require('chai').expect;
-const s = require('../modules/security');
+import {expect} from 'chai';
+import s from '../modules/security';
 
 describe('Segurança', () => {
   describe('Filtrar mensagens maliciosas, apenas se forem eval', ()=> {
