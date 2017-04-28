@@ -1,6 +1,4 @@
-'use strict';
-
-const mu = require('../utils/monitutils');
+import mu from '../utils/monitutils';
 const use = "Uso: `/say \"mensagem\" IDs separados por espaço`";
 
 const execute = (msg, match, bot) => {
@@ -34,7 +32,7 @@ const execute = (msg, match, bot) => {
   }
 }
 
-module.exports = {
+export default {
   execute,
   numParams: 1
-}
+};

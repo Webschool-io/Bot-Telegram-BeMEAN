@@ -1,7 +1,5 @@
-'use strict';
-
-const userutils = require('../utils/userutils');
-const monitutils = require('../utils/monitutils');
+import userutils from '../utils/userutils';
+import monitutils from '../utils/monitutils';
 
 const execute = (msg, match, bot) => {
     let user_id = msg.reply_to_message.from.id;
@@ -9,7 +7,7 @@ const execute = (msg, match, bot) => {
     else {
         if (monitutils.isAdmin(msg.from.id)) {
             userutils.whiteListUser(user_id, (err, data) => {
-                if (err) bot.sendMessage(msg.chat.id, "Erro: `" + JSON.stringify(err) + "`", { parse_mode: 'Markdown' }).catch(console.log)
+                if (err) bot.sendMessage(msg.chat.id, `Erro: \`${JSON.stringify(err)}\``, { parse_mode: 'Markdown' }).catch(console.log)
                 else {
                     bot.sendMessage(msg.chat.id, "Ok, usuário liberado.").catch(console.log);
                 }
@@ -20,7 +18,7 @@ const execute = (msg, match, bot) => {
     }
 };
 
-module.exports = {
+export default {
     'execute': execute,
     'numParams': 1
 };

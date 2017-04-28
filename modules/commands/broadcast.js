@@ -1,8 +1,6 @@
-'use strict';
-
-const treta = require('../db/treta');
-const userutils = require('../utils/userutils');
-const monitutils = require('../utils/monitutils');
+import treta from '../db/treta';
+import userutils from '../utils/userutils';
+import monitutils from '../utils/monitutils';
 
 const sendUse = (bot, msg) => {
     bot.sendMessage(msg.chat.id, "Uso: `/broadcast users|groups|all`", {
@@ -48,12 +46,12 @@ const execute = (msg, match, bot) => {
 const doBroadcast = (ids, bot, msg) => {
     if (Array.isArray(ids)) {
         if (msg.reply_to_message) {
-            let tfw = msg.reply_to_message,
-                sent = [];
+            let tfw = msg.reply_to_message;
+            let sent = [];
             bot.sendMessage(msg.chat.id, `Enviando mensagem para: ${ids.length} conversas`).catch(console.log)
                 .then(() => {
                     ids.forEach((id) => {
-                        if (sent.indexOf(id) < 0) {
+                        if (!sent.includes(id)) {
                             bot.forwardMessage(id, tfw.chat.id, tfw.message_id)
                                 .catch(() => {})
                         }
@@ -89,8 +87,8 @@ const fillGroups = (cbk, ids) => {
     });
 }
 
-module.exports = {
+export default {
     execute,
     numParams: 1,
     fillUsers
-}
+};

@@ -1,5 +1,3 @@
-'use strict';
-
 const execute = (msg, match, bot) => {
     const text = 'Segundo o Qual é a Gíria\n*Uva*:\n`algo muito bom, excelente, ótimo.`\nFonte: http://www.qualeagiria.com.br'
     bot.sendMessage(msg.chat.id, text, {
@@ -13,7 +11,7 @@ const execute = (msg, match, bot) => {
     }).catch(console.log);
 }
 
-module.exports = {
+export default {
     execute,
     'numParams': 0
 };

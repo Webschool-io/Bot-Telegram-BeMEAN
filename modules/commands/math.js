@@ -1,6 +1,4 @@
-"use strict";
-
-const math = require("mathjs");
+import math from "mathjs";
 
 const execute = (msg, match, bot) => {
   if (match[1]) {
@@ -13,7 +11,7 @@ const execute = (msg, match, bot) => {
   }
 };
 
-module.exports = {
-  execute: execute,
+export default {
+  execute,
   numParams: 1
 };
