@@ -1,16 +1,15 @@
-"use strict";
 if (process.env.envfile != "n") require("dotenv").config();
-const TelegramBot = require("node-telegram-bot-api");
-const commands = require("./modules/commands");
-const services = require("./modules/services");
+import TelegramBot from "node-telegram-bot-api";
+import commands from "./modules/commands";
+import services from "./modules/services";
 const _services = services.defs;
-const security = require("./modules/security");
-const monitutils = require("./modules/utils/monitutils");
-const userutils = require("./modules/utils/userutils");
-const treta = require("./modules/db/treta");
-const message = require("./modules/db/message");
-const s = require("./modules/settings");
-const fs = require("fs");
+import security from "./modules/security";
+import monitutils from "./modules/utils/monitutils";
+import userutils from "./modules/utils/userutils";
+import treta from "./modules/db/treta";
+import message from "./modules/db/message";
+import s from "./modules/settings";
+import fs from "fs";
 
 const globalLock = process.env.lock;
 
@@ -69,7 +68,7 @@ const takeOff = () => {
     }
     fs.unlinkSync("./.crash");
   } else {
-    monitutils.notifySharedAccount(bot, "*Bot " + username + " reiniciado.*");
+    monitutils.notifySharedAccount(bot, `*Bot ${username} reiniciado.*`);
   }
 
   bot.on("message", msg => {
@@ -88,11 +87,7 @@ const takeOff = () => {
             if (err)
               monitutils.notifyAdmins(
                 bot,
-                "Erro ao salvar o user " +
-                  msg.from.id +
-                  " no banco. err: `" +
-                  JSON.stringify(err) +
-                  "`"
+                `Erro ao salvar o user ${msg.from.id} no banco. err: \`${JSON.stringify(err)}\``
               );
           }
         );
@@ -104,7 +99,6 @@ const takeOff = () => {
       );
     }
   });
-
   // Matches commands
   bot.onText(/^\/([a-zA-Z]+) ?([^@]+)?(@.*bot)?/i, (msg, match) => {
     if (!globalLock) {
@@ -122,11 +116,7 @@ const takeOff = () => {
                 bot
                   .sendMessage(
                     msg.chat.id,
-                    "Ops, número incorreto de parâmetros fornecidos (" +
-                      argsCount +
-                      "). Número de parâmetros exigidos: " +
-                      command.numParams +
-                      " :/"
+                    `Ops, número incorreto de parâmetros fornecidos (${argsCount}). Número de parâmetros exigidos: ${command.numParams} :/`
                   )
                   .catch(console.log);
               }
@@ -156,7 +146,7 @@ const takeOff = () => {
                 _services.forEach((element, index) => {
                   if (_services[index].regex.test(msg.text)) {
                     recognized = true;
-                    var _match = msg.text.match(_services[index].regex);
+                    const _match = msg.text.match(_services[index].regex);
                     const service = _services[index];
                     security.isSecure(msg, service.eval, secure => {
                       if (secure) {
@@ -174,7 +164,7 @@ const takeOff = () => {
                           if (!status) {
                             userutils.blacklistUser(
                               msg.from.id,
-                              "Eval malicioso: `" + msg.text + "`",
+                              `Eval malicioso: \`${msg.text}\``,
                               err => {
                                 if (!err)
                                   bot
@@ -198,11 +188,7 @@ const takeOff = () => {
                                     .catch(console.log);
                                   monitutils.notifySharedAccount(
                                     bot,
-                                    "Erro ao adicionar o user " +
-                                      msg.from.id +
-                                      " à blacklist. err: `" +
-                                      JSON.stringify(err) +
-                                      "`"
+                                    `Erro ao adicionar o user ${msg.from.id} à blacklist. err: \`${JSON.stringify(err)}\``
                                   );
                                 }
                               }
@@ -278,7 +264,7 @@ const takeOff = () => {
     processing = msg;
     if (!crashdata || msg != crashdata.msg) {
       let ids = require("./modules/utils/monitutils").adminIds;
-      if (msg.chat.type == "private" && ids.indexOf(msg.chat.id) >= 0) {
+      if (msg.chat.type == "private" && ids.includes(msg.chat.id)) {
         bot
           .sendMessage(msg.chat.id, msg.sticker.file_id, {
             reply_to_message_id: msg.message_id
