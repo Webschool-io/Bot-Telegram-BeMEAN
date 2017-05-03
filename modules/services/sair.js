@@ -2,7 +2,12 @@
 
 const answers = [
   'Saiu porque não aguentou a pressão!',
-  'Já vai tarde!'
+  'Já vai tarde!',
+  'Tchau, querida!'
+  '“I’ll be back.”',
+  'Que a força esteja com você!',
+  'Hasta la vista, baby!',
+  'Pede pra sair, 01!'
 ];
 
 const s = require('../settings');
