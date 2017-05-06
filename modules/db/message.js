@@ -52,8 +52,10 @@ const Controller = {
         });
 
         model.save()
-        .then(() => console.log(`[LOG][${moment(timeReceived).format('DD/MM/YY HH:mm:ss')}] ${msg.text || 'Mensagem sem texto'}`))
-        .catch(err => console.err(`[ERROR] Erro ao salvar mensagem ${msg.text || 'Mensagem sem texo'}: ${err}`));
+            .then(() => console.log(`[LOG][${moment(timeReceived).format('DD/MM/YY HH:mm:ss')}] ${msg.text || 'Mensagem sem texto'}`))
+            .catch(err => {
+                if (msg.text) console.error(`[ERROR] Erro ao salvar mensagem ${msg.text}: ${err}`)
+            });
     }, error: msg => {
         const timeReceived = new Date();
         console.log(`[ERROR][${moment(timeReceived).format('DD/MM/YY HH:mm:ss')}] ${pj.render(msg)}`);

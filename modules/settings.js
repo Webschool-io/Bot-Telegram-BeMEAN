@@ -3,21 +3,21 @@
 const s = require('./db').setting;
 
 const configs = {
-    stickers: { default: 'true', vals: ['true', 'false'] },
-    greetings: { default: 'true', vals: ['true', 'false'] },
-    location: { default: 'true', vals: ['true', 'false'] },
-    search: { default: 'true', vals: ['true', 'false'] },
-    funny: { default: 'true', vals: ['true', 'false'] },
-    services: { default: 'true', vals: ['true', 'false'] },
-    learn_global: { default: 'true', vals: ['true', 'false'], adminOnly: true, global: true },
-    learn_local: { default: 'true', vals: ['true', 'false'], adminOnly: true },
-    evals: {default: true, vals: ['true', 'false'], adminOnly: true, global: true}
+    stickers: {name: 'stickers', default: 'true', vals: ['true', 'false']},
+    greetings: {name: 'greetings', default: 'true', vals: ['true', 'false']},
+    location: {name: 'location', default: 'true', vals: ['true', 'false']},
+    search: {name: 'search', default: 'true', vals: ['true', 'false']},
+    funny: {name: 'funny', default: 'true', vals: ['true', 'false']},
+    services: {name: 'services', default: 'true', vals: ['true', 'false']},
+    learn_global: {name: 'learn_global', default: 'true', vals: ['true', 'false'], adminOnly: true, global: true},
+    learn_local: {name: 'learn_local', default: 'true', vals: ['true', 'false'], adminOnly: true},
+    evals: {name: 'evals', default: true, vals: ['true', 'false'], adminOnly: true, global: true}
 };
 
 const callback = (err, data) => {
     if (err) console.log('Erro no banco: ', err);
     else console.log('Retorno do banco: ', data.result || data);
-}
+};
 
 const setGlobal = (key, value, cbk) => {
     cbk = cbk || callback;
@@ -37,7 +37,7 @@ const setGlobal = (key, value, cbk) => {
             })
         }
     })
-}
+};
 
 const set = (chat_id, key, value, cbk) => {
     cbk = cbk || callback;
@@ -74,12 +74,12 @@ const getGlobal = (key, cbk) => {
                 if (key in configs) {
                     cbk(false, configs[key].default);
                 } else {
-                    cbk({ msg: 'Config desconhecida: ' + key });
+                    cbk({msg: 'Config desconhecida: ' + key});
                 }
             }
         }
     })
-}
+};
 
 const get = (chat_id, key, cbk) => {
     cbk = cbk || callback;
@@ -95,7 +95,7 @@ const get = (chat_id, key, cbk) => {
                 if (key in configs) {
                     cbk(false, configs[key].default);
                 } else {
-                    cbk({ msg: 'Config desconhecida: ' + key });
+                    cbk({msg: 'Config desconhecida: ' + key});
                 }
             }
         }
@@ -106,16 +106,16 @@ const clearGlobal = (key, cbk) => {
     cbk = cbk || callback;
     let q = {
         key
-    }
+    };
 
     s.delete(q, cbk);
-}
+};
 
 const clear = (chat_id, key, cbk) => {
     cbk = cbk || callback;
     let q = {
         chat_id
-    }
+    };
     if (key) q.key = key;
 
     s.delete(q, cbk);
@@ -129,4 +129,4 @@ module.exports = {
     getGlobal,
     setGlobal,
     clearGlobal
-}
+};

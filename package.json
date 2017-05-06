@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "Bot-Telegram-BeMEAN",
   "version": "1.0.0",
@@ -37,3 +38,44 @@
     "sewe": "^1.0.0"
   }
 }
+=======
+{
+  "name": "Bot-Telegram-BeMEAN",
+  "version": "1.0.0",
+  "engines": {
+    "node": "6.5.0"
+  },
+  "description": "Bot para o Teegram do grupo do Be MEAN",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bot",
+    "bemean",
+    "telegram"
+  ],
+  "repository": "https://github.com/Webschool-io/Bot-Telegram-BeMEAN",
+  "author": "WebSchool / BeMEAN",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "cheerio": "^0.20.0",
+    "cheerio-advanced-selectors": "^1.1.0",
+    "dotenv": "^2.0.0",
+    "execSync": "^1.0.2",
+    "funcy": "0.0.4",
+    "github": "^0.2.4",
+    "googlemaps": "^1.11.1",
+    "mathjs": "^3.10.0",
+    "md5": "^2.1.0",
+    "moment": "^2.17.1",
+    "mongoose": "^4.5.9",
+    "node-telegram-bot-api": "^0.21.1",
+    "prettyjson": "^1.2.1",
+    "request": "^2.72.0",
+    "sewe": "^1.0.0"
+  }
+}
+>>>>>>> Refactored a lot of files
