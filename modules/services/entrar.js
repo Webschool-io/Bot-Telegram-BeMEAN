@@ -2,7 +2,8 @@
 
 const answers = [
   'Welcome to the jungle, baby!',
-  'Bem vindo ao Inferno!'
+  'Bem vindo ao Inferno!',
+  'Não quer entrar para tomar uma chícara de café?'
 ];
 
 const s = require('../settings');
