@@ -1,32 +1,30 @@
-"use strict";
-
-const evalDate = require("./services/eval-date");
-const evalFilter = require("./services/eval-filter");
-const evalMap = require("./services/eval-map");
-const evalReduce = require("./services/eval-reduce");
-const evalTest = require("./services/eval-test");
-const wikipedia = require("./services/wikipedia");
-const maconha = require("./services/maconha");
-const risada = require("./services/risada");
-const gmaps = require("./services/gmaps");
-const mdn = require("./services/mdn");
-const md5 = require("./services/md5");
-const saudacao = require("./services/saudacao");
-const masem = require("./services/masem");
-const tuamae = require("./services/tuamae");
-const gme = require("./services/gme");
-const npm = require("./services/npm");
-const stickerHeart = require("./services/sticker-heart");
-const stickerHappy = require("./services/sticker-happy");
-const stickerWebschool = require("./services/sticker-webschool");
-const stickerBemean = require("./services/sticker-bemean");
-const omdb = require("./services/omdb");
-const whereami = require("./services/whereami");
-const config = require("./services/config");
-const zoeiro = require("./services/zoeiro");
-const entrar = require("./services/entrar");
-const sair = require("./services/sair");
-const qualeagiria = require("./services/qualeagiria");
+import evalDate from "./services/eval-date";
+import evalFilter from "./services/eval-filter";
+import evalMap from "./services/eval-map";
+import evalReduce from "./services/eval-reduce";
+import evalTest from "./services/eval-test";
+import wikipedia from "./services/wikipedia";
+import maconha from "./services/maconha";
+import risada from "./services/risada";
+import gmaps from "./services/gmaps";
+import mdn from "./services/mdn";
+import md5 from "./services/md5";
+import saudacao from "./services/saudacao";
+import masem from "./services/masem";
+import tuamae from "./services/tuamae";
+import gme from "./services/gme";
+import npm from "./services/npm";
+import stickerHeart from "./services/sticker-heart";
+import stickerHappy from "./services/sticker-happy";
+import stickerWebschool from "./services/sticker-webschool";
+import stickerBemean from "./services/sticker-bemean";
+import omdb from "./services/omdb";
+import whereami from "./services/whereami";
+import config from "./services/config";
+import zoeiro from "./services/zoeiro";
+import entrar from "./services/entrar";
+import sair from "./services/sair";
+import qualeagiria from "./services/qualeagiria";
 
 const services = {
   wikipedia,
@@ -195,7 +193,7 @@ const defs = [
   }
 ];
 
-module.exports = {
+export default {
   wikipedia,
   maconha,
   risada,

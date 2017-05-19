@@ -4,7 +4,7 @@
   "engines": {
     "node": "6.5.0"
   },
-  "description": "Bot para o Teegram do grupo do Be MEAN",
+  "description": "Bot para o Telegram do grupo do Be MEAN",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

@@ -4,7 +4,7 @@ const execute = (msg, match, bot) => {
   }
 }
 
-module.exports = {
+export default {
   'execute': execute
   , 'numParams': 1
 };

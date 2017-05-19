@@ -1,5 +1,3 @@
-'use strict';
-
 const answers = [
   'Saiu porque não aguentou a pressão!',
   'Já vai tarde!',
@@ -10,7 +8,7 @@ const answers = [
   'Pede pra sair, 01!'
 ];
 
-const s = require('../settings');
+import s from '../settings';
 
 const execute = (bot, msg) => {
   s.get(msg.chat.id, 'funny', (err, data) => {
@@ -22,6 +20,6 @@ const _execute = (bot, msg) => {
   bot.sendMessage(msg.chat.id, answers[Math.floor(Math.random() * answers.length)]).catch(console.log);
 };
 
-module.exports = {
+export default {
   execute
 };

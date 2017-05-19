@@ -1,5 +1,3 @@
-'use strict';
-
 const execute = (msg, match, bot) => {
   try {
     if (match[2] != "") {
@@ -9,14 +7,14 @@ const execute = (msg, match, bot) => {
     }
   }
   catch (Ex) {
-    bot.sendMessage(msg.chat.id, "Erro ao enviar sticker: `" + ex + "`", {
+    bot.sendMessage(msg.chat.id, `Erro ao enviar sticker: \`${ex}\``, {
       'parse_mode': 'Markdown',
       'reply_to_message_id': msg.message_id
     }).catch(console.log);
   }
 };
 
-module.exports = {
+export default {
   execute,
   'numParams': 1
 };

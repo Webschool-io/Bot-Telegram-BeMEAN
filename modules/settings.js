@@ -1,6 +1,4 @@
-'use strict';
-
-const s = require('./db').setting;
+import {setting as s} from './db';
 
 const configs = {
     stickers: { default: 'true', vals: ['true', 'false'] },
@@ -74,7 +72,7 @@ const getGlobal = (key, cbk) => {
                 if (key in configs) {
                     cbk(false, configs[key].default);
                 } else {
-                    cbk({ msg: 'Config desconhecida: ' + key });
+                    cbk({ msg: `Config desconhecida: ${key}` });
                 }
             }
         }
@@ -95,7 +93,7 @@ const get = (chat_id, key, cbk) => {
                 if (key in configs) {
                     cbk(false, configs[key].default);
                 } else {
-                    cbk({ msg: 'Config desconhecida: ' + key });
+                    cbk({ msg: `Config desconhecida: ${key}` });
                 }
             }
         }
@@ -121,7 +119,7 @@ const clear = (chat_id, key, cbk) => {
     s.delete(q, cbk);
 };
 
-module.exports = {
+export default {
     get,
     set,
     clear,
@@ -129,4 +127,4 @@ module.exports = {
     getGlobal,
     setGlobal,
     clearGlobal
-}
+};

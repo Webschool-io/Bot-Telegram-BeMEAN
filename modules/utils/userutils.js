@@ -1,7 +1,5 @@
-'use strict';
-
-const users = require('../db').user;
-const monitutils = require('./monitutils');
+import {user as users} from '../db';
+import monitutils from './monitutils';
 const callback = (err, data) => {
     if (err) console.log('Erro no banco: ', err);
     else console.log('Retorno do banco: ', data.result || data);
@@ -100,7 +98,7 @@ const getUserCount = (cbk) => {
     });
 }
 
-module.exports = {
+export default {
     saveUser,
     getUser,
     deleteUser,
@@ -109,4 +107,4 @@ module.exports = {
     isUserBlacklisted,
     getUserCount,
     getUsers
-}
+};
