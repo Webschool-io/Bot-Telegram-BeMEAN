@@ -3,7 +3,7 @@
 const answers = [
   'Saiu porque não aguentou a pressão!',
   'Já vai tarde!',
-  'Tchau, querida!'
+  'Tchau, querida!',
   '“I’ll be back.”',
   'Que a força esteja com você!',
   'Hasta la vista, baby!',
