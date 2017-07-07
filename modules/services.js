@@ -103,7 +103,7 @@ const defs = [
   },
   {
     member: "mdn",
-    regex: /^js\s+([a-zA-Z])+/i,
+    regex: /^(?!js|mdn)\s+([a-zA-Z])+/i,
     fn: (bot, msg, match) => services.mdn.execute(bot, msg, match ? match : []),
     eval: false
   },
