@@ -4,7 +4,7 @@
   "engines": {
     "node": "6.5.0"
   },
-  "description": "Bot para o Teegram do grupo do Be MEAN",
+  "description": "Bot para o Telegram do grupo do Be MEAN",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -19,21 +19,21 @@
   "author": "WebSchool / BeMEAN",
   "license": "ISC",
   "dependencies": {
-    "chai": "^3.5.0",
-    "cheerio": "^0.20.0",
-    "cheerio-advanced-selectors": "^1.1.0",
-    "dotenv": "^2.0.0",
+    "chai": "^4.0.2",
+    "cheerio": "^1.0.0-rc.1",
+    "cheerio-advanced-selectors": "^1.1.1",
+    "dotenv": "^4.0.0",
     "execSync": "^1.0.2",
-    "funcy": "0.0.4",
-    "github": "^0.2.4",
-    "googlemaps": "^1.11.1",
-    "mathjs": "^3.10.0",
-    "md5": "^2.1.0",
-    "moment": "^2.17.1",
-    "mongoose": "^4.5.9",
-    "node-telegram-bot-api": "^0.21.1",
+    "funcy": "0.1.0",
+    "github": "^9.2.0",
+    "googlemaps": "^1.12.0",
+    "mathjs": "^3.13.3",
+    "md5": "^2.2.1",
+    "moment": "^2.18.1",
+    "mongoose": "^4.10.5",
+    "node-telegram-bot-api": "^0.27.1",
     "prettyjson": "^1.2.1",
-    "request": "^2.72.0",
+    "request": "^2.81.0",
     "sewe": "^1.0.0"
   }
 }

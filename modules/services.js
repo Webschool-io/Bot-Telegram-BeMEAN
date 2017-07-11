@@ -14,6 +14,7 @@ const md5 = require("./services/md5");
 const saudacao = require("./services/saudacao");
 const masem = require("./services/masem");
 const tuamae = require("./services/tuamae");
+const elogio = require("./services/elogio");
 const gme = require("./services/gme");
 const npm = require("./services/npm");
 const stickerHeart = require("./services/sticker-heart");
@@ -38,6 +39,7 @@ const services = {
   saudacao,
   masem,
   tuamae,
+  elogio,
   gme,
   npm,
   evalDate,
@@ -141,8 +143,14 @@ const defs = [
   },
   {
     member: "tuamae",
-    regex: /bot.*(burro|idiota|retardado|trou?xa|maconheiro|inútil|fiduma(e|é)gua|z(e|é) r(u|o)ela|ot(á|a)rio|v(i|e)ado)/i,
+    regex: /bot.*(burro|idiota|retardado|trouxa|maconheiro|inútil|fiduma(e|é)gua|z(e|é) r(u|o)ela|ot(á|a)rio|v(i|e)ado)/i,
     fn: (bot, msg, match) => services.tuamae.execute(bot, msg, match ? match : []),
+    eval: false
+  },
+  {
+    member: "elogio",
+    regex: /bot.*(inteligente|maneiro|descolado|bonito|útil|lindo)/i,
+    fn: (bot, msg, match) => services.elogio.execute(bot, msg, match ? match : []),
     eval: false
   },
   {
