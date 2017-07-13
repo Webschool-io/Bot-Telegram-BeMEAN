@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 const answers = [
   'Mas em?!',
@@ -14,12 +14,12 @@ const answers = [
   'Como que é?',
   'Jovem, você precisa melhorar suas habilidades de comunicação...',
   'Por que vocês, humanos, não sabem falar direito?'
-];
+]
 
 const execute = (bot, msg) => {
-  bot.sendMessage(msg.chat.id, answers[Math.floor(Math.random() * answers.length)]).catch(console.log);
-};
+  bot.sendMessage(msg.chat.id, answers[Math.floor(Math.random() * answers.length)]).catch(console.log)
+}
 
 module.exports = {
   execute
-};
+}

@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 const regex = {
   blacklist: [
@@ -9,20 +9,20 @@ const regex = {
     /.*require.*/ig,
     /.*bot*./ig
   ]
-};
+}
 
 const isInputOK = (input) => {
-  const blacklist = regex.blacklist;
-  let _return = true;
+  const blacklist = regex.blacklist
+  let _return = true
   blacklist.forEach((r) => {
     if (input.match(r)) {
-      _return = false;
+      _return = false
     }
-  });
-  return _return;
-};
+  })
+  return _return
+}
 
 module.exports = {
   regex,
   isInputOK
-};
+}

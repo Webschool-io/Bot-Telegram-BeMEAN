@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 
-const s = require('../settings');
+const s = require('../settings')
 
 const stickers = [
   'BQADAgADVgADGgZFBFCh0QP4JfyUAg',
@@ -10,16 +10,16 @@ const stickers = [
   'BQADAQADpQEAArQUiAltLq7j1VlG0wI',
   'BQADBAADCgQAAh8YpgAB-RH3g3ptUVEC',
   'BQADBAADOQAD06wKAnzbafAKQh0LAg'
-];
+]
 
 const execute = (bot, msg) => {
-  const sticker = stickers[Math.floor(Math.random() * stickers.length)];
-  const reply = { 'reply_to_message_id': msg.message_id };
+  const sticker = stickers[Math.floor(Math.random() * stickers.length)]
+  const reply = { 'reply_to_message_id': msg.message_id }
   s.get(msg.chat.id, 'stickers', (err, data) => {
-    if (data == 'true') bot.sendSticker(msg.chat.id, sticker, reply).catch(console.log);
-  });
-};
+    if (data == 'true') bot.sendSticker(msg.chat.id, sticker, reply).catch(console.log)
+  })
+}
 
 module.exports = {
   execute
-};
+}
